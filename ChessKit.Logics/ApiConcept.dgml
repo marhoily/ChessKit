@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph Layout="ForceDirected" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Board" Bounds="173.791666666667,259.719900023203,77.4466666666667,113.8802" Group="Expanded" LayoutSettings="List" />
+    <Node Id="Board1" Bounds="881.891666666666,963.720000030939,51.2566666666667,25.96" Label="Board" UseManualLocation="True" />
+    <Node Id="Board2" Bounds="716.141666666667,185.52745,51.2566666666667,25.96" Label="Board" />
+    <Node Id="CAN" Bounds="997.283333333334,547.440000030939,49.9999999999998,25.96" />
+    <Node Id="CalculatedMove" Bounds="413.068333333333,-0.000100000000010425,125.03,85.9199001914258" Group="Expanded" LayoutSettings="List" />
+    <Node Id="CalculatedMove1" Bounds="-12,305.560000027071,105.03,25.9600000000003" Label="CalculatedMove" UseManualLocation="True" />
+    <Node Id="CalculatedMove2" Bounds="400.518333333333,603.400000030939,105.03,25.96" Label="CalculatedMove" />
+    <Node Id="CanBeValidFast" Bounds="583.781549081911,968.958284821024,50,25.96" Label="bool" UseManualLocation="True" />
+    <Node Id="CatlingAvailability" Bounds="152.751666666666,97.9200000077335,119.526666666667,25.96" Label="CastlingAvailability" />
+    <Node Id="CountAttackers" Bounds="622.419924487271,867.602077701953,50,25.96" Label="int" UseManualLocation="True" />
+    <Node Id="Diagram" Bounds="648.498333333333,71.9200000000001,65.1099999999997,25.96" />
+    <Node Id="EnPassantFile" Bounds="152.751666666666,125.880000007734,90.7132280648469,25.9600000077344" Label="EnPassantFile" />
+    <Node Id="FEN" Bounds="746.053333333333,71.9200000000001,50,25.96" />
+    <Node Id="Frin" Bounds="558.583333333333,345.800150221133,50,25.96" Label="From" />
+    <Node Id="HalfMovesClock" Bounds="152.751666666666,153.840000015468,105.086666666667,25.96" Label="HalfMovesClock" />
+    <Node Id="Hint" Bounds="527.78,229.880300191426,50.0479374214478,25.9600000297071" Label="Hint" />
+    <Node Id="Hint1" Bounds="890.676049404166,1106.3488710693,50,25.96" Label="Hint" UseManualLocation="True" />
+    <Node Id="HintedMove" Bounds="506.855,203.880200191426,105.456666666667,85.9197500297071" Group="Expanded" LayoutSettings="List" />
+    <Node Id="HintedMove*" Bounds="1147.68775897432,1063.62003255863,90.46,25.96" UseManualLocation="True" />
+    <Node Id="HintedMove*1" Bounds="1156.64981876945,961.845568531966,90.46,25.96" Label="HintedMove*" UseManualLocation="True" />
+    <Node Id="HintedMove2" Bounds="1016.92295792979,857.822092804499,90.46,25.96" Label="HintedMove*" UseManualLocation="True" />
+    <Node Id="HintedMove3" Bounds="285.061666666666,603.400000030939,85.4566666666667,25.96" Label="HintedMove" />
+    <Node Id="IsCheck" Bounds="445.438333333333,26,60.2899999999999,25.96" Label="IsCheck" />
+    <Node Id="IsCheck1" Bounds="179.791666666667,285.720000023203,60.29,25.96" Label="IsCheck" />
+    <Node Id="IsMade" Bounds="179.791666666667,313.680000023203,55.5133333333334,25.96" Label="IsMate" />
+    <Node Id="IsMate" Bounds="445.438333333334,53.9597,55.5549475948421,25.9600001914258" Label="IsMate" />
+    <Node Id="MadeMove" Bounds="425.555,115.919900191426,100.056666666667,57.9602" Group="Expanded" LayoutSettings="List" />
+    <Node Id="MadeMove1" Bounds="-17.5133333333334,129.680000023203,80.0566666666667,25.96" Label="MadeMove" UseManualLocation="True" />
+    <Node Id="MadeMove2" Bounds="11.9050000000001,603.400000030939,80.0566666666666,25.96" Label="MadeMove" />
+    <Node Id="MadeMove3" Bounds="701.741666666667,297.44765,80.0566666666666,25.96" Label="MadeMove" />
+    <Node Id="Move" Bounds="548.668333333334,319.800050221133,69.8299999999999,85.9200500000001" Group="Expanded" LayoutSettings="List" />
+    <Node Id="Move2" Bounds="997.283333333334,475.520000030939,49.9999999999998,25.96" Label="Move" />
+    <Node Id="MoveDirection" Bounds="693.583333333333,129.56735,102.94,25.96" Label="MoveDirection*" />
+    <Node Id="MoveNumber" Bounds="152.751666666666,181.800000015468,93.3565965922324,25.9600000077344" Label="MoveNumber" />
+    <Node Id="Number" Bounds="527.78,257.839850221133,63.6066666666666,25.96" Label="Number" />
+    <Node Id="PGN" Bounds="121.961666666667,603.400000030939,50,25.96" />
+    <Node Id="Piece" Bounds="840.053333333333,71.9200000000001,50,25.96" />
+    <Node Id="PieceColor" Bounds="826.906666666667,129.5675,76.2933333333333,25.96" />
+    <Node Id="PieceType" Bounds="933.48,129.5675,73.1466666666668,25.96" />
+    <Node Id="PinsMap" Bounds="179.791666666667,341.640000023203,65.4466666666667,25.96" Label="PinsMap" />
+    <Node Id="Position" Bounds="146.751666666666,71.9199000077335,131.526666666667,141.840200015469" Group="Expanded" Label="ProtoBoard" LayoutSettings="List" />
+    <Node Id="Position1" Bounds="739.781666666667,1.06581410364015E-14,62.5433333333335,25.96" Label="Position" />
+    <Node Id="Position2" Bounds="648.498333333333,241.48755,62.5433333333333,25.96" Label="Position" />
+    <Node Id="Promotion" Bounds="437.500328106667,141.920000191426,76.1660104533332,25.96" Label="Promotion" />
+    <Node Id="SAN" Bounds="26.9333333333334,675.320000030939,50,25.96" />
+    <Node Id="To" Bounds="558.583333333333,373.760000221133,50,25.96" Label="To" />
+    <Node Id="Zobris" Bounds="201.961666666667,603.400000030939,53.0999999999999,25.96" />
+    <Node Id="[Next]Board" Bounds="308.278333333333,131.920000191426,86.61,25.96" Label="[Next] Board" />
+    <Node Id="[Next]Position" Bounds="346.635,233.860000206279,115.63,25.96" Label="[Next] ProtoBoard" />
+    <Node Id="[Next]Position1" Bounds="154.143966384351,427.337777800982,115.63,25.96" Label="[Next] ProtoBoard" UseManualLocation="True" />
+    <Node Id="[Prev]Board" Bounds="433.233333333334,349.780000221133,84.6999999999998,25.96" Label="[Prev] Board" />
+    <Node Id="[Prev]Board1" Bounds="170.179142882129,0,84.6717142357422,25.9600000077344" Label="[Prev] Board" />
+  </Nodes>
+  <Links>
+    <Link Source="Board" Target="CalculatedMove1" Bounds="102.029469456091,317.083253562481,71.7621972105753,0.784374725549128" />
+    <Link Source="Board" Target="IsCheck1" Category="Contains" />
+    <Link Source="Board" Target="IsMade" Category="Contains" />
+    <Link Source="Board" Target="PinsMap" Category="Contains" />
+    <Link Source="Board" Target="[Next]Position1" Bounds="212.057800186004,373.600100023203,0.201165699139409,44.7377687618045" Label="Move(Move, Promotion)" LabelBounds="216.158383035779,387.997977416991,128.87,15.9600000000009" />
+    <Link Source="Board1" Target="CanBeValidFast" Bounds="642.780165807501,977.149384796384,239.111500859166,4.19274497218476" Label="CanBeValidFast(Move)" LabelBounds="703.310980218064,983.245757329729,118.120000000001,15.96" />
+    <Link Source="Board1" Target="CountAttackers" Bounds="680.861938492613,892.940309041771,201.029728174053,74.288943439792" Label="CountAttackers(Square)" LabelBounds="661.290030821377,934.092976498688,125.163333333333,15.96" />
+    <Link Source="Board1" Target="Hint1" Bounds="908.26224468367,989.680000030939,6.15774595285188,107.683549948546" Label="Validate(Move)" LabelBounds="915.341122989044,1035.42759409766,79.9599999999996,15.96" />
+    <Link Source="Board1" Target="HintedMove*" Bounds="933.148333333333,985.670888039421,214.193102073768,74.9757038782548" Label="GetLegalMovesFrom(Square)" LabelBounds="1034.85205577212,1003.19205852259,152.933333333332,15.96" />
+    <Link Source="Board1" Target="HintedMove*1" Bounds="933.148333333333,975.170894461961,214.501667901886,1.36590885460612" Label="GetLegalMovesTo(Square)" LabelBounds="970.961431894611,955.893848888442,138.85,15.96" />
+    <Link Source="Board1" Target="HintedMove2" Bounds="926.473498199325,888.867401007753,109.300354453067,74.8525990231863" Label="GetLegalMoves()" LabelBounds="891.246940269581,908.683565613107,88.7466666666664,15.96" />
+    <Link Source="Board2" Target="Position2" Bounds="700.832022790855,211.48745,26.5570164889172,23.9698919100235" />
+    <Link Source="CalculatedMove" Target="IsCheck" Category="Contains" />
+    <Link Source="CalculatedMove" Target="IsMate" Category="Contains" />
+    <Link Source="CalculatedMove" Target="MadeMove" Bounds="475.583333333333,85.9198001914258,0,21.0001" />
+    <Link Source="CalculatedMove" Target="[Next]Board" Bounds="374.324458591356,85.9198001914258,49.0023908456245,40.2847667568689" />
+    <Link Source="HintedMove" Target="Hint" Category="Contains" />
+    <Link Source="HintedMove" Target="Move" Bounds="568.47771739324,289.799950221133,4.38654367956781,21.1870059750275" />
+    <Link Source="HintedMove" Target="Number" Category="Contains" />
+    <Link Source="HintedMove" Target="[Prev]Board" Bounds="490.270115994539,289.799950221133,38.1828529878401,52.6923030381382" />
+    <Link Source="MadeMove" Target="HintedMove" Bounds="499.46332753233,173.880100191426,18.9971193300994,23.0543782092435" />
+    <Link Source="MadeMove" Target="Promotion" Category="Contains" />
+    <Link Source="MadeMove" Target="[Next]Position" Bounds="418.657631596457,173.880100191426,36.7035012951171,52.59917885524" />
+    <Link Source="MadeMove" Target="[Prev]Board" Bounds="475.583328760226,173.880100191426,3.89652450394351E-06,166.89989431541" />
+    <Link Source="MadeMove2" Target="SAN" Bounds="51.9333333333334,629.360000030939,0,36.96" Label="ToString()" LabelBounds="55.9333333333334,639.860000030939,51.9333333333335,15.9599999999998" />
+    <Link Source="MadeMove3" Target="Board2" Bounds="741.77,220.48745,0,76.9602000000001" />
+    <Link Source="Move" Target="Frin" Category="Contains" />
+    <Link Source="Move" Target="To" Category="Contains" />
+    <Link Source="Move2" Target="CAN" Bounds="1022.28333333333,501.480000030939,1.13686837721616E-13,36.96" Label="ToString()" LabelBounds="1026.28333333333,511.980000030939,51.9333333333334,15.96" />
+    <Link Source="Piece" Target="MoveDirection" Bounds="780.185247013798,96.636877672736,60.436341916223,29.0332912930348" />
+    <Link Source="Piece" Target="PieceColor" Bounds="865.053333333333,97.8800000000001,1.13686837721616E-13,22.6875" />
+    <Link Source="Piece" Target="PieceType" Bounds="888.245397359949,97.6329953426129,50.2767810764462,27.6031498771852" />
+    <Link Source="Position" Target="Board" Bounds="212.515,213.760100023202,0,36.959800000001" Label="Calculate()" LabelBounds="216.515,224.260000023202,55.3733333333334,15.9600000000009" />
+    <Link Source="Position" Target="CatlingAvailability" Category="Contains" />
+    <Link Source="Position" Target="EnPassantFile" Category="Contains" />
+    <Link Source="Position" Target="HalfMovesClock" Category="Contains" />
+    <Link Source="Position" Target="MadeMove1" Bounds="71.5433292945552,142.706447912118,75.2083373721112,0.0712500007642802" />
+    <Link Source="Position" Target="MoveNumber" Category="Contains" />
+    <Link Source="Position1" Target="Diagram" Bounds="704.327248030427,25.96,50.4830374719832,40.3415561665005" Label="Print()" LabelBounds="730.817309840529,47.6931929423992,31.8966666666668,15.96" />
+    <Link Source="Position1" Target="FEN" Bounds="771.053333333333,25.96,0,36.9600000000001" Label="ToString()" LabelBounds="775.053333333333,54.9400000000001,51.9333333333336,15.96" />
+    <Link Source="Position1" Target="Piece" Bounds="788.018294401186,25.96,52.9222389489496,40.4911428213666" Label="At(Square)" LabelBounds="815.694715470913,28.657162762829,55.8333333333335,15.96" />
+    <Link Source="Position2" Target="MadeMove3" Bounds="694.150960720228,267.44755,26.5570164889173,23.9698919100236" />
+    <Link Source="[Prev]Board1" Target="Position" Bounds="212.515,25.9600000077344,0,36.9598999999991" Label="Move(Move, Promotion)" LabelBounds="216.515,36.4599500077344,128.87,15.9599999999991" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="LabelBounds" DataType="System.Windows.Rect" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="LayoutSettings" DataType="Microsoft.VisualStudio.Diagrams.View.GroupLayoutStyle" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+  </Properties>
+</DirectedGraph>

@@ -1,0 +1,195 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="ChessKit.ChessLogic" #>
+using System.Collections.Generic;
+
+namespace ChessKit.ChessLogic
+{
+  partial class Board
+  {
+    public void GenerateMoves(CompactPiece piece, int fromSquare, 
+       int? enPassantFile, CastlingAvailability castlingAvailability, List<Move> collector)
+    {
+      switch (piece)
+      {
+<#
+  foreach (var p in Piece.All) 
+  {
+#>
+        #region ' <#=p.Color#> <#=p.PieceType#> '
+        case CompactPiece.<#=p.Color#><#=p.PieceType#>:
+<#
+    if (p.MoveDirections.Any(dir => dir.Count > 1))
+    {
+      foreach (var dir in p.MoveDirections)
+      {
+        var delta = dir.DeltaY * 16 + dir.DeltaX;
+#>
+          for (var to = fromSquare + <#=delta#>; (to & 0x88) == 0; to += <#=delta#>)
+          {
+            var toPiece = _cells[to];
+            if (toPiece == 0) 
+            {
+              if ((_pinMap & (1ul << fromSquare)) != 0)
+              {
+                _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
+                _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
+                  collector.Add(new Move((Position)fromSquare, (Position)to, 
+                    MoveHints.<#=p.PieceType#>));
+                _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                _cells[to] = toPiece;
+              }
+              else
+              {
+                collector.Add(new Move((Position)fromSquare, (Position)to, 
+                  MoveHints.<#=p.PieceType#>));
+              }
+            }
+            else if ((PieceColor)(toPiece & (byte)PieceColor.Black) != PieceColor.<#=p.Color#>)
+            {
+              if ((_pinMap & (1ul << fromSquare)) != 0)
+              {
+                _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
+                _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
+                  collector.Add(new Move((Position)fromSquare, (Position)to, 
+                    MoveHints.<#=p.PieceType#> | MoveHints.Capture));
+                _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                _cells[to] = toPiece;
+              }
+              else
+              {
+                collector.Add(new Move((Position)fromSquare, (Position)to, 
+                  MoveHints.<#=p.PieceType#> | MoveHints.Capture));
+              }
+              break;
+            }
+            else break;
+          }
+<#
+      }
+    }
+    else if (p.PieceType == PieceType.Pawn)
+    {
+#>
+          Generate<#=p.Color#>PawnMoves(fromSquare, enPassantFile, collector);
+<#
+    }
+    else // Non-slider move
+    {
+      foreach (var dir in p.MoveDirections.Where(m => !m.IsSpecial))
+      {
+        var delta = dir.DeltaY * 16 + dir.DeltaX;
+#>
+          {
+            var to = fromSquare + <#=delta#>;
+            if ((to & 0x88) == 0)
+            {
+              var toPiece = _cells[to];
+              if (toPiece == 0) 
+              {
+              if ((_pinMap & (1ul << fromSquare)) != 0)
+              {
+                _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
+<#
+                if (p.PieceType != PieceType.King)
+                {
+#>
+                _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
+<#
+                }
+                else
+                {
+#>
+                if (!IsAttackedBy<#=p.Color.Invert()#>(to))
+<#
+                }
+#>
+                  collector.Add(new Move((Position)fromSquare, (Position)to, 
+                    MoveHints.<#=p.PieceType#>));
+<#
+                if (p.PieceType != PieceType.King)
+                {
+#>
+                _cells[to] = toPiece;
+<#
+                }
+#>
+                _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+				}
+				else
+				{
+                  collector.Add(new Move((Position)fromSquare, (Position)to, 
+                    MoveHints.<#=p.PieceType#>));
+				}
+              }
+              else if ((PieceColor)(toPiece & (byte)PieceColor.Black) != PieceColor.<#=p.Color#>)
+              {
+              if ((_pinMap & (1ul << fromSquare)) != 0)
+              {
+                _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
+<#
+                if (p.PieceType != PieceType.King)
+                {
+#>
+                _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
+<#
+                }
+                else
+                {
+#>
+                if (!IsAttackedBy<#=p.Color.Invert()#>(to))
+<#
+                }
+#>
+                 collector.Add(new Move((Position)fromSquare, (Position)to, 
+                   MoveHints.<#=p.PieceType#> | MoveHints.Capture));
+<#
+                if (p.PieceType != PieceType.King)
+                {
+#>
+                _cells[to] = toPiece;
+<#
+                }
+#>
+                _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+				}
+				else
+				{
+                 collector.Add(new Move((Position)fromSquare, (Position)to, 
+                   MoveHints.<#=p.PieceType#> | MoveHints.Capture));
+				}
+              }
+            }
+          }
+<#
+        }
+      }
+      if (p.PieceType == PieceType.King)
+      {
+#>
+          Generate<#=p.Color#>CastlingMoves(fromSquare, castlingAvailability, collector);
+<#
+      }
+#>
+          break;
+        #endregion
+
+<#         
+    }
+#>
+      }
+    }
+  }
+}

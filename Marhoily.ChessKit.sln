@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessKit.Logics", "ChessKit.Logics\ChessKit.Logics.csproj", "{7E7C0436-3E23-48F5-991B-5E3433A26E78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessKit.Logics.UnitTests", "ChessKit.Logics.UnitTests\ChessKit.Logics.UnitTests.csproj", "{50D0F271-0B9C-437B-90E4-6AF363748A2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7E7C0436-3E23-48F5-991B-5E3433A26E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E7C0436-3E23-48F5-991B-5E3433A26E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E7C0436-3E23-48F5-991B-5E3433A26E78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50D0F271-0B9C-437B-90E4-6AF363748A2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50D0F271-0B9C-437B-90E4-6AF363748A2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50D0F271-0B9C-437B-90E4-6AF363748A2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50D0F271-0B9C-437B-90E4-6AF363748A2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

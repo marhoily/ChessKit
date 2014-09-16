@@ -2,19 +2,19 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7e7c0436-3e23-48f5-991b-5e3433a26e78}</ProjectGuid>
+    <ProjectGuid>{7E7C0436-3E23-48F5-991B-5E3433A26E78}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChessKit.Logics</RootNamespace>
-    <AssemblyName>ChessKit.Logics</AssemblyName>
+    <RootNamespace>ChessKit.ChessLogic</RootNamespace>
+    <AssemblyName>ChessKit.ChessLogic</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile5</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,10 +35,78 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="ApiConcept.dgml" />
+    <None Include="API %28Simplified%29.cd" />
+    <None Include="API.cd" />
+    <None Include="Board.CanBeValidMove.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Board.CanBeValidMove.cs</LastGenOutput>
+    </None>
+    <None Include="Board.Cells.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Board.Cells.cs</LastGenOutput>
+    </None>
+    <None Include="Board.GenerateMoves.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Board.GenerateMoves.cs</LastGenOutput>
+    </None>
+    <None Include="Board.IsAttackedBy.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Board.IsAttackedBy.cs</LastGenOutput>
+    </None>
+    <None Include="Board.ValidateMove.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Board.ValidateMove.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Board.CanBeValidMove.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Board.CanBeValidMove.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Board.Cells.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Board.Cells.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Board.cs" />
+    <Compile Include="Board.Fen.cs" />
+    <Compile Include="Board.GenerateMoves.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Board.GenerateMoves.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Board.IsAttackedBy.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Board.IsAttackedBy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Board.MovesCore.cs" />
+    <Compile Include="Board.ValidateMove.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Board.ValidateMove.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BoardExtensions.cs" />
+    <Compile Include="CastlingAvailability.cs" />
+    <Compile Include="CompactPiece.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="Move.cs" />
+    <Compile Include="MoveDirection.cs" />
+    <Compile Include="MoveHints.cs" />
+    <Compile Include="MoveType.cs" />
+    <Compile Include="Piece.cs" />
+    <Compile Include="PieceColor.cs" />
+    <Compile Include="PieceExt.cs" />
+    <Compile Include="PieceType.cs" />
+    <Compile Include="Position.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResharperAnnotations.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -48,5 +116,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
 </Project>
