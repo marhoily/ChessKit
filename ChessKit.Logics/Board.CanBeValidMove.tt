@@ -13,7 +13,7 @@ namespace ChessKit.ChessLogic
 {
   partial class Board
   {
-    public bool CanBeValidMove(CompactPiece piece, int fromSquare, int toSquare)
+    internal bool CanBeValidMove(CompactPiece piece, int fromSquare, int toSquare)
     {
 	    var dx = toSquare - fromSquare;
 	    switch (piece)

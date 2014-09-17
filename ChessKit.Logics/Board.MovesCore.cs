@@ -511,7 +511,7 @@ namespace ChessKit.ChessLogic
 			}
 		}
 
-		public bool IsUnderCheck(PieceColor kingColor)
+	    private bool IsUnderCheck(PieceColor kingColor)
 		{
 			return kingColor == PieceColor.White
 			  ? IsAttackedByBlack(_whiteKingPosition)

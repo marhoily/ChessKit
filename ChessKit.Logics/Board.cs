@@ -39,10 +39,6 @@ namespace ChessKit.ChessLogic
 			get { return _gameState == GameState.WhiteWin || _gameState == GameState.BlackWin; }
 		}
 
-		public Piece GetPieceAt(Position position)
-		{
-			return Piece.Unpack(this[(int)position]);
-		}
 
 		#region ' MakeMove '
 
@@ -79,7 +75,7 @@ namespace ChessKit.ChessLogic
 			return res;
 		}
 
-		public void EnsurePinMap()
+	    private void EnsurePinMap()
 		{
 			if (_pinMap != NoPinMap) return;
 			if (IsCheck)
@@ -245,6 +241,7 @@ namespace ChessKit.ChessLogic
 		{
 			get { return Piece.Unpack((CompactPiece)_cells[(int)index]); }
 		}
+
 		public Piece this[string index]
 		{
 			get { return this[Position.Parse(index)]; }

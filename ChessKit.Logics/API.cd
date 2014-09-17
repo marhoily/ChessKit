@@ -35,6 +35,7 @@
       <Field Name="C6" Hidden="true" />
       <Field Name="C7" Hidden="true" />
       <Field Name="C8" Hidden="true" />
+      <Method Name="CanBeValidMove" Hidden="true" />
       <Field Name="D1" Hidden="true" />
       <Field Name="D2" Hidden="true" />
       <Field Name="D3" Hidden="true" />
@@ -51,6 +52,7 @@
       <Field Name="E6" Hidden="true" />
       <Field Name="E7" Hidden="true" />
       <Field Name="E8" Hidden="true" />
+      <Method Name="EnsurePinMap" Hidden="true" />
       <Field Name="F1" Hidden="true" />
       <Field Name="F2" Hidden="true" />
       <Field Name="F3" Hidden="true" />
@@ -69,6 +71,7 @@
       <Field Name="G8" Hidden="true" />
       <Method Name="GenerateBlackCastlingMoves" Hidden="true" />
       <Method Name="GenerateBlackPawnMoves" Hidden="true" />
+      <Method Name="GenerateMoves" Hidden="true" />
       <Method Name="GenerateWhiteCastlingMoves" Hidden="true" />
       <Method Name="GenerateWhitePawnMoves" Hidden="true" />
       <Field Name="H1" Hidden="true" />
@@ -81,6 +84,7 @@
       <Field Name="H8" Hidden="true" />
       <Method Name="IsAttackedByBlack" Hidden="true" />
       <Method Name="IsAttackedByWhite" Hidden="true" />
+      <Method Name="IsUnderCheck" Hidden="true" />
       <Method Name="KilledAvailability" Hidden="true" />
       <Method Name="LoadActiveColorSection" Hidden="true" />
       <Method Name="LoadCastlingAvailabilitySection" Hidden="true" />
@@ -120,8 +124,8 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>xsK3CA77FjBQAiEFiQAJq/0+UIQBiv9/BAoIwP8fF4A=</HashCode>
-      <FileName>ChessLogic\Board.CanBeValidMove.cs</FileName>
+      <HashCode>xsK3CA77FjBQAiEFiQAJq/0+UAQBiv9/BAoIwP8fF4A=</HashCode>
+      <FileName>Board.CanBeValidMove.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="SideOnMove" />
@@ -143,7 +147,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AgAgAAAQAABAAAIEgAgAgAAAAAAIAMAAABAAAAAAAiA=</HashCode>
-      <FileName>ChessLogic\Move.cs</FileName>
+      <FileName>Move.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="From" />
@@ -161,14 +165,14 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AAQAAAAAIAAAAAAAAAAAgAAQAAAAAAAAQAABgAAAAAA=</HashCode>
-      <FileName>ChessLogic\BoardExtensions.cs</FileName>
+      <FileName>BoardExtensions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ChessKit.ChessLogic.PieceExt">
     <Position X="8.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ChessLogic\PieceExt.cs</FileName>
+      <FileName>PieceExt.cs</FileName>
       <NewMemberFileName>ChessLogic\IPiece.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
@@ -183,7 +187,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAQAAAIAgAAAAAQAAAAAAIAAAAAAAAAAAiA=</HashCode>
-      <FileName>ChessLogic\MoveDirection.cs</FileName>
+      <FileName>MoveDirection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -210,7 +214,7 @@
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>gJBgACACCICMBAxEAAAAQEARhAAAQhAAAIkAgAAgDGY=</HashCode>
-      <FileName>ChessLogic\Piece.cs</FileName>
+      <FileName>Piece.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="TypeComparer" />
@@ -238,7 +242,7 @@
     </Members>
     <TypeIdentifier>
       <HashCode>AIAhgAAAAAAAhAAEgAAAAABAAAAEAIAAAIAAAAAAYiA=</HashCode>
-      <FileName>ChessLogic\Position.cs</FileName>
+      <FileName>Position.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Interface Name="System.Collections.Generic.IComparer&lt;T&gt;" Collapsed="true">
@@ -249,35 +253,35 @@
     <Position X="3.75" Y="4.75" Width="1.25" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ChessLogic\PieceColor.cs</FileName>
+      <FileName>PieceColor.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ChessKit.ChessLogic.MoveType">
     <Position X="10.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ChessLogic\MoveType.cs</FileName>
+      <FileName>MoveType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ChessKit.ChessLogic.PieceType">
     <Position X="4.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAEggAAAAEAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
-      <FileName>ChessLogic\PieceType.cs</FileName>
+      <FileName>PieceType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ChessKit.ChessLogic.MoveHints">
     <Position X="13" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>hAAkABigABkgoAIAAkAAIAQAAACAAAAAAJEJAAMABEA=</HashCode>
-      <FileName>ChessLogic\MoveHints.cs</FileName>
+      <FileName>MoveHints.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ChessKit.ChessLogic.CompactPiece">
     <Position X="4.25" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>hBAAAAACAAAEAAgAAAAAQAAQgAAAQgAAAAAAAAAAAGA=</HashCode>
-      <FileName>ChessLogic\CompactPiece.cs</FileName>
+      <FileName>CompactPiece.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />
