@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace UnitTests.ChessLogic
 {
-	[TestFixture]
+    [TestFixture]
 	public class BoardTest
 	{
 		/*
