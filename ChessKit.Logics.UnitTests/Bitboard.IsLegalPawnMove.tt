@@ -13,12 +13,33 @@
 		{
 		    new Tst
 		    {
+		        Name = "White pawn moves from e2 to e3 and e4 only",
 		        Set = "E2:P",
 				From = "E2",
 				Legal = "E3, E4" 
 		    }, 
+		    new Tst
+		    {
+		        Name = "White pawn doesn't move from e2 if blocked on e3",
+		        Set = "E2:P, E3:P",
+				From = "E2",
+				Legal = "" 
+		    }, 
+			new Tst
+		    {
+		        Name = "White pawn only moves from e2 to e3 if blocked on e4",
+		        Set = "E2:P, E4:P",
+				From = "E2",
+				Legal = "E3" 
+		    }, 
+		    new Tst
+		    {
+		        Name = "White pawn only moves from e3 to e4",
+		        Set = "E3:P",
+				From = "E3",
+				Legal = "E4" 
+		    }, 
 		}
-    
     }
 }; #>
 using System;
@@ -67,6 +88,7 @@ namespace ChessKit.ChessLogic.UnitTests
 	{
 #>
         [Test]
+        [TestCase(TestName="<#=t.Name#>")]
         public void IsLegalMove_For_<#=o.Color#>_Pawn_From_<#=t.From#>_To_Every_Other_Cell_Then_<#=string.Join("_",t.Expected)#>_Should_Return_False()
         {
 <#
@@ -77,57 +99,12 @@ namespace ChessKit.ChessLogic.UnitTests
 <#
 	}
 #>	
-            _bitboard.AssertLegalMoves(Bitboard.<#=t.From#>,<#=string.Join(", ",t.Expected.Select(cell => "Bitboard."+cell))#>);
+            _bitboard.AssertLegalMoves(<#=string.Join(", ",new[]{t.From}.Concat(t.Expected).Select(cell => "Bitboard."+cell))#>);
         }
 
 <#
 	}
 #>	
-
-        [Test]
-        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_E3_To_Every_Other_Cell_Then_E4_Should_Return_False()
-        {
-            _bitboard[Bitboard.E3] = BitType.<#=o.Color#>Pawn;
-            _bitboard.AssertLegalMoves(Bitboard.E3, Bitboard.E4);
-        }
-        [Test]
-        public void IsLegalMove_For_<#=o.Color#>_Pawn_When_DoublePush_From_Third_Row_Should_Return_False()
-        {
-            _bitboard[Bitboard.E3] = BitType.<#=o.Color#>Pawn;
-            _bitboard.IsLegalMove(Bitboard.E3, Bitboard.E5).Should().BeFalse();
-        }
-        [Test]
-        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_Second_To_Fourth_Row_When_Blocked_On_Fourth_Row_Should_Return_False()
-        {
-            _bitboard[Bitboard.E2] = BitType.<#=o.Color#>Pawn;
-            _bitboard[Bitboard.E4] = BitType.<#=o.Color#>Pawn;
-            _bitboard.IsLegalMove(Bitboard.E2, Bitboard.E4).Should().BeFalse();
-        }
-        [Test]
-        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_Second_To_Fourth_Row_When_Blocked_On_Third_Row_Should_Return_False()
-        {
-            _bitboard[Bitboard.E2] = BitType.<#=o.Color#>Pawn;
-            _bitboard[Bitboard.E3] = BitType.<#=o.Color#>Pawn;
-            _bitboard.IsLegalMove(Bitboard.E2, Bitboard.E4).Should().BeFalse();
-        }
-        [Test]
-        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_Second_To_Fourth_Row_Should_Return_True()
-        {
-            _bitboard[Bitboard.E2] = BitType.<#=o.Color#>Pawn;
-            _bitboard.IsLegalMove(Bitboard.E2, Bitboard.E4).Should().BeTrue();
-        }
-        [Test]
-        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_Second_To_Third_Row_Should_Return_True()
-        {
-            _bitboard[Bitboard.E2] = BitType.<#=o.Color#>Pawn;
-            _bitboard.IsLegalMove(Bitboard.E2, Bitboard.E3).Should().BeTrue();
-        }
-        [Test]
-        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_Second_To_Fifth_Row_Should_Return_False()
-        {
-            _bitboard[Bitboard.E2] = BitType.<#=o.Color#>Pawn;
-            _bitboard.IsLegalMove(Bitboard.E2, 36).Should().BeFalse();
-        }
 <#
 	}
 #>		
@@ -160,11 +137,12 @@ namespace ChessKit.ChessLogic.UnitTests
         }
         public IEnumerable<string> Expected
         {
-            get { return Legal.Split(',').Select(x => x.Trim()); }
+            get { return Legal.Split(new[]{','}, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()); }
         }
         public string Set { get; set; }
         public string From { get; set; }
         public string Legal { get; set; }
+        public string Name { get; set; }
     }
 	class Arg
 	{
