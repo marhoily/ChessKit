@@ -1,0 +1,103 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<# var args = new[] {new Arg {Color = "White"}}; #>
+using System;
+using FluentAssertions;
+using NUnit.Framework;
+
+namespace ChessKit.ChessLogic.UnitTests
+{
+	partial class Bitboard
+	{
+<#
+    foreach (var o in args)
+	{
+#>
+		private bool IsLegal<#=o.Color#>PawnMove(ulong fromBit, ulong toBit)
+		{
+			var pushOnce = NortOne(fromBit);
+			if (this[pushOnce] != BitType.Empty) return false;
+			if (pushOnce == toBit) return true;
+			if ((fromBit & Row2) == 0) return false;
+			var pushTwice = NortOne(pushOnce);
+			if (this[pushTwice] != BitType.Empty) return false;
+			return pushTwice == toBit;
+		}
+<#
+	}
+#>		
+ 
+	}
+    [TestFixture]
+    public class BitboardTest_PawnMoves
+    {
+        private Bitboard _bitboard;
+
+        [SetUp]
+        public void Initialize()
+        {
+            _bitboard = new Bitboard();
+        }
+<#
+    foreach (var o in args)
+	{
+#>
+        [Test]
+        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_E3_To_Every_Other_Cell_Then_E4_Should_Return_False()
+        {
+            _bitboard[Bitboard.E3] = BitType.<#=o.Color#>Pawn;
+            _bitboard.AssertLegalMoves(Bitboard.E3, Bitboard.E4);
+        }
+        [Test]
+        public void IsLegalMove_For_<#=o.Color#>_Pawn_When_DoublePush_From_Third_Row_Should_Return_False()
+        {
+            _bitboard[Bitboard.E3] = BitType.<#=o.Color#>Pawn;
+            _bitboard.IsLegalMove(Bitboard.E3, Bitboard.E5).Should().BeFalse();
+        }
+        [Test]
+        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_Second_To_Fourth_Row_When_Blocked_On_Fourth_Row_Should_Return_False()
+        {
+            _bitboard[Bitboard.E2] = BitType.<#=o.Color#>Pawn;
+            _bitboard[Bitboard.E4] = BitType.<#=o.Color#>Pawn;
+            _bitboard.IsLegalMove(Bitboard.E2, Bitboard.E4).Should().BeFalse();
+        }
+        [Test]
+        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_Second_To_Fourth_Row_When_Blocked_On_Third_Row_Should_Return_False()
+        {
+            _bitboard[Bitboard.E2] = BitType.<#=o.Color#>Pawn;
+            _bitboard[Bitboard.E3] = BitType.<#=o.Color#>Pawn;
+            _bitboard.IsLegalMove(Bitboard.E2, Bitboard.E4).Should().BeFalse();
+        }
+        [Test]
+        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_Second_To_Fourth_Row_Should_Return_True()
+        {
+            _bitboard[Bitboard.E2] = BitType.<#=o.Color#>Pawn;
+            _bitboard.IsLegalMove(Bitboard.E2, Bitboard.E4).Should().BeTrue();
+        }
+        [Test]
+        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_Second_To_Third_Row_Should_Return_True()
+        {
+            _bitboard[Bitboard.E2] = BitType.<#=o.Color#>Pawn;
+            _bitboard.IsLegalMove(Bitboard.E2, Bitboard.E3).Should().BeTrue();
+        }
+        [Test]
+        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_Second_To_Fifth_Row_Should_Return_False()
+        {
+            _bitboard[Bitboard.E2] = BitType.<#=o.Color#>Pawn;
+            _bitboard.IsLegalMove(Bitboard.E2, 36).Should().BeFalse();
+        }
+<#
+	}
+#>		
+    }
+}
+<#+
+	class Arg
+	{
+		public string Color { get; set; }
+	}
+#>

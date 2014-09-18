@@ -77,6 +77,7 @@
     </Compile>
     <Compile Include="BitboardTest.cs" />
     <Compile Include="Bitboard.Shifts.cs" />
+    <Compile Include="BitboardTestExtensions.cs" />
     <Compile Include="BitType.cs" />
     <Compile Include="BoardTest.cs" />
     <Compile Include="MoveTest.cs" />
