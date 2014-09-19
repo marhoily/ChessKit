@@ -15,38 +15,10 @@ var args = new[]
 		{
 		    new Tst
 		    {
-		        Name = "White pawn moves from e2 to e3 and e4 only",
-		        Set = "E2:P",
-				From = "E2",
-				Legal = "E3, E4" 
-		    }, 
-		    new Tst
-		    {
-		        Name = "White pawn doesn't move from e2 if blocked on e3",
-		        Set = "E2:P, E3:P",
-				From = "E2",
-				Legal = "" 
-		    }, 
-			new Tst
-		    {
-		        Name = "White pawn only moves from e2 to e3 if blocked on e4",
-		        Set = "E2:P, E4:P",
-				From = "E2",
-				Legal = "E3" 
-		    }, 
-		    new Tst
-		    {
-		        Name = "White pawn only moves from e3 to e4",
-		        Set = "E3:P",
-				From = "E3",
-				Legal = "E4" 
-		    }, 
-			new Tst
-		    {
-		        Name = "White pawn takes from e3 to d4 and f4",
-		        Set = "E3:P, D4:p, F4:p",
-				From = "E3",
-				Legal = "E4, D4, F4" 
+		        Name = "White bishop moves from E4 to ",
+		        Set = "E4:B",
+				From = "E4",
+				Legal = "B1, C2, D3, F5, G6, H7, A8, B7, C6, D5, F3, G2, H1" 
 		    }, 
 		}
     }
@@ -64,14 +36,8 @@ namespace ChessKit.ChessLogic.UnitTests
     foreach (var o in args)
 	{
 #>
-		private bool IsLegal<#=o.Color#>PawnMove(ulong fromBit, ulong toBit)
+		private bool IsLegal<#=o.Color#>BishopMove(ulong fromBit, ulong toBit)
 		{
-		    var takeNoEa = NoEaOne(fromBit);
-            if (toBit == takeNoEa && IsBlack(this[takeNoEa])) return true;
-
-		    var takeNoWe = NoWeOne(fromBit);
-            if (toBit == takeNoWe && IsBlack(this[takeNoWe])) return true;
-
 			var pushOnce = NortOne(fromBit);
 			if (this[pushOnce] != BitType.Empty) return false;
 			if (pushOnce == toBit) return true;
@@ -86,7 +52,7 @@ namespace ChessKit.ChessLogic.UnitTests
  
 	}
     [TestFixture]
-    public class BitboardTest_PawnMoves
+    public class BitboardTest_BishopMoves
     {
         private Bitboard _bitboard;
 
@@ -105,7 +71,7 @@ namespace ChessKit.ChessLogic.UnitTests
 #>
         [Test]
         [TestCase(TestName="<#=t.Name#>")]
-        public void IsLegalMove_For_<#=o.Color#>_Pawn_From_<#=t.From#>_To_Every_Other_Cell_Then_<#=string.Join("_",t.Expected)#>_Should_Return_False()
+        public void IsLegalMove_For_<#=o.Color#>_Bishop_From_<#=t.From#>_To_Every_Other_Cell_Then_<#=string.Join("_",t.Expected)#>_Should_Return_False()
         {
 <#
     foreach (var placement in t.Position)

@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿
+using System;
+using FluentAssertions;
+using NUnit.Framework;
 
 namespace ChessKit.ChessLogic.UnitTests
 {

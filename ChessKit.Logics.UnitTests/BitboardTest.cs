@@ -27,8 +27,8 @@ namespace ChessKit.ChessLogic.UnitTests
             {
                 case BitType.WhitePawn:
                     return IsLegalWhitePawnMove(from, to);
-              /*  case BitType.BlackPawn:
-                    return IsLegalBlackPawnMove(from, to);*/
+                case BitType.WhiteBishop:
+                    return IsLegalWhiteBishopMove(from, to);
             }
             throw new Exception();
         }

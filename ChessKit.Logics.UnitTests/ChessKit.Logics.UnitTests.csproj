@@ -65,6 +65,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bitboard.IsLegalBishopMove.cs">
+      <DependentUpon>Bitboard.IsLegalBishopMove.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Bitboard.IsLegalPawnMove.cs">
       <DependentUpon>Bitboard.IsLegalPawnMove.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -93,6 +98,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Bitboard.IsLegalBishopMove.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Bitboard.IsLegalBishopMove.cs</LastGenOutput>
+    </None>
+    <None Include="IsLegalMove.cs.ttinclude" />
     <None Include="Bitboard.IsLegalPawnMove.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Bitboard.IsLegalPawnMove.cs</LastGenOutput>
