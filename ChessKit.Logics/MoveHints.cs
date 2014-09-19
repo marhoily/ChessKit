@@ -30,7 +30,7 @@ namespace ChessKit.ChessLogic
       Justification = "'En-passant' is borrowed from french I guess")]
     EnPassant = 0x2000,
     Promotion = 0x4000,
-    PawnDoubleMove = 0x8000,
+    PawnDoublePush = 0x8000,
 
     TestedForConsequences = 0x10000,
     Check = 0x20000,

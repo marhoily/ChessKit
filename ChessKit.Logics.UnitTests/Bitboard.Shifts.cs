@@ -16,5 +16,7 @@ namespace ChessKit.ChessLogic.UnitTests
         static U64 WestOne(U64 b) { return (b >> 1) & NotHFile; }
         static U64 SoWeOne(U64 b) { return (b >> 9) & NotHFile; }
         static U64 NoWeOne(U64 b) { return (b << 7) & NotHFile; }
+        static bool IsWhite(BitType type) { return type >= BitType.WhitePawn && type <= BitType.WhiteKing; }
+        static bool IsBlack(BitType type) { return type >= BitType.BlackPawn && type <= BitType.BlackKing; }
 }
 }

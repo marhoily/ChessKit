@@ -171,9 +171,9 @@ namespace ChessKit.ChessLogic
 			this[moveTo] = piece;
 			_cells[moveFrom] = 0;
 
-			if ((PreviousMove.Hints & (MoveHints.PawnDoubleMove | MoveHints.EnPassant | MoveHints.Castling)) != 0)
+			if ((PreviousMove.Hints & (MoveHints.PawnDoublePush | MoveHints.EnPassant | MoveHints.Castling)) != 0)
 			{
-				if ((PreviousMove.Hints & MoveHints.PawnDoubleMove) != 0)
+				if ((PreviousMove.Hints & MoveHints.PawnDoublePush) != 0)
 				{
 					EnPassantFile = moveFrom % 16;
 				}

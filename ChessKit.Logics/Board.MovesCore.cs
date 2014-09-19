@@ -105,7 +105,7 @@ namespace ChessKit.ChessLogic
 						return MoveHints.Pawn | MoveHints.DoesNotCaptureThisWay;
 					return _cells[fromSquare + 16] != 0
 							 ? MoveHints.Pawn | MoveHints.DoesNotJump
-							 : MoveHints.Pawn | MoveHints.PawnDoubleMove;
+							 : MoveHints.Pawn | MoveHints.PawnDoublePush;
 				case 16:
 					if (toPiece != 0)
 						return MoveHints.Pawn | MoveHints.DoesNotCaptureThisWay;
@@ -133,7 +133,7 @@ namespace ChessKit.ChessLogic
 						return MoveHints.Pawn | MoveHints.DoesNotCaptureThisWay;
 					return _cells[fromSquare - 16] != 0
 							 ? MoveHints.Pawn | MoveHints.DoesNotJump
-							 : MoveHints.Pawn | MoveHints.PawnDoubleMove;
+							 : MoveHints.Pawn | MoveHints.PawnDoublePush;
 				case 16:
 					if (toPiece != 0)
 						return MoveHints.Pawn | MoveHints.DoesNotCaptureThisWay;
@@ -222,14 +222,14 @@ namespace ChessKit.ChessLogic
 							_cells[to] = (byte)CompactPiece.WhitePawn;
 							if (!IsAttackedByBlack(_whiteKingPosition))
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									MoveHints.Pawn | MoveHints.PawnDoubleMove));
+									MoveHints.Pawn | MoveHints.PawnDoublePush));
 							_cells[fromSquare] = (byte)CompactPiece.WhitePawn;
 							_cells[to] = toPiece;
 						}
 						else
 						{
 							collector.Add(new Move((Position) fromSquare, (Position) to,
-								MoveHints.Pawn | MoveHints.PawnDoubleMove));
+								MoveHints.Pawn | MoveHints.PawnDoublePush));
 						}
 					}
 				}
@@ -387,7 +387,7 @@ namespace ChessKit.ChessLogic
 							_cells[to] = (byte)CompactPiece.BlackPawn;
 							if (!IsAttackedByWhite(_blackKingPosition))
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									MoveHints.Pawn | MoveHints.PawnDoubleMove));
+									MoveHints.Pawn | MoveHints.PawnDoublePush));
 							_cells[fromSquare] = (byte)CompactPiece.BlackPawn;
 							_cells[to] = toPiece;
 						}
@@ -395,7 +395,7 @@ namespace ChessKit.ChessLogic
 						{
 
 							collector.Add(new Move((Position) fromSquare, (Position) to,
-								MoveHints.Pawn | MoveHints.PawnDoubleMove));
+								MoveHints.Pawn | MoveHints.PawnDoublePush));
 						}
 					}
 				}

@@ -6,6 +6,12 @@ namespace ChessKit.ChessLogic.UnitTests
 	{
 		private bool IsLegalWhitePawnMove(ulong fromBit, ulong toBit)
 		{
+		    var takeNoEa = NoEaOne(fromBit);
+            if (toBit == takeNoEa && IsBlack(this[takeNoEa])) return true;
+
+		    var takeNoWe = NoWeOne(fromBit);
+            if (toBit == takeNoWe && IsBlack(this[takeNoWe])) return true;
+
 			var pushOnce = NortOne(fromBit);
 			if (this[pushOnce] != BitType.Empty) return false;
 			if (pushOnce == toBit) return true;
@@ -64,5 +70,19 @@ namespace ChessKit.ChessLogic.UnitTests
 	
             _bitboard.AssertLegalMoves(Bitboard.E3, Bitboard.E4);
         }
+
+        [Test]
+        [TestCase(TestName="White pawn takes from e3 to d4 and f4")]
+        public void IsLegalMove_For_White_Pawn_From_E3_To_Every_Other_Cell_Then_E4_D4_F4_Should_Return_False()
+        {
+            _bitboard[Bitboard.E3] = BitType.WhitePawn;
+            _bitboard[Bitboard.D4] = BitType.BlackPawn;
+            _bitboard[Bitboard.F4] = BitType.BlackPawn;
+	
+            _bitboard.AssertLegalMoves(Bitboard.E3, Bitboard.E4, Bitboard.D4, Bitboard.F4);
+        }
+
+	
+		
     }
 }
