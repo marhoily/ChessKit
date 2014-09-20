@@ -7,7 +7,7 @@ namespace ChessKit.ChessLogic.UnitTests
 {
     public sealed partial class Bitboard
     {
-        private readonly UInt64[] _boards = new UInt64[12];
+        private readonly UInt64[] _boards = new UInt64[14];
 
         public BitType this[UInt64 cell]
         {
@@ -18,7 +18,14 @@ namespace ChessKit.ChessLogic.UnitTests
                         return (BitType)i;
                 return BitType.Empty;
             }
-            set { _boards[(int)value] |= cell; }
+            set
+            {
+                _boards[(int)value] |= cell;
+                if (IsWhite(value))
+                    _boards[(int) BitType.White] |= cell;
+                else
+                    _boards[(int)BitType.Black] |= cell;
+            }
         }
 
         public bool IsLegalMove(U64 from, U64 to)

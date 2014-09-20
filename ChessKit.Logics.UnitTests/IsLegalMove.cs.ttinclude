@@ -40,6 +40,7 @@
 	class Arg
 	{
 		public string Color { get; set; }
+		public string OppositeColor { get { return Color == "White" ? "Black" : "White"; } }
 		public Tst[] Tests { get; set; }
 	}
 #>

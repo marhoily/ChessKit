@@ -38,9 +38,11 @@ namespace ChessKit.ChessLogic.UnitTests
 #>
 		private bool IsLegal<#=o.Color#>BishopMove(int fromSquare, int toSquare)
 		{
-			var mask = RectangularMasks[fromSquare*64 + toSquare];
-			if (mask == 0) return false;
-		    return true;
+			var rect = RectangularMasks[fromSquare*64 + toSquare];
+			if (rect == 0) return false;
+			var attack = BishopAttackMasks[fromSquare];
+			var ray = _boards[(int)BitType.<#=o.OppositeColor#>] & rect & attack;
+			return (ray & ~(1ul << toSquare)) == 0;
 		}
 <#
 	}
