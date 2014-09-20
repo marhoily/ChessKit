@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ChessKit.ChessLogic
 {
-	public sealed partial class Board
+    public sealed partial class Board
 	{
 		private const ulong NoPinMap = 0xF0F0F0F0;
 		private const ulong PinMapAll = 0xFFFFFFFFFFFFFFFFL;

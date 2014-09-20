@@ -78,6 +78,17 @@ namespace ChessKit.ChessLogic.UnitTests
 		public const UInt64 Row6 = A6 | B6 | C6 | D6 | E6 | F6 | G6 | H6;
 		public const UInt64 Row7 = A7 | B7 | C7 | D7 | E7 | F7 | G7 | H7;
 		public const UInt64 Row8 = A8 | B8 | C8 | D8 | E8 | F8 | G8 | H8;
+		public static readonly UInt64[] Rows = new []
+			{
+				Row1,
+				Row2,
+				Row3,
+				Row4,
+				Row5,
+				Row6,
+				Row7,
+				Row8,
+			};
 
 		public const UInt64 ColA = A1 | A2 | A3 | A4 | A5 | A6 | A7 | A8;
 		public const UInt64 ColB = B1 | B2 | B3 | B4 | B5 | B6 | B7 | B8;
@@ -87,5 +98,18 @@ namespace ChessKit.ChessLogic.UnitTests
 		public const UInt64 ColF = F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8;
 		public const UInt64 ColG = G1 | G2 | G3 | G4 | G5 | G6 | G7 | G8;
 		public const UInt64 ColH = H1 | H2 | H3 | H4 | H5 | H6 | H7 | H8;
+
+		public static readonly UInt64[] Cols = new []
+			{
+				ColA,
+				ColB,
+				ColC,
+				ColD,
+				ColE,
+				ColF,
+				ColG,
+				ColH,
+			};
+
 	}
 }

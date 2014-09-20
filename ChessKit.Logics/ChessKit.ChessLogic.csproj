@@ -88,6 +88,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Board.ValidateMove.tt</DependentUpon>
     </Compile>
+    <Compile Include="BoardBuilder.cs" />
     <Compile Include="BoardExtensions.cs" />
     <Compile Include="CastlingAvailability.cs" />
     <Compile Include="CompactPiece.cs" />

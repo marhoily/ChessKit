@@ -65,6 +65,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bitboard.RectangularMasks.cs">
+      <DependentUpon>Bitboard.RectangularMasks.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Bitboard.IsLegalBishopMove.cs">
       <DependentUpon>Bitboard.IsLegalBishopMove.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -85,6 +90,7 @@
     <Compile Include="BitboardTestExtensions.cs" />
     <Compile Include="BitType.cs" />
     <Compile Include="BoardTest.cs" />
+    <Compile Include="FindMagicMasks.cs" />
     <Compile Include="MoveTest.cs" />
     <Compile Include="PieceTest.cs" />
     <Compile Include="PositionTest.cs" />
@@ -92,12 +98,16 @@
     <Compile Include="TestMoveData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChessKit.Logics\ChessKit.Logics.csproj">
+    <ProjectReference Include="..\ChessKit.Logics\ChessKit.ChessLogic.csproj">
       <Project>{7e7c0436-3e23-48f5-991b-5e3433a26e78}</Project>
-      <Name>ChessKit.Logics</Name>
+      <Name>ChessKit.ChessLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Bitboard.RectangularMasks.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Bitboard.RectangularMasks.cs</LastGenOutput>
+    </None>
     <None Include="Bitboard.IsLegalBishopMove.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Bitboard.IsLegalBishopMove.cs</LastGenOutput>

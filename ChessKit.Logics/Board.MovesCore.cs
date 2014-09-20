@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ChessKit.ChessLogic
 {
@@ -29,6 +30,17 @@ namespace ChessKit.ChessLogic
 			_blackKingPosition = -1;
 		}
 
+        internal Board(BoardBuilder boardBuilder)
+	    {
+            _cells = new byte[BytesCount];
+            Buffer.BlockCopy(boardBuilder._cells, 0, _cells, 0, BytesCount);
+            SideOnMove = boardBuilder.SideOnMove;
+            EnPassantFile = boardBuilder.EnPassantFile;
+            HalfMoveClock = boardBuilder.HalfMoveClock;
+            MoveNumber = boardBuilder.MoveNumber;
+            _whiteKingPosition = Position.All.SingleOrDefault(p => this[p] == Piece.WhiteKing).CompactValue;
+            _blackKingPosition = Position.All.SingleOrDefault(p => this[p] == Piece.BlackKing).CompactValue;
+        }
 		public CompactPiece this[int compactPosition]
 		{
 			get
