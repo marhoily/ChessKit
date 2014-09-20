@@ -8,6 +8,8 @@ namespace ChessKit.ChessLogic.UnitTests
     public sealed partial class Bitboard
     {
         private readonly UInt64[] _boards = new UInt64[14];
+        private UInt64 _occupanceWhite;
+        private UInt64 _occupanceBlack;
 
         public BitType this[UInt64 cell]
         {
@@ -22,9 +24,9 @@ namespace ChessKit.ChessLogic.UnitTests
             {
                 _boards[(int)value] |= cell;
                 if (IsWhite(value))
-                    _boards[(int) BitType.White] |= cell;
+                    _occupanceWhite |= cell;
                 else
-                    _boards[(int)BitType.Black] |= cell;
+                    _occupanceBlack |= cell;
             }
         }
 

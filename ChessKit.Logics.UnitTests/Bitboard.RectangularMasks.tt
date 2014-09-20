@@ -48,10 +48,10 @@ static UInt64[] GetMasksArray()
         UInt64 mask = 0;
         for (var m = 0; m < 64; m++)
         {
-            var x = m/8;
-            var y = m%8;
-			if (x < l || x > r)
-			    if (y < t || y > b)
+            var x = m%8;
+            var y = m/8;
+			if (x >= l && x <= r)
+			    if (y >= t && y <= b)
 			        mask |= (1ul << m);						
         }
         arr[(y1*8 + x1)*64+(y2*8 + x2)] = mask;

@@ -9,11 +9,15 @@ namespace ChessKit.ChessLogic.UnitTests
 	{
 		private bool IsLegalWhiteBishopMove(int fromSquare, int toSquare)
 		{
-			var rect = RectangularMasks[fromSquare*64 + toSquare];
-			if (rect == 0) return false;
+		    var index = fromSquare*64 + toSquare; 
+		    var rect = RectangularMasks[index]; 
+			if (rect == 0) return false; 
 			var attack = BishopAttackMasks[fromSquare];
-			var ray = _boards[(int)BitType.Black] & rect & attack;
-			return (ray & ~(1ul << toSquare)) == 0;
+		    var boundAttack = rect & attack;
+            if (boundAttack == 0) return false;
+		    var ray = _occupanceBlack & boundAttack; 
+		    var toBit = (1ul << toSquare); 
+		    return (ray | toBit) == toBit; 
 		}
 		
  

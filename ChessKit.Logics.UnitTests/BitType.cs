@@ -16,9 +16,6 @@ namespace ChessKit.ChessLogic.UnitTests
         BlackQueen,
         BlackKing,
 
-        White,
-        Black,
-
         Empty,
     }
 }

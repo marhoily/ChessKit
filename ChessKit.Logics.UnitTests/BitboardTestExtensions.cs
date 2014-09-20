@@ -51,12 +51,9 @@ namespace ChessKit.ChessLogic.UnitTests
 
         private static void Print(HashSet<int> actual)
         {
-            for (int i = 0; i < 8; i++)
+
+            for (var i = 7; i >= 0; i--)
             {
-               /* for (int j = 0; j < 8; j++)
-                {
-                    
-                }*/
                 Console.WriteLine(string.Join(" ",
                     Enumerable.Range(0, 8) 
                     .Select(j => actual.Contains(i*8 + j) ? "*" : ".")));
