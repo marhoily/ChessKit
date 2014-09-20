@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
+using NUnit.Framework;
 
 namespace ChessKit.ChessLogic.UnitTests
 {
@@ -18,14 +19,48 @@ namespace ChessKit.ChessLogic.UnitTests
                     return i;
             return -1;
         }
-        public static void AssertLegalMoves(this Bitboard bitboard, ulong @from, params ulong[] legalMoves)
+        public static void AssertLegalMoves(this Bitboard bitboard, ulong fromBit, params ulong[] legalMoves)
         {
             var actual = new HashSet<string>();
             for (var i = 0; i < 64; i++)
-                if (bitboard.IsLegalMove(@from, 1ul << i))
+                if (bitboard.IsLegalMove(fromBit, 1ul << i))
                     actual.Add(i.ToBitboardPositionString());
             var expected = legalMoves.Select(m => m.FindFirstBit().ToBitboardPositionString());
             actual.Should().BeEquivalentTo(expected);
+        }
+        public static void AssertLegalMoves(this Bitboard bitboard, int fromSquare, params int[] legalMoves)
+        {
+            var actual = new HashSet<int>();
+            for (var i = 0; i < 64; i++)
+                if (bitboard.IsLegalMove(fromSquare, i))
+                    actual.Add(i);
+            if (!actual.SetEquals(legalMoves))
+            {
+                Console.WriteLine("expected:");
+                Console.WriteLine();
+                Print(new HashSet<int>(legalMoves));
+                Console.WriteLine();
+                Console.WriteLine("Actual:");
+                Console.WriteLine();
+                Print(actual);
+                Assert.Fail();
+
+            }
+            
+        }
+
+        private static void Print(HashSet<int> actual)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+               /* for (int j = 0; j < 8; j++)
+                {
+                    
+                }*/
+                Console.WriteLine(string.Join(" ",
+                    Enumerable.Range(0, 8) 
+                    .Select(j => actual.Contains(i*8 + j) ? "*" : ".")));
+            }
         }
     }
 }

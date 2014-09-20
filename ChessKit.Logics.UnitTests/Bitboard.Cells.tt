@@ -9,6 +9,17 @@ using System;
 
 namespace ChessKit.ChessLogic.UnitTests
 {
+	public static class Square
+	{
+<#
+		for (var i = 0; i < 64; i++)
+		{
+#>
+		public const int <#=(char)('A' + i%8) + (i/8 + 1).ToString()#> = <#=i#>;
+<#
+		}
+#>
+	}
 	partial class Bitboard
 	{
 <#

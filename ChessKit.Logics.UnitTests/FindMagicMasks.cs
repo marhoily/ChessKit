@@ -11,13 +11,13 @@ namespace ChessKit.ChessLogic.UnitTests
     [TestFixture]
     public class FindMagicMasks
     {
-        [Test]
+       // [Test]
         public void Estimate_Size()
         {
             var set = GetDistinctRects();
             set.Count.Should().Be(1296);
         }
-        [Test]
+       // [Test]
         public void Test_GetDistinctRectsEncoded()
         {
             GetDistinctRects().OrderBy(x => x).ForEach(Console.WriteLine);
@@ -38,7 +38,7 @@ namespace ChessKit.ChessLogic.UnitTests
 
         }
 
-        [Test]
+      //  [Test]
         public void Find_Magic_Evo()
         {
             FindNumberEvo(GetDistinctRectsEncoded().ToArray(), 12);

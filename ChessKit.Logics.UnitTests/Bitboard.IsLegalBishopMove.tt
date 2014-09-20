@@ -36,15 +36,11 @@ namespace ChessKit.ChessLogic.UnitTests
     foreach (var o in args)
 	{
 #>
-		private bool IsLegal<#=o.Color#>BishopMove(ulong fromBit, ulong toBit)
+		private bool IsLegal<#=o.Color#>BishopMove(int fromSquare, int toSquare)
 		{
-			var pushOnce = NortOne(fromBit);
-			if (this[pushOnce] != BitType.Empty) return false;
-			if (pushOnce == toBit) return true;
-			if ((fromBit & Row2) == 0) return false;
-			var pushTwice = NortOne(pushOnce);
-			if (this[pushTwice] != BitType.Empty) return false;
-			return pushTwice == toBit;
+			var mask = RectangularMasks[fromSquare*64 + toSquare];
+			if (mask == 0) return false;
+		    return true;
 		}
 <#
 	}
@@ -81,7 +77,7 @@ namespace ChessKit.ChessLogic.UnitTests
 <#
 	}
 #>	
-            _bitboard.AssertLegalMoves(<#=string.Join(", ",new[]{t.From}.Concat(t.Expected).Select(cell => "Bitboard."+cell))#>);
+            _bitboard.AssertLegalMoves(<#=string.Join(", ",new[]{t.From}.Concat(t.Expected).Select(cell => "Square."+cell))#>);
         }
 
 <#
