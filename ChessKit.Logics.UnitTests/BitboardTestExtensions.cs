@@ -12,6 +12,20 @@ namespace ChessKit.ChessLogic.UnitTests
         {
             return (char) ('A' + i%8) + (i/8 + 1).ToString();
         }
+
+        public static void ShouldBeSameMask(this UInt64 actual, UInt64 expected)
+        {
+            if (actual == expected) return;
+            Console.WriteLine("expected:");
+            Console.WriteLine();
+            Print(expected);
+            Console.WriteLine();
+            Console.WriteLine("Actual:");
+            Console.WriteLine();
+            Print(actual);
+            Assert.Fail();
+        }
+
         public static int FindFirstBit(this UInt64 pos)
         {
             for (var i = 0; i < 64; i++)
@@ -57,6 +71,15 @@ namespace ChessKit.ChessLogic.UnitTests
                 Console.WriteLine(string.Join(" ",
                     Enumerable.Range(0, 8) 
                     .Select(j => actual.Contains(i*8 + j) ? "*" : ".")));
+            }
+        }
+        private static void Print(UInt64 actual)
+        {
+            for (var i = 7; i >= 0; i--)
+            {
+                Console.WriteLine(string.Join(" ",
+                    Enumerable.Range(0, 8) 
+                    .Select(j => (actual >> (i*8 + j)) % 2 == 1 ? "*" : ".")));
             }
         }
     }

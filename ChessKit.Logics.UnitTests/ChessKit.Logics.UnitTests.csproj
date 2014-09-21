@@ -65,6 +65,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bitboard.GetAllBishopMoves.cs">
+      <DependentUpon>Bitboard.GetAllBishopMoves.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Bitboard.RectangularMasks.cs">
       <DependentUpon>Bitboard.RectangularMasks.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -96,6 +101,7 @@
     <Compile Include="PositionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestMoveData.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChessKit.Logics\ChessKit.ChessLogic.csproj">
@@ -104,6 +110,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Bitboard.GetAllBishopMoves.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Bitboard.GetAllBishopMoves.cs</LastGenOutput>
+    </None>
     <None Include="Bitboard.RectangularMasks.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Bitboard.RectangularMasks.cs</LastGenOutput>
