@@ -100,7 +100,7 @@
     </Compile>
     <Compile Include="BoardBuilder.cs" />
     <Compile Include="BoardExtensions.cs" />
-    <Compile Include="CastlingAvailability.cs" />
+    <Compile Include="Caslings.cs" />
     <Compile Include="CompactPiece.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Move.cs" />

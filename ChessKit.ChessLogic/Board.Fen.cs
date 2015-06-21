@@ -64,18 +64,18 @@ namespace ChessKit.ChessLogic
         }
         private void LoadCastlingAvailabilitySection(string fen, ref int i)
         {
-            var flags = default(CastlingAvailability);
+            var flags = default(Caslings);
             for (; ; i++)
             {
                 if (fen[i] == '-') { }
-                else if (fen[i] == 'K') flags |= CastlingAvailability.WhiteKing;
-                else if (fen[i] == 'Q') flags |= CastlingAvailability.WhiteQueen;
-                else if (fen[i] == 'k') flags |= CastlingAvailability.BlackKing;
-                else if (fen[i] == 'q') flags |= CastlingAvailability.BlackQueen;
+                else if (fen[i] == 'K') flags |= Caslings.WhiteKing;
+                else if (fen[i] == 'Q') flags |= Caslings.WhiteQueen;
+                else if (fen[i] == 'k') flags |= Caslings.BlackKing;
+                else if (fen[i] == 'q') flags |= Caslings.BlackQueen;
                 else if (fen[i] == ' ') break;
                 else throw new FormatException("illegal character");
             }
-            _castlingAvailability = flags;
+            _caslings = flags;
             i++; // Skip the space
         }
         private void LoadEnPassantSection(string fen, ref int i)
@@ -137,17 +137,17 @@ namespace ChessKit.ChessLogic
             fen.Append(SideOnMove == PieceColor.White ? 'w' : 'b');
 
             fen.Append(' ');
-            var castling = _castlingAvailability;
-            if (castling == CastlingAvailability.None)
+            var castling = _caslings;
+            if (castling == Caslings.None)
             {
                 fen.Append('-');
             }
             else
             {
-                if ((castling & CastlingAvailability.WhiteKing) != 0) fen.Append('K');
-                if ((castling & CastlingAvailability.WhiteQueen) != 0) fen.Append('Q');
-                if ((castling & CastlingAvailability.BlackKing) != 0) fen.Append('k');
-                if ((castling & CastlingAvailability.BlackQueen) != 0) fen.Append('q');
+                if ((castling & Caslings.WhiteKing) != 0) fen.Append('K');
+                if ((castling & Caslings.WhiteQueen) != 0) fen.Append('Q');
+                if ((castling & Caslings.BlackKing) != 0) fen.Append('k');
+                if ((castling & Caslings.BlackQueen) != 0) fen.Append('q');
             }
 
             fen.Append(' ');

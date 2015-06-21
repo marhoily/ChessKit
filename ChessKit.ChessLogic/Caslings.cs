@@ -3,7 +3,7 @@ using System;
 namespace ChessKit.ChessLogic
 {
   [Flags]
-  public enum CastlingAvailability
+  public enum Caslings
   {
     None,
 

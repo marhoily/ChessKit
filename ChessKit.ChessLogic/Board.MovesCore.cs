@@ -63,7 +63,7 @@ namespace ChessKit.ChessLogic
             }
         }
 
-        MoveAnnotations ValidateWhiteCastlingMove(int fromSquare, int to, CastlingAvailability castlingAvailability)
+        MoveAnnotations ValidateWhiteCastlingMove(int fromSquare, int to, Caslings caslings)
         {
             if (fromSquare != S.E1) return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
             switch (to)
@@ -73,19 +73,19 @@ namespace ChessKit.ChessLogic
                     if (_cells[S.C1] != 0) return MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling;
                     if (IsAttackedByBlack(S.E1)) return MoveAnnotations.CastleFromCheck | MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling;
                     if (IsAttackedByBlack(S.D1)) return MoveAnnotations.CastleThroughCheck | MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling;
-                    if ((castlingAvailability & CastlingAvailability.WhiteQueen) != 0) return MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling;
+                    if ((caslings & Caslings.WhiteQueen) != 0) return MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling;
                     return MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling | MoveAnnotations.HasNoCastling;
                 case S.G1: // Kingside
                     if (_cells[S.F1] != 0) return MoveAnnotations.DoesNotJump | MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling;
                     if (_cells[S.G1] != 0) return MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling;
                     if (IsAttackedByBlack(S.E1)) return MoveAnnotations.CastleFromCheck | MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling;
                     if (IsAttackedByBlack(S.F1)) return MoveAnnotations.CastleThroughCheck | MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling;
-                    if ((castlingAvailability & CastlingAvailability.WhiteKing) != 0) return MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling;
+                    if ((caslings & Caslings.WhiteKing) != 0) return MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling;
                     return MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling | MoveAnnotations.HasNoCastling;
             }
             return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
         }
-        MoveAnnotations ValidateBlackCastlingMove(int fromSquare, int to, CastlingAvailability castlingAvailability)
+        MoveAnnotations ValidateBlackCastlingMove(int fromSquare, int to, Caslings caslings)
         {
             if (fromSquare != S.E8) return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
             switch (to)
@@ -95,14 +95,14 @@ namespace ChessKit.ChessLogic
                     if (_cells[S.C8] != 0) return MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling;
                     if (IsAttackedByWhite(S.E8)) return MoveAnnotations.CastleFromCheck | MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling;
                     if (IsAttackedByWhite(S.D8)) return MoveAnnotations.CastleThroughCheck | MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling;
-                    if ((castlingAvailability & CastlingAvailability.BlackQueen) != 0) return MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling;
+                    if ((caslings & Caslings.BlackQueen) != 0) return MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling;
                     return MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling | MoveAnnotations.HasNoCastling;
                 case S.G8: // Kingside
                     if (_cells[S.F8] != 0) return MoveAnnotations.DoesNotJump | MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling;
                     if (_cells[S.G8] != 0) return MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling;
                     if (IsAttackedByWhite(S.E8)) return MoveAnnotations.CastleFromCheck | MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling;
                     if (IsAttackedByWhite(S.F8)) return MoveAnnotations.CastleThroughCheck | MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling;
-                    if ((castlingAvailability & CastlingAvailability.BlackKing) != 0) return MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling;
+                    if ((caslings & Caslings.BlackKing) != 0) return MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling;
                     return MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling | MoveAnnotations.HasNoCastling;
             }
             return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
@@ -163,33 +163,33 @@ namespace ChessKit.ChessLogic
                     return MoveAnnotations.Pawn | MoveAnnotations.DoesNotMoveThisWay;
             }
         }
-        void GenerateWhiteCastlingMoves(int fromSquare, CastlingAvailability castlingAvailability, List<Move> collector)
+        void GenerateWhiteCastlingMoves(int fromSquare, Caslings caslings, List<Move> collector)
         {
             if (fromSquare != S.E1) return;
 
-            if ((castlingAvailability & CastlingAvailability.WhiteQueen) != 0)
+            if ((caslings & Caslings.WhiteQueen) != 0)
                 if (_cells[S.D1] == 0 && _cells[S.C1] == 0 && _cells[S.B1] == 0)
                     if (!IsAttackedByBlack(S.E1) && !IsAttackedByBlack(S.D1) && !IsAttackedByBlack(S.C1))
                         collector.Add(new Move((Position)S.E1, (Position)S.C1,
                             MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling));
 
-            if ((castlingAvailability & CastlingAvailability.WhiteKing) != 0)
+            if ((caslings & Caslings.WhiteKing) != 0)
                 if (_cells[S.F1] == 0 && _cells[S.G1] == 0)
                     if (!IsAttackedByBlack(S.E1) && !IsAttackedByBlack(S.F1) && !IsAttackedByBlack(S.G1))
                         collector.Add(new Move((Position)S.E1, (Position)S.G1,
                             MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling));
         }
-        void GenerateBlackCastlingMoves(int fromSquare, CastlingAvailability castlingAvailability, List<Move> collector)
+        void GenerateBlackCastlingMoves(int fromSquare, Caslings caslings, List<Move> collector)
         {
             if (fromSquare != S.E8) return;
 
-            if ((castlingAvailability & CastlingAvailability.BlackQueen) != 0)
+            if ((caslings & Caslings.BlackQueen) != 0)
                 if (_cells[S.D8] == 0 && _cells[S.C8] == 0 && _cells[S.B8] == 0)
                     if (!IsAttackedByWhite(S.E8) && !IsAttackedByWhite(S.D8) && !IsAttackedByWhite(S.C8))
                         collector.Add(new Move((Position)S.E8, (Position)S.C8,
                             MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling));
 
-            if ((castlingAvailability & CastlingAvailability.BlackKing) != 0)
+            if ((caslings & Caslings.BlackKing) != 0)
                 if (_cells[S.F8] == 0 && _cells[S.G8] == 0)
                     if (!IsAttackedByWhite(S.E8) && !IsAttackedByWhite(S.F8) && !IsAttackedByWhite(S.G8))
                         collector.Add(new Move((Position)S.E8, (Position)S.G8,

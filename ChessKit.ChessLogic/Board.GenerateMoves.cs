@@ -5,7 +5,7 @@ namespace ChessKit.ChessLogic
     partial class Board
     {
         private void GenerateMoves(CompactPiece piece, int fromSquare,
-             int? enPassantFile, CastlingAvailability castlingAvailability, List<Move> collector)
+             int? enPassantFile, Caslings castlingAvailability, List<Move> collector)
         {
             switch (piece)
             {

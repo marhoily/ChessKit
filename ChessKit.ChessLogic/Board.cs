@@ -16,7 +16,7 @@ namespace ChessKit.ChessLogic
         public int? EnPassantFile { get; set; }
 
         /// <summary>Gets sides players can castle to</summary>
-        private CastlingAvailability _castlingAvailability;
+        private Caslings _caslings;
         /// <summary>This is the number of halfmoves since the last pawn advance or capture. </summary>
         /// <remarks>This is used to determine if a draw can be claimed under the fifty-move rule.</remarks>
         public int HalfMoveClock { get; set; }
@@ -44,7 +44,7 @@ namespace ChessKit.ChessLogic
                 var piece = this[moveFromSq];
                 if (piece == 0) continue;
                 if (Piece.UnpackColor(piece) != sideOnMove) continue;
-                GenerateMoves(piece, moveFromSq, EnPassantFile, _castlingAvailability, res);
+                GenerateMoves(piece, moveFromSq, EnPassantFile, _caslings, res);
             }
             return res;
         }
@@ -58,7 +58,7 @@ namespace ChessKit.ChessLogic
             if (piece == CompactPiece.EmptyCell) return new List<Move>();
             if (Piece.UnpackColor(piece) != SideOnMove) return new List<Move>();
             var res = new List<Move>(28);
-            GenerateMoves(piece, moveFrom, EnPassantFile, _castlingAvailability, res);
+            GenerateMoves(piece, moveFrom, EnPassantFile, _caslings, res);
             return res;
         }
 
@@ -107,7 +107,7 @@ namespace ChessKit.ChessLogic
                 return;
             }
             PreviousMove.Annotations = src.ValidateMove(piece,
-              moveFrom, moveTo, toPiece, src._castlingAvailability);
+              moveFrom, moveTo, toPiece, src._caslings);
             if (toPiece != CompactPiece.EmptyCell) PreviousMove.Annotations |= MoveAnnotations.Capture;
             SetupBoard(src, piece, moveFrom, moveTo, move.ProposedPromotion, color);
             if ((PreviousMove.Annotations & MoveAnnotations.AllErrors) != 0) return;
@@ -174,7 +174,7 @@ namespace ChessKit.ChessLogic
             {
                 PreviousMove.Annotations |= MoveAnnotations.MoveToCheck;
             }
-            _castlingAvailability = src._castlingAvailability
+            _caslings = src._caslings
               & ~KilledAvailability(moveTo)
               & ~KilledAvailability(moveFrom);
 
@@ -187,17 +187,17 @@ namespace ChessKit.ChessLogic
             MoveNumber = src.MoveNumber + (color == PieceColor.Black ? 1 : 0);
         }
 
-        private static CastlingAvailability KilledAvailability(int pos)
+        private static Caslings KilledAvailability(int pos)
         {
             switch (pos)
             {
-                case S.A1: return CastlingAvailability.WhiteQueen;
-                case S.E1: return CastlingAvailability.White;
-                case S.H1: return CastlingAvailability.WhiteKing;
-                case S.A8: return CastlingAvailability.BlackQueen;
-                case S.E8: return CastlingAvailability.Black;
-                case S.H8: return CastlingAvailability.BlackKing;
-                default: return CastlingAvailability.None;
+                case S.A1: return Caslings.WhiteQueen;
+                case S.E1: return Caslings.White;
+                case S.H1: return Caslings.WhiteKing;
+                case S.A8: return Caslings.BlackQueen;
+                case S.E8: return Caslings.Black;
+                case S.H8: return Caslings.BlackKing;
+                default: return Caslings.None;
             }
         }
         #endregion

@@ -1,6 +1,4 @@
-﻿ 
- 
-namespace ChessKit.ChessLogic
+﻿namespace ChessKit.ChessLogic
 {
   partial class Board
   {
@@ -419,7 +417,7 @@ namespace ChessKit.ChessLogic
 	  return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
     }
   
-    public MoveAnnotations ValidateMove(CompactPiece piece, int fromSquare, int toSquare, CompactPiece toPiece, CastlingAvailability castlingAvailability)
+    public MoveAnnotations ValidateMove(CompactPiece piece, int fromSquare, int toSquare, CompactPiece toPiece, Caslings castlingAvailability)
     {
 	  switch (piece)
       {

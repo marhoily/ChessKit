@@ -2,13 +2,8 @@
 <#@ output extension=".cs" #>
 <#@ Assembly Name="System.Core" #>
 <#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
-<#@ import namespace="System" #>
-<#@ import namespace="System.IO" #>
-<#@ import namespace="System.Diagnostics" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Collections" #>
-<#@ import namespace="System.Collections.Generic" #> 
-<#@ import namespace="ChessKit.ChessLogic" #> 
+<#@ import namespace="ChessKit.ChessLogic" #>
 namespace ChessKit.ChessLogic
 {
   partial class Board
@@ -17,7 +12,7 @@ namespace ChessKit.ChessLogic
   foreach (var p in Piece.All.Where(p => p.PieceType != PieceType.Pawn))
   {
     var isSlider = p.MoveDirections.Any(dir => dir.Count > 1);
-#>    private <#=isSlider?"" : "static "#>MoveHints Validate<#=p.Color#><#=p.PieceType#>Move(int fromSquare, int toSquare)
+#>    private <#=isSlider?"" : "static "#>MoveAnnotations Validate<#=p.Color#><#=p.PieceType#>Move(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
 <#
@@ -31,13 +26,13 @@ namespace ChessKit.ChessLogic
         var steps = dx / <#=delta#>;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
-            if (i == toSquare) return MoveHints.<#=p.PieceType#>;
+            if (i == toSquare) return MoveAnnotations.<#=p.PieceType#>;
             else if (this[i] != CompactPiece.EmptyCell) 
-			  return MoveHints.<#=p.PieceType#> | MoveHints.DoesNotJump;
+			  return MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.DoesNotJump;
       }
 <#
 	  }
-#>          return MoveHints.<#=p.PieceType#> | MoveHints.DoesNotMoveThisWay;
+#>          return MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.DoesNotMoveThisWay;
 <#
     }
 	else // Non-slider move
@@ -49,18 +44,18 @@ namespace ChessKit.ChessLogic
       {
         var delta = dir.DeltaY * 16 + dir.DeltaX;
 #>        case <#=delta#>:
-          return MoveHints.<#=p.PieceType#>;
+          return MoveAnnotations.<#=p.PieceType#>;
 <#
 	  }
 #>      }
-	  return MoveHints.<#=p.PieceType#> | MoveHints.DoesNotMoveThisWay;
+	  return MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.DoesNotMoveThisWay;
 <#         
 	}
 #>    }
 <#
   } // --------------------------------------------------
 #>  
-    public MoveHints ValidateMove(CompactPiece piece, int fromSquare, int toSquare, CompactPiece toPiece, CastlingAvailability castlingAvailability)
+    public MoveAnnotations ValidateMove(CompactPiece piece, int fromSquare, int toSquare, CompactPiece toPiece, Caslings castlingAvailability)
     {
 	  switch (piece)
       {
@@ -77,8 +72,8 @@ namespace ChessKit.ChessLogic
 	}
 	else if (p.PieceType == PieceType.King)
 	{
-#>          if (Validate<#=p.Color#><#=p.PieceType#>Move(fromSquare, toSquare) == MoveHints.King)
-            return MoveHints.King;
+#>          if (Validate<#=p.Color#><#=p.PieceType#>Move(fromSquare, toSquare) == MoveAnnotations.King)
+            return MoveAnnotations.King;
 		  return Validate<#=p.Color#>CastlingMove(fromSquare, toSquare, castlingAvailability);
 
 <#
