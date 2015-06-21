@@ -77,7 +77,7 @@
     <Compile Include="TestMoveData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChessKit.Logics\ChessKit.ChessLogic.csproj">
+    <ProjectReference Include="..\ChessKit.ChessLogic\ChessKit.ChessLogic.csproj">
       <Project>{7e7c0436-3e23-48f5-991b-5e3433a26e78}</Project>
       <Name>ChessKit.ChessLogic</Name>
     </ProjectReference>

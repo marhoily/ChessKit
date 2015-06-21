@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessKit.ChessLogic", "ChessKit.Logics\ChessKit.ChessLogic.csproj", "{7E7C0436-3E23-48F5-991B-5E3433A26E78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessKit.ChessLogic", "ChessKit.ChessLogic\ChessKit.ChessLogic.csproj", "{7E7C0436-3E23-48F5-991B-5E3433A26E78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessKit.ChessLogic.UnitTests", "ChessKit.Logics.UnitTests\ChessKit.ChessLogic.UnitTests.csproj", "{50D0F271-0B9C-437B-90E4-6AF363748A2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessKit.ChessLogic.UnitTests", "ChessKit.ChessLogic.UnitTests\ChessKit.ChessLogic.UnitTests.csproj", "{50D0F271-0B9C-437B-90E4-6AF363748A2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
