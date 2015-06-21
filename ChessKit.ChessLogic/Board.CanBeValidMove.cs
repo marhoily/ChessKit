@@ -1,6 +1,5 @@
 ﻿/* This code is auto-generated! 
  * It is strongly adviced not to change it manually! */
-
 using ChessKit.ChessLogic.Enums;
 
 namespace ChessKit.ChessLogic

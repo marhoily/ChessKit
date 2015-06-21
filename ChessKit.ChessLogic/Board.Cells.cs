@@ -1,6 +1,5 @@
 ﻿/* This code is auto-generated! 
  * It is strongly adviced not to change it manually! */
-
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 namespace ChessKit.ChessLogic

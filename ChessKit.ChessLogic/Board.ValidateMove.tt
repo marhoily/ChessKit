@@ -3,9 +3,10 @@
 <#@ Assembly Name="System.Core" #>
 <#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="ChessKit.ChessLogic" #>
 <#@ import namespace="ChessKit.ChessLogic.Enums" #>
 <#@ import namespace="ChessKit.ChessLogic.Internals" #>
+using ChessKit.ChessLogic.Enums;
+
 namespace ChessKit.ChessLogic
 {
   partial class Board
