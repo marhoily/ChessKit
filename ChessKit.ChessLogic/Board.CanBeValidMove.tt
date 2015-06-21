@@ -2,13 +2,10 @@
 <#@ output extension=".cs" #>
 <#@ Assembly Name="System.Core" #>
 <#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
-<#@ import namespace="System" #>
-<#@ import namespace="System.IO" #>
-<#@ import namespace="System.Diagnostics" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Collections" #>
-<#@ import namespace="System.Collections.Generic" #> 
-<#@ import namespace="ChessKit.ChessLogic" #> 
+<#@ import namespace="ChessKit.ChessLogic" #>
+/* This code is auto-generated! 
+ * It is strongly adviced not to change it manually! */
 namespace ChessKit.ChessLogic
 {
     partial class Board
@@ -23,6 +20,7 @@ namespace ChessKit.ChessLogic
     {
 #>
                 #region ' <#=p.Color#> <#=p.PieceType#> '
+
                 case CompactPiece.<#=p.Color#><#=p.PieceType#>:
 <#
         if (p.MoveDirections.Any(dir => dir.Count > 1))
@@ -31,10 +29,10 @@ namespace ChessKit.ChessLogic
             {
                 var delta = dir.DeltaY * 16 + dir.DeltaX;
 #>
-                    if (dx % <#=delta#> == 0) 
+                    if (dx % <#=delta#> == 0)
                     {
                         var steps = dx / <#=delta#>;
-                        if (steps >= 0 && steps < 8) 
+                        if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
                                 if (i == toSquare) return true;
                                 else if (this[i] != CompactPiece.EmptyCell) return false;
@@ -76,12 +74,14 @@ namespace ChessKit.ChessLogic
 <#                 
         }
 #>
+
                 #endregion
 
 <#
     }
 #>
-                default: return false;
+                default:
+                    return false;
             }
         }
     }

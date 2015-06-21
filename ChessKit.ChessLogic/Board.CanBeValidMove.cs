@@ -1,4 +1,6 @@
-﻿namespace ChessKit.ChessLogic
+﻿/* This code is auto-generated! 
+ * It is strongly adviced not to change it manually! */
+namespace ChessKit.ChessLogic
 {
     partial class Board
     {
