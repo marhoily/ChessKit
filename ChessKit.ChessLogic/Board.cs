@@ -20,7 +20,6 @@ namespace ChessKit.ChessLogic
         /// <summary>The number of the full move. It starts at 1, and is incremented after Black's move</summary>
         public int MoveNumber { get; private set; }
 
-        public Board Previous { get; private set; }
         public Move PreviousMove { get; }
 
         public bool IsCheck => _gameState == GameState.Check;
@@ -70,10 +69,9 @@ namespace ChessKit.ChessLogic
             : this(src)
         {
             PreviousMove = move;
-            Previous = src;
 
             // Piece in the from cell?
-            var moveFrom = (int)move.From;
+            var moveFrom = move.From;
             var piece = src[moveFrom];
             if (piece == Piece.EmptyCell)
             {
@@ -90,7 +88,7 @@ namespace ChessKit.ChessLogic
             }
 
             // Move to occupied cell?
-            var moveTo = (int)move.To;
+            var moveTo = move.To;
             var toPiece = src[moveTo];
             if (toPiece != Piece.EmptyCell && toPiece.Color() == color)
             {

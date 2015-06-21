@@ -49,12 +49,6 @@ namespace ChessKit.ChessLogic.UnitTests
 		}
 
 		[Fact]
-		public void BoardShouldKeepReferenceToThePrevBoard()
-		{
-			Board.StartPosition.MakeMove(Move.Parse("e2-e4"))
-			  .Previous.Should().Be(Board.StartPosition);
-		}
-		[Fact]
 		public void GetLegalMovesTimeout()
 		{
 			var board = Board.StartPosition;
