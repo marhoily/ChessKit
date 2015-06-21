@@ -19,7 +19,7 @@ namespace ChessKit.ChessLogic.UnitTests
             {
                 MoveAnnotations result = 0;
                 foreach (var s in Result.Split(new[] {" | "}, StringSplitOptions.None))
-                    result = result | (MoveAnnotations) Enum.Parse(typeof (MoveAnnotations), s);
+                    result |= (MoveAnnotations) Enum.Parse(typeof (MoveAnnotations), s);
                 return result;
             }
         }
