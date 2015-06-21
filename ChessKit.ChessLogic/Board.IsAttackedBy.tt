@@ -5,50 +5,50 @@
 <#@ import namespace="ChessKit.ChessLogic" #>
 namespace ChessKit.ChessLogic
 {
-  partial class Board
-  {
+    partial class Board
+    {
 <#
 foreach (var color in new []{PieceColor.White, PieceColor.Black})
 {
 #>
-    private bool IsAttackedBy<#=color#>(int cell)
-    {
+        private bool IsAttackedBy<#=color#>(int cell)
+        {
 <#
-  foreach (var p in Piece.All) 
-    if (p.Color == color)
-      foreach (var dir in p.MoveDirections)
-        if (dir.CapturesThisWay)
-      {
-        var delta = dir.DeltaY * 16 + dir.DeltaX;
-        if (dir.Count > 1)
+    foreach (var p in Piece.All) 
+        if (p.Color == color)
+            foreach (var dir in p.MoveDirections)
+                if (dir.CapturesThisWay)
+            {
+                var delta = dir.DeltaY * 16 + dir.DeltaX;
+                if (dir.Count > 1)
+                {
+#>
+            for (var i = cell + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
+            {
+                var piece = _cells[i];
+                if (piece == 0) continue;
+                if (piece == (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>) return true;
+                break;
+            }
+<#
+        }
+        else
         {
 #>
-      for (var i = cell + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
-      {
-        var piece = _cells[i];
-        if (piece == 0) continue;
-        if (piece == (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>) return true;
-        break;
-      }
+            {
+                var square = cell - <#=delta#>;
+                if ((square & 0x88) == 0)
+                    if (_cells[square] == (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>)
+                        return true;
+            }
 <#
+        }
     }
-    else
-    {
 #>
-      {
-        var square = cell - <#=delta#>;
-        if ((square & 0x88) == 0)
-          if (_cells[square] == (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>)
-            return true;
-      }
-<#
-    }
-  }
-#>
-      return false;
-    }
+            return false;
+        }
 <#
 }
 #>
-  }
+    }
 }
