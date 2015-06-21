@@ -198,6 +198,12 @@ namespace ChessKit.ChessLogic
                 : IsAttackedByBlack(square);
         }
 
+        public bool IsInCheck(Color side)
+        {
+            return side == Color.White
+                ? IsAttackedByWhite(_whiteKingPosition)
+                : IsAttackedByBlack(_blackKingPosition);
+        }
     }
 }
 

@@ -8,5 +8,9 @@ namespace ChessKit.ChessLogic.N
         {
             return core.ToBoard().IsAttackedBy(side, square);
         }
+        public static bool IsInCheck(this PositionCore core, Color side)
+        {
+            return core.ToBoard().IsInCheck(side);
+        }
     }
 }
