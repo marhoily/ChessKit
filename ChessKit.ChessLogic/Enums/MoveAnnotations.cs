@@ -26,7 +26,7 @@ namespace ChessKit.ChessLogic.Enums
         Promotion = MoveInfo.Promotion,
         Capture = MoveInfo.Capture,
         EnPassant = MoveInfo.EnPassant,
-        PawnDoublePush = MoveInfo.DoublePush,
+        DoublePush = MoveInfo.DoublePush,
         AllInfos = MoveInfo.All,
 
         MoveToCheck = MoveErrors.MoveToCheck,

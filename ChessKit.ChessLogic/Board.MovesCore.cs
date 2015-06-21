@@ -119,7 +119,7 @@ namespace ChessKit.ChessLogic
                         return MoveAnnotations.Pawn | MoveAnnotations.DoesNotCaptureThisWay;
                     return _cells[fromSquare + 16] != 0
                              ? MoveAnnotations.Pawn | MoveAnnotations.DoesNotJump
-                             : MoveAnnotations.Pawn | MoveAnnotations.PawnDoublePush;
+                             : MoveAnnotations.Pawn | MoveAnnotations.DoublePush;
                 case 16:
                     if (toPiece != 0)
                         return MoveAnnotations.Pawn | MoveAnnotations.DoesNotCaptureThisWay;
@@ -147,7 +147,7 @@ namespace ChessKit.ChessLogic
                         return MoveAnnotations.Pawn | MoveAnnotations.DoesNotCaptureThisWay;
                     return _cells[fromSquare - 16] != 0
                              ? MoveAnnotations.Pawn | MoveAnnotations.DoesNotJump
-                             : MoveAnnotations.Pawn | MoveAnnotations.PawnDoublePush;
+                             : MoveAnnotations.Pawn | MoveAnnotations.DoublePush;
                 case 16:
                     if (toPiece != 0)
                         return MoveAnnotations.Pawn | MoveAnnotations.DoesNotCaptureThisWay;
@@ -226,7 +226,7 @@ namespace ChessKit.ChessLogic
                         _cells[to] = (byte)Piece.WhitePawn;
                         if (!IsAttackedByBlack(_whiteKingPosition))
                             collector.Add(new Move(fromSquare, to,
-                                MoveAnnotations.Pawn | MoveAnnotations.PawnDoublePush));
+                                MoveAnnotations.Pawn | MoveAnnotations.DoublePush));
                         _cells[fromSquare] = (byte)Piece.WhitePawn;
                         _cells[to] = toPiece;
                     }
@@ -335,7 +335,7 @@ namespace ChessKit.ChessLogic
                         _cells[to] = (byte)Piece.BlackPawn;
                         if (!IsAttackedByWhite(_blackKingPosition))
                             collector.Add(new Move(fromSquare, to,
-                                MoveAnnotations.Pawn | MoveAnnotations.PawnDoublePush));
+                                MoveAnnotations.Pawn | MoveAnnotations.DoublePush));
                         _cells[fromSquare] = (byte)Piece.BlackPawn;
                         _cells[to] = toPiece;
                     }
