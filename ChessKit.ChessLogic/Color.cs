@@ -1,7 +1,7 @@
 namespace ChessKit.ChessLogic
 {
     /// <summary>Represents piece color</summary>
-    public enum PieceColor
+    public enum Color
     {
         White,
         Black

@@ -106,9 +106,9 @@
     <Compile Include="Move.cs" />
     <Compile Include="Internals\MoveDirection.cs" />
     <Compile Include="MoveAnnotations.cs" />
-    <Compile Include="PieceColor.cs" />
+    <Compile Include="Color.cs" />
     <Compile Include="PieceExtensions.cs" />
-    <Compile Include="Side.cs" />
+    <Compile Include="ColorExtensions.cs" />
     <Compile Include="PieceType.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="GlobalSuppressions.cs" />

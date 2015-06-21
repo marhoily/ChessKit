@@ -4,19 +4,19 @@ namespace ChessKit.ChessLogic
 {
     public static class PieceExtensions
     {
-        public static CompactPiece Pack(this PieceType pieceType, PieceColor pieceColor)
+        public static CompactPiece Pack(this PieceType pieceType, Color color)
         {
-            return (CompactPiece) ((MoveAnnotations) pieceType | (MoveAnnotations) pieceColor);
+            return (CompactPiece) ((MoveAnnotations) pieceType | (MoveAnnotations) color);
         }
 
-        public static PieceColor Color(this CompactPiece piece)
+        public static Color Color(this CompactPiece piece)
         {
-            return (PieceColor) ((MoveAnnotations) piece & (MoveAnnotations) PieceColor.Black);
+            return (Color) ((MoveAnnotations) piece & (MoveAnnotations) ChessLogic.Color.Black);
         }
 
         public static PieceType PieceType(this CompactPiece piece)
         {
-            return (PieceType) ((MoveAnnotations) piece & ~(MoveAnnotations) PieceColor.Black);
+            return (PieceType) ((MoveAnnotations) piece & ~(MoveAnnotations) ChessLogic.Color.Black);
         }
 
         public static char GetSymbol(this CompactPiece piece)

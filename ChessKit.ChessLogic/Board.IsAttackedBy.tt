@@ -8,7 +8,7 @@ namespace ChessKit.ChessLogic
     partial class Board
     {
 <#
-foreach (var color in new []{PieceColor.White, PieceColor.Black})
+foreach (var color in new []{Color.White, Color.Black})
 {
 #>
         private bool IsAttackedBy<#=color#>(int cell)

@@ -13,7 +13,7 @@ namespace ChessKit.ChessLogic
         public PieceType PieceType => _compactValue.PieceType();
 
         /// <summary>Piece color</summary>
-        public PieceColor Color => _compactValue.Color();
+        public Color Color => _compactValue.Color();
 
         /// <summary>Gets all directions of move piece can do</summary>
         public ReadOnlyCollection<MoveDirection> MoveDirections { get; private set; }

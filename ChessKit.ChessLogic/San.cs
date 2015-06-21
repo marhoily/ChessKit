@@ -19,7 +19,7 @@ namespace ChessKit.ChessLogic
             if (board == null) throw new ArgumentNullException("board");
             var sb = new StringBuilder(5);
             sb.Append(board.MoveNumber.ToString(CultureInfo.InvariantCulture));
-            if (board.SideOnMove == PieceColor.White)
+            if (board.SideOnMove == Color.White)
             {
                 sb.Append('.');
             }
@@ -45,7 +45,7 @@ namespace ChessKit.ChessLogic
             var sb = new StringBuilder(3);
 
             if ((move.Annotations & MoveAnnotations.Promotion) != 0)
-                sb.Append('=').Append(move.ProposedPromotion.Pack(PieceColor.White).GetSymbol());
+                sb.Append('=').Append(move.ProposedPromotion.Pack(Color.White).GetSymbol());
 
             if ((move.Annotations & MoveAnnotations.Check) != 0) sb.Append('+');
             else if (board.IsMate) sb.Append('#');
@@ -170,8 +170,8 @@ namespace ChessKit.ChessLogic
             if (board == null) throw new ArgumentNullException("board");
             if (san == null) throw new ArgumentNullException("san");
 
-            if (san == "O-O") return Move.Parse(board.SideOnMove == PieceColor.White ? "e1-g1" : "e8-g8");
-            if (san == "O-O-O") return Move.Parse(board.SideOnMove == PieceColor.White ? "e1-c1" : "e8-c8");
+            if (san == "O-O") return Move.Parse(board.SideOnMove == Color.White ? "e1-g1" : "e8-g8");
+            if (san == "O-O-O") return Move.Parse(board.SideOnMove == Color.White ? "e1-c1" : "e8-c8");
 
             var index = san.Length - 1;
             // remove chess and checkmate representation (if any)

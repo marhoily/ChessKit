@@ -237,7 +237,7 @@ namespace ChessKit.ChessLogic
                     var toPiece = _cells[to];
                     if (toPiece != 0)
                     {
-                        if ((PieceColor)(toPiece & (byte)PieceColor.Black) != PieceColor.White)
+                        if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
                         {
                             _cells[fromSquare] = 0;
                             _cells[to] = (byte)CompactPiece.WhitePawn;
@@ -274,7 +274,7 @@ namespace ChessKit.ChessLogic
                     var toPiece = _cells[to];
                     if (toPiece != 0)
                     {
-                        if ((PieceColor)(toPiece & (byte)PieceColor.Black) != PieceColor.White)
+                        if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
                         {
                             _cells[fromSquare] = 0;
                             _cells[to] = (byte)CompactPiece.WhitePawn;
@@ -346,7 +346,7 @@ namespace ChessKit.ChessLogic
                     var toPiece = _cells[to];
                     if (toPiece != 0)
                     {
-                        if ((PieceColor)(toPiece & (byte)PieceColor.Black) != PieceColor.Black)
+                        if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
                         {
                             _cells[fromSquare] = 0;
                             _cells[to] = (byte)CompactPiece.BlackPawn;
@@ -382,7 +382,7 @@ namespace ChessKit.ChessLogic
                     var toPiece = _cells[to];
                     if (toPiece != 0)
                     {
-                        if ((PieceColor)(toPiece & (byte)PieceColor.Black) != PieceColor.Black)
+                        if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
                         {
                             _cells[fromSquare] = 0;
                             _cells[to] = (byte)CompactPiece.BlackPawn;
@@ -413,9 +413,9 @@ namespace ChessKit.ChessLogic
             }
         }
 
-        private bool IsUnderCheck(PieceColor kingColor)
+        private bool IsUnderCheck(ChessLogic.Color kingColor)
         {
-            return kingColor == PieceColor.White
+            return kingColor == ChessLogic.Color.White
               ? IsAttackedByBlack(_whiteKingPosition)
               : IsAttackedByWhite(_blackKingPosition);
         }

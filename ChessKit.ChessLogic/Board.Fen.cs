@@ -134,7 +134,7 @@ namespace ChessKit.ChessLogic
             }
 
             fen.Append(' ');
-            fen.Append(SideOnMove == PieceColor.White ? 'w' : 'b');
+            fen.Append(SideOnMove == ChessLogic.Color.White ? 'w' : 'b');
 
             fen.Append(' ');
             var castling = _caslings;
@@ -158,7 +158,7 @@ namespace ChessKit.ChessLogic
             else
             {
                 fen.Append("abcdefgh"[EnPassantFile.GetValueOrDefault()]);
-                fen.Append(SideOnMove == PieceColor.White ? '6' : '3');
+                fen.Append(SideOnMove == ChessLogic.Color.White ? '6' : '3');
             }
 
             fen.Append(' ');
@@ -172,16 +172,16 @@ namespace ChessKit.ChessLogic
 
         private static class Color
         {
-            public static PieceColor Parse(char symbol)
+            public static ChessLogic.Color Parse(char symbol)
             {
                 switch (symbol)
                 {
                     case 'W':
                     case 'w':
-                        return PieceColor.White;
+                        return ChessLogic.Color.White;
                     case 'B':
                     case 'b':
-                        return PieceColor.Black;
+                        return ChessLogic.Color.Black;
                     default:
                         throw new FormatException("What color is that?");
                 }

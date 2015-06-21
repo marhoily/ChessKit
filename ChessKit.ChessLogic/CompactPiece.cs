@@ -4,18 +4,18 @@ namespace ChessKit.ChessLogic
   {
     EmptyCell,
 
-    WhitePawn   = PieceColor.White | MoveAnnotations.Pawn  ,
-    WhiteBishop = PieceColor.White | MoveAnnotations.Bishop,
-    WhiteKnight = PieceColor.White | MoveAnnotations.Knight,
-    WhiteRook   = PieceColor.White | MoveAnnotations.Rook  ,
-    WhiteQueen  = PieceColor.White | MoveAnnotations.Queen ,
-    WhiteKing   = PieceColor.White | MoveAnnotations.King  ,
+    WhitePawn   = Color.White | MoveAnnotations.Pawn  ,
+    WhiteBishop = Color.White | MoveAnnotations.Bishop,
+    WhiteKnight = Color.White | MoveAnnotations.Knight,
+    WhiteRook   = Color.White | MoveAnnotations.Rook  ,
+    WhiteQueen  = Color.White | MoveAnnotations.Queen ,
+    WhiteKing   = Color.White | MoveAnnotations.King  ,
     
-    BlackPawn   = PieceColor.Black | MoveAnnotations.Pawn  ,
-    BlackBishop = PieceColor.Black | MoveAnnotations.Bishop,
-    BlackKnight = PieceColor.Black | MoveAnnotations.Knight,
-    BlackRook   = PieceColor.Black | MoveAnnotations.Rook  ,
-    BlackQueen  = PieceColor.Black | MoveAnnotations.Queen ,
-    BlackKing   = PieceColor.Black | MoveAnnotations.King  ,
+    BlackPawn   = Color.Black | MoveAnnotations.Pawn  ,
+    BlackBishop = Color.Black | MoveAnnotations.Bishop,
+    BlackKnight = Color.Black | MoveAnnotations.Knight,
+    BlackRook   = Color.Black | MoveAnnotations.Rook  ,
+    BlackQueen  = Color.Black | MoveAnnotations.Queen ,
+    BlackKing   = Color.Black | MoveAnnotations.King  ,
   }
 }                                                    

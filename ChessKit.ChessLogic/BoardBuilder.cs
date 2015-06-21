@@ -8,7 +8,7 @@ namespace ChessKit.ChessLogic
         private const int BytesCount = 128;
 
         internal readonly byte[] _cells;
-        public PieceColor SideOnMove { get; private set; }
+        public Color SideOnMove { get; private set; }
         /// <summary>Gets the file at which en passant move is available</summary>
         [SuppressMessage("Microsoft.Naming",
           "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "En",
