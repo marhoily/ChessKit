@@ -8,6 +8,11 @@ namespace ChessKit.ChessLogic.Enums
     /// <remarks>http://en.wikipedia.org/wiki/Chess</remarks>
     public static class Coordinate
     {
+        public static int ParseCoordinate(this string position)
+        {
+            return Parse(position);
+        }
+
         /// <param name="position">"a1" or "A1"</param>
         public static int Parse(string position)
         {
