@@ -1703,7 +1703,7 @@ namespace ChessKit.ChessLogic
                     }
                     GenerateBlackCastlingMoves(fromSquare, castlingAvailability, collector);
                     break;
-                    #endregion
+                #endregion
 
             }
         }

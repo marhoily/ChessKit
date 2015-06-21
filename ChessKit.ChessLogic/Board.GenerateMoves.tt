@@ -122,8 +122,8 @@ namespace ChessKit.ChessLogic
 <#
                                 }
 #>
-                                 collector.Add(new Move((Position)fromSquare, (Position)to,
-                                     MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.Capture));
+                                    collector.Add(new Move((Position)fromSquare, (Position)to,
+                                        MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.Capture));
 <#
                                 if (p.PieceType != PieceType.King)
                                 {
