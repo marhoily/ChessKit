@@ -2,7 +2,7 @@
 <#@ output extension=".cs" #>
 <#@ Assembly Name="System.Core" #>
 <#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
-<#@ import namespace="ChessKit.ChessLogic" #>
+<#@ import namespace="ChessKit.ChessLogic.Enums" #>
 /* This code is auto-generated! 
  * It is strongly adviced not to change it manually! */
 

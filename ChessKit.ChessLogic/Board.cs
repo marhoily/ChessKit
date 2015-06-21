@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using ChessKit.ChessLogic.Enums;
 
 namespace ChessKit.ChessLogic
 {
@@ -8,7 +9,7 @@ namespace ChessKit.ChessLogic
         private GameState _gameState;
 
         /// <summary>The side which is moving next (white or black)</summary>
-        public ChessLogic.Color SideOnMove { get; private set; }
+        public Color SideOnMove { get; private set; }
         /// <summary>Gets the file at which en passant move is available</summary>
         [SuppressMessage("Microsoft.Naming",
           "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "En",
@@ -116,7 +117,7 @@ namespace ChessKit.ChessLogic
         }
         private void SetupBoard(Board src, Piece piece,
           int moveFrom, int moveTo, PieceType proposedPromotion,
-          ChessLogic.Color color)
+          Color color)
         {
             if ((PreviousMove.Annotations & MoveAnnotations.AllErrors) != 0) return;
             if ((PreviousMove.Annotations & MoveAnnotations.EnPassant) != 0)
@@ -143,7 +144,7 @@ namespace ChessKit.ChessLogic
                 }
                 else if ((PreviousMove.Annotations & MoveAnnotations.EnPassant) != 0)
                 {
-                    _cells[moveTo + (color == ChessLogic.Color.White ? -16 : +16)] = 0;
+                    _cells[moveTo + (color == Color.White ? -16 : +16)] = 0;
                 }
                 else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling)) // TODO: Move it up?
                 {
@@ -180,7 +181,7 @@ namespace ChessKit.ChessLogic
               (PreviousMove.Annotations & (MoveAnnotations.Capture | MoveAnnotations.Pawn)) != 0
               ? 0 : src.HalfMoveClock + 1;
 
-            MoveNumber = src.MoveNumber + (color == ChessLogic.Color.Black ? 1 : 0);
+            MoveNumber = src.MoveNumber + (color == Color.Black ? 1 : 0);
         }
 
         private static Caslings KilledAvailability(int pos)

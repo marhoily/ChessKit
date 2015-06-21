@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Enums
 {
   [Flags]
   public enum MoveAnnotations

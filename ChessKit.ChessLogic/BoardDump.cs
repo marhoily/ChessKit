@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-
+using ChessKit.ChessLogic.Enums;
 using JetBrains.Annotations;
 
 namespace ChessKit.ChessLogic

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Internals
 {
     public class ImmutableAttribute : Attribute
     {

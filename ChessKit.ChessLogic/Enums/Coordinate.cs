@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Enums
 {
     /// <summary>Identifies chess board cell coordinates in a user-friendly manner</summary>
     /// <remarks>http://en.wikipedia.org/wiki/Chess</remarks>

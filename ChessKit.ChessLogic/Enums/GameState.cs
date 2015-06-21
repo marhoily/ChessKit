@@ -1,4 +1,4 @@
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Enums
 {
   public enum GameState
   {

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using ChessKit.ChessLogic.Enums;
 using JetBrains.Annotations;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Internals
 {
     /// <summary>Represents piece Type</summary>
     [Immutable, PublicAPI]

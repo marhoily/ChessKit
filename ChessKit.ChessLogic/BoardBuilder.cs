@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using ChessKit.ChessLogic.Enums;
 
 namespace ChessKit.ChessLogic
 {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ChessKit.ChessLogic.Enums;
 
 namespace ChessKit.ChessLogic
 {

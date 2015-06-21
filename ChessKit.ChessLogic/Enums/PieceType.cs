@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace ChessKit.ChessLogic
+﻿namespace ChessKit.ChessLogic.Enums
 {
     public enum PieceType
     {

@@ -1,4 +1,5 @@
 using System;
+using ChessKit.ChessLogic.Enums;
 using FluentAssertions;
 using NUnit.Framework;
 

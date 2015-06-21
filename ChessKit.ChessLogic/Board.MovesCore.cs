@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ChessKit.ChessLogic.Enums;
 
 namespace ChessKit.ChessLogic
 {
@@ -237,7 +238,7 @@ namespace ChessKit.ChessLogic
                     var toPiece = _cells[to];
                     if (toPiece != 0)
                     {
-                        if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = 0;
                             _cells[to] = (byte)Piece.WhitePawn;
@@ -274,7 +275,7 @@ namespace ChessKit.ChessLogic
                     var toPiece = _cells[to];
                     if (toPiece != 0)
                     {
-                        if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = 0;
                             _cells[to] = (byte)Piece.WhitePawn;
@@ -346,7 +347,7 @@ namespace ChessKit.ChessLogic
                     var toPiece = _cells[to];
                     if (toPiece != 0)
                     {
-                        if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = 0;
                             _cells[to] = (byte)Piece.BlackPawn;
@@ -382,7 +383,7 @@ namespace ChessKit.ChessLogic
                     var toPiece = _cells[to];
                     if (toPiece != 0)
                     {
-                        if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = 0;
                             _cells[to] = (byte)Piece.BlackPawn;
@@ -413,9 +414,9 @@ namespace ChessKit.ChessLogic
             }
         }
 
-        private bool IsUnderCheck(ChessLogic.Color kingColor)
+        private bool IsUnderCheck(Color kingColor)
         {
-            return kingColor == ChessLogic.Color.White
+            return kingColor == Color.White
               ? IsAttackedByBlack(_whiteKingPosition)
               : IsAttackedByWhite(_blackKingPosition);
         }

@@ -1,4 +1,6 @@
-﻿namespace ChessKit.ChessLogic
+﻿using ChessKit.ChessLogic.Enums;
+
+namespace ChessKit.ChessLogic
 {
   partial class Board
   {

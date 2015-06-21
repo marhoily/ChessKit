@@ -1,4 +1,4 @@
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Enums
 {
     /// <summary>Represents piece color</summary>
     public enum Color

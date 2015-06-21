@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using ChessKit.ChessLogic.Enums;
 using JetBrains.Annotations;
 
 namespace ChessKit.ChessLogic
@@ -134,7 +135,7 @@ namespace ChessKit.ChessLogic
             }
 
             fen.Append(' ');
-            fen.Append(SideOnMove == ChessLogic.Color.White ? 'w' : 'b');
+            fen.Append(SideOnMove == Color.White ? 'w' : 'b');
 
             fen.Append(' ');
             var castling = _caslings;
@@ -158,7 +159,7 @@ namespace ChessKit.ChessLogic
             else
             {
                 fen.Append("abcdefgh"[EnPassantFile.GetValueOrDefault()]);
-                fen.Append(SideOnMove == ChessLogic.Color.White ? '6' : '3');
+                fen.Append(SideOnMove == Color.White ? '6' : '3');
             }
 
             fen.Append(' ');

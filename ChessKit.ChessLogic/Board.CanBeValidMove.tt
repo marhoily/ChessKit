@@ -4,6 +4,7 @@
 <#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="ChessKit.ChessLogic" #>
+<#@ import namespace="ChessKit.ChessLogic.Internals" #>
 /* This code is auto-generated! 
  * It is strongly adviced not to change it manually! */
 namespace ChessKit.ChessLogic

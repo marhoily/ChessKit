@@ -4,6 +4,8 @@
 <#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="ChessKit.ChessLogic" #>
+<#@ import namespace="ChessKit.ChessLogic.Enums" #>
+<#@ import namespace="ChessKit.ChessLogic.Internals" #>
 namespace ChessKit.ChessLogic
 {
   partial class Board

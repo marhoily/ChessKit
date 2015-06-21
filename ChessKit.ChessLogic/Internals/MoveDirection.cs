@@ -1,6 +1,6 @@
 using System;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Internals
 {
     /// <summary>Represents one of directions of moves piece can do </summary>
     [Immutable]
