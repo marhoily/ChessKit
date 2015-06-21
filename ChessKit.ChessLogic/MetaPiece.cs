@@ -10,14 +10,6 @@ namespace ChessKit.ChessLogic
     [Immutable, PublicAPI]
     public sealed class MetaPiece
     {
-        #region ' Piece '
-
-        private static readonly MetaPiece[] TypeColorMap;
-
-        #endregion
-
-        #region ' Instance '
-
         public PieceType PieceType { get; private set; }
 
         /// <summary>Piece color</summary>
@@ -31,8 +23,7 @@ namespace ChessKit.ChessLogic
 
         public CompactPiece CompactValue { get; private set; }
 
-        internal MetaPiece(CompactPiece compactValue, string symbol,
-            char chessChar, string english, string russian)
+        internal MetaPiece(CompactPiece compactValue, string symbol)
         {
             CompactValue = compactValue;
             PieceType = (PieceType)((MoveAnnotations)compactValue & MoveAnnotations.AllPieces);
@@ -45,16 +36,6 @@ namespace ChessKit.ChessLogic
             return Symbol;
         }
 
-        #endregion
-
-        #region ' Parse '
-
-        private static readonly MetaPiece[] PieceBySymbol;
-
-        #endregion
-
-        #region ' Public Constants '
-
         /// <summary>All Types pieces may have</summary>
         public static ReadOnlyCollection<MetaPiece> All { get; private set; }
 
@@ -64,19 +45,19 @@ namespace ChessKit.ChessLogic
         {
             //      _______________
             // ____/ Create Pieces \____________________________________________________________
-            var whitePawn = new MetaPiece(CompactPiece.WhitePawn, "P", '♙', "White Pawn", "Белая пешка");
-            var whiteBishop = new MetaPiece(CompactPiece.WhiteBishop, "B", '♗', "White Bishop", "Белый слон");
-            var whiteKnight = new MetaPiece(CompactPiece.WhiteKnight, "N", '♘', "White Knight", "Белый конь");
-            var whiteRook = new MetaPiece(CompactPiece.WhiteRook, "R", '♖', "White Rook", "Белая ладья");
-            var whiteQueen = new MetaPiece(CompactPiece.WhiteQueen, "Q", '♕', "White Queen", "Белый ферзь");
-            var whiteKing = new MetaPiece(CompactPiece.WhiteKing, "K", '♔', "White King", "Белый король");
+            var whitePawn = new MetaPiece(CompactPiece.WhitePawn, "P");
+            var whiteBishop = new MetaPiece(CompactPiece.WhiteBishop, "B");
+            var whiteKnight = new MetaPiece(CompactPiece.WhiteKnight, "N");
+            var whiteRook = new MetaPiece(CompactPiece.WhiteRook, "R");
+            var whiteQueen = new MetaPiece(CompactPiece.WhiteQueen, "Q");
+            var whiteKing = new MetaPiece(CompactPiece.WhiteKing, "K");
 
-            var blackPawn = new MetaPiece(CompactPiece.BlackPawn, "p", '♟', "Black Pawn", "Черная пешка");
-            var blackBishop = new MetaPiece(CompactPiece.BlackBishop, "b", '♝', "Black Bishop", "Черный слон");
-            var blackKnight = new MetaPiece(CompactPiece.BlackKnight, "n", '♞', "Black Knight", "Черный конь");
-            var blackRook = new MetaPiece(CompactPiece.BlackRook, "r", '♜', "Black Rook", "Черная ладья");
-            var blackQueen = new MetaPiece(CompactPiece.BlackQueen, "q", '♛', "Black Queen", "Черный ферзь");
-            var blackKing = new MetaPiece(CompactPiece.BlackKing, "k", '♚', "Black King", "Черный король");
+            var blackPawn = new MetaPiece(CompactPiece.BlackPawn, "p");
+            var blackBishop = new MetaPiece(CompactPiece.BlackBishop, "b");
+            var blackKnight = new MetaPiece(CompactPiece.BlackKnight, "n");
+            var blackRook = new MetaPiece(CompactPiece.BlackRook, "r");
+            var blackQueen = new MetaPiece(CompactPiece.BlackQueen, "q");
+            var blackKing = new MetaPiece(CompactPiece.BlackKing, "k");
 
             //      _____________
             // ____/ Collections \______________________________________________________________
@@ -87,20 +68,6 @@ namespace ChessKit.ChessLogic
                 blackKnight, blackRook, blackQueen, blackKing
             });
 
-
-            //      ______________
-            // ____/ Dictionaries \_____________________________________________________________
-            PieceBySymbol = new MetaPiece['z' - 'A'];
-            foreach (var piece in All)
-                PieceBySymbol[piece.Symbol[0] - 'A'] = piece;
-
-            CompactPieceBySymbol = new CompactPiece['z' - 'A'];
-            foreach (var piece in All)
-                CompactPieceBySymbol[piece.Symbol[0] - 'A'] = piece.CompactValue;
-
-            TypeColorMap = new MetaPiece[(int)blackKing.CompactValue + 1];
-            foreach (var piece in All)
-                TypeColorMap[(int)piece.CompactValue] = piece;
 
             //      ________________
             // ____/ MoveDirections \___________________________________________________________
@@ -121,10 +88,6 @@ namespace ChessKit.ChessLogic
             blackQueen.MoveDirections = whiteQueen.MoveDirections;
             blackKing.MoveDirections = whiteKing.MoveDirections;
         }
-
-        #endregion
-
-        #region ' MoveDirection '
 
         private static ReadOnlyCollection<T> Join<T>(params IEnumerable<T>[] arr)
         {
@@ -150,13 +113,5 @@ namespace ChessKit.ChessLogic
         {
             yield return new MoveDirection(dx, dy, 1, false, true);
         }
-
-        #endregion
-
-        #region ' Compact '
-
-        private static readonly CompactPiece[] CompactPieceBySymbol;
-
-        #endregion
     }
 }
