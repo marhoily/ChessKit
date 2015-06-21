@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
+using ChessKit.ChessLogic.Enums;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace ChessKit.ChessLogic.UnitTests
 {
-    [TestFixture]
 	public class BoardTest
 	{
 		/*
@@ -29,9 +29,10 @@ namespace ChessKit.ChessLogic.UnitTests
 		 */
 
 
-		[TestCase("rnbqkb1r/p2ppp1p/6pn/1pp5/4N2P/7N/PPPPPPP1/R1BQKBR1 b Qkq - 3 5", "none")]
-		[TestCase("rnb1kbnr/pppp1ppp/4p3/8/5P1q/3P4/PPP1P1PP/RNBQKBNR w KQkq - 0 3", "check")]
-		[TestCase("rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 0 3", "mate")]
+        [Theory]
+		[InlineData("rnbqkb1r/p2ppp1p/6pn/1pp5/4N2P/7N/PPPPPPP1/R1BQKBR1 b Qkq - 3 5", "none")]
+		[InlineData("rnb1kbnr/pppp1ppp/4p3/8/5P1q/3P4/PPP1P1PP/RNBQKBNR w KQkq - 0 3", "check")]
+		[InlineData("rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 0 3", "mate")]
 		public void TestCheckAndMate(string fen, string expected)
 		{
 			var board = Board.FromFenString(fen);
@@ -39,7 +40,7 @@ namespace ChessKit.ChessLogic.UnitTests
 			board.IsMate.Should().Be(expected == "mate");
 		}
 
-		[Test]
+		[Fact]
 		public void TestDumb()
 		{
 			Console.WriteLine(Board.FromFenString(
@@ -47,13 +48,13 @@ namespace ChessKit.ChessLogic.UnitTests
 			  .Dump());
 		}
 
-		[Test]
+		[Fact]
 		public void BoardShouldKeepReferenceToThePrevBoard()
 		{
 			Board.StartPosition.MakeMove(Move.Parse("e2-e4"))
 			  .Previous.Should().Be(Board.StartPosition);
 		}
-		[Test, Timeout(900)]
+		[Fact]
 		public void GetLegalMovesTimeout()
 		{
 			var board = Board.StartPosition;
@@ -63,8 +64,9 @@ namespace ChessKit.ChessLogic.UnitTests
 				board = board.MakeMove(legalMoves[0]);
 			}
 		}
-		[Test, TestCaseSource(typeof(TestMoveData), nameof(TestMoveData.All))]
-		public void GetLegalMoves(TestMoveData d)
+		[Theory]
+        [MemberData(nameof(TestMoveData.All), MemberType = typeof(TestMoveData))]
+        public void GetLegalMoves(TestMoveData d)
 		{
 			Console.WriteLine(d.StartingFen);
 			Console.WriteLine(d.Move);
@@ -83,20 +85,37 @@ namespace ChessKit.ChessLogic.UnitTests
 				board.GetLegalMoves(expected.From).Should().NotContain(expected);
 			}
 		}
-		[Test, TestCaseSource(typeof(TestMoveData), nameof(TestMoveData.All))]
-		public void CanBeValidMove(TestMoveData d)
+        [Theory]
+        [MemberData(nameof(TestMoveData.All), MemberType = typeof(TestMoveData))]
+        public void CanBeValidMove(string name, string startingFen, string move, string result)
 		{
-			Console.WriteLine(d.StartingFen);
-			Console.WriteLine(d.Move);
+			Console.WriteLine(startingFen);
+			Console.WriteLine(move);
 			Console.WriteLine();
 
-			var board = Board.FromFenString(d.StartingFen);
-			var expected = Move.Parse(d.Move);
-			if (!d.ExpectedToBeValid) return;
+			var board = Board.FromFenString(startingFen);
+			var expected = Move.Parse(move);
+			if (!result.ExpectedAnnotations().ExpectedToBeValid()) return;
 			board.CanBeValidMove(
 				board[expected.From],
 				expected.From,
 				expected.To).Should().BeTrue();
 		}
-	}
+    }
+
+    public static class TestExt
+    {
+        public static bool ExpectedToBeValid(this MoveAnnotations expectedAnnotations)
+        {
+            return (expectedAnnotations & MoveAnnotations.AllErrors) == 0;
+        }
+
+        public static MoveAnnotations ExpectedAnnotations(this string result)
+        {
+            MoveAnnotations res = 0;
+            foreach (var item in result.Split(new[] { " | " }, StringSplitOptions.None))
+                res |= (MoveAnnotations)Enum.Parse(typeof(MoveAnnotations), item);
+            return res;
+        }
+    }
 }
