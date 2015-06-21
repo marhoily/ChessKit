@@ -22,11 +22,6 @@ namespace ChessKit.ChessLogic
 
         #endregion
 
-        public static MetaPiece Get(PieceType type, PieceColor color)
-        {
-            return TypeColorMap[(int)type | (int)color];
-        }
-
         [Immutable]
         private class PieceTypeComparer : IComparer<MetaPiece>
         {
@@ -83,38 +78,6 @@ namespace ChessKit.ChessLogic
         #region ' Parse '
 
         private static readonly MetaPiece[] PieceBySymbol;
-
-        /// <summary>
-        ///     Parses a symbol into a Piece.
-        ///     Recognizes japanese hieroglyphs as well as latin symbols
-        /// </summary>
-        public static MetaPiece Parse(char symbol)
-        {
-            var idx = symbol - 'A';
-            if (idx < 0 || idx >= PieceBySymbol.Length)
-                throw new FormatException("illegal character: " + symbol);
-            var piece = PieceBySymbol[idx];
-            if (piece == null)
-                throw new FormatException("illegal character: " + symbol);
-            return piece;
-        }
-
-        /// <summary>
-        ///     Tries to parse a symbol into a PieceType.
-        ///     Recognizes japanese hieroglyphs as well as latin symbols
-        /// </summary>
-        /// <returns>false if it couldn't parse the symbol</returns>
-        public static bool TryParse(char symbol, out MetaPiece result)
-        {
-            var idx = symbol - 'A';
-            if (idx < 0 || idx >= PieceBySymbol.Length)
-            {
-                result = null;
-                return false;
-            }
-            result = PieceBySymbol[idx];
-            return result != null;
-        }
 
         #endregion
 
@@ -269,54 +232,6 @@ namespace ChessKit.ChessLogic
         #region ' Compact '
 
         private static readonly CompactPiece[] CompactPieceBySymbol;
-
-        public static CompactPiece ParseCompact(char symbol)
-        {
-            var idx = symbol - 'A';
-            if (idx < 0 || idx >= CompactPieceBySymbol.Length)
-                throw new FormatException("illegal character: " + symbol);
-            var piece = CompactPieceBySymbol[idx];
-            if (piece == CompactPiece.EmptyCell)
-                throw new FormatException("illegal character: " + symbol);
-            return piece;
-        }
-
-        public static bool TryParseCompact(char symbol, out CompactPiece result)
-        {
-            var idx = symbol - 'A';
-            if (idx < 0 || idx >= CompactPieceBySymbol.Length)
-            {
-                result = CompactPiece.EmptyCell;
-                return false;
-            }
-            result = CompactPieceBySymbol[idx];
-            return result != CompactPiece.EmptyCell;
-        }
-
-        public static CompactPiece Pack(MetaPiece value)
-        {
-            return value == null ? CompactPiece.EmptyCell : value.CompactValue;
-        }
-
-        public static MetaPiece Unpack(CompactPiece value)
-        {
-            return TypeColorMap[(int)value];
-        }
-
-        public static CompactPiece Pack(PieceType pieceType, PieceColor pieceColor)
-        {
-            return (CompactPiece)((MoveAnnotations)pieceType | (MoveAnnotations)pieceColor);
-        }
-
-        public static PieceColor UnpackColor(CompactPiece piece)
-        {
-            return (PieceColor)((MoveAnnotations)piece & (MoveAnnotations)PieceColor.Black);
-        }
-
-        public static PieceType UnpackType(CompactPiece piece)
-        {
-            return (PieceType)((MoveAnnotations)piece & ~(MoveAnnotations)PieceColor.Black);
-        }
 
         #endregion
     }
