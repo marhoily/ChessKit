@@ -101,6 +101,7 @@
     <Compile Include="Caslings.cs" />
     <Compile Include="CompactPiece.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="MetaPiece.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Internals\MoveDirection.cs" />
     <Compile Include="MoveAnnotations.cs" />
