@@ -27,7 +27,7 @@ foreach (var color in new []{PieceColor.White, PieceColor.Black})
             {
                 var piece = _cells[i];
                 if (piece == 0) continue;
-                if (piece == (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>) return true;
+                if (piece == (byte) CompactPiece.<#=p.Color#><#=p.PieceType#>) return true;
                 break;
             }
 <#
