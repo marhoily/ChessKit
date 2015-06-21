@@ -116,6 +116,7 @@
     <Compile Include="Enums\Coordinate.cs" />
     <Compile Include="N\Definitions.cs" />
     <Compile Include="N\Fen.cs" />
+    <Compile Include="N\Scanning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="San.cs" />
   </ItemGroup>

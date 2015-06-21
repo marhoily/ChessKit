@@ -190,6 +190,14 @@ namespace ChessKit.ChessLogic
         #endregion
 
         public Piece this[string index] => this[Coordinate.Parse(index)];
+
+        public bool IsAttackedBy(Color side, int square)
+        {
+            return side == Color.White
+                ? IsAttackedByWhite(square)
+                : IsAttackedByBlack(square);
+        }
+
     }
 }
 
