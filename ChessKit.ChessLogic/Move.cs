@@ -1,5 +1,6 @@
 using System;
-using System.Globalization;
+
+// ReSharper disable IntroduceOptionalParameters.Global
 
 namespace ChessKit.ChessLogic
 {
@@ -14,9 +15,7 @@ namespace ChessKit.ChessLogic
         }
 
         public Move(Position from, Position to)
-            // ReSharper disable IntroduceOptionalParameters.Global
             : this(from, to, PieceType.Queen)
-            // ReSharper restore IntroduceOptionalParameters.Global
         {
         }
 
@@ -51,11 +50,7 @@ namespace ChessKit.ChessLogic
 
         public bool IsProposedPromotion => (Annotations & (MoveAnnotations.Promotion)) != 0;
 
-        public override string ToString()
-        {
-            return string.Format(
-                CultureInfo.InvariantCulture, "{0}-{1}", From, To);
-        }
+        public override string ToString() => $"{From}-{To}";
 
         public static Move Parse(string canString)
         {
@@ -107,15 +102,9 @@ namespace ChessKit.ChessLogic
             }
         }
 
-        public static bool operator ==(Move left, Move right)
-        {
-            return Equals(left, right);
-        }
+        public static bool operator ==(Move left, Move right) => Equals(left, right);
 
-        public static bool operator !=(Move left, Move right)
-        {
-            return !Equals(left, right);
-        }
+        public static bool operator !=(Move left, Move right) => !Equals(left, right);
 
         #endregion
     }

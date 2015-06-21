@@ -30,17 +30,10 @@ namespace ChessKit.ChessLogic
 		public Board Previous { get; private set; }
 		public Move PreviousMove { get; private set; }
 
-		public bool IsCheck
-		{
-			get { return _gameState == GameState.Check; }
-		}
-		public bool IsMate
-		{
-			get { return _gameState == GameState.WhiteWin || _gameState == GameState.BlackWin; }
-		}
+		public bool IsCheck => _gameState == GameState.Check;
+        public bool IsMate => _gameState == GameState.WhiteWin || _gameState == GameState.BlackWin;
 
-
-		#region ' MakeMove '
+        #region ' MakeMove '
 
 		[SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists"), SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
 		  Justification = "Takes considerable amount of time")]
