@@ -8,12 +8,12 @@ namespace ChessKit.ChessLogic
     // TODO: Crazy ctors! Public setters. Not immutable!
     public sealed class Move : IEquatable<Move>
     {
-        public Move(Position from, Position to)
+        public Move(int from, int to)
             : this(from, to, PieceType.Queen)
         {
         }
 
-        public Move(Position from, Position to, PieceType promotion)
+        public Move(int from, int to, PieceType promotion)
         {
             // TODO: if (from == to) throw new ArgumentException("to equals from!", "to");
             From = from;
@@ -21,7 +21,7 @@ namespace ChessKit.ChessLogic
             ProposedPromotion = promotion;
         }
 
-        public Move(Position from, Position to, MoveAnnotations annotations)
+        public Move(int from, int to, MoveAnnotations annotations)
         {
             To = to;
             From = from;
@@ -29,8 +29,8 @@ namespace ChessKit.ChessLogic
             ProposedPromotion = PieceType.Queen;
         }
 
-        public Position From { get; }
-        public Position To { get; }
+        public int From { get; }
+        public int To { get; }
         public MoveAnnotations Annotations { get; set; }
         public PieceType ProposedPromotion { get; set; }
         public bool IsValid => (Annotations & MoveAnnotations.AllErrors) == 0;
@@ -51,15 +51,15 @@ namespace ChessKit.ChessLogic
                 throw new ArgumentException("should not be null or empty", "canString");
             if (canString.Length == 5)
                 return new Move(
-                    Position.Parse(canString.Substring(0, 2)),
-                    Position.Parse(canString.Substring(3, 2)));
+                    X.Parse(canString.Substring(0, 2)),
+                    X.Parse(canString.Substring(3, 2)));
             if (canString.Length != 7) throw new ArgumentOutOfRangeException("canString");
             CompactPiece piece;
             if (!Piece.TryParse(canString[6], out piece))
                 throw new ArgumentOutOfRangeException(nameof(canString));
             return new Move(
-                Position.Parse(canString.Substring(0, 2)),
-                Position.Parse(canString.Substring(3, 2)),
+                X.Parse(canString.Substring(0, 2)),
+                X.Parse(canString.Substring(3, 2)),
                 piece.PieceType());
         }
 

@@ -36,7 +36,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
                             if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
-                                collector.Add(new Move((Position)fromSquare, (Position)to,
+                                collector.Add(new Move(fromSquare, to,
                                     MoveAnnotations.<#=p.PieceType#>));
                             _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
                             _cells[to] = toPiece;
@@ -46,7 +46,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
                             if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
-                                collector.Add(new Move((Position)fromSquare, (Position)to,
+                                collector.Add(new Move(fromSquare, to,
                                     MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.Capture));
                             _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
                             _cells[to] = toPiece;
@@ -92,7 +92,7 @@ namespace ChessKit.ChessLogic
 <#
                                 }
 #>
-                                    collector.Add(new Move((Position)fromSquare, (Position)to,
+                                    collector.Add(new Move(fromSquare, to,
                                         MoveAnnotations.<#=p.PieceType#>));
 <#
                                 if (p.PieceType != PieceType.King)
@@ -122,7 +122,7 @@ namespace ChessKit.ChessLogic
 <#
                                 }
 #>
-                                    collector.Add(new Move((Position)fromSquare, (Position)to,
+                                    collector.Add(new Move(fromSquare, to,
                                         MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.Capture));
 <#
                                 if (p.PieceType != PieceType.King)

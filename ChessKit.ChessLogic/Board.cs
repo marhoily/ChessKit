@@ -207,7 +207,7 @@ namespace ChessKit.ChessLogic
           Justification = "It just seems right to use Position as a natural indexer")]
         public CompactPiece this[Position index] => (CompactPiece) _cells[(int)index];
 
-        public CompactPiece this[string index] => this[Position.Parse(index)];
+        public CompactPiece this[string index] => this[X.Parse(index)];
     }
 }
 

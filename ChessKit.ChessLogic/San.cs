@@ -82,14 +82,14 @@ namespace ChessKit.ChessLogic
                 if ((move.Annotations & MoveAnnotations.Pawn) != 0)
                 {
                     if ((move.Annotations & MoveAnnotations.Capture) != 0)
-                        sb.Append(move.From.File);
+                        sb.Append(move.From.GetFile());
                 }
                 else
                 {
                     sb.Append(board[move.From].GetTypeSymbol());
 
                     // TODO: move should have Piece prop?
-                    var disambiguationList = new List<Position>(
+                    var disambiguationList = new List<int>(
                         from m in board.GetLegalMoves()
                         where m.From != move.From
                               && m.To == move.To
@@ -104,7 +104,7 @@ namespace ChessKit.ChessLogic
                         for (var index = 0; index < disambiguationList.Count; index++)
                         {
                             var m = disambiguationList[index];
-                            if (move.From.File == m.File)
+                            if (move.From.GetFile() == m.GetFile())
                             {
                                 uniqueFile = false;
                                 break;
@@ -112,7 +112,7 @@ namespace ChessKit.ChessLogic
                         }
                         if (uniqueFile)
                         {
-                            sb.Append(move.From.File);
+                            sb.Append(move.From.GetFile());
                         }
                         else
                         {
@@ -120,7 +120,7 @@ namespace ChessKit.ChessLogic
                             for (var i = 0; i < disambiguationList.Count; i++)
                             {
                                 var m = disambiguationList[i];
-                                if (move.From.Rank == m.Rank)
+                                if (move.From.GetRank() == m.GetRank())
                                 {
                                     uniqueRank = false;
                                     break;
@@ -130,7 +130,7 @@ namespace ChessKit.ChessLogic
                             // ReSharper restore LoopCanBeConvertedToQuery
                             if (uniqueRank)
                             {
-                                sb.Append(move.From.Rank.ToString(CultureInfo.InvariantCulture));
+                                sb.Append(move.From.GetRank().ToString(CultureInfo.InvariantCulture));
                             }
                             else
                             {
@@ -188,7 +188,7 @@ namespace ChessKit.ChessLogic
             }
 
             if (index < 1) return null;
-            var to = Position.Parse(san.Substring(index - 1, 2));
+            var to = X.Parse(san.Substring(index - 1, 2));
             index -= 2;
 
             // remove capture char (if any)
@@ -221,13 +221,13 @@ namespace ChessKit.ChessLogic
             return GetMove(board, to, file, rank, pieceChar, prom);
         }
 
-        private static Move GetMove(Board board, Position to, int? file, int? rank, PieceType pieceChar, PieceType prom)
+        private static Move GetMove(Board board, int to, int? file, int? rank, PieceType pieceChar, PieceType prom)
         {
             var move = default(Move);
             foreach (var m in board.GetLegalMoves())
                 if (m.To == to)
-                    if (file == null || file == m.From.X)
-                        if (rank == null || rank == m.From.Y)
+                    if (file == null || file == m.From.GetX())
+                        if (rank == null || rank == m.From.GetY())
                             if (board[m.From].PieceType() == pieceChar)
                             {
                                 if (move != null) throw new FormatException("Ambiguity");

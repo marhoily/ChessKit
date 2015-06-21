@@ -47,7 +47,7 @@ namespace ChessKit.ChessLogic
         public byte CompactValue { get; }
 
         /// <summary>Column("a".."h")</summary>
-        public string File => ((char) (X + 'a')).ToString();
+        public string File => ((char) ((CompactValue & 7) + 'a')).ToString();
 
         /// <summary>Row (1..8)</summary>
         public int Rank => Y + 1;
@@ -61,31 +61,6 @@ namespace ChessKit.ChessLogic
                     for (var j = 0; j < 8; j++)
                         yield return new Position(j, i);
             }
-        }
-
-        /// <param name="position">"a1" or "A1"</param>
-        public static Position Parse(string position)
-        {
-            if (position == null) throw new ArgumentNullException(nameof(position));
-            if (position.Length != 2) throw new ArgumentOutOfRangeException(nameof(position));
-            var x = char.ToLower(position[0]) - 'a';
-            var y = int.Parse(position[1].ToString(), CultureInfo.InvariantCulture) - 1;
-            if (x < 0 || x > 7) throw new ArgumentOutOfRangeException(nameof(position));
-            if (y < 0 || y > 7) throw new ArgumentOutOfRangeException(nameof(position));
-            return new Position(x, y);
-        }
-
-        public static bool TryParse(string position, out Position result)
-        {
-            if (position == null) throw new ArgumentNullException(nameof(position));
-            result = new Position();
-            if (position.Length != 2) return false;
-            var x = char.ToLower(position[0]) - 'a';
-            var y = int.Parse(position[1].ToString(), CultureInfo.InvariantCulture) - 1;
-            if (x < 0 || x > 7) return false;
-            if (y < 0 || y > 7) return false;
-            result = new Position(x, y);
-            return true;
         }
 
         /// <summary>Gets user friendly transcription of the position ("a1")</summary>
@@ -118,5 +93,50 @@ namespace ChessKit.ChessLogic
         public static bool operator !=(Position left, Position right) => !left.Equals(right);
 
         #endregion
+    }
+
+    public static class X
+    {
+        /// <param name="position">"a1" or "A1"</param>
+        public static int Parse(string position)
+        {
+            if (position == null) throw new ArgumentNullException(nameof(position));
+            if (position.Length != 2) throw new ArgumentOutOfRangeException(nameof(position));
+            var x = char.ToLower(position[0]) - 'a';
+            var y = int.Parse(position[1].ToString(), CultureInfo.InvariantCulture) - 1;
+            if (x < 0 || x > 7) throw new ArgumentOutOfRangeException(nameof(position));
+            if (y < 0 || y > 7) throw new ArgumentOutOfRangeException(nameof(position));
+            return x + y * 16;
+        }
+
+        public static bool TryParse(string position, out int result)
+        {
+            if (position == null) throw new ArgumentNullException(nameof(position));
+            result = -1;
+            if (position.Length != 2) return false;
+            var x = char.ToLower(position[0]) - 'a';
+            var y = int.Parse(position[1].ToString(), CultureInfo.InvariantCulture) - 1;
+            if (x < 0 || x > 7) return false;
+            if (y < 0 || y > 7) return false;
+            result = x + y*16;
+            return true;
+        }
+        /// <summary>Gets all 64 positions on board</summary>
+        public static IEnumerable<int> All
+        {
+            get
+            {
+                for (var i = 0; i < 8; i++)
+                    for (var j = 0; j < 8; j++)
+                        yield return j + i * 16;
+            }
+        }
+
+        public static int GetX(this int x) => x & 7;
+        public static int GetY(this int x) => x >> 4;
+
+        public static char GetFile(this int x) => (char)((x & 7) + 'a');
+        public static int GetRank(this int x) => x >> 4 + 1;
+
     }
 }
