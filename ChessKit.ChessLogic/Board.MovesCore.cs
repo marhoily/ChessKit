@@ -9,7 +9,7 @@ namespace ChessKit.ChessLogic
     {
         private const int BytesCount = 128;
 
-        private readonly byte[] _cells;
+        internal readonly byte[] _cells;
         private int _whiteKingPosition;
         private int _blackKingPosition;
 

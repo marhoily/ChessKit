@@ -5,7 +5,7 @@ namespace ChessKit.ChessLogic
 {
     public sealed partial class Board
     {
-        private GameState _gameState;
+        internal GameState _gameState;
 
         /// <summary>The side which is moving next (white or black)</summary>
         public Color SideOnMove { get; private set; }
@@ -13,7 +13,7 @@ namespace ChessKit.ChessLogic
         public int? EnPassantFile { get; set; }
 
         /// <summary>Gets sides players can castle to</summary>
-        private Castlings _Castlings;
+        internal Castlings _Castlings;
         /// <summary>This is the number of halfmoves since the last pawn advance or capture. </summary>
         /// <remarks>This is used to determine if a draw can be claimed under the fifty-move rule.</remarks>
         public int HalfMoveClock { get; set; }
