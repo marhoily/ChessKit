@@ -228,7 +228,7 @@ namespace ChessKit.ChessLogic
 		}
 		private static IEnumerable<MoveDirection> Special(int dx, int dy)
 		{
-			yield return new MoveDirection(dx, dy, 1, false, isSpecial: true);
+			yield return new MoveDirection(dx, dy, 1, false, true);
 		}
 
 		#endregion
