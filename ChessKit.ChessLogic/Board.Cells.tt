@@ -25,10 +25,10 @@ namespace ChessKit.ChessLogic
 		public static class S
 		{
 <#
-foreach (var p in Position.All)
+foreach (var p in X.All)
 {
 #>
-			public const int <#=p.ToString().ToUpper()#> = <#=p.Y#> * 16 + <#=p.X#>;
+			public const int <#=p.ToSquareString().ToUpper()#> = <#=p.GetY()#> * 16 + <#=p.GetX()#>;
 <#
 }
 #>

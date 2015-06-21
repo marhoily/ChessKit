@@ -136,7 +136,9 @@ namespace ChessKit.ChessLogic
         public static int GetY(this int x) => x >> 4;
 
         public static char GetFile(this int x) => (char)((x & 7) + 'a');
-        public static int GetRank(this int x) => x >> 4 + 1;
+        public static int GetRank(this int x) => (x >> 4) + 1;
+        public static string ToSquareString(this int x)
+            => x.GetFile().ToString()+ x.GetRank();
 
     }
 }
