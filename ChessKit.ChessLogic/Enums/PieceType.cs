@@ -3,11 +3,11 @@
     public enum PieceType
     {
         None,
-        Pawn = MoveAnnotations.Pawn,
-        Bishop = MoveAnnotations.Bishop,
-        Knight = MoveAnnotations.Knight,
-        Rook = MoveAnnotations.Rook,
-        Queen = MoveAnnotations.Queen,
-        King = MoveAnnotations.King
+        Pawn   = 0x02,
+        Bishop = 0x04,
+        Knight = 0x08,
+        Rook   = 0x10,
+        Queen  = 0x20,
+        King   = 0x40,
     }
 }

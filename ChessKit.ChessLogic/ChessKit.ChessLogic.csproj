@@ -99,6 +99,7 @@
     <Compile Include="BoardBuilder.cs" />
     <Compile Include="BoardDump.cs" />
     <Compile Include="Enums\Caslings.cs" />
+    <Compile Include="Enums\MoveInfo.cs" />
     <Compile Include="Enums\Piece.cs" />
     <Compile Include="Enums\GameState.cs" />
     <Compile Include="Internals\ImmutableAttribute.cs" />

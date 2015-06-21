@@ -110,10 +110,9 @@ namespace ChessKit.ChessLogic
             if ((PreviousMove.Annotations & MoveAnnotations.AllErrors) != 0) return;
             if (IsUnderCheck(SideOnMove))
             {
-                PreviousMove.Annotations |= MoveAnnotations.Check;
                 _gameState = GameState.Check;
             }
-            PreviousMove.Annotations |= MoveAnnotations.TestedForConsequences;
+           // PreviousMove.Annotations |= MoveAnnotations.TestedForConsequences;
         }
         private void SetupBoard(Board src, Piece piece,
           int moveFrom, int moveTo, PieceType proposedPromotion,

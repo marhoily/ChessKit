@@ -48,7 +48,7 @@ namespace ChessKit.ChessLogic
             if ((move.Annotations & MoveAnnotations.Promotion) != 0)
                 sb.Append('=').Append(move.ProposedPromotion.With(Color.White).GetSymbol());
 
-            if ((move.Annotations & MoveAnnotations.Check) != 0) sb.Append('+');
+            if (board.IsCheck) sb.Append('+');
             else if (board.IsMate) sb.Append('#');
 
             return sb.ToString();
