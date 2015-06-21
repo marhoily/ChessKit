@@ -20,12 +20,10 @@ namespace ChessKit.ChessLogic
         /// <summary>The number of the full move. It starts at 1, and is incremented after Black's move</summary>
         public int MoveNumber { get; private set; }
 
-        [SuppressMessage("Microsoft.Design", "CA1043:UseIntegralOrStringArgumentForIndexers",
-              Justification = "It just seems right to use Position as a natural indexer")]
-        public CompactPiece this[Position index]
+        public CompactPiece this[int index]
         {
-            get { return (CompactPiece)_cells[(int)index]; }
-            set { _cells[(int)index] = (byte) value; }
+            get { return (CompactPiece)_cells[index]; }
+            set { _cells[index] = (byte) value; }
         }
 
         public CompactPiece this[string index]
