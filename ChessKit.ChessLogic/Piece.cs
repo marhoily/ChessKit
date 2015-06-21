@@ -9,28 +9,28 @@ namespace ChessKit.ChessLogic
 {
     /// <summary>Represents piece Type</summary>
     [Immutable, PublicAPI]
-    public sealed class Piece_
+    public sealed class MetaPiece
     {
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "It is really immutable")]
-        public static readonly IComparer<Piece_> TypeComparer =
+        public static readonly IComparer<MetaPiece> TypeComparer =
                 new PieceTypeComparer();
 
-        #region ' Piece_ '
+        #region ' Piece '
 
-        private static readonly Piece_[] TypeColorMap;
+        private static readonly MetaPiece[] TypeColorMap;
 
         #endregion
 
-        public static Piece_ Get(PieceType type, PieceColor color)
+        public static MetaPiece Get(PieceType type, PieceColor color)
         {
             return TypeColorMap[(int)type | (int)color];
         }
 
         [Immutable]
-        private class PieceTypeComparer : IComparer<Piece_>
+        private class PieceTypeComparer : IComparer<MetaPiece>
         {
-            public int Compare(Piece_ x, Piece_ y)
+            public int Compare(MetaPiece x, MetaPiece y)
             {
                 if (x == null) throw new ArgumentNullException("x");
                 if (y == null) throw new ArgumentNullException("y");
@@ -42,7 +42,7 @@ namespace ChessKit.ChessLogic
 
         public PieceType PieceType { get; private set; }
 
-        /// <summary>Piece_ color</summary>
+        /// <summary>Piece color</summary>
         public PieceColor Color { get; private set; }
 
         /// <summary>Russian piece name</summary>
@@ -61,7 +61,7 @@ namespace ChessKit.ChessLogic
 
         public CompactPiece CompactValue { get; private set; }
 
-        internal Piece_(CompactPiece compactValue, string symbol,
+        internal MetaPiece(CompactPiece compactValue, string symbol,
             char chessChar, string english, string russian)
         {
             CompactValue = compactValue;
@@ -82,14 +82,13 @@ namespace ChessKit.ChessLogic
 
         #region ' Parse '
 
-        //		private static readonly Dictionary<string, Piece_> ParserDic;
-        private static readonly Piece_[] PieceBySymbol;
+        private static readonly MetaPiece[] PieceBySymbol;
 
         /// <summary>
-        ///     Parses a symbol into a Piece_.
+        ///     Parses a symbol into a Piece.
         ///     Recognizes japanese hieroglyphs as well as latin symbols
         /// </summary>
-        public static Piece_ Parse(char symbol)
+        public static MetaPiece Parse(char symbol)
         {
             var idx = symbol - 'A';
             if (idx < 0 || idx >= PieceBySymbol.Length)
@@ -105,7 +104,7 @@ namespace ChessKit.ChessLogic
         ///     Recognizes japanese hieroglyphs as well as latin symbols
         /// </summary>
         /// <returns>false if it couldn't parse the symbol</returns>
-        public static bool TryParse(char symbol, out Piece_ result)
+        public static bool TryParse(char symbol, out MetaPiece result)
         {
             var idx = symbol - 'A';
             if (idx < 0 || idx >= PieceBySymbol.Length)
@@ -123,78 +122,78 @@ namespace ChessKit.ChessLogic
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ WhitePawn;
+        public static readonly MetaPiece WhitePawn;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ WhiteBishop;
+        public static readonly MetaPiece WhiteBishop;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ WhiteKnight;
+        public static readonly MetaPiece WhiteKnight;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ WhiteRook;
+        public static readonly MetaPiece WhiteRook;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ WhiteQueen;
+        public static readonly MetaPiece WhiteQueen;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ WhiteKing;
+        public static readonly MetaPiece WhiteKing;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ BlackPawn;
+        public static readonly MetaPiece BlackPawn;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ BlackBishop;
+        public static readonly MetaPiece BlackBishop;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ BlackKnight;
+        public static readonly MetaPiece BlackKnight;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ BlackRook;
+        public static readonly MetaPiece BlackRook;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ BlackQueen;
+        public static readonly MetaPiece BlackQueen;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
             Justification = "In fact immutable")]
-        public static readonly Piece_ BlackKing;
+        public static readonly MetaPiece BlackKing;
 
         /// <summary>All Types pieces may have</summary>
-        public static ReadOnlyCollection<Piece_> All { get; private set; }
+        public static ReadOnlyCollection<MetaPiece> All { get; private set; }
 
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline",
             Justification = "Too complex to initialize without ctor")]
-        static Piece_()
+        static MetaPiece()
         {
             //      _______________
             // ____/ Create Pieces \____________________________________________________________
-            WhitePawn = new Piece_(CompactPiece.WhitePawn, "P", '♙', "White Pawn", "Белая пешка");
-            WhiteBishop = new Piece_(CompactPiece.WhiteBishop, "B", '♗', "White Bishop", "Белый слон");
-            WhiteKnight = new Piece_(CompactPiece.WhiteKnight, "N", '♘', "White Knight", "Белый конь");
-            WhiteRook = new Piece_(CompactPiece.WhiteRook, "R", '♖', "White Rook", "Белая ладья");
-            WhiteQueen = new Piece_(CompactPiece.WhiteQueen, "Q", '♕', "White Queen", "Белый ферзь");
-            WhiteKing = new Piece_(CompactPiece.WhiteKing, "K", '♔', "White King", "Белый король");
+            WhitePawn = new MetaPiece(CompactPiece.WhitePawn, "P", '♙', "White Pawn", "Белая пешка");
+            WhiteBishop = new MetaPiece(CompactPiece.WhiteBishop, "B", '♗', "White Bishop", "Белый слон");
+            WhiteKnight = new MetaPiece(CompactPiece.WhiteKnight, "N", '♘', "White Knight", "Белый конь");
+            WhiteRook = new MetaPiece(CompactPiece.WhiteRook, "R", '♖', "White Rook", "Белая ладья");
+            WhiteQueen = new MetaPiece(CompactPiece.WhiteQueen, "Q", '♕', "White Queen", "Белый ферзь");
+            WhiteKing = new MetaPiece(CompactPiece.WhiteKing, "K", '♔', "White King", "Белый король");
 
-            BlackPawn = new Piece_(CompactPiece.BlackPawn, "p", '♟', "Black Pawn", "Черная пешка");
-            BlackBishop = new Piece_(CompactPiece.BlackBishop, "b", '♝', "Black Bishop", "Черный слон");
-            BlackKnight = new Piece_(CompactPiece.BlackKnight, "n", '♞', "Black Knight", "Черный конь");
-            BlackRook = new Piece_(CompactPiece.BlackRook, "r", '♜', "Black Rook", "Черная ладья");
-            BlackQueen = new Piece_(CompactPiece.BlackQueen, "q", '♛', "Black Queen", "Черный ферзь");
-            BlackKing = new Piece_(CompactPiece.BlackKing, "k", '♚', "Black King", "Черный король");
+            BlackPawn = new MetaPiece(CompactPiece.BlackPawn, "p", '♟', "Black Pawn", "Черная пешка");
+            BlackBishop = new MetaPiece(CompactPiece.BlackBishop, "b", '♝', "Black Bishop", "Черный слон");
+            BlackKnight = new MetaPiece(CompactPiece.BlackKnight, "n", '♞', "Black Knight", "Черный конь");
+            BlackRook = new MetaPiece(CompactPiece.BlackRook, "r", '♜', "Black Rook", "Черная ладья");
+            BlackQueen = new MetaPiece(CompactPiece.BlackQueen, "q", '♛', "Black Queen", "Черный ферзь");
+            BlackKing = new MetaPiece(CompactPiece.BlackKing, "k", '♚', "Black King", "Черный король");
 
             //      _____________
             // ____/ Collections \______________________________________________________________
-            All = new ReadOnlyCollection<Piece_>(new[]
+            All = new ReadOnlyCollection<MetaPiece>(new[]
             {
                 WhitePawn, WhiteBishop, WhiteKnight, WhiteRook,
                 WhiteQueen, WhiteKing, BlackPawn, BlackBishop,
@@ -204,7 +203,7 @@ namespace ChessKit.ChessLogic
 
             //      ______________
             // ____/ Dictionaries \_____________________________________________________________
-            PieceBySymbol = new Piece_['z' - 'A'];
+            PieceBySymbol = new MetaPiece['z' - 'A'];
             foreach (var piece in All)
                 PieceBySymbol[piece.Symbol[0] - 'A'] = piece;
 
@@ -212,7 +211,7 @@ namespace ChessKit.ChessLogic
             foreach (var piece in All)
                 CompactPieceBySymbol[piece.Symbol[0] - 'A'] = piece.CompactValue;
 
-            TypeColorMap = new Piece_[(int)BlackKing.CompactValue + 1];
+            TypeColorMap = new MetaPiece[(int)BlackKing.CompactValue + 1];
             foreach (var piece in All)
                 TypeColorMap[(int)piece.CompactValue] = piece;
 
@@ -294,12 +293,12 @@ namespace ChessKit.ChessLogic
             return result != CompactPiece.EmptyCell;
         }
 
-        public static CompactPiece Pack(Piece_ value)
+        public static CompactPiece Pack(MetaPiece value)
         {
             return value == null ? CompactPiece.EmptyCell : value.CompactValue;
         }
 
-        public static Piece_ Unpack(CompactPiece value)
+        public static MetaPiece Unpack(CompactPiece value)
         {
             return TypeColorMap[(int)value];
         }
@@ -323,7 +322,6 @@ namespace ChessKit.ChessLogic
     }
 
     public static class Piece
-
     {
         public static CompactPiece Pack(PieceType pieceType, PieceColor pieceColor)
         {
