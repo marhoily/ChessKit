@@ -1,0 +1,122 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using ChessKit.ChessLogic.Enums;
+
+namespace ChessKit.ChessLogic.N
+{
+    /// The part of the chess position that can be compared
+    /// to determine threefold repetitions
+    public sealed class PositionCore
+    {
+        /// An array of the 64 squares the chess board consists of
+        /// Note that index 0 corresponds to a8, and NOT a1!
+        /// Indexes read left to right, top to bottom!
+        public Piece[] Squares { get; }
+        /// The color of the side that makes the next move
+        public Color ActiveColor { get; }
+        /// Castlings available to the both sides
+        /// (one that changes when they move their kings/rooks)
+        public Castlings CastlingAvailability { get; }
+        /// The index is the file the opponent last
+        /// made pawn double move -or- ...
+        int? EnPassant { get; }
+
+        public PositionCore(Piece[] squares, Color activeColor, Castlings castlingAvailability, int? enPassant)
+        {
+            Squares = squares;
+            ActiveColor = activeColor;
+            CastlingAvailability = castlingAvailability;
+            EnPassant = enPassant;
+        }
+    }
+
+    /// Represents legal move as returned by the legality check
+    public sealed class LegalMove : ValidateMove
+    { /// The move that was checked for the legality
+        public Move Move { get; }
+        /// The position in which the move was checked
+        public Position OriginalPosition { get; }
+        /// The core of the position gotten as a result of the move
+        /// (use legalMove.ToPosition() method to get full position)
+        public PositionCore ResultPosition { get; }
+        /// The piece type that was moved
+        public PieceType Piece { get; }
+        /// The castling, if the move was castling, -or- None
+        public Castlings Castling { get; }
+        /// Annotations (capture, promotion, etc.) to the move
+        public MoveAnnotations Annotations { get; }
+        /// Warnings to the move
+        public MoveWarnings Warnings { get; }
+
+        public LegalMove(Move move, Position originalPosition, PositionCore resultPosition, PieceType piece, Castlings castling, MoveAnnotations annotations, MoveWarnings warnings)
+        {
+            Move = move;
+            OriginalPosition = originalPosition;
+            ResultPosition = resultPosition;
+            Piece = piece;
+            Castling = castling;
+            Annotations = annotations;
+            Warnings = warnings;
+        }
+    }
+
+    /// Represents a position in the game
+    /// (adding Properties to the position is a bit CPU consuming)
+    public sealed class Position
+    { /// Stuff that was calculated immediately with the legality check
+        public PositionCore Core { get; }
+        /// 50 moves rule counter
+        public int HalfMoveClock { get; }
+        /// Number of full moves (white, then black) counted
+        public int FullMoveNumber { get; }
+        /// Properties of the position like check, mate and stalemate
+        public GameState Properties { get; }
+        /// The previous legal move if the position derives from
+        /// some other position, -or- ...
+        public LegalMove Move { get; }
+
+        public Position(PositionCore core, int halfMoveClock, int fullMoveNumber, GameState properties, LegalMove move)
+        {
+            Core = core;
+            HalfMoveClock = halfMoveClock;
+            FullMoveNumber = fullMoveNumber;
+            Properties = properties;
+            Move = move;
+        }
+    }
+
+    /// Represents an illegal move as returned by the legality check
+    public sealed class IllegalMove : ValidateMove
+    { /// The move that was checked for the legality
+        public Move Move { get; }
+        /// The position in which the move was checked
+        public Position OriginalPosition { get; }
+        /// The piece type that was moved
+        public PieceType Piece { get; }
+        /// The castling, if the move was castling attempt, -or- None
+        public Castlings Castling { get; }
+        /// Annotations (capture, promotion attempt, etc.) to the move
+        public MoveAnnotations Observations { get; }
+        /// Warnings to the move
+        public MoveWarnings Warnings { get; }
+        /// Non-empty set of the errors to the move
+        public MoveErrors Errors { get; }
+
+        public IllegalMove(Move move, Position originalPosition, PieceType piece, Castlings castling, MoveAnnotations observations, MoveWarnings warnings, MoveErrors errors)
+        {
+            Move = move;
+            OriginalPosition = originalPosition;
+            Piece = piece;
+            Castling = castling;
+            Observations = observations;
+            Warnings = warnings;
+            Errors = errors;
+        }
+    }
+
+    public abstract class ValidateMove
+    {
+    }
+}

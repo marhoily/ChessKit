@@ -115,6 +115,7 @@
     <Compile Include="Enums\ColorExtensions.cs" />
     <Compile Include="Enums\PieceType.cs" />
     <Compile Include="Enums\Coordinate.cs" />
+    <Compile Include="N\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="San.cs" />
   </ItemGroup>
