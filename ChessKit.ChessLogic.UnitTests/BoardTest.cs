@@ -87,35 +87,19 @@ namespace ChessKit.ChessLogic.UnitTests
 		}
         [Theory]
         [MemberData(nameof(TestMoveData.All), MemberType = typeof(TestMoveData))]
-        public void CanBeValidMove(string name, string startingFen, string move, string result)
+        public void CanBeValidMove(TestMoveData d)
 		{
-			Console.WriteLine(startingFen);
-			Console.WriteLine(move);
+			Console.WriteLine(d.StartingFen);
+			Console.WriteLine(d.Move);
 			Console.WriteLine();
 
-			var board = Board.FromFenString(startingFen);
-			var expected = Move.Parse(move);
-			if (!result.ExpectedAnnotations().ExpectedToBeValid()) return;
+			var board = Board.FromFenString(d.StartingFen);
+			var expected = Move.Parse(d.Move);
+			if (!d.ExpectedToBeValid) return;
 			board.CanBeValidMove(
 				board[expected.From],
 				expected.From,
 				expected.To).Should().BeTrue();
 		}
-    }
-
-    public static class TestExt
-    {
-        public static bool ExpectedToBeValid(this MoveAnnotations expectedAnnotations)
-        {
-            return (expectedAnnotations & MoveAnnotations.AllErrors) == 0;
-        }
-
-        public static MoveAnnotations ExpectedAnnotations(this string result)
-        {
-            MoveAnnotations res = 0;
-            foreach (var item in result.Split(new[] { " | " }, StringSplitOptions.None))
-                res |= (MoveAnnotations)Enum.Parse(typeof(MoveAnnotations), item);
-            return res;
-        }
     }
 }
