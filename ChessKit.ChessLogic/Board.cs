@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using ChessKit.ChessLogic.Enums;
 
 namespace ChessKit.ChessLogic
@@ -11,9 +10,6 @@ namespace ChessKit.ChessLogic
         /// <summary>The side which is moving next (white or black)</summary>
         public Color SideOnMove { get; private set; }
         /// <summary>Gets the file at which en passant move is available</summary>
-        [SuppressMessage("Microsoft.Naming",
-          "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "En",
-          Justification = "'En-passant' is borrowed from french I guess")]
         public int? EnPassantFile { get; set; }
 
         /// <summary>Gets sides players can castle to</summary>
@@ -32,8 +28,6 @@ namespace ChessKit.ChessLogic
 
         #region ' MakeMove '
 
-        [SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists"), SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
-          Justification = "Takes considerable amount of time")]
         public List<Move> GetLegalMoves()
         {
             // BUG: Actually creates boards, but only returns moves!
@@ -112,7 +106,6 @@ namespace ChessKit.ChessLogic
             {
                 _gameState = GameState.Check;
             }
-           // PreviousMove.Annotations |= MoveAnnotations.TestedForConsequences;
         }
         private void SetupBoard(Board src, Piece piece,
           int moveFrom, int moveTo, PieceType proposedPromotion,

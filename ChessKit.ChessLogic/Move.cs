@@ -5,6 +5,20 @@ using ChessKit.ChessLogic.Enums;
 
 namespace ChessKit.ChessLogic
 {
+    public sealed class MoveR
+    {
+        public int From { get; }
+        public int To { get; }
+        public PieceType ProposedPromotion { get; }
+
+        public MoveR(int @from, int to, PieceType promoteTo = PieceType.None)
+        {
+            From = @from;
+            To = to;
+            ProposedPromotion = promoteTo;
+        }
+    }
+
     // TODO: Should Move be struct (con: references board)?
     // TODO: Crazy ctors! Public setters. Not immutable!
     public sealed class Move : IEquatable<Move>
