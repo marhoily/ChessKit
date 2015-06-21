@@ -419,7 +419,7 @@ namespace ChessKit.ChessLogic
 	  return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
     }
   
-    public MoveAnnotations ValidateMove(Piece piece, int fromSquare, int toSquare, Piece toPiece, Caslings castlingAvailability)
+    private MoveAnnotations ValidateMove(Piece piece, int fromSquare, int toSquare, Piece toPiece, Caslings castlingAvailability)
     {
 	  switch (piece)
       {
