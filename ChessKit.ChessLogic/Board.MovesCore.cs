@@ -38,8 +38,8 @@ namespace ChessKit.ChessLogic
             EnPassantFile = boardBuilder.EnPassantFile;
             HalfMoveClock = boardBuilder.HalfMoveClock;
             MoveNumber = boardBuilder.MoveNumber;
-            _whiteKingPosition = Position.All.SingleOrDefault(p => this[p] == CompactPiece.WhiteKing).CompactValue;
-            _blackKingPosition = Position.All.SingleOrDefault(p => this[p] == CompactPiece.BlackKing).CompactValue;
+            _whiteKingPosition = X.All.SingleOrDefault(p => this[p] == CompactPiece.WhiteKing);
+            _blackKingPosition = X.All.SingleOrDefault(p => this[p] == CompactPiece.BlackKing);
         }
         public CompactPiece this[int compactPosition]
         {

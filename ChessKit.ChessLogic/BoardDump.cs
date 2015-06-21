@@ -28,10 +28,10 @@ namespace ChessKit.ChessLogic
             sb.AppendLine(" ╟───┼───┼───┼───┼───┼───┼───┼───╢");
             sb.AppendLine("1║ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 ║");
             sb.AppendLine(" ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝");
-            foreach (var position in Position.All)
+            foreach (var position in X.All)
             {
                 var piece = board[position];
-                sb[((7 - position.Y) * 2 + 1) * 36 + position.X * 4 + 3]
+                sb[((7 - position.GetY()) * 2 + 1) * 36 + position.GetX() * 4 + 3]
                     = piece.GetSymbol();
             }
             return sb.ToString();

@@ -48,10 +48,6 @@ namespace ChessKit.ChessLogic
             }
             return res;
         }
-        public List<Move> GetLegalMoves(Position from)
-        {
-            return GetLegalMoves((int)@from);
-        }
         public List<Move> GetLegalMoves(int moveFrom)
         {
             var piece = this[moveFrom];
@@ -201,11 +197,6 @@ namespace ChessKit.ChessLogic
             }
         }
         #endregion
-
-
-        [SuppressMessage("Microsoft.Design", "CA1043:UseIntegralOrStringArgumentForIndexers",
-          Justification = "It just seems right to use Position as a natural indexer")]
-        public CompactPiece this[Position index] => (CompactPiece) _cells[(int)index];
 
         public CompactPiece this[string index] => this[X.Parse(index)];
     }
