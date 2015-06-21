@@ -54,12 +54,12 @@ namespace ChessKit.ChessLogic
 		  char chessChar, string english, string russian)
 		{
 			CompactValue = compactValue;
-			PieceType = (PieceType)((MoveHints)compactValue & MoveHints.AllPieces);
+			PieceType = (PieceType)((MoveAnnotations)compactValue & MoveAnnotations.AllPieces);
 			Symbol = symbol;
 			ChessChar = chessChar;
 			English = english;
 			Russian = russian;
-			Color = (PieceColor)((MoveHints)compactValue & MoveHints.Black);
+			Color = (PieceColor)((MoveAnnotations)compactValue & MoveAnnotations.Black);
 		}
 
 		public override string ToString()
@@ -274,15 +274,15 @@ namespace ChessKit.ChessLogic
 		}
 		public static CompactPiece Pack(PieceType pieceType, PieceColor pieceColor)
 		{
-			return (CompactPiece)((MoveHints)pieceType | (MoveHints)pieceColor);
+			return (CompactPiece)((MoveAnnotations)pieceType | (MoveAnnotations)pieceColor);
 		}
 		public static PieceColor UnpackColor(CompactPiece piece)
 		{
-			return (PieceColor)((MoveHints)piece & (MoveHints)PieceColor.Black);
+			return (PieceColor)((MoveAnnotations)piece & (MoveAnnotations)PieceColor.Black);
 		}
 		public static PieceType UnpackType(CompactPiece piece)
 		{
-			return (PieceType)((MoveHints)piece & ~(MoveHints)PieceColor.Black);
+			return (PieceType)((MoveAnnotations)piece & ~(MoveAnnotations)PieceColor.Black);
 		}
 
 		#endregion

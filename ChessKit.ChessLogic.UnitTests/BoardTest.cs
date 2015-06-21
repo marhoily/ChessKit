@@ -76,7 +76,7 @@ namespace ChessKit.ChessLogic.UnitTests
 			{
 				board.GetLegalMoves(expected.From).Should().Contain(expected);
 				var single = board.GetLegalMoves(expected.From).Single(m => m == expected);
-				single.Hints.Should().Be(d.ExpectedHints);
+				single.Annotations.Should().Be(d.ExpectedAnnotations);
 			}
 			else
 			{

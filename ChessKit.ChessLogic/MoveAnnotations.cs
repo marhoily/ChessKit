@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace ChessKit.ChessLogic
 {
   [Flags]
-  public enum MoveHints
+  public enum MoveAnnotations
   {
     None = 0,
 

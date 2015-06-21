@@ -45,11 +45,11 @@ namespace ChessKit.ChessLogic
 
       var sb = new StringBuilder(3);
 
-      if ((move.Hints & MoveHints.Promotion) != 0)
+      if ((move.Annotations & MoveAnnotations.Promotion) != 0)
         sb.Append('=').Append(Piece.Get(
           move.ProposedPromotion, PieceColor.White).Symbol);
 
-      if ((move.Hints & MoveHints.Check) != 0) sb.Append('+');
+      if ((move.Annotations & MoveAnnotations.Check) != 0) sb.Append('+');
       else if (board.IsMate) sb.Append('#');
 
       return sb.ToString();
@@ -68,19 +68,19 @@ namespace ChessKit.ChessLogic
 
       var sb = new StringBuilder(6);
 
-      if ((move.Hints & (MoveHints.WhiteKingsideCastling | MoveHints.BlackKingsideCastling)) != 0)
+      if ((move.Annotations & (MoveAnnotations.WhiteKingsideCastling | MoveAnnotations.BlackKingsideCastling)) != 0)
       {
         sb.Append("O-O");
       }
-      else if ((move.Hints & (MoveHints.WhiteQueensideCastling | MoveHints.BlackQueensideCastling)) != 0)
+      else if ((move.Annotations & (MoveAnnotations.WhiteQueensideCastling | MoveAnnotations.BlackQueensideCastling)) != 0)
       {
         sb.Append("O-O-O");
       }
       else
       {
-        if ((move.Hints & MoveHints.Pawn) != 0)
+        if ((move.Annotations & MoveAnnotations.Pawn) != 0)
         {
-          if ((move.Hints & MoveHints.Capture) != 0)
+          if ((move.Annotations & MoveAnnotations.Capture) != 0)
             sb.Append(move.From.File);
         }
         else
@@ -143,7 +143,7 @@ namespace ChessKit.ChessLogic
         }
 
         // if there is a capture, add capture notation
-        if ((move.Hints & MoveHints.Capture) == MoveHints.Capture)
+        if ((move.Annotations & MoveAnnotations.Capture) == MoveAnnotations.Capture)
         {
           sb.Append('x');
         }

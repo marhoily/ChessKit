@@ -63,104 +63,104 @@ namespace ChessKit.ChessLogic
 			}
 		}
 
-		MoveHints ValidateWhiteCastlingMove(int fromSquare, int to, CastlingAvailability castlingAvailability)
+		MoveAnnotations ValidateWhiteCastlingMove(int fromSquare, int to, CastlingAvailability castlingAvailability)
 		{
-			if (fromSquare != E1) return MoveHints.King | MoveHints.DoesNotMoveThisWay;
+			if (fromSquare != E1) return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
 			switch (to)
 			{
 				case C1: // Queenside
-					if (_cells[D1] != 0 || _cells[B1] != 0) return MoveHints.DoesNotJump | MoveHints.Castling | MoveHints.WhiteQueensideCastling;
-					if (_cells[C1] != 0) return MoveHints.Capture | MoveHints.DoesNotCaptureThisWay | MoveHints.Castling | MoveHints.WhiteQueensideCastling;
-					if (IsAttackedByBlack(E1)) return MoveHints.CastleFromCheck | MoveHints.Castling | MoveHints.WhiteQueensideCastling;
-					if (IsAttackedByBlack(D1)) return MoveHints.CastleThroughCheck | MoveHints.Castling | MoveHints.WhiteQueensideCastling;
-					if ((castlingAvailability & CastlingAvailability.WhiteQueen) != 0) return MoveHints.Castling | MoveHints.WhiteQueensideCastling;
-					return MoveHints.Castling | MoveHints.WhiteQueensideCastling | MoveHints.HasNoCastling;
+					if (_cells[D1] != 0 || _cells[B1] != 0) return MoveAnnotations.DoesNotJump | MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling;
+					if (_cells[C1] != 0) return MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling;
+					if (IsAttackedByBlack(E1)) return MoveAnnotations.CastleFromCheck | MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling;
+					if (IsAttackedByBlack(D1)) return MoveAnnotations.CastleThroughCheck | MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling;
+					if ((castlingAvailability & CastlingAvailability.WhiteQueen) != 0) return MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling;
+					return MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling | MoveAnnotations.HasNoCastling;
 				case G1: // Kingside
-					if (_cells[F1] != 0) return MoveHints.DoesNotJump | MoveHints.Castling | MoveHints.WhiteKingsideCastling;
-					if (_cells[G1] != 0) return MoveHints.Capture | MoveHints.DoesNotCaptureThisWay | MoveHints.Castling | MoveHints.WhiteKingsideCastling;
-					if (IsAttackedByBlack(E1)) return MoveHints.CastleFromCheck | MoveHints.Castling | MoveHints.WhiteKingsideCastling;
-					if (IsAttackedByBlack(F1)) return MoveHints.CastleThroughCheck | MoveHints.Castling | MoveHints.WhiteKingsideCastling;
-					if ((castlingAvailability & CastlingAvailability.WhiteKing) != 0) return MoveHints.Castling | MoveHints.WhiteKingsideCastling;
-					return MoveHints.Castling | MoveHints.WhiteKingsideCastling | MoveHints.HasNoCastling;
+					if (_cells[F1] != 0) return MoveAnnotations.DoesNotJump | MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling;
+					if (_cells[G1] != 0) return MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling;
+					if (IsAttackedByBlack(E1)) return MoveAnnotations.CastleFromCheck | MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling;
+					if (IsAttackedByBlack(F1)) return MoveAnnotations.CastleThroughCheck | MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling;
+					if ((castlingAvailability & CastlingAvailability.WhiteKing) != 0) return MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling;
+					return MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling | MoveAnnotations.HasNoCastling;
 			}
-			return MoveHints.King | MoveHints.DoesNotMoveThisWay;
+			return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
 		}
-		MoveHints ValidateBlackCastlingMove(int fromSquare, int to, CastlingAvailability castlingAvailability)
+		MoveAnnotations ValidateBlackCastlingMove(int fromSquare, int to, CastlingAvailability castlingAvailability)
 		{
-			if (fromSquare != E8) return MoveHints.King | MoveHints.DoesNotMoveThisWay;
+			if (fromSquare != E8) return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
 			switch (to)
 			{
 				case C8: // Queenside
-					if (_cells[D8] != 0 || _cells[B8] != 0) return MoveHints.DoesNotJump | MoveHints.Castling | MoveHints.BlackQueensideCastling;
-					if (_cells[C8] != 0) return MoveHints.Capture | MoveHints.DoesNotCaptureThisWay | MoveHints.Castling | MoveHints.BlackQueensideCastling;
-					if (IsAttackedByWhite(E8)) return MoveHints.CastleFromCheck | MoveHints.Castling | MoveHints.BlackQueensideCastling;
-					if (IsAttackedByWhite(D8)) return MoveHints.CastleThroughCheck | MoveHints.Castling | MoveHints.BlackQueensideCastling;
-					if ((castlingAvailability & CastlingAvailability.BlackQueen) != 0) return MoveHints.Castling | MoveHints.BlackQueensideCastling;
-					return MoveHints.Castling | MoveHints.BlackQueensideCastling | MoveHints.HasNoCastling;
+					if (_cells[D8] != 0 || _cells[B8] != 0) return MoveAnnotations.DoesNotJump | MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling;
+					if (_cells[C8] != 0) return MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling;
+					if (IsAttackedByWhite(E8)) return MoveAnnotations.CastleFromCheck | MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling;
+					if (IsAttackedByWhite(D8)) return MoveAnnotations.CastleThroughCheck | MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling;
+					if ((castlingAvailability & CastlingAvailability.BlackQueen) != 0) return MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling;
+					return MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling | MoveAnnotations.HasNoCastling;
 				case G8: // Kingside
-					if (_cells[F8] != 0) return MoveHints.DoesNotJump | MoveHints.Castling | MoveHints.BlackKingsideCastling;
-					if (_cells[G8] != 0) return MoveHints.Capture | MoveHints.DoesNotCaptureThisWay | MoveHints.Castling | MoveHints.BlackKingsideCastling;
-					if (IsAttackedByWhite(E8)) return MoveHints.CastleFromCheck | MoveHints.Castling | MoveHints.BlackKingsideCastling;
-					if (IsAttackedByWhite(F8)) return MoveHints.CastleThroughCheck | MoveHints.Castling | MoveHints.BlackKingsideCastling;
-					if ((castlingAvailability & CastlingAvailability.BlackKing) != 0) return MoveHints.Castling | MoveHints.BlackKingsideCastling;
-					return MoveHints.Castling | MoveHints.BlackKingsideCastling | MoveHints.HasNoCastling;
+					if (_cells[F8] != 0) return MoveAnnotations.DoesNotJump | MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling;
+					if (_cells[G8] != 0) return MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling;
+					if (IsAttackedByWhite(E8)) return MoveAnnotations.CastleFromCheck | MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling;
+					if (IsAttackedByWhite(F8)) return MoveAnnotations.CastleThroughCheck | MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling;
+					if ((castlingAvailability & CastlingAvailability.BlackKing) != 0) return MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling;
+					return MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling | MoveAnnotations.HasNoCastling;
 			}
-			return MoveHints.King | MoveHints.DoesNotMoveThisWay;
+			return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
 		}
-		MoveHints ValidateWhitePawnMove(int fromSquare, int to, CompactPiece toPiece)
+		MoveAnnotations ValidateWhitePawnMove(int fromSquare, int to, CompactPiece toPiece)
 		{
 			switch (to - fromSquare)
 			{
 				case 32:
-					if (fromSquare / 16 != 1) return MoveHints.Pawn | MoveHints.DoesNotMoveThisWay;
+					if (fromSquare / 16 != 1) return MoveAnnotations.Pawn | MoveAnnotations.DoesNotMoveThisWay;
 					if (toPiece != 0)
-						return MoveHints.Pawn | MoveHints.DoesNotCaptureThisWay;
+						return MoveAnnotations.Pawn | MoveAnnotations.DoesNotCaptureThisWay;
 					return _cells[fromSquare + 16] != 0
-							 ? MoveHints.Pawn | MoveHints.DoesNotJump
-							 : MoveHints.Pawn | MoveHints.PawnDoublePush;
+							 ? MoveAnnotations.Pawn | MoveAnnotations.DoesNotJump
+							 : MoveAnnotations.Pawn | MoveAnnotations.PawnDoublePush;
 				case 16:
 					if (toPiece != 0)
-						return MoveHints.Pawn | MoveHints.DoesNotCaptureThisWay;
-					return to / 16 != 7 ? MoveHints.Pawn : MoveHints.Pawn | MoveHints.Promotion;
+						return MoveAnnotations.Pawn | MoveAnnotations.DoesNotCaptureThisWay;
+					return to / 16 != 7 ? MoveAnnotations.Pawn : MoveAnnotations.Pawn | MoveAnnotations.Promotion;
 				case 17:
 				case 15:
 					if (toPiece == CompactPiece.EmptyCell)
 						return to / 16 == 5
-						  ? MoveHints.Pawn | MoveHints.Capture | MoveHints.EnPassant
-						  : MoveHints.Pawn | MoveHints.OnlyCapturesThisWay;
-					return to / 16 != 7 ? MoveHints.Pawn | MoveHints.Capture
-					  : MoveHints.Pawn | MoveHints.Promotion | MoveHints.Capture;
+						  ? MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant
+						  : MoveAnnotations.Pawn | MoveAnnotations.OnlyCapturesThisWay;
+					return to / 16 != 7 ? MoveAnnotations.Pawn | MoveAnnotations.Capture
+					  : MoveAnnotations.Pawn | MoveAnnotations.Promotion | MoveAnnotations.Capture;
 				default:
-					return MoveHints.Pawn | MoveHints.DoesNotMoveThisWay;
+					return MoveAnnotations.Pawn | MoveAnnotations.DoesNotMoveThisWay;
 			}
 
 		}
-		MoveHints ValidateBlackPawnMove(int fromSquare, int to, CompactPiece toPiece)
+		MoveAnnotations ValidateBlackPawnMove(int fromSquare, int to, CompactPiece toPiece)
 		{
 			switch (fromSquare - to)
 			{
 				case 32:
-					if (fromSquare / 16 != 6) return MoveHints.Pawn | MoveHints.DoesNotMoveThisWay;
+					if (fromSquare / 16 != 6) return MoveAnnotations.Pawn | MoveAnnotations.DoesNotMoveThisWay;
 					if (toPiece != 0)
-						return MoveHints.Pawn | MoveHints.DoesNotCaptureThisWay;
+						return MoveAnnotations.Pawn | MoveAnnotations.DoesNotCaptureThisWay;
 					return _cells[fromSquare - 16] != 0
-							 ? MoveHints.Pawn | MoveHints.DoesNotJump
-							 : MoveHints.Pawn | MoveHints.PawnDoublePush;
+							 ? MoveAnnotations.Pawn | MoveAnnotations.DoesNotJump
+							 : MoveAnnotations.Pawn | MoveAnnotations.PawnDoublePush;
 				case 16:
 					if (toPiece != 0)
-						return MoveHints.Pawn | MoveHints.DoesNotCaptureThisWay;
-					return to / 16 != 0 ? MoveHints.Pawn : MoveHints.Pawn | MoveHints.Promotion;
+						return MoveAnnotations.Pawn | MoveAnnotations.DoesNotCaptureThisWay;
+					return to / 16 != 0 ? MoveAnnotations.Pawn : MoveAnnotations.Pawn | MoveAnnotations.Promotion;
 				case 17:
 				case 15:
 					if (toPiece == CompactPiece.EmptyCell)
 						return to / 16 == 2
-						  ? MoveHints.Pawn | MoveHints.Capture | MoveHints.EnPassant
-						  : MoveHints.Pawn | MoveHints.OnlyCapturesThisWay;
+						  ? MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant
+						  : MoveAnnotations.Pawn | MoveAnnotations.OnlyCapturesThisWay;
 					return to / 16 != 0
-					  ? MoveHints.Pawn | MoveHints.Capture
-					  : MoveHints.Pawn | MoveHints.Promotion | MoveHints.Capture;
+					  ? MoveAnnotations.Pawn | MoveAnnotations.Capture
+					  : MoveAnnotations.Pawn | MoveAnnotations.Promotion | MoveAnnotations.Capture;
 				default:
-					return MoveHints.Pawn | MoveHints.DoesNotMoveThisWay;
+					return MoveAnnotations.Pawn | MoveAnnotations.DoesNotMoveThisWay;
 			}
 		}
 		void GenerateWhiteCastlingMoves(int fromSquare, CastlingAvailability castlingAvailability, List<Move> collector)
@@ -171,13 +171,13 @@ namespace ChessKit.ChessLogic
 				if (_cells[D1] == 0 && _cells[C1] == 0 && _cells[B1] == 0)
 					if (!IsAttackedByBlack(E1) && !IsAttackedByBlack(D1) && !IsAttackedByBlack(C1))
 						collector.Add(new Move((Position) E1, (Position) C1,
-							MoveHints.Castling | MoveHints.WhiteQueensideCastling));
+							MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling));
 
 			if ((castlingAvailability & CastlingAvailability.WhiteKing) != 0)
 				if (_cells[F1] == 0 && _cells[G1] == 0)
 					if (!IsAttackedByBlack(E1) && !IsAttackedByBlack(F1) && !IsAttackedByBlack(G1))
 						collector.Add(new Move((Position) E1, (Position) G1,
-							MoveHints.Castling | MoveHints.WhiteKingsideCastling));
+							MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling));
 		}
 		void GenerateBlackCastlingMoves(int fromSquare, CastlingAvailability castlingAvailability, List<Move> collector)
 		{
@@ -187,13 +187,13 @@ namespace ChessKit.ChessLogic
 				if (_cells[D8] == 0 && _cells[C8] == 0 && _cells[B8] == 0)
 					if (!IsAttackedByWhite(E8) && !IsAttackedByWhite(D8) && !IsAttackedByWhite(C8))
 						collector.Add(new Move((Position) E8, (Position) C8,
-							MoveHints.Castling | MoveHints.BlackQueensideCastling));
+							MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling));
 
 			if ((castlingAvailability & CastlingAvailability.BlackKing) != 0)
 				if (_cells[F8] == 0 && _cells[G8] == 0)
 					if (!IsAttackedByWhite(E8) && !IsAttackedByWhite(F8) && !IsAttackedByWhite(G8))
 						collector.Add(new Move((Position) E8, (Position) G8,
-							MoveHints.Castling | MoveHints.BlackKingsideCastling));
+							MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling));
 		}
 		void GenerateWhitePawnMoves(int fromSquare, int? enPassantFile, List<Move> collector)
 		{
@@ -209,14 +209,14 @@ namespace ChessKit.ChessLogic
 							_cells[to] = (byte)CompactPiece.WhitePawn;
 							if (!IsAttackedByBlack(_whiteKingPosition))
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									to / 16 != 7 ? MoveHints.Pawn : MoveHints.Pawn | MoveHints.Promotion));
+									to / 16 != 7 ? MoveAnnotations.Pawn : MoveAnnotations.Pawn | MoveAnnotations.Promotion));
 							_cells[fromSquare] = (byte)CompactPiece.WhitePawn;
 							_cells[to] = toPiece;
 						}
 						else
 						{
 							collector.Add(new Move((Position) fromSquare, (Position) to,
-								to / 16 != 7 ? MoveHints.Pawn : MoveHints.Pawn | MoveHints.Promotion));
+								to / 16 != 7 ? MoveAnnotations.Pawn : MoveAnnotations.Pawn | MoveAnnotations.Promotion));
 						}
 					}
 			}
@@ -234,14 +234,14 @@ namespace ChessKit.ChessLogic
 							_cells[to] = (byte)CompactPiece.WhitePawn;
 							if (!IsAttackedByBlack(_whiteKingPosition))
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									MoveHints.Pawn | MoveHints.PawnDoublePush));
+									MoveAnnotations.Pawn | MoveAnnotations.PawnDoublePush));
 							_cells[fromSquare] = (byte)CompactPiece.WhitePawn;
 							_cells[to] = toPiece;
 						}
 						else
 						{
 							collector.Add(new Move((Position) fromSquare, (Position) to,
-								MoveHints.Pawn | MoveHints.PawnDoublePush));
+								MoveAnnotations.Pawn | MoveAnnotations.PawnDoublePush));
 						}
 					}
 				}
@@ -262,8 +262,8 @@ namespace ChessKit.ChessLogic
 								if (!IsAttackedByBlack(_whiteKingPosition))
 									collector.Add(new Move((Position) fromSquare, (Position) to,
 										to / 16 != 7
-										? MoveHints.Pawn | MoveHints.Capture
-										: MoveHints.Pawn | MoveHints.Capture | MoveHints.Promotion));
+										? MoveAnnotations.Pawn | MoveAnnotations.Capture
+										: MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.Promotion));
 								_cells[fromSquare] = (byte)CompactPiece.WhitePawn;
 								_cells[to] = toPiece;
 							}
@@ -271,8 +271,8 @@ namespace ChessKit.ChessLogic
 							{
 								collector.Add(new Move((Position) fromSquare, (Position) to,
 													   to / 16 != 7
-														   ? MoveHints.Pawn | MoveHints.Capture
-														   : MoveHints.Pawn | MoveHints.Capture | MoveHints.Promotion));
+														   ? MoveAnnotations.Pawn | MoveAnnotations.Capture
+														   : MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.Promotion));
 
 							}
 						}
@@ -288,7 +288,7 @@ namespace ChessKit.ChessLogic
 								_cells[to - 16] = 0;
 								if (!IsAttackedByBlack(_whiteKingPosition))
 									collector.Add(new Move((Position) fromSquare, (Position) to,
-										MoveHints.Pawn | MoveHints.Capture | MoveHints.EnPassant));
+										MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
 								_cells[fromSquare] = (byte)CompactPiece.WhitePawn;
 								_cells[to - 16] = (byte)CompactPiece.BlackPawn;
 								_cells[to] = toPiece;
@@ -296,7 +296,7 @@ namespace ChessKit.ChessLogic
 							else
 							{
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									MoveHints.Pawn | MoveHints.Capture | MoveHints.EnPassant));
+									MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
 
 							}
 						}
@@ -318,8 +318,8 @@ namespace ChessKit.ChessLogic
 								_cells[to] = (byte)CompactPiece.WhitePawn;
 								if (!IsAttackedByBlack(_whiteKingPosition))
 									collector.Add(new Move((Position) fromSquare, (Position) to,
-										to / 16 != 7 ? MoveHints.Pawn | MoveHints.Capture :
-										MoveHints.Pawn | MoveHints.Capture | MoveHints.Promotion));
+										to / 16 != 7 ? MoveAnnotations.Pawn | MoveAnnotations.Capture :
+										MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.Promotion));
 								_cells[fromSquare] = (byte)CompactPiece.WhitePawn;
 								_cells[to] = toPiece;
 							}
@@ -327,8 +327,8 @@ namespace ChessKit.ChessLogic
 							{
 
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									to / 16 != 7 ? MoveHints.Pawn | MoveHints.Capture :
-									MoveHints.Pawn | MoveHints.Capture | MoveHints.Promotion));
+									to / 16 != 7 ? MoveAnnotations.Pawn | MoveAnnotations.Capture :
+									MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.Promotion));
 							}
 						}
 					}
@@ -343,7 +343,7 @@ namespace ChessKit.ChessLogic
 								_cells[to - 16] = 0;
 								if (!IsAttackedByBlack(_whiteKingPosition))
 									collector.Add(new Move((Position) fromSquare, (Position) to,
-										MoveHints.Pawn | MoveHints.Capture | MoveHints.EnPassant));
+										MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
 								_cells[fromSquare] = (byte)CompactPiece.WhitePawn;
 								_cells[to] = (byte)CompactPiece.EmptyCell;
 								_cells[to - 16] = (byte)CompactPiece.BlackPawn;
@@ -352,7 +352,7 @@ namespace ChessKit.ChessLogic
 							{
 
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									MoveHints.Pawn | MoveHints.Capture | MoveHints.EnPassant));
+									MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
 							}
 						}
 					}
@@ -373,7 +373,7 @@ namespace ChessKit.ChessLogic
 							_cells[to] = (byte)CompactPiece.BlackPawn;
 							if (!IsAttackedByWhite(_blackKingPosition))
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									to / 16 != 0 ? MoveHints.Pawn : MoveHints.Pawn | MoveHints.Promotion));
+									to / 16 != 0 ? MoveAnnotations.Pawn : MoveAnnotations.Pawn | MoveAnnotations.Promotion));
 							_cells[fromSquare] = (byte)CompactPiece.BlackPawn;
 							_cells[to] = toPiece;
 						}
@@ -381,7 +381,7 @@ namespace ChessKit.ChessLogic
 						{
 
 							collector.Add(new Move((Position) fromSquare, (Position) to,
-		to / 16 != 0 ? MoveHints.Pawn : MoveHints.Pawn | MoveHints.Promotion));
+		to / 16 != 0 ? MoveAnnotations.Pawn : MoveAnnotations.Pawn | MoveAnnotations.Promotion));
 						}
 					}
 			}
@@ -399,7 +399,7 @@ namespace ChessKit.ChessLogic
 							_cells[to] = (byte)CompactPiece.BlackPawn;
 							if (!IsAttackedByWhite(_blackKingPosition))
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									MoveHints.Pawn | MoveHints.PawnDoublePush));
+									MoveAnnotations.Pawn | MoveAnnotations.PawnDoublePush));
 							_cells[fromSquare] = (byte)CompactPiece.BlackPawn;
 							_cells[to] = toPiece;
 						}
@@ -407,7 +407,7 @@ namespace ChessKit.ChessLogic
 						{
 
 							collector.Add(new Move((Position) fromSquare, (Position) to,
-								MoveHints.Pawn | MoveHints.PawnDoublePush));
+								MoveAnnotations.Pawn | MoveAnnotations.PawnDoublePush));
 						}
 					}
 				}
@@ -427,16 +427,16 @@ namespace ChessKit.ChessLogic
 								_cells[to] = (byte)CompactPiece.BlackPawn;
 								if (!IsAttackedByWhite(_blackKingPosition))
 									collector.Add(new Move((Position) fromSquare, (Position) to,
-										to / 16 != 0 ? MoveHints.Pawn | MoveHints.Capture :
-										MoveHints.Pawn | MoveHints.Capture | MoveHints.Promotion));
+										to / 16 != 0 ? MoveAnnotations.Pawn | MoveAnnotations.Capture :
+										MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.Promotion));
 								_cells[fromSquare] = (byte)CompactPiece.BlackPawn;
 								_cells[to] = toPiece;
 							}
 							else
 							{
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									to / 16 != 0 ? MoveHints.Pawn | MoveHints.Capture :
-									MoveHints.Pawn | MoveHints.Capture | MoveHints.Promotion));
+									to / 16 != 0 ? MoveAnnotations.Pawn | MoveAnnotations.Capture :
+									MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.Promotion));
 
 							}
 						}
@@ -452,7 +452,7 @@ namespace ChessKit.ChessLogic
 								_cells[to] = (byte)CompactPiece.BlackPawn;
 								if (!IsAttackedByWhite(_blackKingPosition))
 									collector.Add(new Move((Position) fromSquare, (Position) to,
-										MoveHints.Pawn | MoveHints.Capture | MoveHints.EnPassant));
+										MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
 								_cells[fromSquare] = (byte)CompactPiece.BlackPawn;
 								_cells[to] = toPiece;
 								_cells[to + 16] = (byte)CompactPiece.WhitePawn;
@@ -460,7 +460,7 @@ namespace ChessKit.ChessLogic
 							else
 							{
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									MoveHints.Pawn | MoveHints.Capture | MoveHints.EnPassant));
+									MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
 
 							}
 						}
@@ -482,16 +482,16 @@ namespace ChessKit.ChessLogic
 								_cells[to] = (byte)CompactPiece.BlackPawn;
 								if (!IsAttackedByWhite(_blackKingPosition))
 									collector.Add(new Move((Position) fromSquare, (Position) to,
-										to / 16 != 0 ? MoveHints.Pawn | MoveHints.Capture :
-										MoveHints.Pawn | MoveHints.Capture | MoveHints.Promotion));
+										to / 16 != 0 ? MoveAnnotations.Pawn | MoveAnnotations.Capture :
+										MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.Promotion));
 								_cells[fromSquare] = (byte)CompactPiece.BlackPawn;
 								_cells[to] = (byte)toPiece;
 							}
 							else
 							{
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									to / 16 != 0 ? MoveHints.Pawn | MoveHints.Capture :
-									MoveHints.Pawn | MoveHints.Capture | MoveHints.Promotion));
+									to / 16 != 0 ? MoveAnnotations.Pawn | MoveAnnotations.Capture :
+									MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.Promotion));
 
 							}
 						}
@@ -507,7 +507,7 @@ namespace ChessKit.ChessLogic
 								_cells[to + 16] = 0;
 								if (!IsAttackedByWhite(_blackKingPosition))
 									collector.Add(new Move((Position) fromSquare, (Position) to,
-										MoveHints.Pawn | MoveHints.Capture | MoveHints.EnPassant));
+										MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
 								_cells[fromSquare] = (byte)CompactPiece.BlackPawn;
 								_cells[to + 16] = (byte)CompactPiece.WhitePawn;
 								_cells[to] = toPiece;
@@ -515,7 +515,7 @@ namespace ChessKit.ChessLogic
 							else
 							{
 								collector.Add(new Move((Position) fromSquare, (Position) to,
-									MoveHints.Pawn | MoveHints.Capture | MoveHints.EnPassant));
+									MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
 							}
 						}
 					}

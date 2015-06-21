@@ -458,8 +458,8 @@ namespace ChessKit.ChessLogic
     private ulong BuildWhitePinMap(int cell)
     {
 	  var result = 1ul << cell;
-	  const byte rook = (byte)(MoveHints.Rook | MoveHints.Queen);
-	  const byte bishop = (byte)(MoveHints.Bishop | MoveHints.Queen);
+	  const byte rook = (byte)(MoveAnnotations.Rook | MoveAnnotations.Queen);
+	  const byte bishop = (byte)(MoveAnnotations.Bishop | MoveAnnotations.Queen);
       {
         var direction = 0ul;
 	    var counter = 0;
@@ -665,8 +665,8 @@ namespace ChessKit.ChessLogic
     private ulong BuildBlackPinMap(int cell)
     {
 	  var result = 1ul << cell;
-	  const byte rook = (byte)(MoveHints.Rook | MoveHints.Queen);
-	  const byte bishop = (byte)(MoveHints.Bishop | MoveHints.Queen);
+	  const byte rook = (byte)(MoveAnnotations.Rook | MoveAnnotations.Queen);
+	  const byte bishop = (byte)(MoveAnnotations.Bishop | MoveAnnotations.Queen);
       {
         var direction = 0ul;
 	    var counter = 0;

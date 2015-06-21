@@ -18,14 +18,14 @@ namespace ChessKit.ChessLogic.UnitTests
     {
       var move = new Move(MoveType.Resign);
       move.Kind.Should().Be(MoveType.Resign);
-      move.Hints.Should().Be(MoveHints.None);
+      move.Annotations.Should().Be(MoveAnnotations.None);
     }
     [Test]
     public void UsualMove()
     {
       var move = new Move(Position.Parse("e2"), Position.Parse("e4"))
                    {
-                     Hints = MoveHints.Rook,
+                     Annotations = MoveAnnotations.Rook,
                    };
       move.Kind.Should().Be(MoveType.Usual);
 
@@ -34,14 +34,14 @@ namespace ChessKit.ChessLogic.UnitTests
 
       move.ProposedPromotion.Should().Be(PieceType.Queen);
 
-      move.Hints.Should().Be(MoveHints.Rook);
+      move.Annotations.Should().Be(MoveAnnotations.Rook);
     }
     [Test]
     public void PromotionMove()
     {
       var move = new Move(Position.Parse("e2"), Position.Parse("e4"), PieceType.Queen)
                    {
-                     Hints = MoveHints.Promotion,
+                     Annotations = MoveAnnotations.Promotion,
                    };
 
       move.Kind.Should().Be(MoveType.Usual);
@@ -51,7 +51,7 @@ namespace ChessKit.ChessLogic.UnitTests
 
       move.ProposedPromotion.Should().Be(PieceType.Queen);
 
-      move.Hints.Should().Be(MoveHints.Promotion);
+      move.Annotations.Should().Be(MoveAnnotations.Promotion);
     }
 
 	[Test]

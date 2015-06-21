@@ -7,10 +7,10 @@ namespace ChessKit.ChessLogic
   {
     None,
 
-    WhiteKing = MoveHints.WhiteKingsideCastling,
-    BlackKing = MoveHints.BlackKingsideCastling,
-    WhiteQueen = MoveHints.WhiteQueensideCastling,
-    BlackQueen = MoveHints.BlackQueensideCastling,
+    WhiteKing = MoveAnnotations.WhiteKingsideCastling,
+    BlackKing = MoveAnnotations.BlackKingsideCastling,
+    WhiteQueen = MoveAnnotations.WhiteQueensideCastling,
+    BlackQueen = MoveAnnotations.BlackQueensideCastling,
 
     White = WhiteKing | WhiteQueen,
     Black = BlackKing | BlackQueen,

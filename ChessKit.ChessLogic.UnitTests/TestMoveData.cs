@@ -11,17 +11,17 @@ namespace ChessKit.ChessLogic.UnitTests
 		
 		public bool ExpectedToBeValid
 		{
-			get { return (ExpectedHints & MoveHints.AllErrors) == 0; }
+			get { return (ExpectedAnnotations & MoveAnnotations.AllErrors) == 0; }
 		}
 
 		//[CsvField(Ignore = true)]
-		public MoveHints ExpectedHints
+		public MoveAnnotations ExpectedAnnotations
 		{
 			get
 			{
-				MoveHints res = 0;
+				MoveAnnotations res = 0;
 				foreach (var item in Result.Split(new[] { " | " }, StringSplitOptions.None))
-					res |= (MoveHints)Enum.Parse(typeof(MoveHints), item);
+					res |= (MoveAnnotations)Enum.Parse(typeof(MoveAnnotations), item);
 				return res;
 			}
 		}

@@ -9,21 +9,21 @@ namespace ChessKit.ChessLogic
   {
     public Position From { get; private set; }
     public Position To { get; private set; }
-    public MoveHints Hints { get; set; }
+    public MoveAnnotations Annotations { get; set; }
     public PieceType ProposedPromotion { get; set; }
     public MoveType Kind { get; private set; }
 
-    public bool IsValid { get { return (Hints & MoveHints.AllErrors) == 0; } }
+    public bool IsValid { get { return (Annotations & MoveAnnotations.AllErrors) == 0; } }
     public bool IsKingsideCastling
     {
-      get { return (Hints & (MoveHints.BlackKingsideCastling | MoveHints.WhiteKingsideCastling)) != 0; }
+      get { return (Annotations & (MoveAnnotations.BlackKingsideCastling | MoveAnnotations.WhiteKingsideCastling)) != 0; }
     }
     public bool IsQueensideCastling
     {
-      get { return (Hints & (MoveHints.BlackQueensideCastling | MoveHints.WhiteQueensideCastling)) != 0; }
+      get { return (Annotations & (MoveAnnotations.BlackQueensideCastling | MoveAnnotations.WhiteQueensideCastling)) != 0; }
     }
 
-    public bool IsProposedPromotion { get { return (Hints & (MoveHints.Promotion)) != 0; } }
+    public bool IsProposedPromotion { get { return (Annotations & (MoveAnnotations.Promotion)) != 0; } }
 
     public Move(MoveType type)
     {
@@ -44,11 +44,11 @@ namespace ChessKit.ChessLogic
       ProposedPromotion = promotion;
     }
 
-    public Move(Position from, Position to, MoveHints hints)
+    public Move(Position from, Position to, MoveAnnotations annotations)
     {
       To = to;
       From = from;
-      Hints = hints;
+      Annotations = annotations;
       ProposedPromotion = PieceType.Queen;
     }
 

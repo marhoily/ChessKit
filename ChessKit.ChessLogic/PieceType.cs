@@ -7,11 +7,11 @@ namespace ChessKit.ChessLogic
   public enum PieceType
   {
     None,
-    Pawn   = MoveHints.Pawn,
-    Bishop = MoveHints.Bishop ,
-    Knight = MoveHints.Knight ,
-    Rook   = MoveHints.Rook   ,
-    Queen  = MoveHints.Queen  ,
-    King   = MoveHints.King   ,
+    Pawn   = MoveAnnotations.Pawn,
+    Bishop = MoveAnnotations.Bishop ,
+    Knight = MoveAnnotations.Knight ,
+    Rook   = MoveAnnotations.Rook   ,
+    Queen  = MoveAnnotations.Queen  ,
+    King   = MoveAnnotations.King   ,
   }
 }
