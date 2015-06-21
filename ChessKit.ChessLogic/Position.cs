@@ -1,100 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace ChessKit.ChessLogic
 {
     /// <summary>Identifies chess board cell coordinates in a user-friendly manner</summary>
     /// <remarks>http://en.wikipedia.org/wiki/Chess</remarks>
-    public struct Position
-    {
-        /// <summary>ctor</summary>
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x",
-            Justification = "X is quite meaningful")]
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y",
-            Justification = "Y is quite meaningful")]
-        public Position(int x, int y)
-            : this()
-        {
-            CompactValue = (byte) (x + y*16);
-            //      if (X < 0 || X > 7) throw new ArgumentOutOfRangeException("x");
-            //      if (Y < 0 || Y > 7) throw new ArgumentOutOfRangeException("y");
-        }
-
-        private Position(int compactPosition)
-            : this()
-        {
-            CompactValue = (byte) compactPosition;
-        }
-
-        private Position(byte compactPosition)
-            : this()
-        {
-            CompactValue = compactPosition;
-        }
-
-        /// <summary>X coordinate</summary>
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "X",
-            Justification = "X is quite meaningful")]
-        public int X => CompactValue & 7;
-
-        /// <summary>Y coordinate</summary>
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Y",
-            Justification = "Y is quite meaningful")]
-        public int Y => CompactValue >> 4;
-
-        public byte CompactValue { get; }
-
-        /// <summary>Column("a".."h")</summary>
-        public string File => ((char) ((CompactValue & 7) + 'a')).ToString();
-
-        /// <summary>Row (1..8)</summary>
-        public int Rank => Y + 1;
-
-        /// <summary>Gets all 64 positions on board</summary>
-        public static IEnumerable<Position> All
-        {
-            get
-            {
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
-                        yield return new Position(j, i);
-            }
-        }
-
-        /// <summary>Gets user friendly transcription of the position ("a1")</summary>
-        public override string ToString() => File + Rank;
-
-        public static explicit operator Position(byte compactPosition) => new Position(compactPosition);
-        public static explicit operator Position(int compactPosition) => new Position(compactPosition);
-        public static explicit operator int(Position position) => position.CompactValue;
-        public static explicit operator byte(Position position) => position.CompactValue;
-
-        #region  ' Equality '
-
-        /// <summary>Indicates whether this instance and a specified object are equal.</summary>
-        public bool Equals(Position other) => other.CompactValue == CompactValue;
-
-        /// <summary>Indicates whether this instance and a specified object are equal.</summary>
-        public override bool Equals(object obj)
-        {
-            if (obj == null) return false;
-            return obj is Position && Equals((Position) obj);
-        }
-
-        /// <summary>Returns the hash code for this instance.</summary>
-        public override int GetHashCode() => CompactValue;
-
-        /// <summary>Indicates whether two instances are equal.</summary>
-        public static bool operator ==(Position left, Position right) => left.Equals(right);
-
-        /// <summary>Indicates whether two instances are not equal.</summary>
-        public static bool operator !=(Position left, Position right) => !left.Equals(right);
-
-        #endregion
-    }
-
     public static class X
     {
         /// <param name="position">"a1" or "A1"</param>
