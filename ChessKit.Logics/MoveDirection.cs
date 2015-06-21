@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace ChessKit.ChessLogic
 {
   /// <summary>Represents one of directions of moves piece can do </summary>
-  [ImmutableObject(true)]
+  [Immutable]
   public sealed class MoveDirection : IEquatable<MoveDirection>
   {
     public bool IsSpecial { get; private set; }

@@ -9,15 +9,14 @@ using JetBrains.Annotations;
 namespace ChessKit.ChessLogic
 {
 	/// <summary>Represents piece Type</summary>
-	[ImmutableObject(true), PublicAPI]
+	[Immutable, PublicAPI]
 	public sealed class Piece
 	{
-
 		[SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes",
 		  Justification = "It is really immutable")]
 		public static readonly IComparer<Piece> TypeComparer = new PieceTypeComparer();
 
-		[ImmutableObject(true)]
+		[Immutable]
 		private class PieceTypeComparer : IComparer<Piece>
 		{
 			public int Compare(Piece x, Piece y)
@@ -288,4 +287,8 @@ namespace ChessKit.ChessLogic
 
 		#endregion
 	}
+
+    public class ImmutableAttribute : Attribute
+    {
+    }
 }

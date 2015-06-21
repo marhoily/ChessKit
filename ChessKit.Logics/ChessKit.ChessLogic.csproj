@@ -41,22 +41,27 @@
     <None Include="Board.CanBeValidMove.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Board.CanBeValidMove.cs</LastGenOutput>
+      <DependentUpon>Board.cs</DependentUpon>
     </None>
     <None Include="Board.Cells.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Board.Cells.cs</LastGenOutput>
+      <DependentUpon>Board.cs</DependentUpon>
     </None>
     <None Include="Board.GenerateMoves.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Board.GenerateMoves.cs</LastGenOutput>
+      <DependentUpon>Board.cs</DependentUpon>
     </None>
     <None Include="Board.IsAttackedBy.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Board.IsAttackedBy.cs</LastGenOutput>
+      <DependentUpon>Board.cs</DependentUpon>
     </None>
     <None Include="Board.ValidateMove.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Board.ValidateMove.cs</LastGenOutput>
+      <DependentUpon>Board.cs</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -72,7 +77,9 @@
       <DependentUpon>Board.Cells.tt</DependentUpon>
     </Compile>
     <Compile Include="Board.cs" />
-    <Compile Include="Board.Fen.cs" />
+    <Compile Include="Board.Fen.cs">
+      <DependentUpon>Board.cs</DependentUpon>
+    </Compile>
     <Compile Include="Board.GenerateMoves.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,7 +90,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Board.IsAttackedBy.tt</DependentUpon>
     </Compile>
-    <Compile Include="Board.MovesCore.cs" />
+    <Compile Include="Board.MovesCore.cs" >
+      <DependentUpon>Board.cs</DependentUpon>
+    </Compile>
     <Compile Include="Board.ValidateMove.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

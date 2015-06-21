@@ -19,7 +19,7 @@ namespace ChessKit.ChessLogic
     /// <remarks>http://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation</remarks>
     public static Board FromFenString([NotNull] string fen)
     {
-      if (fen == null) throw new ArgumentNullException("fen");
+      if (fen == null) throw new ArgumentNullException(nameof(fen));
       var offset = 0;
       var board = new Board();
       try
