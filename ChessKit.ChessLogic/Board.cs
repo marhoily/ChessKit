@@ -24,7 +24,7 @@ namespace ChessKit.ChessLogic
 		public int MoveNumber { get; private set; }
 
 		public Board Previous { get; private set; }
-		public Move PreviousMove { get; private set; }
+		public Move PreviousMove { get; }
 
 		public bool IsCheck => _gameState == GameState.Check;
         public bool IsMate => _gameState == GameState.WhiteWin || _gameState == GameState.BlackWin;
@@ -209,15 +209,9 @@ namespace ChessKit.ChessLogic
 
 		[SuppressMessage("Microsoft.Design", "CA1043:UseIntegralOrStringArgumentForIndexers",
 		  Justification = "It just seems right to use Position as a natural indexer")]
-		public Piece this[Position index]
-		{
-			get { return Piece.Unpack((CompactPiece)_cells[(int)index]); }
-		}
+		public Piece this[Position index] => Piece.Unpack((CompactPiece)_cells[(int)index]);
 
-		public Piece this[string index]
-		{
-			get { return this[Position.Parse(index)]; }
-		}
+        public Piece this[string index] => this[Position.Parse(index)];
 	}
 }
 
