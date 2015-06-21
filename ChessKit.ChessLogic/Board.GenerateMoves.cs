@@ -30,7 +30,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteBishop;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteBishop;
@@ -56,7 +56,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteBishop;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteBishop;
@@ -82,7 +82,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteBishop;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteBishop;
@@ -108,7 +108,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteBishop;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteBishop;
@@ -141,7 +141,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.WhiteKnight;
@@ -168,7 +168,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.WhiteKnight;
@@ -195,7 +195,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.WhiteKnight;
@@ -222,7 +222,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.WhiteKnight;
@@ -249,7 +249,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.WhiteKnight;
@@ -276,7 +276,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.WhiteKnight;
@@ -303,7 +303,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.WhiteKnight;
@@ -330,7 +330,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.WhiteKnight;
@@ -360,7 +360,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteRook;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteRook;
@@ -386,7 +386,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteRook;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteRook;
@@ -412,7 +412,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteRook;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteRook;
@@ -438,7 +438,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteRook;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteRook;
@@ -469,7 +469,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteQueen;
@@ -495,7 +495,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteQueen;
@@ -521,7 +521,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteQueen;
@@ -547,7 +547,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteQueen;
@@ -573,7 +573,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteQueen;
@@ -599,7 +599,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteQueen;
@@ -625,7 +625,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteQueen;
@@ -651,7 +651,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.WhiteQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.WhiteQueen;
@@ -682,7 +682,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByBlack(to))
@@ -705,7 +705,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByBlack(to))
@@ -728,7 +728,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByBlack(to))
@@ -751,7 +751,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByBlack(to))
@@ -774,7 +774,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByBlack(to))
@@ -797,7 +797,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByBlack(to))
@@ -820,7 +820,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByBlack(to))
@@ -843,7 +843,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.WhiteKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.White)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByBlack(to))
@@ -878,7 +878,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackBishop;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackBishop;
@@ -904,7 +904,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackBishop;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackBishop;
@@ -930,7 +930,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackBishop;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackBishop;
@@ -956,7 +956,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackBishop;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackBishop;
@@ -989,7 +989,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.BlackKnight;
@@ -1016,7 +1016,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.BlackKnight;
@@ -1043,7 +1043,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.BlackKnight;
@@ -1070,7 +1070,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.BlackKnight;
@@ -1097,7 +1097,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.BlackKnight;
@@ -1124,7 +1124,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.BlackKnight;
@@ -1151,7 +1151,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.BlackKnight;
@@ -1178,7 +1178,7 @@ namespace ChessKit.ChessLogic
                                 _cells[to] = toPiece;
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKnight;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 _cells[to] = (byte)CompactPiece.BlackKnight;
@@ -1208,7 +1208,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackRook;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackRook;
@@ -1234,7 +1234,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackRook;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackRook;
@@ -1260,7 +1260,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackRook;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackRook;
@@ -1286,7 +1286,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackRook;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackRook;
@@ -1317,7 +1317,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackQueen;
@@ -1343,7 +1343,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackQueen;
@@ -1369,7 +1369,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackQueen;
@@ -1395,7 +1395,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackQueen;
@@ -1421,7 +1421,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackQueen;
@@ -1447,7 +1447,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackQueen;
@@ -1473,7 +1473,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackQueen;
@@ -1499,7 +1499,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.BlackQueen;
                             _cells[to] = toPiece;
                         }
-                        else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.BlackQueen;
@@ -1530,7 +1530,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByWhite(to))
@@ -1553,7 +1553,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByWhite(to))
@@ -1576,7 +1576,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByWhite(to))
@@ -1599,7 +1599,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByWhite(to))
@@ -1622,7 +1622,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByWhite(to))
@@ -1645,7 +1645,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByWhite(to))
@@ -1668,7 +1668,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByWhite(to))
@@ -1691,7 +1691,7 @@ namespace ChessKit.ChessLogic
                                         MoveAnnotations.King));
                                 _cells[fromSquare] = (byte)CompactPiece.BlackKing;
                             }
-                            else if ((ChessLogic.Color)(toPiece & (byte)ChessLogic.Color.Black) != ChessLogic.Color.Black)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                                 if (!IsAttackedByWhite(to))
