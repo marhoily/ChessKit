@@ -2,7 +2,7 @@
 {
     public static class Fen
     {
-        public static string Print(this Position position)
+        public static string PrintFen(this Position position)
         {
             return new Board(new BoardBuilder
             {
