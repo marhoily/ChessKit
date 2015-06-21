@@ -6,10 +6,10 @@ namespace ChessKit.ChessLogic.UnitTests
 {
     public class TestMoveData
     {
-        public string Name { get; }
+        private string Name { get; }
         public string StartingFen { get; }
         public string Move { get; }
-        public string Result { get; }
+        private string Result { get; }
 
         public bool ExpectedToBeValid => (ExpectedAnnotations & MoveAnnotations.AllErrors) == 0;
 
@@ -22,7 +22,7 @@ namespace ChessKit.ChessLogic.UnitTests
             }
         }
 
-        public TestMoveData(string name, string startingFen, string move, string result)
+        private TestMoveData(string name, string startingFen, string move, string result)
         {
             Name = name;
             StartingFen = startingFen;
