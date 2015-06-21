@@ -8,12 +8,6 @@ namespace ChessKit.ChessLogic
     // TODO: Crazy ctors! Public setters. Not immutable!
     public sealed class Move : IEquatable<Move>
     {
-        public Move(MoveType type)
-        {
-            Kind = type;
-            ProposedPromotion = PieceType.Queen;
-        }
-
         public Move(Position from, Position to)
             : this(from, to, PieceType.Queen)
         {
@@ -39,7 +33,6 @@ namespace ChessKit.ChessLogic
         public Position To { get; }
         public MoveAnnotations Annotations { get; set; }
         public PieceType ProposedPromotion { get; set; }
-        public MoveType Kind { get; }
         public bool IsValid => (Annotations & MoveAnnotations.AllErrors) == 0;
 
         public bool IsKingsideCastling
@@ -78,8 +71,7 @@ namespace ChessKit.ChessLogic
             if (ReferenceEquals(this, other)) return true;
             return From.Equals(other.From)
                    && To.Equals(other.To)
-                   && ProposedPromotion == other.ProposedPromotion
-                   && Kind == other.Kind;
+                   && ProposedPromotion == other.ProposedPromotion;
         }
 
         public override bool Equals(object obj)
@@ -97,7 +89,6 @@ namespace ChessKit.ChessLogic
                 var hashCode = From.GetHashCode();
                 hashCode = (hashCode*397) ^ To.GetHashCode();
                 hashCode = (hashCode*397) ^ (int) ProposedPromotion;
-                hashCode = (hashCode*397) ^ (int) Kind;
                 return hashCode;
             }
         }

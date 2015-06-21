@@ -14,20 +14,12 @@ namespace ChessKit.ChessLogic.UnitTests
       action.ShouldThrow<ArgumentException>();
     }
     [Test]
-    public void ResignMove()
-    {
-      var move = new Move(MoveType.Resign);
-      move.Kind.Should().Be(MoveType.Resign);
-      move.Annotations.Should().Be(MoveAnnotations.None);
-    }
-    [Test]
     public void UsualMove()
     {
       var move = new Move(Position.Parse("e2"), Position.Parse("e4"))
                    {
                      Annotations = MoveAnnotations.Rook,
                    };
-      move.Kind.Should().Be(MoveType.Usual);
 
       move.From.Should().Be(Position.Parse("e2"));
       move.To.Should().Be(Position.Parse("e4"));
@@ -44,7 +36,6 @@ namespace ChessKit.ChessLogic.UnitTests
                      Annotations = MoveAnnotations.Promotion,
                    };
 
-      move.Kind.Should().Be(MoveType.Usual);
 
       move.From.Should().Be(Position.Parse("e2"));
       move.To.Should().Be(Position.Parse("e4"));

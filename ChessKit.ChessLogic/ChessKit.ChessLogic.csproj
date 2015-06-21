@@ -106,7 +106,6 @@
     <Compile Include="Move.cs" />
     <Compile Include="Internals\MoveDirection.cs" />
     <Compile Include="MoveAnnotations.cs" />
-    <Compile Include="MoveType.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="PieceColor.cs" />
     <Compile Include="PieceExt.cs" />
