@@ -1,17 +1,28 @@
 namespace ChessKit.ChessLogic.Enums
 {
-  public enum GameState
-  {
-    /// <summary>No flags set: game is not over yet</summary>
-    None,
-    /// <summary></summary>
-    Mate,
-    /// <summary>Game ended with draw (either by repetition, impasse or an agreement)</summary>
-    Draw,
-    /// <summary>Game ended with draw by repetition</summary>
-    DrawByRepetition,
-    /// <summary>It's check to side on move</summary>
-    Check,
-    CheckToWhite, CheckToBlack,
-  }
+    public enum GameState
+    {
+        None = 0,
+
+        /// <summary>The last move gives check</summary>
+        Check = 0x01,
+
+        /// <summary>The last move gives check and mate</summary>
+        Mate = 0x02,
+
+        /// <summary>All existing draw outcomes</summary>
+        Draw = 0x04,
+
+        /// <summary>Draw by threefold repetition</summary>
+        Repetition = 0x08,
+
+        /// <summary>Draw by not capturing or moving pawn for 50 moves</summary>
+        FiftyMoveRule = 0x10,
+
+        /// <summary>Draw by not leaving the opponent any legal moves</summary>
+        Stalemate = 0x20,
+
+        /// <summary>Draw by both sides not having enough material to give mate</summary>
+        InsufficientMaterial = 0x40
+    }
 }
