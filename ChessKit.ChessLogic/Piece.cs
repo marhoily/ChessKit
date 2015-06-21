@@ -13,6 +13,10 @@ namespace ChessKit.ChessLogic
         {
             return (PieceColor)((MoveAnnotations)piece & (MoveAnnotations)PieceColor.Black);
         }
+        public static PieceColor Color(this CompactPiece piece)
+        {
+            return (PieceColor)((MoveAnnotations)piece & (MoveAnnotations)PieceColor.Black);
+        }
 
         public static PieceType UnpackType(CompactPiece piece)
         {
