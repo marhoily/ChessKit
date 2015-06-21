@@ -41,7 +41,7 @@ namespace ChessKit.ChessLogic
                             _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
                             _cells[to] = toPiece;
                         }
-                        else if ((PieceColor)(toPiece & (byte)PieceColor.Black) != PieceColor.<#=p.Color#>)
+                        else if ((Color)(toPiece & (byte)Color.Black) != Color.<#=p.Color#>)
                         {
                             _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                             _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
@@ -104,7 +104,7 @@ namespace ChessKit.ChessLogic
 #>
                                 _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
                             }
-                            else if ((PieceColor)(toPiece & (byte)PieceColor.Black) != PieceColor.<#=p.Color#>)
+                            else if ((Color)(toPiece & (byte)Color.Black) != Color.<#=p.Color#>)
                             {
                                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
 <#

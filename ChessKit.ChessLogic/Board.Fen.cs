@@ -57,7 +57,7 @@ namespace ChessKit.ChessLogic
         }
         private void LoadActiveColorSection(string fen, ref int i)
         {
-            SideOnMove = Color.Parse(fen[i++]);
+            SideOnMove = fen[i++].ParseColor();
             if (fen[i] != ' ')
                 throw new FormatException("Unexpected symbol");
             i++; // skip the space 
@@ -170,23 +170,7 @@ namespace ChessKit.ChessLogic
             return fen.ToString();
         }
 
-        private static class Color
-        {
-            public static ChessLogic.Color Parse(char symbol)
-            {
-                switch (symbol)
-                {
-                    case 'W':
-                    case 'w':
-                        return ChessLogic.Color.White;
-                    case 'B':
-                    case 'b':
-                        return ChessLogic.Color.Black;
-                    default:
-                        throw new FormatException("What color is that?");
-                }
-            }
-        }
+       
         private static class EnPassant
         {
             private static readonly int[] Symbols;
