@@ -1,12 +1,8 @@
 using System;
-
-using ChessKit.ChessLogic;
-
+using FluentAssertions;
 using NUnit.Framework;
 
-using FluentAssertions;
-
-namespace UnitTests.ChessLogic
+namespace ChessKit.ChessLogic.UnitTests
 {
   [TestFixture]
   public class MoveTest

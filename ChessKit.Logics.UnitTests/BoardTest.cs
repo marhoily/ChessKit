@@ -1,11 +1,9 @@
 using System;
 using System.Linq;
-using ChessKit.ChessLogic;
-
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace UnitTests.ChessLogic
+namespace ChessKit.ChessLogic.UnitTests
 {
     [TestFixture]
 	public class BoardTest

@@ -1,10 +1,7 @@
-using ChessKit.ChessLogic;
-
 using FluentAssertions;
-
 using NUnit.Framework;
 
-namespace UnitTests.ChessLogic
+namespace ChessKit.ChessLogic.UnitTests
 {
   [TestFixture]
   public class PieceTest

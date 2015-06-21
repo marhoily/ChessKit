@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Linq;
-
-using ChessKit.ChessLogic;
-
+using FluentAssertions;
 using NUnit.Framework;
 
-using FluentAssertions;
-
-namespace UnitTests.ChessLogic
+namespace ChessKit.ChessLogic.UnitTests
 {
   [TestFixture]
   public class PositionTest

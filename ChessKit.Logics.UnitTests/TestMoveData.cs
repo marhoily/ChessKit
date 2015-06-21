@@ -1,9 +1,6 @@
 using System;
 
-using ChessKit.ChessLogic;
-
-
-namespace UnitTests.ChessLogic
+namespace ChessKit.ChessLogic.UnitTests
 {
 	public class TestMoveData
 	{
