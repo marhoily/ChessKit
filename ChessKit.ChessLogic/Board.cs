@@ -198,7 +198,7 @@ namespace ChessKit.ChessLogic
         }
         #endregion
 
-        public CompactPiece this[string index] => this[X.Parse(index)];
+        public CompactPiece this[string index] => this[Coordinate.Parse(index)];
     }
 }
 

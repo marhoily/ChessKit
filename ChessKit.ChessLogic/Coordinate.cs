@@ -6,7 +6,7 @@ namespace ChessKit.ChessLogic
 {
     /// <summary>Identifies chess board cell coordinates in a user-friendly manner</summary>
     /// <remarks>http://en.wikipedia.org/wiki/Chess</remarks>
-    public static class X
+    public static class Coordinate
     {
         /// <param name="position">"a1" or "A1"</param>
         public static int Parse(string position)

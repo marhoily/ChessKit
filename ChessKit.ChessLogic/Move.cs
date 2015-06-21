@@ -51,15 +51,15 @@ namespace ChessKit.ChessLogic
                 throw new ArgumentException("should not be null or empty", "canString");
             if (canString.Length == 5)
                 return new Move(
-                    X.Parse(canString.Substring(0, 2)),
-                    X.Parse(canString.Substring(3, 2)));
+                    Coordinate.Parse(canString.Substring(0, 2)),
+                    Coordinate.Parse(canString.Substring(3, 2)));
             if (canString.Length != 7) throw new ArgumentOutOfRangeException("canString");
             CompactPiece piece;
             if (!Piece.TryParse(canString[6], out piece))
                 throw new ArgumentOutOfRangeException(nameof(canString));
             return new Move(
-                X.Parse(canString.Substring(0, 2)),
-                X.Parse(canString.Substring(3, 2)),
+                Coordinate.Parse(canString.Substring(0, 2)),
+                Coordinate.Parse(canString.Substring(3, 2)),
                 piece.PieceType());
         }
 

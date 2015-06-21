@@ -25,7 +25,7 @@ namespace ChessKit.ChessLogic
 		public static class S
 		{
 <#
-foreach (var p in X.All)
+foreach (var p in Coordinate.All)
 {
 #>
 			public const int <#=p.ToSquareString().ToUpper()#> = <#=p.GetY()#> * 16 + <#=p.GetX()#>;

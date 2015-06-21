@@ -28,8 +28,8 @@ namespace ChessKit.ChessLogic
 
         public CompactPiece this[string index]
         {
-            get { return (CompactPiece)_cells[X.Parse(index)]; }
-            set { _cells[X.Parse(index)] = (byte) value; }
+            get { return (CompactPiece)_cells[Coordinate.Parse(index)]; }
+            set { _cells[Coordinate.Parse(index)] = (byte) value; }
         }
 
         public BoardBuilder()

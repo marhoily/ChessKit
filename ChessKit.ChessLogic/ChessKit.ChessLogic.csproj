@@ -109,7 +109,7 @@
     <Compile Include="PieceColor.cs" />
     <Compile Include="PieceExt.cs" />
     <Compile Include="PieceType.cs" />
-    <Compile Include="Position.cs" />
+    <Compile Include="Coordinate.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="San.cs" />
