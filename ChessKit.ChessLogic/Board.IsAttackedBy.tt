@@ -38,7 +38,7 @@ foreach (var color in new []{PieceColor.White, PieceColor.Black})
             {
                 var square = cell - <#=delta#>;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>)
+                    if (_cells[square] == (byte) CompactPiece.<#=p.Color#><#=p.PieceType#>)
                         return true;
             }
 <#

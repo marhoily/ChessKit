@@ -7,13 +7,13 @@
             {
                 var square = cell - 17;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhitePawn)
+                    if (_cells[square] == (byte) CompactPiece.WhitePawn)
                         return true;
             }
             {
                 var square = cell - 15;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhitePawn)
+                    if (_cells[square] == (byte) CompactPiece.WhitePawn)
                         return true;
             }
             for (var i = cell + 17; (i & 0x88) == 0; i += 17)
@@ -47,49 +47,49 @@
             {
                 var square = cell - 33;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKnight)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKnight)
                         return true;
             }
             {
                 var square = cell - 31;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKnight)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKnight)
                         return true;
             }
             {
                 var square = cell - -31;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKnight)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKnight)
                         return true;
             }
             {
                 var square = cell - -33;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKnight)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKnight)
                         return true;
             }
             {
                 var square = cell - 18;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKnight)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKnight)
                         return true;
             }
             {
                 var square = cell - 14;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKnight)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKnight)
                         return true;
             }
             {
                 var square = cell - -14;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKnight)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKnight)
                         return true;
             }
             {
                 var square = cell - -18;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKnight)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKnight)
                         return true;
             }
             for (var i = cell + 16; (i & 0x88) == 0; i += 16)
@@ -179,49 +179,49 @@
             {
                 var square = cell - 16;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKing)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKing)
                         return true;
             }
             {
                 var square = cell - 17;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKing)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKing)
                         return true;
             }
             {
                 var square = cell - 1;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKing)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKing)
                         return true;
             }
             {
                 var square = cell - -15;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKing)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKing)
                         return true;
             }
             {
                 var square = cell - -16;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKing)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKing)
                         return true;
             }
             {
                 var square = cell - -17;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKing)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKing)
                         return true;
             }
             {
                 var square = cell - -1;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKing)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKing)
                         return true;
             }
             {
                 var square = cell - 15;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.WhiteKing)
+                    if (_cells[square] == (byte) CompactPiece.WhiteKing)
                         return true;
             }
             return false;
@@ -231,13 +231,13 @@
             {
                 var square = cell - -15;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackPawn)
+                    if (_cells[square] == (byte) CompactPiece.BlackPawn)
                         return true;
             }
             {
                 var square = cell - -17;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackPawn)
+                    if (_cells[square] == (byte) CompactPiece.BlackPawn)
                         return true;
             }
             for (var i = cell + 17; (i & 0x88) == 0; i += 17)
@@ -271,49 +271,49 @@
             {
                 var square = cell - 33;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKnight)
+                    if (_cells[square] == (byte) CompactPiece.BlackKnight)
                         return true;
             }
             {
                 var square = cell - 31;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKnight)
+                    if (_cells[square] == (byte) CompactPiece.BlackKnight)
                         return true;
             }
             {
                 var square = cell - -31;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKnight)
+                    if (_cells[square] == (byte) CompactPiece.BlackKnight)
                         return true;
             }
             {
                 var square = cell - -33;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKnight)
+                    if (_cells[square] == (byte) CompactPiece.BlackKnight)
                         return true;
             }
             {
                 var square = cell - 18;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKnight)
+                    if (_cells[square] == (byte) CompactPiece.BlackKnight)
                         return true;
             }
             {
                 var square = cell - 14;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKnight)
+                    if (_cells[square] == (byte) CompactPiece.BlackKnight)
                         return true;
             }
             {
                 var square = cell - -14;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKnight)
+                    if (_cells[square] == (byte) CompactPiece.BlackKnight)
                         return true;
             }
             {
                 var square = cell - -18;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKnight)
+                    if (_cells[square] == (byte) CompactPiece.BlackKnight)
                         return true;
             }
             for (var i = cell + 16; (i & 0x88) == 0; i += 16)
@@ -403,49 +403,49 @@
             {
                 var square = cell - 16;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKing)
+                    if (_cells[square] == (byte) CompactPiece.BlackKing)
                         return true;
             }
             {
                 var square = cell - 17;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKing)
+                    if (_cells[square] == (byte) CompactPiece.BlackKing)
                         return true;
             }
             {
                 var square = cell - 1;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKing)
+                    if (_cells[square] == (byte) CompactPiece.BlackKing)
                         return true;
             }
             {
                 var square = cell - -15;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKing)
+                    if (_cells[square] == (byte) CompactPiece.BlackKing)
                         return true;
             }
             {
                 var square = cell - -16;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKing)
+                    if (_cells[square] == (byte) CompactPiece.BlackKing)
                         return true;
             }
             {
                 var square = cell - -17;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKing)
+                    if (_cells[square] == (byte) CompactPiece.BlackKing)
                         return true;
             }
             {
                 var square = cell - -1;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKing)
+                    if (_cells[square] == (byte) CompactPiece.BlackKing)
                         return true;
             }
             {
                 var square = cell - 15;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte)CompactPiece.BlackKing)
+                    if (_cells[square] == (byte) CompactPiece.BlackKing)
                         return true;
             }
             return false;
