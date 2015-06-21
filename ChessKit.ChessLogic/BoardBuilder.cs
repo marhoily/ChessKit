@@ -8,18 +8,16 @@ namespace ChessKit.ChessLogic
     {
         private const int BytesCount = 128;
 
-        internal readonly byte[] _cells;
-        public Color SideOnMove { get; private set; }
+        internal byte[] _cells;
+        public Color SideOnMove { get; set; }
         /// <summary>Gets the file at which en passant move is available</summary>
-        [SuppressMessage("Microsoft.Naming",
-          "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "En",
-          Justification = "'En-passant' is borrowed from french I guess")]
-        public int? EnPassantFile { get; private set; }
+        public int? EnPassantFile { get; set; }
+        public Castlings CastlingAvailability { get; set; }
         /// <summary>This is the number of halfmoves since the last pawn advance or capture. </summary>
         /// <remarks>This is used to determine if a draw can be claimed under the fifty-move rule.</remarks>
-        public int HalfMoveClock { get; private set; }
+        public int HalfMoveClock { get; set; }
         /// <summary>The number of the full move. It starts at 1, and is incremented after Black's move</summary>
-        public int MoveNumber { get; private set; }
+        public int MoveNumber { get; set; }
 
         public Piece this[int index]
         {

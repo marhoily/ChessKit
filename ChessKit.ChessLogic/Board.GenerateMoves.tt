@@ -13,7 +13,7 @@ namespace ChessKit.ChessLogic
     partial class Board
     {
         private void GenerateMoves(Piece piece, int fromSquare,
-             int? enPassantFile, Caslings castlingAvailability, List<Move> collector)
+             int? enPassantFile, Castlings castlingAvailability, List<Move> collector)
         {
             switch (piece)
             {

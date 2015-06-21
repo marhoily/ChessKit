@@ -13,7 +13,7 @@ namespace ChessKit.ChessLogic.N
         /// An array of the 64 squares the chess board consists of
         /// Note that index 0 corresponds to a8, and NOT a1!
         /// Indexes read left to right, top to bottom!
-        public Piece[] Squares { get; }
+        public byte[] Squares { get; }
         /// The color of the side that makes the next move
         public Color ActiveColor { get; }
         /// Castlings available to the both sides
@@ -21,9 +21,9 @@ namespace ChessKit.ChessLogic.N
         public Castlings CastlingAvailability { get; }
         /// The index is the file the opponent last
         /// made pawn double move -or- ...
-        int? EnPassant { get; }
+        public int? EnPassant { get; }
 
-        public PositionCore(Piece[] squares, Color activeColor, Castlings castlingAvailability, int? enPassant)
+        public PositionCore(byte[] squares, Color activeColor, Castlings castlingAvailability, int? enPassant)
         {
             Squares = squares;
             ActiveColor = activeColor;
