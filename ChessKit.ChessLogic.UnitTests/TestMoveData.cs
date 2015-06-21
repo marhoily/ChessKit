@@ -40,7 +40,7 @@ namespace ChessKit.ChessLogic.UnitTests
 			return Name;
 		}
 
-		private static TestMoveData[] All()
+	    public static TestMoveData[] All()
 		{
 			return new[] {
 				// ReSharper disable StringLiteralTypo

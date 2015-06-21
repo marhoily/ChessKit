@@ -2,14 +2,13 @@
 using System.Linq;
 using ChessKit.ChessLogic.Enums;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace ChessKit.ChessLogic.UnitTests
 {
-  [TestFixture]
   public class PositionTest
   {
-    [Test]
+    [Fact]
     public void Ctor()
     {
       var position = new int();
@@ -26,7 +25,7 @@ namespace ChessKit.ChessLogic.UnitTests
 //      new Action(() => new int(8, 1)).ShouldThrow<ArgumentOutOfRangeException>();
 //      new Action(() => new int(1, 8)).ShouldThrow<ArgumentOutOfRangeException>();
     }
-    [Test]
+    [Fact]
     public void FileAndRank()
     {
       const int position = 3 + 16 * 1;
@@ -34,7 +33,7 @@ namespace ChessKit.ChessLogic.UnitTests
       position.GetRank().Should().Be(2);
       position.ToSquareString().Should().Be("d2");
     }
-    [Test]
+    [Fact]
     public void Parse()
     {
       var position = Coordinate.Parse("a1");
@@ -60,21 +59,21 @@ namespace ChessKit.ChessLogic.UnitTests
       new Action(() => Coordinate.Parse("a9") ).ShouldThrow<ArgumentOutOfRangeException>();
       new Action(() => Coordinate.Parse("i8") ).ShouldThrow<ArgumentOutOfRangeException>();
     }
-    [Test]
+    [Fact]
     public void Equality()
     {
-      Assert.IsFalse(Coordinate.Parse("b2").Equals(Coordinate.Parse("a1")));
-      Assert.IsTrue(Coordinate.Parse("b2").Equals((object)Coordinate.Parse("b2")));
-      Assert.IsFalse(Coordinate.Parse("h1") == Coordinate.Parse("a1"));
-      Assert.IsTrue(Coordinate.Parse("h1") != Coordinate.Parse("a1"));
-      Assert.IsFalse(Coordinate.Parse("b2").Equals(new object()));
-      Assert.IsFalse(Coordinate.Parse("d3").Equals(null));
+      Assert.False(Coordinate.Parse("b2").Equals(Coordinate.Parse("a1")));
+      Assert.True(Coordinate.Parse("b2").Equals((object)Coordinate.Parse("b2")));
+      Assert.False(Coordinate.Parse("h1") == Coordinate.Parse("a1"));
+      Assert.True(Coordinate.Parse("h1") != Coordinate.Parse("a1"));
+      Assert.False(Coordinate.Parse("b2").Equals(new object()));
+      Assert.False(Coordinate.Parse("d3").Equals(null));
     }
 
-    [Test]
+    [Fact]
     public void OnBoard()
     {
-      Assert.AreEqual(64, Coordinate.All.Count());
+      Assert.Equal(64, Coordinate.All.Count());
     }
   }
 }

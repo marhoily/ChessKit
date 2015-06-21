@@ -63,7 +63,7 @@ namespace ChessKit.ChessLogic.UnitTests
 				board = board.MakeMove(legalMoves[0]);
 			}
 		}
-		[Test, TestCaseSource(typeof(TestMoveData), "All")]
+		[Test, TestCaseSource(typeof(TestMoveData), nameof(TestMoveData.All))]
 		public void GetLegalMoves(TestMoveData d)
 		{
 			Console.WriteLine(d.StartingFen);
@@ -83,7 +83,7 @@ namespace ChessKit.ChessLogic.UnitTests
 				board.GetLegalMoves(expected.From).Should().NotContain(expected);
 			}
 		}
-		[Test, TestCaseSource(typeof(TestMoveData), "All")]
+		[Test, TestCaseSource(typeof(TestMoveData), nameof(TestMoveData.All))]
 		public void CanBeValidMove(TestMoveData d)
 		{
 			Console.WriteLine(d.StartingFen);
@@ -95,8 +95,8 @@ namespace ChessKit.ChessLogic.UnitTests
 			if (!d.ExpectedToBeValid) return;
 			board.CanBeValidMove(
 				board[expected.From],
-				(int)expected.From,
-				(int)expected.To).Should().BeTrue();
+				expected.From,
+				expected.To).Should().BeTrue();
 		}
 	}
 }
