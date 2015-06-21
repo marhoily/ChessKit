@@ -11,27 +11,27 @@ namespace ChessKit.ChessLogic.UnitTests
     [Test]
     public void Ctor()
     {
-      var position = new Position();
-      position.X.Should().Be(0);
-      position.Y.Should().Be(0);
+      var position = new int();
+      position.GetX().Should().Be(0);
+      position.GetY().Should().Be(0);
 
-      position = new Position(3, 6);
-      position.X.Should().Be(3);
-      position.Y.Should().Be(6);
+      position = 3 + 16* 6;
+      position.GetX().Should().Be(3);
+      position.GetY().Should().Be(6);
 
       // BUG: Romoved assertions
-//      new Action(() => new Position(-1, 0)).ShouldThrow<ArgumentOutOfRangeException>();
-//      new Action(() => new Position(1, -1)).ShouldThrow<ArgumentOutOfRangeException>();
-//      new Action(() => new Position(8, 1)).ShouldThrow<ArgumentOutOfRangeException>();
-//      new Action(() => new Position(1, 8)).ShouldThrow<ArgumentOutOfRangeException>();
+//      new Action(() => new int(-1, 0)).ShouldThrow<ArgumentOutOfRangeException>();
+//      new Action(() => new int(1, -1)).ShouldThrow<ArgumentOutOfRangeException>();
+//      new Action(() => new int(8, 1)).ShouldThrow<ArgumentOutOfRangeException>();
+//      new Action(() => new int(1, 8)).ShouldThrow<ArgumentOutOfRangeException>();
     }
     [Test]
     public void FileAndRank()
     {
-      var position = new Position(3, 1);
-      position.File.Should().Be("d");
-      position.Rank.Should().Be(2);
-      position.ToString().Should().Be("d2");
+      const int position = 3 + 16 * 1;
+      position.GetFile().Should().Be('d');
+      position.GetRank().Should().Be(2);
+      position.ToSquareString().Should().Be("d2");
     }
     [Test]
     public void Parse()
@@ -69,22 +69,11 @@ namespace ChessKit.ChessLogic.UnitTests
       Assert.IsFalse(X.Parse("b2").Equals(new object()));
       Assert.IsFalse(X.Parse("d3").Equals(null));
     }
-    [Test]
-    public void HashCode()
-    {
-      Assert.AreEqual(
-        new Position(1, 3).GetHashCode(),
-        new Position(1, 3).GetHashCode());
-
-      Assert.AreNotEqual(
-        new Position(1, 3).GetHashCode(),
-        new Position(3, 1).GetHashCode());
-    }
 
     [Test]
     public void OnBoard()
     {
-      Assert.AreEqual(64, Position.All.Count());
+      Assert.AreEqual(64, X.All.Count());
     }
   }
 }
