@@ -16,7 +16,7 @@ namespace ChessKit.ChessLogic
             switch (piece)
             {
 <#
-    foreach (var p in Piece.All) 
+    foreach (var p in Piece_.All) 
     {
 #>
                 #region ' <#=p.Color#> <#=p.PieceType#> '

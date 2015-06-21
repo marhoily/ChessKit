@@ -2,17 +2,17 @@ using System;
 
 namespace ChessKit.ChessLogic
 {
-  [Flags]
-  public enum Caslings
-  {
-    None,
+    [Flags]
+    public enum Caslings
+    {
+        None,
 
-    WhiteKing = MoveAnnotations.WhiteKingsideCastling,
-    BlackKing = MoveAnnotations.BlackKingsideCastling,
-    WhiteQueen = MoveAnnotations.WhiteQueensideCastling,
-    BlackQueen = MoveAnnotations.BlackQueensideCastling,
+        WhiteKing = MoveAnnotations.WhiteKingsideCastling,
+        BlackKing = MoveAnnotations.BlackKingsideCastling,
+        WhiteQueen = MoveAnnotations.WhiteQueensideCastling,
+        BlackQueen = MoveAnnotations.BlackQueensideCastling,
 
-    White = WhiteKing | WhiteQueen,
-    Black = BlackKing | BlackQueen,
-  }
+        White = WhiteKing | WhiteQueen,
+        Black = BlackKing | BlackQueen
+    }
 }

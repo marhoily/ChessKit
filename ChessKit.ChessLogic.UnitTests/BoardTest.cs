@@ -94,7 +94,7 @@ namespace ChessKit.ChessLogic.UnitTests
 			var expected = Move.Parse(d.Move);
 			if (!d.ExpectedToBeValid) return;
 			board.CanBeValidMove(
-				board[expected.From].CompactValue,
+				board[expected.From],
 				(int)expected.From,
 				(int)expected.To).Should().BeTrue();
 		}

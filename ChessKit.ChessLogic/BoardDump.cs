@@ -32,7 +32,7 @@ namespace ChessKit.ChessLogic
             {
                 var piece = board[position];
                 sb[((7 - position.Y) * 2 + 1) * 36 + position.X * 4 + 3]
-                    = piece == null ? ' ' : piece.ChessChar;
+                    = piece.GetSymbol();
             }
             return sb.ToString();
         }

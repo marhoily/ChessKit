@@ -45,8 +45,8 @@ namespace ChessKit.ChessLogic
             var sb = new StringBuilder(3);
 
             if ((move.Annotations & MoveAnnotations.Promotion) != 0)
-                sb.Append('=').Append(Piece.Get(
-                    move.ProposedPromotion, PieceColor.White).Symbol);
+                sb.Append('=').Append(Piece.Pack(
+                    move.ProposedPromotion, PieceColor.White).GetSymbol());
 
             if ((move.Annotations & MoveAnnotations.Check) != 0) sb.Append('+');
             else if (board.IsMate) sb.Append('#');
@@ -86,10 +86,7 @@ namespace ChessKit.ChessLogic
                 }
                 else
                 {
-                    var pieceType = board[move.From].PieceType;
-                    var piece = Piece.Get(pieceType, PieceColor.White);
-                    var symbol = piece.Symbol;
-                    sb.Append(symbol);
+                    sb.Append(board[move.From].GetTypeSymbol());
 
                     // TODO: move should have Piece prop?
                     var disambiguationList = new List<Position>(
@@ -186,7 +183,7 @@ namespace ChessKit.ChessLogic
             var prom = PieceType.Queen;
             if (san[index - 1] == '=')
             {
-                prom = Piece.UnpackType(Piece.ParseCompact(san[index]));
+                prom = Piece.UnpackType(Piece.Parse(san[index]));
                 index -= 2;
             }
 
@@ -217,7 +214,7 @@ namespace ChessKit.ChessLogic
             var pieceChar = PieceType.Pawn;
             if (index > -1)
             {
-                pieceChar = Piece.UnpackType(Piece.ParseCompact(san[index]));
+                pieceChar = Piece.UnpackType(Piece.Parse(san[index]));
                 index--;
             }
             if (index != -1) throw new FormatException("Illegal characters");
@@ -231,7 +228,7 @@ namespace ChessKit.ChessLogic
                 if (m.To == to)
                     if (file == null || file == m.From.X)
                         if (rank == null || rank == m.From.Y)
-                            if (board[m.From].PieceType == pieceChar)
+                            if (board[m.From].PieceType() == pieceChar)
                             {
                                 if (move != null) throw new FormatException("Ambiguity");
                                 move = m;

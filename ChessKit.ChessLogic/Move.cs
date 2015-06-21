@@ -54,13 +54,13 @@ namespace ChessKit.ChessLogic
                     Position.Parse(canString.Substring(0, 2)),
                     Position.Parse(canString.Substring(3, 2)));
             if (canString.Length != 7) throw new ArgumentOutOfRangeException("canString");
-            Piece piece;
+            CompactPiece piece;
             if (!Piece.TryParse(canString[6], out piece))
                 throw new ArgumentOutOfRangeException(nameof(canString));
             return new Move(
                 Position.Parse(canString.Substring(0, 2)),
                 Position.Parse(canString.Substring(3, 2)),
-                piece.PieceType);
+                piece.PieceType());
         }
 
         #region ' Equality '

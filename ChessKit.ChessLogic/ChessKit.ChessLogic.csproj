@@ -36,8 +36,6 @@
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <None Include="ApiConcept.dgml" />
-    <None Include="API %28Simplified%29.cd" />
-    <None Include="API.cd" />
     <None Include="Board.CanBeValidMove.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Board.CanBeValidMove.cs</LastGenOutput>

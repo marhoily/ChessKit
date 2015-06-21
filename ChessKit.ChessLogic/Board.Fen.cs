@@ -49,7 +49,7 @@ namespace ChessKit.ChessLogic
                 else
                 {
                     var c = (sq / 8) * 8 + 7 - sq % 8;
-                    this[c + (c & ~7)] = Piece.ParseCompact(fen[i]);
+                    this[c + (c & ~7)] = Piece.Parse(fen[i]);
                     sq--;
                 }
             }
@@ -128,7 +128,7 @@ namespace ChessKit.ChessLogic
                 }
 
                 if (empty != 0) fen.Append((char)('0' + empty));
-                fen.Append(Piece.Unpack((CompactPiece)_cells[idx]).Symbol);
+                fen.Append(((CompactPiece)_cells[idx]).GetSymbol());
                 empty = 0;
                 if (sq != 0 && sq % 8 == 0) fen.Append('/');
             }

@@ -9,7 +9,7 @@ namespace ChessKit.ChessLogic
   partial class Board
   {
 <#
-  foreach (var p in Piece.All.Where(p => p.PieceType != PieceType.Pawn))
+  foreach (var p in Piece_.All.Where(p => p.PieceType != PieceType.Pawn))
   {
     var isSlider = p.MoveDirections.Any(dir => dir.Count > 1);
 #>    private <#=isSlider?"" : "static "#>MoveAnnotations Validate<#=p.Color#><#=p.PieceType#>Move(int fromSquare, int toSquare)
@@ -60,7 +60,7 @@ namespace ChessKit.ChessLogic
 	  switch (piece)
       {
 <#
-  foreach (var p in Piece.All) 
+  foreach (var p in Piece_.All) 
   {
 #>        case CompactPiece.<#=p.Color#><#=p.PieceType#>:
 <#

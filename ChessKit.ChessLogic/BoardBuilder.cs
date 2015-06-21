@@ -22,13 +22,13 @@ namespace ChessKit.ChessLogic
 
         [SuppressMessage("Microsoft.Design", "CA1043:UseIntegralOrStringArgumentForIndexers",
               Justification = "It just seems right to use Position as a natural indexer")]
-        public Piece this[Position index]
+        public CompactPiece this[Position index]
         {
-            get { return Piece.Unpack((CompactPiece)_cells[(int)index]); }
-            set { _cells[(int)index] = (byte)Piece.Pack(value); }
+            get { return (CompactPiece)_cells[(int)index]; }
+            set { _cells[(int)index] = (byte) value; }
         }
 
-        public Piece this[string index]
+        public CompactPiece this[string index]
         {
             get { return this[Position.Parse(index)]; }
             set { this[Position.Parse(index)] = value; }
