@@ -46,7 +46,7 @@ namespace ChessKit.ChessLogic
             var sb = new StringBuilder(3);
 
             if ((move.Annotations & MoveAnnotations.Promotion) != 0)
-                sb.Append('=').Append(move.ProposedPromotion.Pack(Color.White).GetSymbol());
+                sb.Append('=').Append(move.ProposedPromotion.With(Color.White).GetSymbol());
 
             if ((move.Annotations & MoveAnnotations.Check) != 0) sb.Append('+');
             else if (board.IsMate) sb.Append('#');
@@ -86,7 +86,7 @@ namespace ChessKit.ChessLogic
                 }
                 else
                 {
-                    sb.Append(board[move.From].GetTypeSymbol());
+                    sb.Append(board[move.From].GetSymbol());
 
                     // TODO: move should have Piece prop?
                     var disambiguationList = new List<int>(

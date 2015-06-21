@@ -130,7 +130,7 @@ namespace ChessKit.ChessLogic
             }
             else if ((PreviousMove.Annotations & MoveAnnotations.Promotion) != 0)
             {
-                piece = proposedPromotion.Pack(color);
+                piece = proposedPromotion.With(color);
             }
 
             this[moveTo] = piece;

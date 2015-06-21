@@ -4,7 +4,7 @@ namespace ChessKit.ChessLogic.Enums
 {
     public static class PieceExtensions
     {
-        public static Piece Pack(this PieceType pieceType, Color color)
+        public static Piece With(this PieceType pieceType, Color color)
         {
             return (Piece) ((MoveAnnotations) pieceType | (MoveAnnotations) color);
         }
@@ -49,39 +49,6 @@ namespace ChessKit.ChessLogic.Enums
                     return 'k';
                 case Piece.EmptyCell:
                     return ' ';
-                default:
-                    throw new Exception("Unexpected");
-            }
-        }
-
-        public static char GetTypeSymbol(this Piece piece)
-        {
-            switch (piece)
-            {
-                case Piece.WhitePawn:
-                    return 'P';
-                case Piece.WhiteKnight:
-                    return 'N';
-                case Piece.WhiteBishop:
-                    return 'B';
-                case Piece.WhiteRook:
-                    return 'R';
-                case Piece.WhiteQueen:
-                    return 'Q';
-                case Piece.WhiteKing:
-                    return 'K';
-                case Piece.BlackPawn:
-                    return 'P';
-                case Piece.BlackKnight:
-                    return 'N';
-                case Piece.BlackBishop:
-                    return 'B';
-                case Piece.BlackRook:
-                    return 'R';
-                case Piece.BlackQueen:
-                    return 'Q';
-                case Piece.BlackKing:
-                    return 'K';
                 default:
                     throw new Exception("Unexpected");
             }
