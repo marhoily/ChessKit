@@ -99,7 +99,7 @@
     <Compile Include="BoardBuilder.cs" />
     <Compile Include="BoardDump.cs" />
     <Compile Include="Caslings.cs" />
-    <Compile Include="CompactPiece.cs" />
+    <Compile Include="Piece.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Internals\ImmutableAttribute.cs" />
     <Compile Include="Internals\MetaPiece.cs" />
@@ -111,7 +111,6 @@
     <Compile Include="ColorExtensions.cs" />
     <Compile Include="PieceType.cs" />
     <Compile Include="Coordinate.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="San.cs" />
   </ItemGroup>

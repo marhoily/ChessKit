@@ -54,7 +54,7 @@ namespace ChessKit.ChessLogic
                     Coordinate.Parse(canString.Substring(0, 2)),
                     Coordinate.Parse(canString.Substring(3, 2)));
             if (canString.Length != 7) throw new ArgumentOutOfRangeException("canString");
-            CompactPiece piece;
+            Piece piece;
             if (!canString[6].TryParse(out piece))
                 throw new ArgumentOutOfRangeException(nameof(canString));
             return new Move(

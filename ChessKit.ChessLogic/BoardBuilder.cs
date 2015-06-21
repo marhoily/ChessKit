@@ -20,15 +20,15 @@ namespace ChessKit.ChessLogic
         /// <summary>The number of the full move. It starts at 1, and is incremented after Black's move</summary>
         public int MoveNumber { get; private set; }
 
-        public CompactPiece this[int index]
+        public Piece this[int index]
         {
-            get { return (CompactPiece)_cells[index]; }
+            get { return (Piece)_cells[index]; }
             set { _cells[index] = (byte) value; }
         }
 
-        public CompactPiece this[string index]
+        public Piece this[string index]
         {
-            get { return (CompactPiece)_cells[Coordinate.Parse(index)]; }
+            get { return (Piece)_cells[Coordinate.Parse(index)]; }
             set { _cells[Coordinate.Parse(index)] = (byte) value; }
         }
 

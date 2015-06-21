@@ -10,7 +10,7 @@ namespace ChessKit.ChessLogic
 {
     partial class Board
     {
-        internal bool CanBeValidMove(CompactPiece piece, int fromSquare, int toSquare)
+        internal bool CanBeValidMove(Piece piece, int fromSquare, int toSquare)
         {
             var dx = toSquare - fromSquare;
             switch (piece)
@@ -21,7 +21,7 @@ namespace ChessKit.ChessLogic
 #>
                 #region ' <#=p.Color#> <#=p.PieceType#> '
 
-                case CompactPiece.<#=p.Color#><#=p.PieceType#>:
+                case Piece.<#=p.Color#><#=p.PieceType#>:
 <#
         if (p.MoveDirections.Any(dir => dir.Count > 1))
         {
@@ -35,7 +35,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
 <#
             }
@@ -64,7 +64,7 @@ namespace ChessKit.ChessLogic
                 else
                 {
 #>
-                            return this[toSquare] == CompactPiece.EmptyCell;
+                            return this[toSquare] == Piece.EmptyCell;
 <#
                 }
             }

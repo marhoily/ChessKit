@@ -10,19 +10,19 @@ namespace ChessKit.ChessLogic
     public sealed class MetaPiece
     {
         /// <summary>Piece type</summary>
-        public PieceType PieceType => _compactValue.PieceType();
+        public PieceType PieceType => _value.PieceType();
 
         /// <summary>Piece color</summary>
-        public Color Color => _compactValue.Color();
+        public Color Color => _value.Color();
 
         /// <summary>Gets all directions of move piece can do</summary>
         public ReadOnlyCollection<MoveDirection> MoveDirections { get; private set; }
 
-        private CompactPiece _compactValue;
+        private Piece _value;
 
-        internal MetaPiece(CompactPiece compactValue)
+        internal MetaPiece(Piece value)
         {
-            _compactValue = compactValue;
+            _value = value;
         }
 
         /// <summary>All Types pieces may have</summary>
@@ -32,19 +32,19 @@ namespace ChessKit.ChessLogic
         {
             //      _______________
             // ____/ Create Pieces \____________________________________________________________
-            var whitePawn = new MetaPiece(CompactPiece.WhitePawn);
-            var whiteBishop = new MetaPiece(CompactPiece.WhiteBishop);
-            var whiteKnight = new MetaPiece(CompactPiece.WhiteKnight);
-            var whiteRook = new MetaPiece(CompactPiece.WhiteRook);
-            var whiteQueen = new MetaPiece(CompactPiece.WhiteQueen);
-            var whiteKing = new MetaPiece(CompactPiece.WhiteKing);
+            var whitePawn = new MetaPiece(Piece.WhitePawn);
+            var whiteBishop = new MetaPiece(Piece.WhiteBishop);
+            var whiteKnight = new MetaPiece(Piece.WhiteKnight);
+            var whiteRook = new MetaPiece(Piece.WhiteRook);
+            var whiteQueen = new MetaPiece(Piece.WhiteQueen);
+            var whiteKing = new MetaPiece(Piece.WhiteKing);
 
-            var blackPawn = new MetaPiece(CompactPiece.BlackPawn);
-            var blackBishop = new MetaPiece(CompactPiece.BlackBishop);
-            var blackKnight = new MetaPiece(CompactPiece.BlackKnight);
-            var blackRook = new MetaPiece(CompactPiece.BlackRook);
-            var blackQueen = new MetaPiece(CompactPiece.BlackQueen);
-            var blackKing = new MetaPiece(CompactPiece.BlackKing);
+            var blackPawn = new MetaPiece(Piece.BlackPawn);
+            var blackBishop = new MetaPiece(Piece.BlackBishop);
+            var blackKnight = new MetaPiece(Piece.BlackKnight);
+            var blackRook = new MetaPiece(Piece.BlackRook);
+            var blackQueen = new MetaPiece(Piece.BlackQueen);
+            var blackKing = new MetaPiece(Piece.BlackKing);
             //      _____________
             // ____/ Collections \______________________________________________________________
             All = new ReadOnlyCollection<MetaPiece>(new[]

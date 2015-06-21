@@ -27,7 +27,7 @@ namespace ChessKit.ChessLogic
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
             if (i == toSquare) return MoveAnnotations.<#=p.PieceType#>;
-            else if (this[i] != CompactPiece.EmptyCell) 
+            else if (this[i] != Piece.EmptyCell) 
 			  return MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.DoesNotJump;
       }
 <#
@@ -55,14 +55,14 @@ namespace ChessKit.ChessLogic
 <#
   } // --------------------------------------------------
 #>  
-    public MoveAnnotations ValidateMove(CompactPiece piece, int fromSquare, int toSquare, CompactPiece toPiece, Caslings castlingAvailability)
+    public MoveAnnotations ValidateMove(Piece piece, int fromSquare, int toSquare, Piece toPiece, Caslings castlingAvailability)
     {
 	  switch (piece)
       {
 <#
   foreach (var p in MetaPiece.All) 
   {
-#>        case CompactPiece.<#=p.Color#><#=p.PieceType#>:
+#>        case Piece.<#=p.Color#><#=p.PieceType#>:
 <#
 	if (p.PieceType == PieceType.Pawn)
 	{

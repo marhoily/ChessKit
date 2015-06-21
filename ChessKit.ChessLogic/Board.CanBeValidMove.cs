@@ -4,24 +4,24 @@ namespace ChessKit.ChessLogic
 {
     partial class Board
     {
-        internal bool CanBeValidMove(CompactPiece piece, int fromSquare, int toSquare)
+        internal bool CanBeValidMove(Piece piece, int fromSquare, int toSquare)
         {
             var dx = toSquare - fromSquare;
             switch (piece)
             {
                 #region ' White Pawn '
 
-                case CompactPiece.WhitePawn:
+                case Piece.WhitePawn:
                     switch (dx)
                     {
                         case 16:
-                            return this[toSquare] == CompactPiece.EmptyCell;
+                            return this[toSquare] == Piece.EmptyCell;
                         case 17:
                             return true;
                         case 15:
                             return true;
                         case 32:
-                            return this[toSquare] == CompactPiece.EmptyCell;
+                            return this[toSquare] == Piece.EmptyCell;
                     }
                     return false;
 
@@ -29,14 +29,14 @@ namespace ChessKit.ChessLogic
 
                 #region ' White Bishop '
 
-                case CompactPiece.WhiteBishop:
+                case Piece.WhiteBishop:
                     if (dx % 17 == 0)
                     {
                         var steps = dx / 17;
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -15 == 0)
                     {
@@ -44,7 +44,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -17 == 0)
                     {
@@ -52,7 +52,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % 15 == 0)
                     {
@@ -60,7 +60,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     return false;
 
@@ -68,7 +68,7 @@ namespace ChessKit.ChessLogic
 
                 #region ' White Knight '
 
-                case CompactPiece.WhiteKnight:
+                case Piece.WhiteKnight:
                     switch (dx)
                     {
                         case 33:
@@ -94,14 +94,14 @@ namespace ChessKit.ChessLogic
 
                 #region ' White Rook '
 
-                case CompactPiece.WhiteRook:
+                case Piece.WhiteRook:
                     if (dx % 16 == 0)
                     {
                         var steps = dx / 16;
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % 1 == 0)
                     {
@@ -109,7 +109,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -16 == 0)
                     {
@@ -117,7 +117,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -1 == 0)
                     {
@@ -125,7 +125,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     return false;
 
@@ -133,14 +133,14 @@ namespace ChessKit.ChessLogic
 
                 #region ' White Queen '
 
-                case CompactPiece.WhiteQueen:
+                case Piece.WhiteQueen:
                     if (dx % 16 == 0)
                     {
                         var steps = dx / 16;
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % 1 == 0)
                     {
@@ -148,7 +148,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -16 == 0)
                     {
@@ -156,7 +156,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -1 == 0)
                     {
@@ -164,7 +164,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % 17 == 0)
                     {
@@ -172,7 +172,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -15 == 0)
                     {
@@ -180,7 +180,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -17 == 0)
                     {
@@ -188,7 +188,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % 15 == 0)
                     {
@@ -196,7 +196,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     return false;
 
@@ -204,7 +204,7 @@ namespace ChessKit.ChessLogic
 
                 #region ' White King '
 
-                case CompactPiece.WhiteKing:
+                case Piece.WhiteKing:
                     switch (dx)
                     {
                         case 16:
@@ -224,9 +224,9 @@ namespace ChessKit.ChessLogic
                         case 15:
                             return true;
                         case 2:
-                            return this[toSquare] == CompactPiece.EmptyCell;
+                            return this[toSquare] == Piece.EmptyCell;
                         case -2:
-                            return this[toSquare] == CompactPiece.EmptyCell;
+                            return this[toSquare] == Piece.EmptyCell;
                     }
                     return false;
 
@@ -234,17 +234,17 @@ namespace ChessKit.ChessLogic
 
                 #region ' Black Pawn '
 
-                case CompactPiece.BlackPawn:
+                case Piece.BlackPawn:
                     switch (dx)
                     {
                         case -16:
-                            return this[toSquare] == CompactPiece.EmptyCell;
+                            return this[toSquare] == Piece.EmptyCell;
                         case -15:
                             return true;
                         case -17:
                             return true;
                         case -32:
-                            return this[toSquare] == CompactPiece.EmptyCell;
+                            return this[toSquare] == Piece.EmptyCell;
                     }
                     return false;
 
@@ -252,14 +252,14 @@ namespace ChessKit.ChessLogic
 
                 #region ' Black Bishop '
 
-                case CompactPiece.BlackBishop:
+                case Piece.BlackBishop:
                     if (dx % 17 == 0)
                     {
                         var steps = dx / 17;
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -15 == 0)
                     {
@@ -267,7 +267,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -17 == 0)
                     {
@@ -275,7 +275,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % 15 == 0)
                     {
@@ -283,7 +283,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     return false;
 
@@ -291,7 +291,7 @@ namespace ChessKit.ChessLogic
 
                 #region ' Black Knight '
 
-                case CompactPiece.BlackKnight:
+                case Piece.BlackKnight:
                     switch (dx)
                     {
                         case 33:
@@ -317,14 +317,14 @@ namespace ChessKit.ChessLogic
 
                 #region ' Black Rook '
 
-                case CompactPiece.BlackRook:
+                case Piece.BlackRook:
                     if (dx % 16 == 0)
                     {
                         var steps = dx / 16;
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % 1 == 0)
                     {
@@ -332,7 +332,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -16 == 0)
                     {
@@ -340,7 +340,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -1 == 0)
                     {
@@ -348,7 +348,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     return false;
 
@@ -356,14 +356,14 @@ namespace ChessKit.ChessLogic
 
                 #region ' Black Queen '
 
-                case CompactPiece.BlackQueen:
+                case Piece.BlackQueen:
                     if (dx % 16 == 0)
                     {
                         var steps = dx / 16;
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % 1 == 0)
                     {
@@ -371,7 +371,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -16 == 0)
                     {
@@ -379,7 +379,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -1 == 0)
                     {
@@ -387,7 +387,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % 17 == 0)
                     {
@@ -395,7 +395,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -15 == 0)
                     {
@@ -403,7 +403,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % -17 == 0)
                     {
@@ -411,7 +411,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     if (dx % 15 == 0)
                     {
@@ -419,7 +419,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != CompactPiece.EmptyCell) return false;
+                                else if (this[i] != Piece.EmptyCell) return false;
                     }
                     return false;
 
@@ -427,7 +427,7 @@ namespace ChessKit.ChessLogic
 
                 #region ' Black King '
 
-                case CompactPiece.BlackKing:
+                case Piece.BlackKing:
                     switch (dx)
                     {
                         case 16:
@@ -447,9 +447,9 @@ namespace ChessKit.ChessLogic
                         case 15:
                             return true;
                         case 2:
-                            return this[toSquare] == CompactPiece.EmptyCell;
+                            return this[toSquare] == Piece.EmptyCell;
                         case -2:
-                            return this[toSquare] == CompactPiece.EmptyCell;
+                            return this[toSquare] == Piece.EmptyCell;
                     }
                     return false;
 

@@ -51,7 +51,7 @@ namespace ChessKit.ChessLogic
         public List<Move> GetLegalMoves(int moveFrom)
         {
             var piece = this[moveFrom];
-            if (piece == CompactPiece.EmptyCell) return new List<Move>();
+            if (piece == Piece.EmptyCell) return new List<Move>();
             if (piece.Color() != SideOnMove) return new List<Move>();
             var res = new List<Move>(28);
             GenerateMoves(piece, moveFrom, EnPassantFile, _caslings, res);
@@ -80,7 +80,7 @@ namespace ChessKit.ChessLogic
             // Piece in the from cell?
             var moveFrom = (int)move.From;
             var piece = src[moveFrom];
-            if (piece == CompactPiece.EmptyCell)
+            if (piece == Piece.EmptyCell)
             {
                 PreviousMove.Annotations = MoveAnnotations.EmptyCell;
                 return;
@@ -97,14 +97,14 @@ namespace ChessKit.ChessLogic
             // Move to occupied cell?
             var moveTo = (int)move.To;
             var toPiece = src[moveTo];
-            if (toPiece != CompactPiece.EmptyCell && toPiece.Color() == color)
+            if (toPiece != Piece.EmptyCell && toPiece.Color() == color)
             {
                 PreviousMove.Annotations = (MoveAnnotations)piece | MoveAnnotations.ToOccupiedCell;
                 return;
             }
             PreviousMove.Annotations = src.ValidateMove(piece,
               moveFrom, moveTo, toPiece, src._caslings);
-            if (toPiece != CompactPiece.EmptyCell) PreviousMove.Annotations |= MoveAnnotations.Capture;
+            if (toPiece != Piece.EmptyCell) PreviousMove.Annotations |= MoveAnnotations.Capture;
             SetupBoard(src, piece, moveFrom, moveTo, move.ProposedPromotion, color);
             if ((PreviousMove.Annotations & MoveAnnotations.AllErrors) != 0) return;
             if (IsUnderCheck(SideOnMove))
@@ -114,7 +114,7 @@ namespace ChessKit.ChessLogic
             }
             PreviousMove.Annotations |= MoveAnnotations.TestedForConsequences;
         }
-        private void SetupBoard(Board src, CompactPiece piece,
+        private void SetupBoard(Board src, Piece piece,
           int moveFrom, int moveTo, PieceType proposedPromotion,
           ChessLogic.Color color)
         {
@@ -147,23 +147,23 @@ namespace ChessKit.ChessLogic
                 }
                 else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling)) // TODO: Move it up?
                 {
-                    _cells[S.H1] = (byte)CompactPiece.EmptyCell;
-                    _cells[S.F1] = (byte)CompactPiece.WhiteRook;
+                    _cells[S.H1] = (byte)Piece.EmptyCell;
+                    _cells[S.F1] = (byte)Piece.WhiteRook;
                 }
                 else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling))
                 {
-                    _cells[S.A1] = (byte)CompactPiece.EmptyCell;
-                    _cells[S.D1] = (byte)CompactPiece.WhiteRook;
+                    _cells[S.A1] = (byte)Piece.EmptyCell;
+                    _cells[S.D1] = (byte)Piece.WhiteRook;
                 }
                 else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling))
                 {
-                    _cells[S.H8] = (byte)CompactPiece.EmptyCell;
-                    _cells[S.F8] = (byte)CompactPiece.BlackRook;
+                    _cells[S.H8] = (byte)Piece.EmptyCell;
+                    _cells[S.F8] = (byte)Piece.BlackRook;
                 }
                 else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling))
                 {
-                    _cells[S.A8] = (byte)CompactPiece.EmptyCell;
-                    _cells[S.D8] = (byte)CompactPiece.BlackRook;
+                    _cells[S.A8] = (byte)Piece.EmptyCell;
+                    _cells[S.D8] = (byte)Piece.BlackRook;
                 }
             }
             if (IsUnderCheck(src.SideOnMove))
@@ -198,7 +198,7 @@ namespace ChessKit.ChessLogic
         }
         #endregion
 
-        public CompactPiece this[string index] => this[Coordinate.Parse(index)];
+        public Piece this[string index] => this[Coordinate.Parse(index)];
     }
 }
 

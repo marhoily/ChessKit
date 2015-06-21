@@ -1,6 +1,6 @@
 namespace ChessKit.ChessLogic
 {
-  public enum CompactPiece : byte
+  public enum Piece : byte
   {
     EmptyCell,
 

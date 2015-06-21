@@ -10,7 +10,7 @@ namespace ChessKit.ChessLogic
 {
     partial class Board
     {
-        private void GenerateMoves(CompactPiece piece, int fromSquare,
+        private void GenerateMoves(Piece piece, int fromSquare,
              int? enPassantFile, Caslings castlingAvailability, List<Move> collector)
         {
             switch (piece)
@@ -20,7 +20,7 @@ namespace ChessKit.ChessLogic
     {
 #>
                 #region ' <#=p.Color#> <#=p.PieceType#> '
-                case CompactPiece.<#=p.Color#><#=p.PieceType#>:
+                case Piece.<#=p.Color#><#=p.PieceType#>:
 <#
         if (p.MoveDirections.Any(dir => dir.Count > 1))
         {
@@ -33,22 +33,22 @@ namespace ChessKit.ChessLogic
                         var toPiece = _cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
-                            _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                            _cells[fromSquare] = (byte)Piece.EmptyCell;
+                            _cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
                                 collector.Add(new Move(fromSquare, to,
                                     MoveAnnotations.<#=p.PieceType#>));
-                            _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                            _cells[fromSquare] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             _cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.<#=p.Color#>)
                         {
-                            _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
-                            _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                            _cells[fromSquare] = (byte)Piece.EmptyCell;
+                            _cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
                                 collector.Add(new Move(fromSquare, to,
                                     MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.Capture));
-                            _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                            _cells[fromSquare] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             _cells[to] = toPiece;
                             break;
                         }
@@ -76,12 +76,12 @@ namespace ChessKit.ChessLogic
                             var toPiece = _cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
+                                _cells[fromSquare] = (byte)Piece.EmptyCell;
 <#
                                 if (p.PieceType != PieceType.King)
                                 {
 #>
-                                _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                                _cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                                 if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
 <#
                                 }
@@ -102,16 +102,16 @@ namespace ChessKit.ChessLogic
 <#
                                 }
 #>
-                                _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                                _cells[fromSquare] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.<#=p.Color#>)
                             {
-                                _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
+                                _cells[fromSquare] = (byte)Piece.EmptyCell;
 <#
                                 if (p.PieceType != PieceType.King)
                                 {
 #>
-                                _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                                _cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                                 if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
 <#
                                 }
@@ -132,7 +132,7 @@ namespace ChessKit.ChessLogic
 <#
                                 }
 #>
-                                _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
+                                _cells[fromSquare] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             }
                         }
                     }

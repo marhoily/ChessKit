@@ -4,164 +4,164 @@ namespace ChessKit.ChessLogic
 {
     public static class PieceExtensions
     {
-        public static CompactPiece Pack(this PieceType pieceType, Color color)
+        public static Piece Pack(this PieceType pieceType, Color color)
         {
-            return (CompactPiece) ((MoveAnnotations) pieceType | (MoveAnnotations) color);
+            return (Piece) ((MoveAnnotations) pieceType | (MoveAnnotations) color);
         }
 
-        public static Color Color(this CompactPiece piece)
+        public static Color Color(this Piece piece)
         {
             return (Color) ((MoveAnnotations) piece & (MoveAnnotations) ChessLogic.Color.Black);
         }
 
-        public static PieceType PieceType(this CompactPiece piece)
+        public static PieceType PieceType(this Piece piece)
         {
             return (PieceType) ((MoveAnnotations) piece & ~(MoveAnnotations) ChessLogic.Color.Black);
         }
 
-        public static char GetSymbol(this CompactPiece piece)
+        public static char GetSymbol(this Piece piece)
         {
             switch (piece)
             {
-                case CompactPiece.WhitePawn:
+                case Piece.WhitePawn:
                     return 'P';
-                case CompactPiece.WhiteKnight:
+                case Piece.WhiteKnight:
                     return 'N';
-                case CompactPiece.WhiteBishop:
+                case Piece.WhiteBishop:
                     return 'B';
-                case CompactPiece.WhiteRook:
+                case Piece.WhiteRook:
                     return 'R';
-                case CompactPiece.WhiteQueen:
+                case Piece.WhiteQueen:
                     return 'Q';
-                case CompactPiece.WhiteKing:
+                case Piece.WhiteKing:
                     return 'K';
-                case CompactPiece.BlackPawn:
+                case Piece.BlackPawn:
                     return 'p';
-                case CompactPiece.BlackKnight:
+                case Piece.BlackKnight:
                     return 'n';
-                case CompactPiece.BlackBishop:
+                case Piece.BlackBishop:
                     return 'b';
-                case CompactPiece.BlackRook:
+                case Piece.BlackRook:
                     return 'r';
-                case CompactPiece.BlackQueen:
+                case Piece.BlackQueen:
                     return 'q';
-                case CompactPiece.BlackKing:
+                case Piece.BlackKing:
                     return 'k';
-                case CompactPiece.EmptyCell:
+                case Piece.EmptyCell:
                     return ' ';
                 default:
                     throw new Exception("Unexpected");
             }
         }
 
-        public static char GetTypeSymbol(this CompactPiece piece)
+        public static char GetTypeSymbol(this Piece piece)
         {
             switch (piece)
             {
-                case CompactPiece.WhitePawn:
+                case Piece.WhitePawn:
                     return 'P';
-                case CompactPiece.WhiteKnight:
+                case Piece.WhiteKnight:
                     return 'N';
-                case CompactPiece.WhiteBishop:
+                case Piece.WhiteBishop:
                     return 'B';
-                case CompactPiece.WhiteRook:
+                case Piece.WhiteRook:
                     return 'R';
-                case CompactPiece.WhiteQueen:
+                case Piece.WhiteQueen:
                     return 'Q';
-                case CompactPiece.WhiteKing:
+                case Piece.WhiteKing:
                     return 'K';
-                case CompactPiece.BlackPawn:
+                case Piece.BlackPawn:
                     return 'P';
-                case CompactPiece.BlackKnight:
+                case Piece.BlackKnight:
                     return 'N';
-                case CompactPiece.BlackBishop:
+                case Piece.BlackBishop:
                     return 'B';
-                case CompactPiece.BlackRook:
+                case Piece.BlackRook:
                     return 'R';
-                case CompactPiece.BlackQueen:
+                case Piece.BlackQueen:
                     return 'Q';
-                case CompactPiece.BlackKing:
+                case Piece.BlackKing:
                     return 'K';
                 default:
                     throw new Exception("Unexpected");
             }
         }
 
-        public static bool TryParse(this char ch, out CompactPiece piece)
+        public static bool TryParse(this char ch, out Piece piece)
         {
             switch (ch)
             {
                 case 'P':
-                    piece = CompactPiece.WhitePawn;
+                    piece = Piece.WhitePawn;
                     break;
                 case 'N':
-                    piece = CompactPiece.WhiteKnight;
+                    piece = Piece.WhiteKnight;
                     break;
                 case 'B':
-                    piece = CompactPiece.WhiteBishop;
+                    piece = Piece.WhiteBishop;
                     break;
                 case 'R':
-                    piece = CompactPiece.WhiteRook;
+                    piece = Piece.WhiteRook;
                     break;
                 case 'Q':
-                    piece = CompactPiece.WhiteQueen;
+                    piece = Piece.WhiteQueen;
                     break;
                 case 'K':
-                    piece = CompactPiece.WhiteKing;
+                    piece = Piece.WhiteKing;
                     break;
                 case 'p':
-                    piece = CompactPiece.BlackPawn;
+                    piece = Piece.BlackPawn;
                     break;
                 case 'n':
-                    piece = CompactPiece.BlackKnight;
+                    piece = Piece.BlackKnight;
                     break;
                 case 'b':
-                    piece = CompactPiece.BlackBishop;
+                    piece = Piece.BlackBishop;
                     break;
                 case 'r':
-                    piece = CompactPiece.BlackRook;
+                    piece = Piece.BlackRook;
                     break;
                 case 'q':
-                    piece = CompactPiece.BlackQueen;
+                    piece = Piece.BlackQueen;
                     break;
                 case 'k':
-                    piece = CompactPiece.BlackKing;
+                    piece = Piece.BlackKing;
                     break;
                 default:
-                    piece = CompactPiece.EmptyCell;
+                    piece = Piece.EmptyCell;
                     return false;
             }
             return true;
         }
 
-        public static CompactPiece Parse(this char ch)
+        public static Piece Parse(this char ch)
         {
             switch (ch)
             {
                 case 'P':
-                    return CompactPiece.WhitePawn;
+                    return Piece.WhitePawn;
                 case 'N':
-                    return CompactPiece.WhiteKnight;
+                    return Piece.WhiteKnight;
                 case 'B':
-                    return CompactPiece.WhiteBishop;
+                    return Piece.WhiteBishop;
                 case 'R':
-                    return CompactPiece.WhiteRook;
+                    return Piece.WhiteRook;
                 case 'Q':
-                    return CompactPiece.WhiteQueen;
+                    return Piece.WhiteQueen;
                 case 'K':
-                    return CompactPiece.WhiteKing;
+                    return Piece.WhiteKing;
                 case 'p':
-                    return CompactPiece.BlackPawn;
+                    return Piece.BlackPawn;
                 case 'n':
-                    return CompactPiece.BlackKnight;
+                    return Piece.BlackKnight;
                 case 'b':
-                    return CompactPiece.BlackBishop;
+                    return Piece.BlackBishop;
                 case 'r':
-                    return CompactPiece.BlackRook;
+                    return Piece.BlackRook;
                 case 'q':
-                    return CompactPiece.BlackQueen;
+                    return Piece.BlackQueen;
                 case 'k':
-                    return CompactPiece.BlackKing;
+                    return Piece.BlackKing;
                 default:
                     throw new Exception("Unexpected");
             }

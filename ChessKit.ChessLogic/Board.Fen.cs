@@ -128,7 +128,7 @@ namespace ChessKit.ChessLogic
                 }
 
                 if (empty != 0) fen.Append((char)('0' + empty));
-                fen.Append(((CompactPiece)_cells[idx]).GetSymbol());
+                fen.Append(((Piece)_cells[idx]).GetSymbol());
                 empty = 0;
                 if (sq != 0 && sq % 8 == 0) fen.Append('/');
             }
