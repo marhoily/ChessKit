@@ -43,7 +43,7 @@ namespace ChessKit.ChessLogic
                 var moveFromSq = moveFrom + (moveFrom & ~7);
                 var piece = this[moveFromSq];
                 if (piece == 0) continue;
-                if (Piece.UnpackColor(piece) != sideOnMove) continue;
+                if (piece.Color() != sideOnMove) continue;
                 GenerateMoves(piece, moveFromSq, EnPassantFile, _caslings, res);
             }
             return res;
@@ -52,7 +52,7 @@ namespace ChessKit.ChessLogic
         {
             var piece = this[moveFrom];
             if (piece == CompactPiece.EmptyCell) return new List<Move>();
-            if (Piece.UnpackColor(piece) != SideOnMove) return new List<Move>();
+            if (piece.Color() != SideOnMove) return new List<Move>();
             var res = new List<Move>(28);
             GenerateMoves(piece, moveFrom, EnPassantFile, _caslings, res);
             return res;
@@ -87,7 +87,7 @@ namespace ChessKit.ChessLogic
             }
 
             // Side to move?
-            var color = Piece.UnpackColor(piece);
+            var color = piece.Color();
             if (color != src.SideOnMove)
             {
                 PreviousMove.Annotations = (MoveAnnotations)piece | MoveAnnotations.WrongSideToMove;
@@ -97,7 +97,7 @@ namespace ChessKit.ChessLogic
             // Move to occupied cell?
             var moveTo = (int)move.To;
             var toPiece = src[moveTo];
-            if (toPiece != CompactPiece.EmptyCell && Piece.UnpackColor(toPiece) == color)
+            if (toPiece != CompactPiece.EmptyCell && toPiece.Color() == color)
             {
                 PreviousMove.Annotations = (MoveAnnotations)piece | MoveAnnotations.ToOccupiedCell;
                 return;
@@ -129,7 +129,7 @@ namespace ChessKit.ChessLogic
             }
             else if ((PreviousMove.Annotations & MoveAnnotations.Promotion) != 0)
             {
-                piece = Piece.Pack(proposedPromotion, color);
+                piece = proposedPromotion.Pack(color);
             }
 
             this[moveTo] = piece;

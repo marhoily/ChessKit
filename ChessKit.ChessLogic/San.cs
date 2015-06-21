@@ -45,8 +45,7 @@ namespace ChessKit.ChessLogic
             var sb = new StringBuilder(3);
 
             if ((move.Annotations & MoveAnnotations.Promotion) != 0)
-                sb.Append('=').Append(Piece.Pack(
-                    move.ProposedPromotion, PieceColor.White).GetSymbol());
+                sb.Append('=').Append(move.ProposedPromotion.Pack(PieceColor.White).GetSymbol());
 
             if ((move.Annotations & MoveAnnotations.Check) != 0) sb.Append('+');
             else if (board.IsMate) sb.Append('#');
@@ -183,7 +182,7 @@ namespace ChessKit.ChessLogic
             var prom = PieceType.Queen;
             if (san[index - 1] == '=')
             {
-                prom = Piece.UnpackType(Piece.Parse(san[index]));
+                prom = san[index].Parse().PieceType();
                 index -= 2;
             }
 
@@ -214,7 +213,7 @@ namespace ChessKit.ChessLogic
             var pieceChar = PieceType.Pawn;
             if (index > -1)
             {
-                pieceChar = Piece.UnpackType(Piece.Parse(san[index]));
+                pieceChar = san[index].Parse().PieceType();
                 index--;
             }
             if (index != -1) throw new FormatException("Illegal characters");

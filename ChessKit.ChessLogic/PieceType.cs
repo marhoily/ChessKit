@@ -2,8 +2,6 @@
 
 namespace ChessKit.ChessLogic
 {
-    [SuppressMessage("Microsoft.Design", "CA1027:MarkEnumsWithFlags",
-        Justification = "It really is not flags")]
     public enum PieceType
     {
         None,

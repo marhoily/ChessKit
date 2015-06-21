@@ -49,7 +49,7 @@ namespace ChessKit.ChessLogic
                 else
                 {
                     var c = (sq / 8) * 8 + 7 - sq % 8;
-                    this[c + (c & ~7)] = Piece.Parse(fen[i]);
+                    this[c + (c & ~7)] = fen[i].Parse();
                     sq--;
                 }
             }

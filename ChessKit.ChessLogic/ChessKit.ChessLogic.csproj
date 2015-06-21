@@ -101,13 +101,14 @@
     <Compile Include="Caslings.cs" />
     <Compile Include="CompactPiece.cs" />
     <Compile Include="GameState.cs" />
-    <Compile Include="MetaPiece.cs" />
+    <Compile Include="Internals\ImmutableAttribute.cs" />
+    <Compile Include="Internals\MetaPiece.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Internals\MoveDirection.cs" />
     <Compile Include="MoveAnnotations.cs" />
-    <Compile Include="Piece.cs" />
     <Compile Include="PieceColor.cs" />
-    <Compile Include="PieceExt.cs" />
+    <Compile Include="PieceExtensions.cs" />
+    <Compile Include="Side.cs" />
     <Compile Include="PieceType.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="GlobalSuppressions.cs" />
