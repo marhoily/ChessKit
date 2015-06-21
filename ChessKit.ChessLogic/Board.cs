@@ -155,23 +155,23 @@ namespace ChessKit.ChessLogic
 				}
 				else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling)) // TODO: Move it up?
 				{
-					_cells[H1] = (byte)CompactPiece.EmptyCell;
-					_cells[F1] = (byte)CompactPiece.WhiteRook;
+					_cells[S.H1] = (byte)CompactPiece.EmptyCell;
+					_cells[S.F1] = (byte)CompactPiece.WhiteRook;
 				}
 				else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling))
 				{
-					_cells[A1] = (byte)CompactPiece.EmptyCell;
-					_cells[D1] = (byte)CompactPiece.WhiteRook;
+					_cells[S.A1] = (byte)CompactPiece.EmptyCell;
+					_cells[S.D1] = (byte)CompactPiece.WhiteRook;
 				}
 				else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling))
 				{
-					_cells[H8] = (byte)CompactPiece.EmptyCell;
-					_cells[F8] = (byte)CompactPiece.BlackRook;
+					_cells[S.H8] = (byte)CompactPiece.EmptyCell;
+					_cells[S.F8] = (byte)CompactPiece.BlackRook;
 				}
 				else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling))
 				{
-					_cells[A8] = (byte)CompactPiece.EmptyCell;
-					_cells[D8] = (byte)CompactPiece.BlackRook;
+					_cells[S.A8] = (byte)CompactPiece.EmptyCell;
+					_cells[S.D8] = (byte)CompactPiece.BlackRook;
 				}
 			}
 			if (IsUnderCheck(src.SideOnMove))
@@ -195,12 +195,12 @@ namespace ChessKit.ChessLogic
 		{
 			switch (pos)
 			{
-				case A1: return CastlingAvailability.WhiteQueen;
-				case E1: return CastlingAvailability.White;
-				case H1: return CastlingAvailability.WhiteKing;
-				case A8: return CastlingAvailability.BlackQueen;
-				case E8: return CastlingAvailability.Black;
-				case H8: return CastlingAvailability.BlackKing;
+				case S.A1: return CastlingAvailability.WhiteQueen;
+				case S.E1: return CastlingAvailability.White;
+				case S.H1: return CastlingAvailability.WhiteKing;
+				case S.A8: return CastlingAvailability.BlackQueen;
+				case S.E8: return CastlingAvailability.Black;
+				case S.H8: return CastlingAvailability.BlackKing;
 				default: return CastlingAvailability.None;
 			}
 		}
