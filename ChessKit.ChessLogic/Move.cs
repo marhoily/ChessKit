@@ -37,10 +37,10 @@ namespace ChessKit.ChessLogic
         public bool IsValid => (Annotations & MoveAnnotations.AllErrors) == 0;
 
         public bool IsKingsideCastling
-            => (Annotations & (MoveAnnotations.BlackKingsideCastling | MoveAnnotations.WhiteKingsideCastling)) != 0;
+            => (Annotations & (MoveAnnotations.BK | MoveAnnotations.WK)) != 0;
 
         public bool IsQueensideCastling
-            => (Annotations & (MoveAnnotations.BlackQueensideCastling | MoveAnnotations.WhiteQueensideCastling)) != 0;
+            => (Annotations & (MoveAnnotations.BQ | MoveAnnotations.WQ)) != 0;
 
         public bool IsProposedPromotion => (Annotations & (MoveAnnotations.Promotion)) != 0;
 

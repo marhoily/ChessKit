@@ -7,10 +7,10 @@ namespace ChessKit.ChessLogic.Enums
     {
         None,
 
-        WhiteKing = MoveAnnotations.WhiteKingsideCastling,
-        BlackKing = MoveAnnotations.BlackKingsideCastling,
-        WhiteQueen = MoveAnnotations.WhiteQueensideCastling,
-        BlackQueen = MoveAnnotations.BlackQueensideCastling,
+        WhiteKing = MoveAnnotations.WK,
+        BlackKing = MoveAnnotations.BK,
+        WhiteQueen = MoveAnnotations.WQ,
+        BlackQueen = MoveAnnotations.BQ,
 
         White = WhiteKing | WhiteQueen,
         Black = BlackKing | BlackQueen

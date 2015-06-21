@@ -135,7 +135,7 @@ namespace ChessKit.ChessLogic
             this[moveTo] = piece;
             _cells[moveFrom] = 0;
 
-            if ((PreviousMove.Annotations & (MoveAnnotations.PawnDoublePush | MoveAnnotations.EnPassant | MoveAnnotations.Castling)) != 0)
+            if ((PreviousMove.Annotations & (MoveAnnotations.PawnDoublePush | MoveAnnotations.EnPassant | MoveAnnotations.AllCastlings)) != 0)
             {
                 if ((PreviousMove.Annotations & MoveAnnotations.PawnDoublePush) != 0)
                 {
@@ -145,22 +145,22 @@ namespace ChessKit.ChessLogic
                 {
                     _cells[moveTo + (color == Color.White ? -16 : +16)] = 0;
                 }
-                else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.WhiteKingsideCastling)) // TODO: Move it up?
+                else if (PreviousMove.Annotations == MoveAnnotations.WK) // TODO: Move it up?
                 {
                     _cells[S.H1] = (byte)Piece.EmptyCell;
                     _cells[S.F1] = (byte)Piece.WhiteRook;
                 }
-                else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.WhiteQueensideCastling))
+                else if (PreviousMove.Annotations == MoveAnnotations.WQ)
                 {
                     _cells[S.A1] = (byte)Piece.EmptyCell;
                     _cells[S.D1] = (byte)Piece.WhiteRook;
                 }
-                else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.BlackKingsideCastling))
+                else if (PreviousMove.Annotations == MoveAnnotations.BK)
                 {
                     _cells[S.H8] = (byte)Piece.EmptyCell;
                     _cells[S.F8] = (byte)Piece.BlackRook;
                 }
-                else if (PreviousMove.Annotations == (MoveAnnotations.Castling | MoveAnnotations.BlackQueensideCastling))
+                else if (PreviousMove.Annotations == MoveAnnotations.BQ)
                 {
                     _cells[S.A8] = (byte)Piece.EmptyCell;
                     _cells[S.D8] = (byte)Piece.BlackRook;

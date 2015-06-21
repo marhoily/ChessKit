@@ -4,18 +4,18 @@ namespace ChessKit.ChessLogic.Enums
   {
     EmptyCell,
 
-    WhitePawn   = Color.White | MoveAnnotations.Pawn  ,
-    WhiteBishop = Color.White | MoveAnnotations.Bishop,
-    WhiteKnight = Color.White | MoveAnnotations.Knight,
-    WhiteRook   = Color.White | MoveAnnotations.Rook  ,
-    WhiteQueen  = Color.White | MoveAnnotations.Queen ,
-    WhiteKing   = Color.White | MoveAnnotations.King  ,
+    WhitePawn   = Color.White | PieceType.Pawn  ,
+    WhiteBishop = Color.White | PieceType.Bishop,
+    WhiteKnight = Color.White | PieceType.Knight,
+    WhiteRook   = Color.White | PieceType.Rook  ,
+    WhiteQueen  = Color.White | PieceType.Queen ,
+    WhiteKing   = Color.White | PieceType.King  ,
     
-    BlackPawn   = Color.Black | MoveAnnotations.Pawn  ,
-    BlackBishop = Color.Black | MoveAnnotations.Bishop,
-    BlackKnight = Color.Black | MoveAnnotations.Knight,
-    BlackRook   = Color.Black | MoveAnnotations.Rook  ,
-    BlackQueen  = Color.Black | MoveAnnotations.Queen ,
-    BlackKing   = Color.Black | MoveAnnotations.King  ,
+    BlackPawn   = Color.Black | PieceType.Pawn  ,
+    BlackBishop = Color.Black | PieceType.Bishop,
+    BlackKnight = Color.Black | PieceType.Knight,
+    BlackRook   = Color.Black | PieceType.Rook  ,
+    BlackQueen  = Color.Black | PieceType.Queen ,
+    BlackKing   = Color.Black | PieceType.King  ,
   }
 }                                                    

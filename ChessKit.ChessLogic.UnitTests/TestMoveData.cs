@@ -17,8 +17,10 @@ namespace ChessKit.ChessLogic.UnitTests
         {
             get
             {
-                return Result.Split(new[] { " | " }, StringSplitOptions.None)
-                    .Aggregate<string, MoveAnnotations>(0, (current, item) => current | (MoveAnnotations)Enum.Parse(typeof(MoveAnnotations), item));
+                MoveAnnotations result = 0;
+                foreach (var s in Result.Split(new[] {" | "}, StringSplitOptions.None))
+                    result = result | (MoveAnnotations) Enum.Parse(typeof (MoveAnnotations), s);
+                return result;
             }
         }
 
@@ -37,7 +39,7 @@ namespace ChessKit.ChessLogic.UnitTests
             return new[] {
                 // ReSharper disable StringLiteralTypo
                 new [] {new TestMoveData("IsValidRook", "4k2r/2r1np1p/1p5b/p2p2p1/qPb2PP1/P1P1P2P/1B1P1KN1/R5R1 b k - 2 25", "a4-b4", "Queen | Capture") },
-                new [] {new TestMoveData("Long castling doesn't care if B file square is under attack", "r3k1r1/3bbpp1/2q5/2pN3p/pQ4n1/1P1K4/n2P1PBP/R5NR b q - 0 30", "e8-c8", "Castling | BlackQueensideCastling") },
+                new [] {new TestMoveData("Long castling doesn't care if B file square is under attack", "r3k1r1/3bbpp1/2q5/2pN3p/pQ4n1/1P1K4/n2P1PBP/R5NR b q - 0 30", "e8-c8", "BQ") },
                 new [] {new TestMoveData("No stack overflow", "8/5k2/R6K/8/8/8/8/8 w - - 7 143", "h6-h7", " King") },
                 new [] {new TestMoveData("There is no check 2", "7b/P4r2/1R6/7k/8/8/6KB/8 w - - 5 108", "g2-h1", " King") },
                 new [] {new TestMoveData("There is no check 1", "3N4/2n2r2/k7/1q3Pb1/2Q4p/4RK1P/4p3/8 b - - 7 85", "a6-a5", " King ") },
@@ -46,12 +48,12 @@ namespace ChessKit.ChessLogic.UnitTests
                 new [] {new TestMoveData("Rook move2", "rnbqkbnr/pp1ppp1p/6p1/2p5/7P/2N5/PPPPPPP1/R1BQKBNR w KQkq c6 0 3", "a1-b1", " Rook") },
                 new [] {new TestMoveData("IsValidRook", "1n1qkbnr/rpp1pppp/p2pb3/8/8/NP2P1PN/P1PP1P1P/R1BQKB1R b KQk - 0 5", "a7-a8", " Rook") },
                 new [] {new TestMoveData("IsValidRook", "r2qkbnr/1pp2ppp/p2pb3/8/6Q1/PP2P1PN/2PP1PBP/R1B1K2R b KQk - 0 10", "a8-c8", " Rook") },
-                new [] {new TestMoveData("IsValidKingCastlingMove 1", "1rbqkb1r/p1pp1ppp/1p6/2n1p3/4nP1P/3PPN2/PPPNB1P1/R1BQK2R w KQk - 1 8", "e1-g1", "Castling | WhiteKingsideCastling") },
+                new [] {new TestMoveData("IsValidKingCastlingMove 1", "1rbqkb1r/p1pp1ppp/1p6/2n1p3/4nP1P/3PPN2/PPPNB1P1/R1BQK2R w KQk - 1 8", "e1-g1", "WK") },
                 new [] {new TestMoveData("BishopMove2", "rnbqkb1r/p2ppp1p/6pn/1pp5/4N2P/7N/PPPPPPP1/R1BQKBR1 b Qkq - 3 5", "c8-b7", "Bishop") },
-                new [] {new TestMoveData("Custle from under check", "rn1qk2r/1b2p1b1/2ppPp1n/p5pQ/p1PP1N2/6P1/PP3P1P/1RB1KB1R b kq - 0 15", "e8-g8", "Castling | BlackKingsideCastling | CastleFromCheck") },
-                new [] {new TestMoveData("Custle from under check", "r3k2r/ppp2ppp/n2q1n2/1Bbppb2/4P3/P1N2N2/1PPP1PPP/R1B1QRK1 b kq - 0 8", "e8-c8", "Castling | BlackQueensideCastling | CastleFromCheck") },
-                new [] {new TestMoveData("Custle from under check", "rnbqk2r/ppp2ppp/5n2/1Bbpp3/4P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq - 0 5", "e8-g8", "Castling | BlackKingsideCastling | CastleFromCheck") },
-                new [] {new TestMoveData("Castling cannot Capture a piece", "r1B1k1r1/p2p1p2/1p1b3p/2pqp1p1/PPP2n2/B1N2NP1/3P3P/1R1K3n b q - 0 35", "e8-c8", "Castling | BlackQueensideCastling | Capture | DoesNotCaptureThisWay | BlackQueensideCastling") },
+                new [] {new TestMoveData("Custle from under check", "rn1qk2r/1b2p1b1/2ppPp1n/p5pQ/p1PP1N2/6P1/PP3P1P/1RB1KB1R b kq - 0 15", "e8-g8", "BK | CastleFromCheck") },
+                new [] {new TestMoveData("Custle from under check", "r3k2r/ppp2ppp/n2q1n2/1Bbppb2/4P3/P1N2N2/1PPP1PPP/R1B1QRK1 b kq - 0 8", "e8-c8", "BQ | CastleFromCheck") },
+                new [] {new TestMoveData("Custle from under check", "rnbqk2r/ppp2ppp/5n2/1Bbpp3/4P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq - 0 5", "e8-g8", "BK | CastleFromCheck") },
+                new [] {new TestMoveData("Castling cannot Capture a piece", "r1B1k1r1/p2p1p2/1p1b3p/2pqp1p1/PPP2n2/B1N2NP1/3P3P/1R1K3n b q - 0 35", "e8-c8", "BQ | Capture | DoesNotCaptureThisWay | BQ") },
                 new [] {new TestMoveData("DoesNotMoveThisWay", "rnbqk1nr/pppp1ppp/3bp3/8/4P3/7P/PPPP1PP1/RNBQKBNR w KQkq - 1 3", "a2-e2", "Pawn | DoesNotMoveThisWay") },
                 new [] {new TestMoveData("BishopMove", "rnbqkbnr/pp1ppp1p/6p1/2p5/7P/2N5/PPPPPPP1/R1BQKBNR w KQkq c6 0 3", "c1-b1", "Bishop | DoesNotMoveThisWay") },
                 new [] {new TestMoveData("Knight move", "rnbqkbnr/ppp2p1p/3p2P1/4p3/4P3/8/PPPP2PP/RNBQKBNR b KQkq - 0 4", "b8-b6", "Knight | DoesNotMoveThisWay") },
@@ -64,10 +66,10 @@ namespace ChessKit.ChessLogic.UnitTests
                 new [] {new TestMoveData("IsValidKnightMove5", "8/2r2r2/2bb2k1/N2Pp3/1p2PBnp/p1PK1B2/PP6/R6R w - - 4 48", "a5-h2", "Knight | DoesNotMoveThisWay") },
                 new [] {new TestMoveData("IsValidKnightMove6", "r1bqkb2/1ppppr2/p5pn/5p1p/3Q4/N2PBN2/PPP1PPPP/R3KBR1 b Qq - 3 10", "h6-b8", "Knight | DoesNotMoveThisWay") },
                 new [] {new TestMoveData("IsValidKnightMove7", "r1bqkb2/1ppppp1r/p5pn/7p/3Q4/N2P1N2/PPP1PPPP/R1B1KBR1 w Qq - 0 8", "a3-h4", "Knight | DoesNotMoveThisWay") },
-                new [] {new TestMoveData("IsValidKingCastlingMove 2", "rn1qkbn1/p3p1pr/2p2p2/1p1p3p/3P2b1/2P5/PP1BPPPP/RN2KBNR w KQq - 2 8", "e1-c1", "Castling | WhiteQueensideCastling | DoesNotJump") },
-                new [] {new TestMoveData("IsValidKingCastlingMove 4", "rn1qkb2/p5pr/2p2p1n/1p1pp1Bp/3P2b1/1PP2P2/P3P1PP/RN2KBNR b KQq - 1 10", "e8-c8", "Castling | BlackQueensideCastling | DoesNotJump") },
+                new [] {new TestMoveData("IsValidKingCastlingMove 2", "rn1qkbn1/p3p1pr/2p2p2/1p1p3p/3P2b1/2P5/PP1BPPPP/RN2KBNR w KQq - 2 8", "e1-c1", "WQ | DoesNotJump") },
+                new [] {new TestMoveData("IsValidKingCastlingMove 4", "rn1qkb2/p5pr/2p2p1n/1p1pp1Bp/3P2b1/1PP2P2/P3P1PP/RN2KBNR b KQq - 1 10", "e8-c8", "BQ | DoesNotJump") },
                 new [] {new TestMoveData("IsValidKingCastlingMove 6", "rnb1k3/2q1r1np/p1pp1p2/p1b1Pp2/1P2P3/4QNP1/P1PK1PRP/R1B5 w q - 3 23", "d2-b2", "King | DoesNotMoveThisWay") },
-                new [] {new TestMoveData("IsValidKingCastlingMove 7", "rnbqkbn1/pppppppr/8/6Np/8/8/PPPPPPPP/RNBQKB1R w KQq - 2 3", "e1-g1", "Castling | WhiteKingsideCastling | DoesNotJump") },
+                new [] {new TestMoveData("IsValidKingCastlingMove 7", "rnbqkbn1/pppppppr/8/6Np/8/8/PPPPPPPP/RNBQKB1R w KQq - 2 3", "e1-g1", "WK | DoesNotJump") },
                 new [] {new TestMoveData("IsValidKingCastlingMove 8", "2b1k2r/r2p1ppp/2p1p3/p7/4P1nq/1P3PP1/P3K2P/3RbBNR w k - 7 23", "e2-g2", "King | DoesNotMoveThisWay") },
                 new [] {new TestMoveData("IsValidKingCastlingMove 9", "r1bqkbnr/pppp1ppp/n7/4p3/5P2/3P4/PPP1P1PP/RNBQKBNR w KQkq - 1 3", "e1-a3", "King | DoesNotMoveThisWay") },
                 new [] {new TestMoveData("IsValidKing", "8/5K2/k7/8/3N4/1P4Q1/8/8 b - - 6 110", "a6-h5", "King | DoesNotMoveThisWay") },
@@ -82,11 +84,11 @@ namespace ChessKit.ChessLogic.UnitTests
                 new [] {new TestMoveData("IsValidPawn8", "r1bqkb1r/pppp1ppp/2n5/4p3/PPP1n3/N7/R2PPPPP/2BQKBNR b Kkq c3 0 5", "c7-c5", "Pawn | DoesNotJump") },
                 new [] {new TestMoveData("IsValidPawn9", "r1bq1b1r/1pppnkpp/8/p3ppP1/PPP1n3/N4P2/R2PP2P/2BQKBNR b K - 3 10", "a5-a4", "Pawn | Capture | DoesNotCaptureThisWay") },
                 new [] {new TestMoveData("IsValidPawn10", "r1bqkb1r/pppp1ppp/2n5/4p3/PPP1n3/N7/R2PPPPP/2BQKBNR b Kkq c3 0 5", "e5-a1", "Pawn | DoesNotMoveThisWay") },
-                new [] {new TestMoveData("Cant short castle through occupied square", "8/4k3/8/8/8/8/8/4Kb1R w K - 0 1", "e1-g1", "Castling | WhiteKingsideCastling | DoesNotJump") },
-                new [] {new TestMoveData("Cant long castle through occupied square", "8/4k3/8/6b1/8/8/8/R2bK3 w Q - 0 1", "e1-c1", "Castling | WhiteQueensideCastling | DoesNotJump") },
+                new [] {new TestMoveData("Cant short castle through occupied square", "8/4k3/8/8/8/8/8/4Kb1R w K - 0 1", "e1-g1", "WK | DoesNotJump") },
+                new [] {new TestMoveData("Cant long castle through occupied square", "8/4k3/8/6b1/8/8/8/R2bK3 w Q - 0 1", "e1-c1", "WQ | DoesNotJump") },
                 new [] {new TestMoveData("Cannot move where your piece is", "rnbqkbnr/pppppppp/8/8/8/5N2/PPPPPPPP/RNBQKB1R b KQkq - 1 1", "f6-g8", "EmptyCell") },
                 new [] {new TestMoveData("Cannot move from empty cell", "rnbqk1nr/pppp1ppp/3bp3/8/4P3/7P/PPPP1PP1/RNBQKBNR w KQkq - 1 3", "e2-e3", "EmptyCell") },
-                new [] {new TestMoveData("Promotion", "4kb1N/p2nn3/1rq4p/3p3P/PP2p1p1/2ppKPp1/1B2P3/2R4R b - - 0 40", "e8-c8", "Castling | HasNoCastling | BlackQueensideCastling") },
+                new [] {new TestMoveData("Promotion", "4kb1N/p2nn3/1rq4p/3p3P/PP2p1p1/2ppKPp1/1B2P3/2R4R b - - 0 40", "e8-c8", "HasNoCastling | BQ") },
                 new [] {new TestMoveData("Move to check", "rnbqkb1r/ppp2ppp/8/3pp1N1/1P3PnP/2P5/P2PP1P1/RNBQKBR1 w Qkq - 1 1", "e1-f2", "King | MoveToCheck") },
                 new [] {new TestMoveData("Move to check from pawn", "r2q2n1/p1p1kp1r/b5p1/1p1Pn2p/8/bP1P1P1P/PR1BB1P1/3QK1NR b K - 0 1", "e7-e6", "King | MoveToCheck") },
                 new [] {new TestMoveData("There is check from bishop 1", "rnb1kb1r/1pp1pppp/p4n2/2qp4/5P2/3P2PP/PPPNP1B1/R1BQK1NR w KQkq - 3 8", "e1-f2", "King | MoveToCheck") },
@@ -97,12 +99,12 @@ namespace ChessKit.ChessLogic.UnitTests
                 new [] {new TestMoveData("Knight 4", "rnbqkbnr/p2ppp1p/6p1/1pp5/4N2P/8/PPPPPPP1/R1BQKBNR w KQkq b6 0 1", "e4-c3", "Knight") },
                 new [] {new TestMoveData("Knight 5", "rnbqkbnr/p2ppp1p/6p1/1pp5/4N2P/8/PPPPPPP1/R1BQKBNR w KQkq b6 0 1", "e4-g3", "Knight") },
                 new [] {new TestMoveData("Knight | DoesNotMoveThisWay", "rnbqkb1r/p2ppp1p/6pn/1pp5/4N2P/7N/PPPPPPP1/R1BQKB1R w KQkq - 2 1", "h3-a6", "Knight | DoesNotMoveThisWay") },
-                new [] {new TestMoveData("Castling accross attacked square1", "r1bqk2r/pppp4/1P4pp/4pP2/n4PN1/B1n5/P2PP1BP/RN1QK2R b KQk - 1 15", "e8-g8", "Castling | BlackKingsideCastling | CastleThroughCheck") },
-                new [] {new TestMoveData("Castling accross attacked square2", "rn2kbn1/p4p1r/2p4q/1p1Bp1pp/PP1pPP2/2N4b/2PP3P/R1BQK2R w KQq - 0 13", "e1-g1", "Castling | WhiteKingsideCastling | CastleThroughCheck") },
-                new [] {new TestMoveData("Castling accross attacked square3", "1n2kb1r/q3p1p1/3p1Bpp/p1pN4/1p2P3/2PP1N1b/PP3P1P/R3K2R w Kk - 2 23", "e1-g1", "Castling | WhiteKingsideCastling | CastleThroughCheck") },
-                new [] {new TestMoveData("Castling accross the square attacked by a pawn", "1n3kn1/rpPb1p2/1P6/p1p3p1/P1B1PP2/2P4r/R5p1/1N2K2R w K - 1 28", "e1-g1", "Castling | WhiteKingsideCastling | CastleThroughCheck") },
-                new [] {new TestMoveData("IsValidKingCastlingMove 3", "1nb1kb2/3p1Np1/rpp4r/p1P1pp2/1Q2P1p1/PP2n3/4PP2/R3KBR1 w Q - 1 28", "e1-c1", "Castling | WhiteQueensideCastling | CastleThroughCheck") },
-                new [] {new TestMoveData("IsValidKingCastlingMove 5", "r3kbn1/p2nBNp1/r7/1b1P4/RP1P1P1P/3q2p1/3N2BR/4K3 b q - 1 30", "e8-c8", "Castling | BlackQueensideCastling | CastleThroughCheck") },
+                new [] {new TestMoveData("Castling accross attacked square1", "r1bqk2r/pppp4/1P4pp/4pP2/n4PN1/B1n5/P2PP1BP/RN1QK2R b KQk - 1 15", "e8-g8", "BK | CastleThroughCheck") },
+                new [] {new TestMoveData("Castling accross attacked square2", "rn2kbn1/p4p1r/2p4q/1p1Bp1pp/PP1pPP2/2N4b/2PP3P/R1BQK2R w KQq - 0 13", "e1-g1", "WK | CastleThroughCheck") },
+                new [] {new TestMoveData("Castling accross attacked square3", "1n2kb1r/q3p1p1/3p1Bpp/p1pN4/1p2P3/2PP1N1b/PP3P1P/R3K2R w Kk - 2 23", "e1-g1", "WK | CastleThroughCheck") },
+                new [] {new TestMoveData("Castling accross the square attacked by a pawn", "1n3kn1/rpPb1p2/1P6/p1p3p1/P1B1PP2/2P4r/R5p1/1N2K2R w K - 1 28", "e1-g1", "WK | CastleThroughCheck") },
+                new [] {new TestMoveData("IsValidKingCastlingMove 3", "1nb1kb2/3p1Np1/rpp4r/p1P1pp2/1Q2P1p1/PP2n3/4PP2/R3KBR1 w Q - 1 28", "e1-c1", "WQ | CastleThroughCheck") },
+                new [] {new TestMoveData("IsValidKingCastlingMove 5", "r3kbn1/p2nBNp1/r7/1b1P4/RP1P1P1P/3q2p1/3N2BR/4K3 b q - 1 30", "e8-c8", "BQ | CastleThroughCheck") },
                 new [] {new TestMoveData("IsValidPawn", "r1bq1b1r/1pppnkpp/8/p3ppP1/PPP1n3/N4P2/R2PP2P/2BQKBNR b K - 3 10", "a5-b4", "Pawn | Capture") },
                 new [] {new TestMoveData("En-passant Capture is allowed but for the wrong side", "rnbqkbnr/ppp2p1p/3p4/4pPp1/4P3/8/PPPP2PP/RNBQKBNR w KQkq g3 0 4", "f5-g6", "Pawn | Capture | EnPassant") },
                 new [] {new TestMoveData("Pawn doesn't Capture en-passant", "rnbqkb1r/1pp2ppp/p7/3pp1NP/1P3Pn1/2P5/P2PP1P1/RNBQKBR1 w Qkq - 0 1", "h5-g6", "Pawn | Capture | EnPassant | HasNoEnPassant") },
@@ -123,7 +125,7 @@ namespace ChessKit.ChessLogic.UnitTests
                 new [] {new TestMoveData("Move to occupied cell2", "rnbqk1nr/pppp1ppp/3bp3/8/4P3/7P/PPPP1PP1/RNBQKBNR w KQkq - 1 3", "a1-a2", "Rook | ToOccupiedCell") },
                 new [] {new TestMoveData("New check series", "1r1nkb1N/p3n3/q2p3p/7P/Pp2p1p1/RPPp1Pp1/1B2PK2/5R2 w - - 0 33", "f2-e3", "King") },
                 new [] {new TestMoveData("PawnDoublePush", "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "a2-a4", "Pawn | PawnDoublePush") },
-                new [] {new TestMoveData("Castling again", "4k3/8/1P4qP/2P2N2/8/P5r1/4n3/1K6 b - - 2 90", "e8-g8", "Castling | BlackKingsideCastling | HasNoCastling") },
+                new [] {new TestMoveData("Castling again", "4k3/8/1P4qP/2P2N2/8/P5r1/4n3/1K6 b - - 2 90", "e8-g8", "BK | HasNoCastling") },
                 new [] {new TestMoveData("Black pawn double move", "rnbqkbnr/pppppppp/8/8/8/N7/PPPPPPPP/R1BQKBNR b KQkq - 1 1", "a7-a5", "Pawn | PawnDoublePush") },
                 new [] {new TestMoveData("White pawn only takes this way1", "rnbqkbnr/ppppppp1/8/7p/8/N7/PPPPPPPP/R1BQKBNR w KQkq h6 0 2", "g2-h3", "Pawn | OnlyCapturesThisWay ") },
                 new [] {new TestMoveData("Black pawn only takes this way2", "rnbqkbnr/ppppp1p1/5p2/7p/2P5/N4P2/PP1PP1PP/R1BQKBNR b KQkq c3 0 3", "b7-c6", "Pawn | OnlyCapturesThisWay ") },

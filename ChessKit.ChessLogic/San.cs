@@ -67,13 +67,13 @@ namespace ChessKit.ChessLogic
 
             var sb = new StringBuilder(6);
 
-            if ((move.Annotations & (MoveAnnotations.WhiteKingsideCastling | MoveAnnotations.BlackKingsideCastling)) !=
+            if ((move.Annotations & (MoveAnnotations.WK | MoveAnnotations.BK)) !=
                 0)
             {
                 sb.Append("O-O");
             }
             else if ((move.Annotations &
-                      (MoveAnnotations.WhiteQueensideCastling | MoveAnnotations.BlackQueensideCastling)) != 0)
+                      (MoveAnnotations.WQ | MoveAnnotations.BQ)) != 0)
             {
                 sb.Append("O-O-O");
             }
