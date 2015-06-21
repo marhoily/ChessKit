@@ -5,10 +5,6 @@ namespace ChessKit.ChessLogic
 {
     public sealed partial class Board
 	{
-		private const ulong NoPinMap = 0xF0F0F0F0;
-		private const ulong PinMapAll = 0xFFFFFFFFFFFFFFFFL;
-		private ulong _pinMap = NoPinMap;
-
 		private GameState _gameState;
 
 		/// <summary>The side which is moving next (white or black)</summary>
@@ -39,7 +35,6 @@ namespace ChessKit.ChessLogic
 		  Justification = "Takes considerable amount of time")]
 		public List<Move> GetLegalMoves()
 		{
-			EnsurePinMap();
 			// BUG: Actually creates boards, but only returns moves!
 			var res = new List<Move>(50);
 			var sideOnMove = SideOnMove;
@@ -59,7 +54,6 @@ namespace ChessKit.ChessLogic
 		}
 		public List<Move> GetLegalMoves(int moveFrom)
 		{
-			EnsurePinMap();
 			var piece = this[moveFrom];
 			if (piece == CompactPiece.EmptyCell) return new List<Move>();
 			if (Piece.UnpackColor(piece) != SideOnMove) return new List<Move>();
@@ -68,26 +62,11 @@ namespace ChessKit.ChessLogic
 			return res;
 		}
 
-	    private void EnsurePinMap()
-		{
-			if (_pinMap != NoPinMap) return;
-			if (IsCheck)
-			{
-				_pinMap = PinMapAll;
-				return;
-			}
-			_pinMap = SideOnMove == PieceColor.White
-			  ? BuildWhitePinMap(_whiteKingPosition)
-			  : BuildBlackPinMap(_blackKingPosition);
-		}
+
 		private void SetStatus()
 		{
-			_pinMap = PinMapAll;
 			if (!IsUnderCheck(SideOnMove))
 			{
-				_pinMap = SideOnMove == PieceColor.White
-				  ? BuildWhitePinMap(_whiteKingPosition)
-				  : BuildBlackPinMap(_blackKingPosition);
 				return;
 			}
 			if (GetLegalMoves().Count > 0)

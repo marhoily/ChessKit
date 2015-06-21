@@ -38,39 +38,23 @@ namespace ChessKit.ChessLogic
             var toPiece = _cells[to];
             if (toPiece == 0) 
             {
-              if ((_pinMap & (1ul << fromSquare)) != 0)
-              {
                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                 _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
                 if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
                   collector.Add(new Move((Position)fromSquare, (Position)to, 
-                    MoveHints.<#=p.PieceType#>));
+                    MoveAnnotations.<#=p.PieceType#>));
                 _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
                 _cells[to] = toPiece;
-              }
-              else
-              {
-                collector.Add(new Move((Position)fromSquare, (Position)to, 
-                  MoveHints.<#=p.PieceType#>));
-              }
             }
             else if ((PieceColor)(toPiece & (byte)PieceColor.Black) != PieceColor.<#=p.Color#>)
             {
-              if ((_pinMap & (1ul << fromSquare)) != 0)
-              {
                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
                 _cells[to] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
                 if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
                   collector.Add(new Move((Position)fromSquare, (Position)to, 
-                    MoveHints.<#=p.PieceType#> | MoveHints.Capture));
+                    MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.Capture));
                 _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
                 _cells[to] = toPiece;
-              }
-              else
-              {
-                collector.Add(new Move((Position)fromSquare, (Position)to, 
-                  MoveHints.<#=p.PieceType#> | MoveHints.Capture));
-              }
               break;
             }
             else break;
@@ -97,8 +81,6 @@ namespace ChessKit.ChessLogic
               var toPiece = _cells[to];
               if (toPiece == 0) 
               {
-              if ((_pinMap & (1ul << fromSquare)) != 0)
-              {
                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
 <#
                 if (p.PieceType != PieceType.King)
@@ -116,7 +98,7 @@ namespace ChessKit.ChessLogic
                 }
 #>
                   collector.Add(new Move((Position)fromSquare, (Position)to, 
-                    MoveHints.<#=p.PieceType#>));
+                    MoveAnnotations.<#=p.PieceType#>));
 <#
                 if (p.PieceType != PieceType.King)
                 {
@@ -126,17 +108,9 @@ namespace ChessKit.ChessLogic
                 }
 #>
                 _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
-				}
-				else
-				{
-                  collector.Add(new Move((Position)fromSquare, (Position)to, 
-                    MoveHints.<#=p.PieceType#>));
-				}
               }
               else if ((PieceColor)(toPiece & (byte)PieceColor.Black) != PieceColor.<#=p.Color#>)
               {
-              if ((_pinMap & (1ul << fromSquare)) != 0)
-              {
                 _cells[fromSquare] = (byte)CompactPiece.EmptyCell;
 <#
                 if (p.PieceType != PieceType.King)
@@ -154,7 +128,7 @@ namespace ChessKit.ChessLogic
                 }
 #>
                  collector.Add(new Move((Position)fromSquare, (Position)to, 
-                   MoveHints.<#=p.PieceType#> | MoveHints.Capture));
+                   MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.Capture));
 <#
                 if (p.PieceType != PieceType.King)
                 {
@@ -164,12 +138,6 @@ namespace ChessKit.ChessLogic
                 }
 #>
                 _cells[fromSquare] = (byte)CompactPiece.<#=p.Color#><#=p.PieceType#>;
-				}
-				else
-				{
-                 collector.Add(new Move((Position)fromSquare, (Position)to, 
-                   MoveHints.<#=p.PieceType#> | MoveHints.Capture));
-				}
               }
             }
           }

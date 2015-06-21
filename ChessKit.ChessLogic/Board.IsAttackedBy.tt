@@ -58,53 +58,6 @@ foreach (var color in new []{PieceColor.White, PieceColor.Black})
 }
 #>
 
-<#
-foreach (var color in new []{PieceColor.White, PieceColor.Black})
-{
-#>
-    private ulong Build<#=color#>PinMap(int cell)
-    {
-	  var result = 1ul << cell;
-	  const byte rook = (byte)(MoveHints.Rook | MoveHints.Queen);
-	  const byte bishop = (byte)(MoveHints.Bishop | MoveHints.Queen);
-<#
-  foreach (var dir in Piece.WhiteQueen.MoveDirections)
-  {
-    var delta = dir.DeltaY * 16 + dir.DeltaX;
-	var target = Piece.WhiteRook.MoveDirections.Contains(dir) ? "rook" : "bishop";
-#>
-      {
-        var direction = 0ul;
-	    var counter = 0;
-        for (var i = cell + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
-        {
-          var piece = _cells[i];
-          if (piece == 0) 
-		  {
-		    direction |= 1ul << i;
-		  }
-          else if (Piece.UnpackColor((CompactPiece)piece) == PieceColor.<#=color#>)
-	  	  {
-	  	    if (++counter == 2) 
-			  direction = 0;
-	  	    direction |= 1ul << i;
-	  	  }
-	  	  else
-	  	  {
-            if ((piece & <#=target#>) != 0) 
-			  result |= direction;
-	  	    break;
-	  	  }
-        }
-	  }
 
-<#
-  }
-#>
-      return result;
-    }
-<#
-}
-#>
   }
 }
