@@ -74,17 +74,17 @@ namespace ChessKit.ChessLogic
                 case S.C1: // Queenside
                     if (_cells[S.D1] != 0 || _cells[S.B1] != 0) return King | DoesNotJump | WQ;
                     if (_cells[S.C1] != 0) return King | Capture | DoesNotCaptureThisWay | WQ;
+                    if ((castlings & Castlings.WQ) == 0) return King | WQ | HasNoCastling;
                     if (IsAttackedByBlack(S.E1)) return King | CastleFromCheck | WQ;
                     if (IsAttackedByBlack(S.D1)) return King | CastleThroughCheck | WQ;
-                    if ((castlings & Castlings.WQ) != 0) return King | WQ;
-                    return King | WQ | HasNoCastling;
+                    return King | WQ;
                 case S.G1: // Kingside
                     if (_cells[S.F1] != 0) return King | DoesNotJump | WK;
                     if (_cells[S.G1] != 0) return King | Capture | DoesNotCaptureThisWay | WK;
+                    if ((castlings & Castlings.WK) == 0) return King | WK | HasNoCastling;
                     if (IsAttackedByBlack(S.E1)) return King | CastleFromCheck | WK;
                     if (IsAttackedByBlack(S.F1)) return King | CastleThroughCheck | WK;
-                    if ((castlings & Castlings.WK) != 0) return King | WK;
-                    return King | WK | HasNoCastling;
+                    return King | WK;
             }
             return King | DoesNotMoveThisWay;
         }
@@ -96,17 +96,17 @@ namespace ChessKit.ChessLogic
                 case S.C8: // Queenside
                     if (_cells[S.D8] != 0 || _cells[S.B8] != 0) return King | DoesNotJump | BQ;
                     if (_cells[S.C8] != 0) return King | Capture | DoesNotCaptureThisWay | BQ;
+                    if ((castlings & Castlings.BQ) == 0) return King | BQ | HasNoCastling;
                     if (IsAttackedByWhite(S.E8)) return King | CastleFromCheck | BQ;
                     if (IsAttackedByWhite(S.D8)) return King | CastleThroughCheck | BQ;
-                    if ((castlings & Castlings.BQ) != 0) return King | BQ;
-                    return King | BQ | HasNoCastling;
+                    return King | BQ;
                 case S.G8: // Kingside
                     if (_cells[S.F8] != 0) return King | DoesNotJump | BK;
                     if (_cells[S.G8] != 0) return King | Capture | DoesNotCaptureThisWay | BK;
+                    if ((castlings & Castlings.BK) == 0) return King | BK | HasNoCastling;
                     if (IsAttackedByWhite(S.E8)) return King | CastleFromCheck | BK;
                     if (IsAttackedByWhite(S.F8)) return King | CastleThroughCheck | BK;
-                    if ((castlings & Castlings.BK) != 0) return King | BK;
-                    return King | BK | HasNoCastling;
+                    return King | BK;
             }
             return King | DoesNotMoveThisWay;
         }
