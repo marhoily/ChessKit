@@ -6,7 +6,7 @@ namespace ChessKit.ChessLogic
 {
     public sealed partial class Board
     {
-        internal GameState GameState;
+        internal GameStates GameState;
 
         /// <summary>The side which is moving next (white or black)</summary>
         public Color SideOnMove { get; private set; }
@@ -23,8 +23,8 @@ namespace ChessKit.ChessLogic
 
         public Move PreviousMove { get; }
 
-        public bool IsCheck => GameState == GameState.Check;
-        public bool IsMate => GameState == GameState.Mate;
+        public bool IsCheck => GameState == GameStates.Check;
+        public bool IsMate => GameState == GameStates.Mate;
 
         #region ' MakeMove '
 
@@ -58,7 +58,7 @@ namespace ChessKit.ChessLogic
         {
             if (!IsUnderCheck(SideOnMove)) return;
             GameState = GetLegalMoves().Count > 0
-                ? GameState.Check : GameState.Mate;
+                ? GameStates.Check : GameStates.Mate;
         }
 
         public Board MakeMove(Move move)
@@ -103,7 +103,7 @@ namespace ChessKit.ChessLogic
             if ((PreviousMove.Annotations & AllErrors) != 0) return;
             if (IsUnderCheck(SideOnMove))
             {
-                GameState = GameState.Check;
+                GameState = GameStates.Check;
             }
         }
         private void SetupBoard(Board src, Piece piece,

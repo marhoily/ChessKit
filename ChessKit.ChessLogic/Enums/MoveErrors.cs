@@ -2,6 +2,8 @@ using System;
 
 namespace ChessKit.ChessLogic.Enums
 {
+    /// <summary>Critical errors that can be noticed about the move during
+    /// the legality check</summary>
     [Flags]
     public enum MoveErrors
     {

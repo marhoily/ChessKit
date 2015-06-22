@@ -2,6 +2,8 @@ using System;
 
 namespace ChessKit.ChessLogic.Enums
 {
+    /// <summary>Notes that can be made 
+    ///     to the move during the legality check </summary>
     [Flags]
     public enum MoveInfo 
     {

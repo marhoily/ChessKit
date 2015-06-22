@@ -103,7 +103,7 @@
     <Compile Include="Enums\MoveInfo.cs" />
     <Compile Include="Enums\MoveWarnings.cs" />
     <Compile Include="Enums\Piece.cs" />
-    <Compile Include="Enums\GameState.cs" />
+    <Compile Include="Enums\GameStates.cs" />
     <Compile Include="Internals\ImmutableAttribute.cs" />
     <Compile Include="Internals\MetaPiece.cs" />
     <Compile Include="Move.cs" />

@@ -1,8 +1,12 @@
-﻿namespace ChessKit.ChessLogic.Enums
+﻿using System;
+
+namespace ChessKit.ChessLogic.Enums
 {
+    /// <summary> Represents different piece types </summary>
+    [Flags]
     public enum PieceType
     {
-        None = 0,
+        None   = 0,
         Pawn   = 0x02,
         Bishop = 0x04,
         Knight = 0x08,

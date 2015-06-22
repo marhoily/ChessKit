@@ -6,51 +6,37 @@ namespace ChessKit.ChessLogic.Enums
     {
         public static Piece With(this PieceType pieceType, Color color)
         {
-            return (Piece) ((MoveAnnotations) pieceType | (MoveAnnotations) color);
+            return (Piece)pieceType | (Piece)color;
         }
 
         public static Color Color(this Piece piece)
         {
-            return (Color) ((MoveAnnotations) piece & (MoveAnnotations) Enums.Color.Black);
+            return (Color)piece & Enums.Color.All;
         }
 
         public static PieceType PieceType(this Piece piece)
         {
-            return (PieceType) ((MoveAnnotations) piece & ~(MoveAnnotations) Enums.Color.Black);
+            return (PieceType)piece & Enums.PieceType.All;
         }
 
         public static char GetSymbol(this Piece piece)
         {
             switch (piece)
             {
-                case Piece.WhitePawn:
-                    return 'P';
-                case Piece.WhiteKnight:
-                    return 'N';
-                case Piece.WhiteBishop:
-                    return 'B';
-                case Piece.WhiteRook:
-                    return 'R';
-                case Piece.WhiteQueen:
-                    return 'Q';
-                case Piece.WhiteKing:
-                    return 'K';
-                case Piece.BlackPawn:
-                    return 'p';
-                case Piece.BlackKnight:
-                    return 'n';
-                case Piece.BlackBishop:
-                    return 'b';
-                case Piece.BlackRook:
-                    return 'r';
-                case Piece.BlackQueen:
-                    return 'q';
-                case Piece.BlackKing:
-                    return 'k';
-                case Piece.EmptyCell:
-                    return ' ';
-                default:
-                    throw new Exception("Unexpected");
+                case Piece.WhitePawn:   return 'P';
+                case Piece.WhiteKnight: return 'N';
+                case Piece.WhiteBishop: return 'B';
+                case Piece.WhiteRook:   return 'R';
+                case Piece.WhiteQueen:  return 'Q';
+                case Piece.WhiteKing:   return 'K';
+                case Piece.BlackPawn:   return 'p';
+                case Piece.BlackKnight: return 'n';
+                case Piece.BlackBishop: return 'b';
+                case Piece.BlackRook:   return 'r';
+                case Piece.BlackQueen:  return 'q';
+                case Piece.BlackKing:   return 'k';
+                case Piece.EmptyCell:   return ' ';
+                default: throw new Exception("Unexpected");
             }
         }
 
@@ -103,35 +89,10 @@ namespace ChessKit.ChessLogic.Enums
 
         public static Piece Parse(this char ch)
         {
-            switch (ch)
-            {
-                case 'P':
-                    return Piece.WhitePawn;
-                case 'N':
-                    return Piece.WhiteKnight;
-                case 'B':
-                    return Piece.WhiteBishop;
-                case 'R':
-                    return Piece.WhiteRook;
-                case 'Q':
-                    return Piece.WhiteQueen;
-                case 'K':
-                    return Piece.WhiteKing;
-                case 'p':
-                    return Piece.BlackPawn;
-                case 'n':
-                    return Piece.BlackKnight;
-                case 'b':
-                    return Piece.BlackBishop;
-                case 'r':
-                    return Piece.BlackRook;
-                case 'q':
-                    return Piece.BlackQueen;
-                case 'k':
-                    return Piece.BlackKing;
-                default:
-                    throw new Exception("Unexpected");
-            }
+            Piece res;
+            if (!TryParse(ch, out res))
+                throw new Exception("Unexpected");
+            return res;
         }
     }
 }

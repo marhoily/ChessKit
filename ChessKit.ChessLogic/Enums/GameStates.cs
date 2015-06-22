@@ -1,6 +1,8 @@
 namespace ChessKit.ChessLogic.Enums
 {
-    public enum GameState
+    /// <summary> Represents different outcomes 
+    /// to the position a move can have </summary>
+    public enum GameStates
     {
         None = 0,
 
