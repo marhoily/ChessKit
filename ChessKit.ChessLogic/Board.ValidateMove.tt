@@ -7,6 +7,7 @@
 <#@ import namespace="ChessKit.ChessLogic.Internals" #>
 using ChessKit.ChessLogic.Enums;
 using A = ChessKit.ChessLogic.Enums.MoveAnnotations;
+using static ChessKit.ChessLogic.Enums.MoveAnnotations;
 
 namespace ChessKit.ChessLogic
 {
@@ -16,7 +17,7 @@ namespace ChessKit.ChessLogic
   foreach (var p in MetaPiece.All.Where(p => p.PieceType != PieceType.Pawn))
   {
     var isSlider = p.MoveDirections.Any(dir => dir.Count > 1);
-#>    private <#=isSlider?"" : "static "#>MoveAnnotations Validate<#=p.Color#><#=p.PieceType#>Move(int fromSquare, int toSquare)
+#>    private <#=isSlider?"" : "static "#>A Validate<#=p.Color#><#=p.PieceType#>Move(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
 <#
@@ -30,13 +31,12 @@ namespace ChessKit.ChessLogic
         var steps = dx / <#=delta#>;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
-            if (i == toSquare) return MoveAnnotations.<#=p.PieceType#>;
-            else if (this[i] != Piece.EmptyCell) 
-			  return MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.DoesNotJump;
+            if (i == toSquare) return A.<#=p.PieceType#>;
+            else if (this[i] != Piece.EmptyCell) return A.<#=p.PieceType#> | A.DoesNotJump;
       }
 <#
 	  }
-#>          return MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.DoesNotMoveThisWay;
+#>          return A.<#=p.PieceType#> | A.DoesNotMoveThisWay;
 <#
     }
 	else // Non-slider move
@@ -47,19 +47,18 @@ namespace ChessKit.ChessLogic
       foreach (var dir in p.MoveDirections.Where(m => !m.IsSpecial))
       {
         var delta = dir.DeltaY * 16 + dir.DeltaX;
-#>        case <#=delta#>:
-          return MoveAnnotations.<#=p.PieceType#>;
+#>        case <#=delta#>: return A.<#=p.PieceType#>;
 <#
 	  }
 #>      }
-	  return MoveAnnotations.<#=p.PieceType#> | MoveAnnotations.DoesNotMoveThisWay;
+	  return A.<#=p.PieceType#> | A.DoesNotMoveThisWay;
 <#         
 	}
 #>    }
 <#
   } // --------------------------------------------------
 #>  
-    private MoveAnnotations ValidateMove(Piece piece, int fromSquare, int toSquare, Piece toPiece, Castlings castlingAvailability)
+    private A ValidateMove(Piece piece, int fromSquare, int toSquare, Piece toPiece, Castlings castlingAvailability)
     {
 	  switch (piece)
       {
@@ -76,8 +75,8 @@ namespace ChessKit.ChessLogic
 	}
 	else if (p.PieceType == PieceType.King)
 	{
-#>          if (Validate<#=p.Color#><#=p.PieceType#>Move(fromSquare, toSquare) == MoveAnnotations.King)
-            return MoveAnnotations.King;
+#>          if (Validate<#=p.Color#><#=p.PieceType#>Move(fromSquare, toSquare) == A.King)
+            return A.King;
 		  return Validate<#=p.Color#>CastlingMove(fromSquare, toSquare, castlingAvailability);
 
 <#
