@@ -401,7 +401,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
             [Fact] public void WQ_castling_is_impossible_when_d1_is_attacked()  => Check(
                 "1nb1kb2/3p1Np1/rpp4r/p1P1pp2/1Q2P1p1/PP2n3/4PP2/R3KBR1 w Q - 1 28",
-                "e1-c1", "King, WQ, CastlingThroughCheck");
+                "e1-c1", "King, WQ, CastleThroughCheck");
 
             // ================ BQ ================
             [Fact] public void
@@ -442,7 +442,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
             [Fact] public void WK_is_impossible_because_f1_is_under_attack()  => Check(
                 "rn2kbn1/p4p1r/2p4q/1p1Bp1pp/PP1pPP2/2N4b/2PP3P/R1BQK2R w KQq - 0 13",
-                "e1-g1", "King, WK, CastlingThroughCheck");
+                "e1-g1", "King, WK, CastleThroughCheck");
 
             // ================ BK ================
             [Fact] public void BK_works()  => Check(
@@ -465,7 +465,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
             [Fact] public void BK_is_impossible_because_f8_is_under_attack()  => Check(
                 "r1bqk2r/pppp4/1P4pp/4pP2/n4PN1/B1n5/P2PP1BP/RN1QK2R b KQk - 1 15",
-                "e8-g8", "King, BK, CastlingThroughCheck");
+                "e8-g8", "King, BK, CastleThroughCheck");
         }
 
         public sealed class Bishop
@@ -621,15 +621,15 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
             [Fact] public void X110()  => Check(
                 "1n2kb1r/q3p1p1/3p1Bpp/p1pN4/1p2P3/2PP1N1b/PP3P1P/R3K2R w Kk - 2 23",
-                "e1-g1", "King, WK, CastlingThroughCheck");
+                "e1-g1", "King, WK, CastleThroughCheck");
 
             [Fact] public void X111()  => Check(
                 "1n3kn1/rpPb1p2/1P6/p1p3p1/P1B1PP2/2P4r/R5p1/1N2K2R w K - 1 28",
-                "e1-g1", "King, WK, CastlingThroughCheck");
+                "e1-g1", "King, WK, CastleThroughCheck");
 
             [Fact] public void X112()  => Check(
                 "r3kbn1/p2nBNp1/r7/1b1P4/RP1P1P1P/3q2p1/3N2BR/4K3 b q - 1 30",
-                "e8-c8", "King, BQ, CastlingThroughCheck");
+                "e8-c8", "King, BQ, CastleThroughCheck");
 
             [Fact] public void X113()  => Check(
                 "rnbqkbnr/ppp2p1p/3p4/4pPp1/4P3/8/PPPP2PP/RNBQKBNR w KQkq g3 0 4",
