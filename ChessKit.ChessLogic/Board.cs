@@ -121,6 +121,11 @@ namespace ChessKit.ChessLogic
             }
             else if ((PreviousMove.Annotations & Promotion) != 0)
             {
+                if (proposedPromotion == PieceType.None)
+                {
+                    PreviousMove.Annotations |= MissingPromotionHint;
+                 // BUG:   proposedPromotion = PieceType.Queen;
+                }
                 piece = proposedPromotion.With(color);
             }
 
