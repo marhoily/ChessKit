@@ -19,7 +19,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
         {
             [Fact] public void Cannot_move_from_empty_cell2()  => Check(
                 "rnbqkbnr/pppppppp/8/8/8/5N2/PPPPPPPP/RNBQKB1R b KQkq - 1 1",
-                "f6-g8", "EmptyCell, ToOccupiedCell");
+                "f6-g8", "EmptyCell");
 
             [Fact] public void Move_to_check_that_gives_check()  => Check(
                 "K1k5/8/8/8/8/8/8/8 b - - 1 1", "c8-b8",
@@ -1061,7 +1061,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
             [Fact] public void X220()  => Check(
                 "rnbqk1nr/2pp4/4pp2/ppP3p1/7p/5PPN/PPPBP2P/RN1QKB1R w KQkq b6 0 10",
-                "b7-b5", "Capture, EmptyCell");
+                "b7-b5", "EmptyCell");
 
             [Fact] public void X221()  => Check(
                 "3b1rrk/pp3N2/P1pN2p1/P7/4p1b1/B2PPp1P/RQP2P1q/3B1K2 b - - 5 37",
@@ -1145,7 +1145,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
             [Fact] public void X241()  => Check(
                 "3k4/4n3/1p4pr/5B2/7n/3qR1P1/2P1P2P/R4K2 w - - 15 51",
-                "d2-d3", "Capture, EmptyCell");
+                "d2-d3", "EmptyCell");
 
             [Fact] public void X242()  => Check(
                 "4k3/8/8/2p5/2P4P/p5K1/2N2B2/4q3 w - - 16 134",
