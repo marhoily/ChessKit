@@ -20,7 +20,7 @@ namespace ChessKit.ChessLogic.Enums
             return x + y * 16;
         }
 
-        public static bool TryParseCoordinate(string position, out int result)
+        public static bool TryParseCoordinate(this string position, out int result)
         {
             if (position == null) throw new ArgumentNullException(nameof(position));
             result = -1;
