@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ChessKit.ChessLogic.Enums;
+using static ChessKit.ChessLogic.Enums.MoveAnnotations;
 
 namespace ChessKit.ChessLogic
 {
@@ -75,7 +76,7 @@ namespace ChessKit.ChessLogic
             var piece = src[moveFrom];
             if (piece == Piece.EmptyCell)
             {
-                PreviousMove.Annotations = MoveAnnotations.EmptyCell;
+                PreviousMove.Annotations = EmptyCell;
                 return;
             }
 
@@ -83,7 +84,7 @@ namespace ChessKit.ChessLogic
             var color = piece.Color();
             if (color != src.SideOnMove)
             {
-                PreviousMove.Annotations = (MoveAnnotations)piece | MoveAnnotations.WrongSideToMove;
+                PreviousMove.Annotations = (MoveAnnotations)piece | WrongSideToMove;
                 return;
             }
 
@@ -92,14 +93,14 @@ namespace ChessKit.ChessLogic
             var toPiece = src[moveTo];
             if (toPiece != Piece.EmptyCell && toPiece.Color() == color)
             {
-                PreviousMove.Annotations = (MoveAnnotations)piece | MoveAnnotations.ToOccupiedCell;
+                PreviousMove.Annotations = (MoveAnnotations)piece | ToOccupiedCell;
                 return;
             }
             PreviousMove.Annotations = src.ValidateMove(piece,
               moveFrom, moveTo, toPiece, src._Castlings);
-            if (toPiece != Piece.EmptyCell) PreviousMove.Annotations |= MoveAnnotations.Capture;
+            if (toPiece != Piece.EmptyCell) PreviousMove.Annotations |= Capture;
             SetupBoard(src, piece, moveFrom, moveTo, move.ProposedPromotion, color);
-            if ((PreviousMove.Annotations & MoveAnnotations.AllErrors) != 0) return;
+            if ((PreviousMove.Annotations & AllErrors) != 0) return;
             if (IsUnderCheck(SideOnMove))
             {
                 _gameState = GameState.Check;
@@ -109,16 +110,16 @@ namespace ChessKit.ChessLogic
           int moveFrom, int moveTo, PieceType proposedPromotion,
           Color color)
         {
-            if ((PreviousMove.Annotations & MoveAnnotations.AllErrors) != 0) return;
-            if ((PreviousMove.Annotations & MoveAnnotations.EnPassant) != 0)
+            if ((PreviousMove.Annotations & AllErrors) != 0) return;
+            if ((PreviousMove.Annotations & EnPassant) != 0)
             {
                 if (src.EnPassantFile != moveTo % 16)
                 {
-                    PreviousMove.Annotations |= MoveAnnotations.HasNoEnPassant;
+                    PreviousMove.Annotations |= HasNoEnPassant;
                     return;
                 }
             }
-            else if ((PreviousMove.Annotations & MoveAnnotations.Promotion) != 0)
+            else if ((PreviousMove.Annotations & Promotion) != 0)
             {
                 piece = proposedPromotion.With(color);
             }
@@ -126,32 +127,32 @@ namespace ChessKit.ChessLogic
             this[moveTo] = piece;
             _cells[moveFrom] = 0;
 
-            if ((PreviousMove.Annotations & (MoveAnnotations.DoublePush | MoveAnnotations.EnPassant | MoveAnnotations.AllCastlings)) != 0)
+            if ((PreviousMove.Annotations & (DoublePush | EnPassant | AllCastlings)) != 0)
             {
-                if ((PreviousMove.Annotations & MoveAnnotations.DoublePush) != 0)
+                if ((PreviousMove.Annotations & DoublePush) != 0)
                 {
                     EnPassantFile = moveFrom % 16;
                 }
-                else if ((PreviousMove.Annotations & MoveAnnotations.EnPassant) != 0)
+                else if ((PreviousMove.Annotations & EnPassant) != 0)
                 {
                     _cells[moveTo + (color == Color.White ? -16 : +16)] = 0;
                 }
-                else if (PreviousMove.Annotations == MoveAnnotations.WK) // TODO: Move it up?
+                else if (PreviousMove.Annotations == WK) // TODO: Move it up?
                 {
                     _cells[S.H1] = (byte)Piece.EmptyCell;
                     _cells[S.F1] = (byte)Piece.WhiteRook;
                 }
-                else if (PreviousMove.Annotations == MoveAnnotations.WQ)
+                else if (PreviousMove.Annotations == WQ)
                 {
                     _cells[S.A1] = (byte)Piece.EmptyCell;
                     _cells[S.D1] = (byte)Piece.WhiteRook;
                 }
-                else if (PreviousMove.Annotations == MoveAnnotations.BK)
+                else if (PreviousMove.Annotations == BK)
                 {
                     _cells[S.H8] = (byte)Piece.EmptyCell;
                     _cells[S.F8] = (byte)Piece.BlackRook;
                 }
-                else if (PreviousMove.Annotations == MoveAnnotations.BQ)
+                else if (PreviousMove.Annotations == BQ)
                 {
                     _cells[S.A8] = (byte)Piece.EmptyCell;
                     _cells[S.D8] = (byte)Piece.BlackRook;
@@ -159,7 +160,7 @@ namespace ChessKit.ChessLogic
             }
             if (IsUnderCheck(src.SideOnMove))
             {
-                PreviousMove.Annotations |= MoveAnnotations.MoveToCheck;
+                PreviousMove.Annotations |= MoveToCheck;
             }
             _Castlings = src._Castlings
               & ~KilledAvailability(moveTo)
@@ -168,7 +169,7 @@ namespace ChessKit.ChessLogic
             SideOnMove = color.Invert();
 
             HalfMoveClock =
-              (PreviousMove.Annotations & (MoveAnnotations.Capture | MoveAnnotations.Pawn)) != 0
+              (PreviousMove.Annotations & (Capture | Pawn)) != 0
               ? 0 : src.HalfMoveClock + 1;
 
             MoveNumber = src.MoveNumber + (color == Color.Black ? 1 : 0);
