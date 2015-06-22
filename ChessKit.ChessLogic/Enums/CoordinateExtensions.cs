@@ -11,11 +11,6 @@ namespace ChessKit.ChessLogic.Enums
         /// <param name="position">"a1" or "A1"</param>
         public static int ParseCoordinate(this string position)
         {
-            return Parse(position);
-        }
-
-        public static int Parse(string position)
-        {
             if (position == null) throw new ArgumentNullException(nameof(position));
             if (position.Length != 2) throw new ArgumentOutOfRangeException(nameof(position));
             var x = char.ToLower(position[0]) - 'a';

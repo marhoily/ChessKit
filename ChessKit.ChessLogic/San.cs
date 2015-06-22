@@ -188,7 +188,7 @@ namespace ChessKit.ChessLogic
             }
 
             if (index < 1) return null;
-            var to = CoordinateExtensions.Parse(san.Substring(index - 1, 2));
+            var to = san.Substring(index - 1, 2).ParseCoordinate();
             index -= 2;
 
             // remove capture char (if any)

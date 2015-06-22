@@ -27,8 +27,8 @@ namespace ChessKit.ChessLogic
 
         public Piece this[string index]
         {
-            get { return (Piece)_cells[CoordinateExtensions.Parse(index)]; }
-            set { _cells[CoordinateExtensions.Parse(index)] = (byte) value; }
+            get { return (Piece)_cells[index.ParseCoordinate()]; }
+            set { _cells[index.ParseCoordinate()] = (byte) value; }
         }
 
         public BoardBuilder()
