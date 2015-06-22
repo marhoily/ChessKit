@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ChessKit.ChessLogic.Primitives;
+﻿using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic.N
 {
@@ -14,11 +10,14 @@ namespace ChessKit.ChessLogic.N
         /// Note that index 0 corresponds to a8, and NOT a1!
         /// Indexes read left to right, top to bottom!
         public byte[] Squares { get; }
+
         /// The color of the side that makes the next move
         public Color ActiveColor { get; }
+
         /// Castlings available to the both sides
         /// (one that changes when they move their kings/rooks)
         public Castlings CastlingAvailability { get; }
+
         /// The index is the file the opponent last
         /// made pawn double move -or- ...
         public int? EnPassant { get; }
@@ -34,23 +33,31 @@ namespace ChessKit.ChessLogic.N
 
     /// Represents legal move as returned by the legality check
     public sealed class LegalMove : ValidateMove
-    { /// The move that was checked for the legality
+    {
+        /// The move that was checked for the legality
         public Move Move { get; }
+
         /// The position in which the move was checked
         public Position OriginalPosition { get; }
+
         /// The core of the position gotten as a result of the move
         /// (use legalMove.ToPosition() method to get full position)
         public PositionCore ResultPosition { get; }
+
         /// The piece type that was moved
         public PieceType Piece { get; }
+
         /// The castling, if the move was castling, -or- None
         public Castlings Castling { get; }
+
         /// Annotations (capture, promotion, etc.) to the move
         public MoveAnnotations Annotations { get; }
+
         /// Warnings to the move
         public MoveWarnings Warnings { get; }
 
-        public LegalMove(Move move, Position originalPosition, PositionCore resultPosition, PieceType piece, Castlings castling, MoveAnnotations annotations, MoveWarnings warnings)
+        public LegalMove(Move move, Position originalPosition, PositionCore resultPosition, PieceType piece,
+            Castlings castling, MoveAnnotations annotations, MoveWarnings warnings)
         {
             Move = move;
             OriginalPosition = originalPosition;
@@ -65,14 +72,19 @@ namespace ChessKit.ChessLogic.N
     /// Represents a position in the game
     /// (adding Properties to the position is a bit CPU consuming)
     public sealed class Position
-    { /// Stuff that was calculated immediately with the legality check
+    {
+        /// Stuff that was calculated immediately with the legality check
         public PositionCore Core { get; }
+
         /// 50 moves rule counter
         public int HalfMoveClock { get; }
+
         /// Number of full moves (white, then black) counted
         public int FullMoveNumber { get; }
+
         /// Properties of the position like check, mate and stalemate
         public GameStates Properties { get; }
+
         /// The previous legal move if the position derives from
         /// some other position, -or- ...
         public LegalMove Move { get; }
@@ -89,22 +101,30 @@ namespace ChessKit.ChessLogic.N
 
     /// Represents an illegal move as returned by the legality check
     public sealed class IllegalMove : ValidateMove
-    { /// The move that was checked for the legality
+    {
+        /// The move that was checked for the legality
         public Move Move { get; }
+
         /// The position in which the move was checked
         public Position OriginalPosition { get; }
+
         /// The piece type that was moved
         public PieceType Piece { get; }
+
         /// The castling, if the move was castling attempt, -or- None
         public Castlings Castling { get; }
+
         /// Annotations (capture, promotion attempt, etc.) to the move
         public MoveAnnotations Observations { get; }
+
         /// Warnings to the move
         public MoveWarnings Warnings { get; }
+
         /// Non-empty set of the errors to the move
         public MoveErrors Errors { get; }
 
-        public IllegalMove(Move move, Position originalPosition, PieceType piece, Castlings castling, MoveAnnotations observations, MoveWarnings warnings, MoveErrors errors)
+        public IllegalMove(Move move, Position originalPosition, PieceType piece, Castlings castling,
+            MoveAnnotations observations, MoveWarnings warnings, MoveErrors errors)
         {
             Move = move;
             OriginalPosition = originalPosition;
