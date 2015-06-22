@@ -10,87 +10,88 @@ using static ChessKit.ChessLogic.Enums.MoveAnnotations;
 
 namespace ChessKit.ChessLogic
 {
-  partial class Board
-  {
-<#
-  foreach (var p in MetaPiece.All.Where(p => p.PieceType != PieceType.Pawn))
-  {
-    var isSlider = p.MoveDirections.Any(dir => dir.Count > 1);
-#>    private <#=isSlider?"" : "static "#>MoveAnnotations Validate<#=p.Color#><#=p.PieceType#>Move(int fromSquare, int toSquare)
+    partial class Board
     {
-	  var dx = toSquare - fromSquare;
 <#
-	if (isSlider)
-	{
-      foreach (var dir in p.MoveDirections)
-      {
-        var delta = dir.DeltaY * 16 + dir.DeltaX;
-#>      if (dx % <#=delta#> == 0) 
-      {
-        var steps = dx / <#=delta#>;
-        if (steps >= 0 && steps < 8) 
-            for (var i = fromSquare + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
-            if (i == toSquare) return <#=p.PieceType#>;
-            else if (this[i] != Piece.EmptyCell) 
-			  return <#=p.PieceType#> | DoesNotJump;
-      }
+    foreach (var p in MetaPiece.All.Where(p => p.PieceType != PieceType.Pawn))
+    {
+        var isSlider = p.MoveDirections.Any(dir => dir.Count > 1);
+#>        private <#=isSlider?"" : "static "#>MoveAnnotations Validate<#=p.Color#><#=p.PieceType#>Move(int fromSquare, int toSquare)
+        {
+            var dx = toSquare - fromSquare;
 <#
-	  }
-#>          return <#=p.PieceType#> | DoesNotMoveThisWay;
+    if (isSlider)
+    {
+            foreach (var dir in p.MoveDirections)
+            {
+                var delta = dir.DeltaY * 16 + dir.DeltaX;
+#>            if (dx % <#=delta#> == 0) 
+            {
+                var steps = dx / <#=delta#>;
+                if (steps >= 0 && steps < 8) 
+					for (var i = fromSquare + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
+						if (i == toSquare) return <#=p.PieceType#>;
+						else if (this[i] != Piece.EmptyCell) 
+							return <#=p.PieceType#> | DoesNotJump;
+            }
 <#
+        }
+#>
+			return <#=p.PieceType#> | DoesNotMoveThisWay;
+<#
+        }
+    else // Non-slider move
+    {
+#>            switch (dx)
+            {            
+<#
+            foreach (var dir in p.MoveDirections.Where(m => !m.IsSpecial))
+            {
+                var delta = dir.DeltaY * 16 + dir.DeltaX;
+#>                case <#=delta#>:
+                    return <#=p.PieceType#>;
+<#
+        }
+#>            }
+        return <#=p.PieceType#> | DoesNotMoveThisWay;
+<#                 
     }
-	else // Non-slider move
-	{
-#>      switch (dx)
-      {      
+#>        }
 <#
-      foreach (var dir in p.MoveDirections.Where(m => !m.IsSpecial))
-      {
-        var delta = dir.DeltaY * 16 + dir.DeltaX;
-#>        case <#=delta#>:
-          return <#=p.PieceType#>;
+    } // --------------------------------------------------
+#>    
+        private MoveAnnotations ValidateMove(Piece piece, int fromSquare, int toSquare, Piece toPiece, Castlings castlingAvailability)
+        {
+        switch (piece)
+            {
 <#
-	  }
-#>      }
-	  return <#=p.PieceType#> | DoesNotMoveThisWay;
-<#         
-	}
-#>    }
-<#
-  } // --------------------------------------------------
-#>  
-    private MoveAnnotations ValidateMove(Piece piece, int fromSquare, int toSquare, Piece toPiece, Castlings castlingAvailability)
+    foreach (var p in MetaPiece.All) 
     {
-	  switch (piece)
-      {
+#>                case Piece.<#=p.Color#><#=p.PieceType#>:
 <#
-  foreach (var p in MetaPiece.All) 
-  {
-#>        case Piece.<#=p.Color#><#=p.PieceType#>:
-<#
-	if (p.PieceType == PieceType.Pawn)
-	{
-#>          return Validate<#=p.Color#>PawnMove(fromSquare, toSquare, toPiece);
-
-<#
-	}
-	else if (p.PieceType == PieceType.King)
-	{
-#>          if (Validate<#=p.Color#><#=p.PieceType#>Move(fromSquare, toSquare) == King)
-            return King;
-		  return Validate<#=p.Color#>CastlingMove(fromSquare, toSquare, castlingAvailability);
-
-<#
-	}
-	else 
-	{
-#>          return Validate<#=p.Color#><#=p.PieceType#>Move(fromSquare, toSquare);
+    if (p.PieceType == PieceType.Pawn)
+    {
+#>                    return Validate<#=p.Color#>PawnMove(fromSquare, toSquare, toPiece);
 
 <#
     }
-  }
-#>        default: throw new System.InvalidOperationException("Unknown piece: " + piece);
-	  }
-    }  
-  }
+    else if (p.PieceType == PieceType.King)
+    {
+#>                    if (Validate<#=p.Color#><#=p.PieceType#>Move(fromSquare, toSquare) == King)
+                        return King;
+            return Validate<#=p.Color#>CastlingMove(fromSquare, toSquare, castlingAvailability);
+
+<#
+    }
+    else 
+    {
+#>                    return Validate<#=p.Color#><#=p.PieceType#>Move(fromSquare, toSquare);
+
+<#
+        }
+    }
+#>                default: throw new System.InvalidOperationException("Unknown piece: " + piece);
+        }
+        }    
+    }
 }
