@@ -14,7 +14,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
                 .Should().Be(expected);
         }
 
-        public sealed class Generic_errors
+        public sealed class GenericErrors
         {
             [Fact]
             public void Cannot_move_from_empty_cell2()
@@ -52,7 +52,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
                     "e4-e5=Q", "Pawn, PromotionHintIsNotNeeded");
         }
 
-        public sealed class Moves_along_the_pin_line
+        public sealed class MovesAlongThePinLine
         {
             [Fact]
             public void white_pawn_double_push()
@@ -95,7 +95,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
                     "g6-e5", "Knight, Capture");
         }
 
-        public sealed class Moves_from_under_check
+        public sealed class MovesFromUnderCheck
         {
             [Fact]
             public void White_pawn_takes_queen_that_gives_check()
@@ -139,7 +139,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
                     "Pawn, Capture, EnPassant");
         }
 
-        public sealed class Moves_to_check
+        public sealed class MovesToCheck
         {
             [Fact]
             public void White_pawn_move_would_discover_a_check()
@@ -181,7 +181,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
                     "e6-b3", "Queen, Capture, MoveToCheck");
         }
 
-        public sealed class White_pawn
+        public sealed class WhitePawn
         {
             [Fact]
             public void double_push_from_the_4th_rank()
@@ -215,7 +215,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
                     "Pawn, Promotion, MissingPromotionHint");
 
             [Fact]
-            public void push()
+            public void Push()
                 => Check("1rn2k2/3p2qQ/1p1p3b/4p3/P3P3/P1P1R3/1R2KPPB/1N4N1 w - - 9 37",
                     "f2-f3", "Pawn");
 
@@ -247,7 +247,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
                     "Pawn, Promotion, Capture");
 
             [Fact]
-            public void captures()
+            public void Captures()
                 => Check("8/1q6/P7/8/8/8/8/8 w - - 0 1", "a6-b7", "Pawn, Capture");
 
             [Fact]
@@ -265,7 +265,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
                 => Check("8/8/8/8/8/8/4P3/8 w - - 0 1", "e2-e1", "Pawn, DoesNotMoveThisWay");
         }
 
-        public sealed class Black_pawn
+        public sealed class BlackPawn
         {
             [Fact]
             public void double_push_from_the_5th_rank()
@@ -298,7 +298,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
                 => Check("8/8/8/8/8/8/p7/8 b - - 0 1", "a2-a1=N", "Pawn, Promotion");
 
             [Fact]
-            public void push()
+            public void Push()
                 => Check("1rn2k2/3p2qQ/1p1p3b/4p3/P3P3/P1P1R3/1R2KPPB/1N4N1 b - - 9 37",
                     "d6-d5", "Pawn");
 
@@ -330,7 +330,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
                     "Pawn, Promotion, Capture, MissingPromotionHint");
 
             [Fact]
-            public void captures()
+            public void Captures()
                 => Check("r1bq1b1r/1pppnkpp/8/p3ppP1/PPP1n3/N4P2/R2PP2P/2BQKBNR b K - 3 10",
                     "a5-b4", "Pawn, Capture");
 
