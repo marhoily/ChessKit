@@ -128,6 +128,10 @@ namespace ChessKit.ChessLogic
                 }
                 piece = proposedPromotion.With(color);
             }
+            else if (proposedPromotion != PieceType.None)
+            {
+                PreviousMove.Annotations |= PromotionHintIsNotNeeded;
+            }
 
             this[moveTo] = piece;
             _cells[moveFrom] = 0;
