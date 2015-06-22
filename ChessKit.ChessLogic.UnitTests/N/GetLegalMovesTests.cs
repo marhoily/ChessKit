@@ -15,17 +15,8 @@ namespace ChessKit.ChessLogic.UnitTests.N
             var position = fen.ParseFen();
             position.GetLegalMovesFromSquare(coordinate.ParseCoordinate())
                 .Select(m => m.Move.To.ToCoordinateString())
-                .OrderBy(s => s).ToArray()
-                .Should().Equal(expected);
-            
-            //let f = Idx64.Parse from
-
-            //let actual =
-            //    p
-            //    |> GetLegalMoves.FromSquare f
-            //    |> List.map toString
-            //    |> List.sort
-            //actual |> should equal(expected |> List.sort)
+                .OrderBy(s => s)
+                .Should().Equal(expected.OrderBy(s => s));
         }
 
         static void CheckAll(string fen, string[] expected)
