@@ -9,7 +9,9 @@ namespace ChessKit.ChessLogic.N
         {
             var move1 = new Move(move.From, move.To, move.ProposedPromotion);
             var makeMove = position.ToBoard().MakeMove(move1);
-            return makeMove.PreviousMove.Annotations;
+            var annotations = makeMove.PreviousMove.Annotations;
+
+            return annotations;
         }
 
         public static LegalMove ToLegalMove(this Board nextBoard, Board prevBoard)

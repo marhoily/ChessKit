@@ -9,14 +9,35 @@ namespace ChessKit.ChessLogic.UnitTests.N
 {
     public class GetLegalMovesTests
     {
-        static void Check(string fen, string coordinate, string[] expected)
+        static void Check(string fen, string moveFrom, string[] expected)
         {
-            Console.WriteLine(Board.FromFenString(fen).Dump());
-            var position = fen.ParseFen();
-            position.GetLegalMovesFromSquare(coordinate.ParseCoordinate())
-                .Select(m => m.Move.To.ToCoordinateString())
-                .OrderBy(s => s)
-                .Should().Equal(expected.OrderBy(s => s));
+            try
+            {
+                var f = moveFrom.ParseCoordinate();
+                var position = fen.ParseFen();
+                var actual = position
+                    .GetLegalMovesFromSquare(f)
+                    .Select(m => m.Move.To.ToCoordinateString())
+                    .OrderBy(s => s);
+                actual.Should().Equal(expected.OrderBy(s => s));
+                Coordinates.All
+                    .Select(t => position.Validate(new MoveR(f, t)))
+                    .OfType<LegalMove>()
+                    .Select(m => m.Move.To.ToCoordinateString())
+                    .Should().Equal(actual);
+                /*    let expected2 = 
+        [ for i = 0 to 63 do
+              let t = Move.Create f i PieceType.None
+              match MoveLegality.Validate t p with
+              | LegalMove _ -> yield Idx64.ToString i
+              | _ -> () ]
+    actual |> should equal (expected2 |> List.sort)
+*/
+            }
+            finally
+            {
+                Console.WriteLine(Board.FromFenString(fen).Dump());
+            }
         }
 
         static void CheckAll(string fen, string[] expected)
