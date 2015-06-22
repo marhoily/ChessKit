@@ -3,7 +3,6 @@ using System;
 namespace ChessKit.ChessLogic.Enums
 {
     /// <summary>Represents chess piece/player's side color</summary>
-    [Flags]
     public enum Color
     {
         White = 0,

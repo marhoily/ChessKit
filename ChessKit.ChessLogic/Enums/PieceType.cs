@@ -3,7 +3,6 @@
 namespace ChessKit.ChessLogic.Enums
 {
     /// <summary> Represents different piece types </summary>
-    [Flags]
     public enum PieceType
     {
         None   = 0,
