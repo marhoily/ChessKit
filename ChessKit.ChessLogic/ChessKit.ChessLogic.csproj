@@ -44,9 +44,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Board.Cells.cs</LastGenOutput>
     </None>
-    <None Include="Board.GenerateMoves.tt">
+    <None Include="MoveGeneration.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Board.GenerateMoves.cs</LastGenOutput>
+      <LastGenOutput>MoveGeneration.generated.cs</LastGenOutput>
     </None>
     <None Include="Scanning.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -73,10 +73,11 @@
     <Compile Include="Board.cs" />
     <Compile Include="Board.Fen.cs">
     </Compile>
-    <Compile Include="Board.GenerateMoves.cs">
+    <Compile Include="MoveGeneration.cs" />
+    <Compile Include="MoveGeneration.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Board.GenerateMoves.tt</DependentUpon>
+      <DependentUpon>MoveGeneration.tt</DependentUpon>
     </Compile>
     <Compile Include="Scanning.cs">
       <AutoGen>True</AutoGen>

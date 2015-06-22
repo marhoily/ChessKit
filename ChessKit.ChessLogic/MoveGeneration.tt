@@ -1,5 +1,5 @@
 ﻿<#@ template debug="true" hostSpecific="true" #>
-<#@ output extension=".cs" #>
+<#@ output extension="generated.cs" #>
 <#@ Assembly Name="System.Core" #>
 <#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
 <#@ import namespace="System.Linq" #>
@@ -12,9 +12,10 @@ using static ChessKit.ChessLogic.Scanning;
 
 namespace ChessKit.ChessLogic
 {
-    partial class Board
+    static partial class MoveGeneration
     {
-        private void GenerateMoves(Piece piece, int fromSquare,
+        public static void GenerateMoves(byte[] _cells, 
+			 int _whiteKingPosition, int _blackKingPosition, Piece piece, int fromSquare,
              int? enPassantFile, Castlings castlingAvailability, List<Move> collector)
         {
             switch (piece)
@@ -62,7 +63,7 @@ namespace ChessKit.ChessLogic
         else if (p.PieceType == PieceType.Pawn)
         {
 #>
-                    Generate<#=p.Color#>PawnMoves(fromSquare, enPassantFile, collector);
+                    Generate<#=p.Color#>PawnMoves(_cells, _<#=p.Color.ToString().ToLower()#>KingPosition,fromSquare, enPassantFile, collector);
 <#
         }
         else // Non-slider move
@@ -142,7 +143,7 @@ namespace ChessKit.ChessLogic
             if (p.PieceType == PieceType.King)
             {
 #>
-                    Generate<#=p.Color#>CastlingMoves(fromSquare, castlingAvailability, collector);
+                    Generate<#=p.Color#>CastlingMoves(_cells, fromSquare, castlingAvailability, collector);
 <#
             }
 #>

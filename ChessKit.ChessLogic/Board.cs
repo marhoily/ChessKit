@@ -39,7 +39,8 @@ namespace ChessKit.ChessLogic
                 var piece = this[moveFromSq];
                 if (piece == 0) continue;
                 if (piece.Color() != sideOnMove) continue;
-                GenerateMoves(piece, moveFromSq, EnPassantFile, Castlings, res);
+                MoveGeneration.GenerateMoves(_cells, _whiteKingPosition, 
+                    _blackKingPosition, piece, moveFromSq, EnPassantFile, Castlings, res);
             }
             return res;
         }
@@ -49,7 +50,8 @@ namespace ChessKit.ChessLogic
             if (piece == Piece.EmptyCell) return new List<Move>();
             if (piece.Color() != SideOnMove) return new List<Move>();
             var res = new List<Move>(28);
-            GenerateMoves(piece, moveFrom, EnPassantFile, Castlings, res);
+            MoveGeneration.GenerateMoves(_cells, _whiteKingPosition, 
+                _blackKingPosition, piece, moveFrom, EnPassantFile, Castlings, res);
             return res;
         }
 

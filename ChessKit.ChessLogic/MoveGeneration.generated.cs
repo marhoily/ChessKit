@@ -5,16 +5,17 @@ using static ChessKit.ChessLogic.Scanning;
 
 namespace ChessKit.ChessLogic
 {
-    partial class Board
+    static partial class MoveGeneration
     {
-        private void GenerateMoves(Piece piece, int fromSquare,
+        public static void GenerateMoves(byte[] _cells, 
+			 int _whiteKingPosition, int _blackKingPosition, Piece piece, int fromSquare,
              int? enPassantFile, Castlings castlingAvailability, List<Move> collector)
         {
             switch (piece)
             {
                 #region ' White Pawn '
                 case Piece.WhitePawn:
-                    GenerateWhitePawnMoves(fromSquare, enPassantFile, collector);
+                    GenerateWhitePawnMoves(_cells, _whiteKingPosition,fromSquare, enPassantFile, collector);
                     break;
                 #endregion
 
@@ -792,13 +793,13 @@ namespace ChessKit.ChessLogic
                             }
                         }
                     }
-                    GenerateWhiteCastlingMoves(fromSquare, castlingAvailability, collector);
+                    GenerateWhiteCastlingMoves(_cells, fromSquare, castlingAvailability, collector);
                     break;
                 #endregion
 
                 #region ' Black Pawn '
                 case Piece.BlackPawn:
-                    GenerateBlackPawnMoves(fromSquare, enPassantFile, collector);
+                    GenerateBlackPawnMoves(_cells, _blackKingPosition,fromSquare, enPassantFile, collector);
                     break;
                 #endregion
 
@@ -1576,7 +1577,7 @@ namespace ChessKit.ChessLogic
                             }
                         }
                     }
-                    GenerateBlackCastlingMoves(fromSquare, castlingAvailability, collector);
+                    GenerateBlackCastlingMoves(_cells, fromSquare, castlingAvailability, collector);
                     break;
                 #endregion
 
