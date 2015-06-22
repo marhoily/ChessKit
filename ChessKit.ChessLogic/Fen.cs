@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
 using JetBrains.Annotations;
 
@@ -224,6 +225,10 @@ namespace ChessKit.ChessLogic
             fen.Append(board.MoveNumber);
 
             return fen.ToString();
+        }
+        public static string PrintFen(this Position position)
+        {
+            return position.ToBoard().ToFenString();
         }
     }
 }

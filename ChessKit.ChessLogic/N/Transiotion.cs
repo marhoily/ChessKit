@@ -1,4 +1,4 @@
-﻿namespace ChessKit.ChessLogic.N
+namespace ChessKit.ChessLogic.N
 {
     public static class Transiotion
     {
@@ -37,12 +37,5 @@
                 b.GameState, null);
         }
 
-    }
-    public static class Fen
-    {
-        public static string PrintFen(this Position position)
-        {
-            return position.ToBoard().ToFenString();
-        }
     }
 }

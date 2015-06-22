@@ -78,6 +78,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MoveGeneration.tt</DependentUpon>
     </Compile>
+    <Compile Include="N\Transiotion.cs" />
     <Compile Include="Scanning.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -111,7 +112,6 @@
     <Compile Include="Primitives\PieceType.cs" />
     <Compile Include="Primitives\Coordinates.cs" />
     <Compile Include="N\Definitions.cs" />
-    <Compile Include="N\Fen.cs" />
     <Compile Include="N\MoveLegality.cs" />
     <Compile Include="N\Scanning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
