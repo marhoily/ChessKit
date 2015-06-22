@@ -84,7 +84,7 @@ namespace ChessKit.ChessLogic
             var color = piece.Color();
             if (color != src.SideOnMove)
             {
-                PreviousMove.Annotations = (MoveAnnotations)piece | WrongSideToMove;
+                PreviousMove.Annotations = (MoveAnnotations)piece.PieceType() | WrongSideToMove;
                 return;
             }
 
@@ -93,7 +93,7 @@ namespace ChessKit.ChessLogic
             var toPiece = src[moveTo];
             if (toPiece != Piece.EmptyCell && toPiece.Color() == color)
             {
-                PreviousMove.Annotations = (MoveAnnotations)piece | ToOccupiedCell;
+                PreviousMove.Annotations = (MoveAnnotations)piece.PieceType() | ToOccupiedCell;
                 return;
             }
             PreviousMove.Annotations = src.ValidateMove(piece,
