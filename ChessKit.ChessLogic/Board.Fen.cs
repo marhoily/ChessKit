@@ -76,7 +76,7 @@ namespace ChessKit.ChessLogic
                 else if (fen[i] == ' ') break;
                 else throw new FormatException("illegal character");
             }
-            _Castlings = flags;
+            Castlings = flags;
             i++; // Skip the space
         }
         private void LoadEnPassantSection(string fen, ref int i)
@@ -138,7 +138,7 @@ namespace ChessKit.ChessLogic
             fen.Append(SideOnMove == Color.White ? 'w' : 'b');
 
             fen.Append(' ');
-            var castling = _Castlings;
+            var castling = Castlings;
             if (castling == Castlings.None)
             {
                 fen.Append('-');

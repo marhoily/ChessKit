@@ -42,7 +42,7 @@ namespace ChessKit.ChessLogic
             MoveNumber = boardBuilder.MoveNumber;
             _whiteKingPosition = Coordinate.All.SingleOrDefault(p => this[p] == Piece.WhiteKing);
             _blackKingPosition = Coordinate.All.SingleOrDefault(p => this[p] == Piece.BlackKing);
-            _Castlings = boardBuilder.CastlingAvailability;
+            Castlings = boardBuilder.CastlingAvailability;
         }
         public Piece this[int compactPosition]
         {

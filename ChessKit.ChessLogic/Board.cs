@@ -6,7 +6,7 @@ namespace ChessKit.ChessLogic
 {
     public sealed partial class Board
     {
-        internal GameState _gameState;
+        internal GameState GameState;
 
         /// <summary>The side which is moving next (white or black)</summary>
         public Color SideOnMove { get; private set; }
@@ -14,7 +14,7 @@ namespace ChessKit.ChessLogic
         public int? EnPassantFile { get; set; }
 
         /// <summary>Gets sides players can castle to</summary>
-        internal Castlings _Castlings;
+        internal Castlings Castlings;
         /// <summary>This is the number of halfmoves since the last pawn advance or capture. </summary>
         /// <remarks>This is used to determine if a draw can be claimed under the fifty-move rule.</remarks>
         public int HalfMoveClock { get; set; }
@@ -23,8 +23,8 @@ namespace ChessKit.ChessLogic
 
         public Move PreviousMove { get; }
 
-        public bool IsCheck => _gameState == GameState.Check;
-        public bool IsMate => _gameState == GameState.Mate;
+        public bool IsCheck => GameState == GameState.Check;
+        public bool IsMate => GameState == GameState.Mate;
 
         #region ' MakeMove '
 
@@ -39,7 +39,7 @@ namespace ChessKit.ChessLogic
                 var piece = this[moveFromSq];
                 if (piece == 0) continue;
                 if (piece.Color() != sideOnMove) continue;
-                GenerateMoves(piece, moveFromSq, EnPassantFile, _Castlings, res);
+                GenerateMoves(piece, moveFromSq, EnPassantFile, Castlings, res);
             }
             return res;
         }
@@ -49,7 +49,7 @@ namespace ChessKit.ChessLogic
             if (piece == Piece.EmptyCell) return new List<Move>();
             if (piece.Color() != SideOnMove) return new List<Move>();
             var res = new List<Move>(28);
-            GenerateMoves(piece, moveFrom, EnPassantFile, _Castlings, res);
+            GenerateMoves(piece, moveFrom, EnPassantFile, Castlings, res);
             return res;
         }
 
@@ -57,7 +57,7 @@ namespace ChessKit.ChessLogic
         private void SetStatus()
         {
             if (!IsUnderCheck(SideOnMove)) return;
-            _gameState = GetLegalMoves().Count > 0
+            GameState = GetLegalMoves().Count > 0
                 ? GameState.Check : GameState.Mate;
         }
 
@@ -97,13 +97,13 @@ namespace ChessKit.ChessLogic
                 return;
             }
             PreviousMove.Annotations = src.ValidateMove(piece,
-              moveFrom, moveTo, toPiece, src._Castlings);
+              moveFrom, moveTo, toPiece, src.Castlings);
             if (toPiece != Piece.EmptyCell) PreviousMove.Annotations |= Capture;
             SetupBoard(src, piece, moveFrom, moveTo, move.ProposedPromotion, color);
             if ((PreviousMove.Annotations & AllErrors) != 0) return;
             if (IsUnderCheck(SideOnMove))
             {
-                _gameState = GameState.Check;
+                GameState = GameState.Check;
             }
         }
         private void SetupBoard(Board src, Piece piece,
@@ -162,7 +162,7 @@ namespace ChessKit.ChessLogic
             {
                 PreviousMove.Annotations |= MoveToCheck;
             }
-            _Castlings = src._Castlings
+            Castlings = src.Castlings
               & ~KilledAvailability(moveTo)
               & ~KilledAvailability(moveFrom);
 

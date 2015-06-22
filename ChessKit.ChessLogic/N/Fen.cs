@@ -32,9 +32,9 @@
             return new Position(
                 new PositionCore(
                     b._cells, b.SideOnMove,
-                    b._Castlings, b.EnPassantFile),
+                    b.Castlings, b.EnPassantFile),
                 b.HalfMoveClock, b.MoveNumber,
-                b._gameState, null);
+                b.GameState, null);
         }
 
     }
