@@ -581,7 +581,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
                 "d1-d5", "Queen, DoesNotJump");
         }
 
-        public sealed class Xxx
+        public sealed class Unnamed
         {
             [Fact] public void X101()  => Check(
                 "rnbqkb1r/p2ppp1p/6pn/1pp5/4N2P/7N/PPPPPPP1/R1BQKBR1 b Qkq - 3 5",

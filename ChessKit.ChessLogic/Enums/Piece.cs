@@ -1,21 +1,24 @@
+using static ChessKit.ChessLogic.Enums.Color;
+using static ChessKit.ChessLogic.Enums.PieceType;
+
 namespace ChessKit.ChessLogic.Enums
 {
   public enum Piece : byte
   {
     EmptyCell,
 
-    WhitePawn   = Color.White | PieceType.Pawn  ,
-    WhiteBishop = Color.White | PieceType.Bishop,
-    WhiteKnight = Color.White | PieceType.Knight,
-    WhiteRook   = Color.White | PieceType.Rook  ,
-    WhiteQueen  = Color.White | PieceType.Queen ,
-    WhiteKing   = Color.White | PieceType.King  ,
+    WhitePawn   = White | Pawn,
+    WhiteBishop = White | Bishop,
+    WhiteKnight = White | Knight,
+    WhiteRook   = White | Rook,
+    WhiteQueen  = White | Queen,
+    WhiteKing   = White | King,
     
-    BlackPawn   = Color.Black | PieceType.Pawn  ,
-    BlackBishop = Color.Black | PieceType.Bishop,
-    BlackKnight = Color.Black | PieceType.Knight,
-    BlackRook   = Color.Black | PieceType.Rook  ,
-    BlackQueen  = Color.Black | PieceType.Queen ,
-    BlackKing   = Color.Black | PieceType.King  ,
+    BlackPawn   = Black | Pawn,
+    BlackBishop = Black | Bishop,
+    BlackKnight = Black | Knight,
+    BlackRook   = Black | Rook,
+    BlackQueen  = Black | Queen,
+    BlackKing   = Black | King
   }
 }                                                    
