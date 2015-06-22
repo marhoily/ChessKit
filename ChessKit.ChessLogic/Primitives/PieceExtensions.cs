@@ -44,45 +44,19 @@ namespace ChessKit.ChessLogic.Primitives
         {
             switch (ch)
             {
-                case 'P':
-                    piece = Piece.WhitePawn;
-                    break;
-                case 'N':
-                    piece = Piece.WhiteKnight;
-                    break;
-                case 'B':
-                    piece = Piece.WhiteBishop;
-                    break;
-                case 'R':
-                    piece = Piece.WhiteRook;
-                    break;
-                case 'Q':
-                    piece = Piece.WhiteQueen;
-                    break;
-                case 'K':
-                    piece = Piece.WhiteKing;
-                    break;
-                case 'p':
-                    piece = Piece.BlackPawn;
-                    break;
-                case 'n':
-                    piece = Piece.BlackKnight;
-                    break;
-                case 'b':
-                    piece = Piece.BlackBishop;
-                    break;
-                case 'r':
-                    piece = Piece.BlackRook;
-                    break;
-                case 'q':
-                    piece = Piece.BlackQueen;
-                    break;
-                case 'k':
-                    piece = Piece.BlackKing;
-                    break;
-                default:
-                    piece = Piece.EmptyCell;
-                    return false;
+                case 'P': piece = Piece.WhitePawn; break;
+                case 'N': piece = Piece.WhiteKnight; break;
+                case 'B': piece = Piece.WhiteBishop; break;
+                case 'R': piece = Piece.WhiteRook; break;
+                case 'Q': piece = Piece.WhiteQueen; break;
+                case 'K': piece = Piece.WhiteKing; break;
+                case 'p': piece = Piece.BlackPawn; break;
+                case 'n': piece = Piece.BlackKnight; break;
+                case 'b': piece = Piece.BlackBishop; break;
+                case 'r': piece = Piece.BlackRook; break;
+                case 'q': piece = Piece.BlackQueen; break;
+                case 'k': piece = Piece.BlackKing; break;
+                default: piece = Piece.EmptyCell; return false;
             }
             return true;
         }
