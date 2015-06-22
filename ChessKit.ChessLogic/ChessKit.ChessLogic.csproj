@@ -84,8 +84,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Scanning.tt</DependentUpon>
     </Compile>
-    <Compile Include="Board.MovesCore.cs">
-    </Compile>
     <Compile Include="BoardBuilder.cs" />
     <Compile Include="BoardDump.cs" />
     <Compile Include="MoveLegality.cs" />
