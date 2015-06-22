@@ -90,7 +90,8 @@ namespace ChessKit.ChessLogic.UnitTests
 			var board = Fen.ParseFen(d.StartingFen);
 			var expected = Move.Parse(d.Move);
 			if (!d.ExpectedToBeValid) return;
-			board.CanBeValidMove(
+            CanBeValid.CanBeValidMove(
+                board._cells,
 				board[expected.From],
 				expected.From,
 				expected.To).Should().BeTrue();

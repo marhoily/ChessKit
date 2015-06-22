@@ -4,9 +4,9 @@ using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic
 {
-    partial class Board
+    static class CanBeValid
     {
-        internal bool CanBeValidMove(Piece piece, int fromSquare, int toSquare)
+        public static bool CanBeValidMove(byte[] cells, Piece piece, int fromSquare, int toSquare)
         {
             var dx = toSquare - fromSquare;
             switch (piece)
@@ -17,13 +17,13 @@ namespace ChessKit.ChessLogic
                     switch (dx)
                     {
                         case 16:
-                            return this[toSquare] == Piece.EmptyCell;
+                            return cells[toSquare] == 0;
                         case 17:
                             return true;
                         case 15:
                             return true;
                         case 32:
-                            return this[toSquare] == Piece.EmptyCell;
+                            return cells[toSquare] == 0;
                     }
                     return false;
 
@@ -38,7 +38,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -15 == 0)
                     {
@@ -46,7 +46,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -17 == 0)
                     {
@@ -54,7 +54,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % 15 == 0)
                     {
@@ -62,7 +62,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     return false;
 
@@ -103,7 +103,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % 1 == 0)
                     {
@@ -111,7 +111,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -16 == 0)
                     {
@@ -119,7 +119,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -1 == 0)
                     {
@@ -127,7 +127,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     return false;
 
@@ -142,7 +142,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % 1 == 0)
                     {
@@ -150,7 +150,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -16 == 0)
                     {
@@ -158,7 +158,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -1 == 0)
                     {
@@ -166,7 +166,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % 17 == 0)
                     {
@@ -174,7 +174,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -15 == 0)
                     {
@@ -182,7 +182,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -17 == 0)
                     {
@@ -190,7 +190,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % 15 == 0)
                     {
@@ -198,7 +198,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     return false;
 
@@ -226,9 +226,9 @@ namespace ChessKit.ChessLogic
                         case 15:
                             return true;
                         case 2:
-                            return this[toSquare] == Piece.EmptyCell;
+                            return cells[toSquare] == 0;
                         case -2:
-                            return this[toSquare] == Piece.EmptyCell;
+                            return cells[toSquare] == 0;
                     }
                     return false;
 
@@ -240,13 +240,13 @@ namespace ChessKit.ChessLogic
                     switch (dx)
                     {
                         case -16:
-                            return this[toSquare] == Piece.EmptyCell;
+                            return cells[toSquare] == 0;
                         case -15:
                             return true;
                         case -17:
                             return true;
                         case -32:
-                            return this[toSquare] == Piece.EmptyCell;
+                            return cells[toSquare] == 0;
                     }
                     return false;
 
@@ -261,7 +261,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -15 == 0)
                     {
@@ -269,7 +269,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -17 == 0)
                     {
@@ -277,7 +277,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % 15 == 0)
                     {
@@ -285,7 +285,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     return false;
 
@@ -326,7 +326,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % 1 == 0)
                     {
@@ -334,7 +334,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -16 == 0)
                     {
@@ -342,7 +342,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -1 == 0)
                     {
@@ -350,7 +350,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     return false;
 
@@ -365,7 +365,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % 1 == 0)
                     {
@@ -373,7 +373,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -16 == 0)
                     {
@@ -381,7 +381,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -1 == 0)
                     {
@@ -389,7 +389,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % 17 == 0)
                     {
@@ -397,7 +397,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -15 == 0)
                     {
@@ -405,7 +405,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % -17 == 0)
                     {
@@ -413,7 +413,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     if (dx % 15 == 0)
                     {
@@ -421,7 +421,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
                     return false;
 
@@ -449,9 +449,9 @@ namespace ChessKit.ChessLogic
                         case 15:
                             return true;
                         case 2:
-                            return this[toSquare] == Piece.EmptyCell;
+                            return cells[toSquare] == 0;
                         case -2:
-                            return this[toSquare] == Piece.EmptyCell;
+                            return cells[toSquare] == 0;
                     }
                     return false;
 

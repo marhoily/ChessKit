@@ -10,9 +10,9 @@ using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic
 {
-    partial class Board
+    static class CanBeValid
     {
-        internal bool CanBeValidMove(Piece piece, int fromSquare, int toSquare)
+        public static bool CanBeValidMove(byte[] cells, Piece piece, int fromSquare, int toSquare)
         {
             var dx = toSquare - fromSquare;
             switch (piece)
@@ -37,7 +37,7 @@ namespace ChessKit.ChessLogic
                         if (steps >= 0 && steps < 8)
                             for (var i = fromSquare + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
                                 if (i == toSquare) return true;
-                                else if (this[i] != Piece.EmptyCell) return false;
+                                else if (cells[i] != 0) return false;
                     }
 <#
             }
@@ -66,7 +66,7 @@ namespace ChessKit.ChessLogic
                 else
                 {
 #>
-                            return this[toSquare] == Piece.EmptyCell;
+                            return cells[toSquare] == 0;
 <#
                 }
             }
