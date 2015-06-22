@@ -4,7 +4,7 @@
 <#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
 <#@ import namespace="ChessKit.ChessLogic.Enums" #>
 <#@ import namespace="ChessKit.ChessLogic.Internals" #>
-using ChessKit.ChessLogic.Enums;
+using static ChessKit.ChessLogic.Enums.Piece;
 
 namespace ChessKit.ChessLogic
 {
@@ -30,7 +30,7 @@ foreach (var color in new []{Color.White, Color.Black})
             {
                 var piece = _cells[i];
                 if (piece == 0) continue;
-                if (piece == (byte) Piece.<#=p.Color#><#=p.PieceType#>) return true;
+                if (piece == (byte) <#=p.Color#><#=p.PieceType#>) return true;
                 break;
             }
 <#
@@ -41,7 +41,7 @@ foreach (var color in new []{Color.White, Color.Black})
             {
                 var square = cell - <#=delta#>;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte) Piece.<#=p.Color#><#=p.PieceType#>)
+                    if (_cells[square] == (byte) <#=p.Color#><#=p.PieceType#>)
                         return true;
             }
 <#
