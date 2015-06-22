@@ -6,6 +6,10 @@ namespace ChessKit.ChessLogic
 {
     public sealed partial class Board
     {
+        /// <summary>Board with all pieces set into the start position</summary>
+        public static readonly Board StartPosition = Fen.ParseFen(
+            "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+
         internal GameStates GameState;
 
         /// <summary>The side which is moving next (white or black)</summary>
