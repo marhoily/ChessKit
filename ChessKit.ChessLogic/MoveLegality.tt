@@ -1,5 +1,5 @@
 ﻿<#@ template debug="true" hostSpecific="true" #>
-<#@ output extension=".cs" #>
+<#@ output extension="generated.cs" #>
 <#@ Assembly Name="System.Core" #>
 <#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
 <#@ import namespace="System.Linq" #>
@@ -10,14 +10,14 @@ using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
 
 namespace ChessKit.ChessLogic
 {
-    partial class Board
+    static partial class MoveLegality
     {
 <#
     foreach (var p in MetaPiece.All.Where(p => p.PieceType != PieceType.Pawn))
     {
         var isSlider = p.MoveDirections.Any(dir => dir.Count > 1);
 #>
-        private <#=isSlider?"" : "static "#>MoveAnnotations Validate<#=p.Color#><#=p.PieceType#>Move(int fromSquare, int toSquare)
+        private static MoveAnnotations Validate<#=p.Color#><#=p.PieceType#>Move(<#=isSlider?"byte[] cells, " : ""#>int fromSquare, int toSquare)
         {
             var dx = toSquare - fromSquare;
 <#
@@ -33,7 +33,7 @@ namespace ChessKit.ChessLogic
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
                         if (i == toSquare) return <#=p.PieceType#>;
-                        else if (this[i] != Piece.EmptyCell)
+                        else if (cells[i] != 0)
                             return <#=p.PieceType#> | DoesNotJump;
             }
 <#
@@ -63,7 +63,7 @@ namespace ChessKit.ChessLogic
     } // --------------------------------------------------
 #>
 
-        private MoveAnnotations ValidateMove(Piece piece, int fromSquare, int toSquare, Piece toPiece, Castlings castlingAvailability)
+        private static MoveAnnotations ValidateMove(byte[] cells, Piece piece, int fromSquare, int toSquare, Piece toPiece, Castlings castlingAvailability)
         {
             switch (piece)
             {
@@ -76,7 +76,7 @@ namespace ChessKit.ChessLogic
     if (p.PieceType == PieceType.Pawn)
     {
 #>
-                    return Validate<#=p.Color#>PawnMove(fromSquare, toSquare, toPiece);
+                    return Validate<#=p.Color#>PawnMove(cells, fromSquare, toSquare, toPiece);
 
 <#
     }
@@ -85,14 +85,15 @@ namespace ChessKit.ChessLogic
 #>
                     if (Validate<#=p.Color#><#=p.PieceType#>Move(fromSquare, toSquare) == King)
                         return King;
-                    return Validate<#=p.Color#>CastlingMove(fromSquare, toSquare, castlingAvailability);
+                    return Validate<#=p.Color#>CastlingMove(cells, fromSquare, toSquare, castlingAvailability);
 
 <#
     }
     else 
     {
+        var isSlider = p.MoveDirections.Any(dir => dir.Count > 1);
 #>
-                    return Validate<#=p.Color#><#=p.PieceType#>Move(fromSquare, toSquare);
+                    return Validate<#=p.Color#><#=p.PieceType#>Move(<#=isSlider?"cells, " : ""#>fromSquare, toSquare);
 
 <#
         }

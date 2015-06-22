@@ -8,6 +8,7 @@
 using System.Collections.Generic;
 using ChessKit.ChessLogic.Primitives;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
+using static ChessKit.ChessLogic.Scanning;
 
 namespace ChessKit.ChessLogic
 {
@@ -38,7 +39,7 @@ namespace ChessKit.ChessLogic
                         {
                             _cells[fromSquare] = (byte)Piece.EmptyCell;
                             _cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                            if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
+                            if (!IsAttackedBy<#=p.Color.Invert()#>(_cells, _<#=p.Color.ToString().ToLower()#>KingPosition))
                                 collector.Add(new Move(fromSquare, to, <#=p.PieceType#>));
                             _cells[fromSquare] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             _cells[to] = toPiece;
@@ -47,7 +48,7 @@ namespace ChessKit.ChessLogic
                         {
                             _cells[fromSquare] = (byte)Piece.EmptyCell;
                             _cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                            if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
+                            if (!IsAttackedBy<#=p.Color.Invert()#>(_cells, _<#=p.Color.ToString().ToLower()#>KingPosition))
                                 collector.Add(new Move(fromSquare, to, <#=p.PieceType#> | Capture));
                             _cells[fromSquare] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             _cells[to] = toPiece;
@@ -83,13 +84,13 @@ namespace ChessKit.ChessLogic
                                 {
 #>
                                 _cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                                if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
+                                if (!IsAttackedBy<#=p.Color.Invert()#>(_cells, _<#=p.Color.ToString().ToLower()#>KingPosition))
 <#
                                 }
                                 else
                                 {
 #>
-                                if (!IsAttackedBy<#=p.Color.Invert()#>(to))
+                                if (!IsAttackedBy<#=p.Color.Invert()#>(_cells, to))
 <#
                                 }
 #>
@@ -112,13 +113,13 @@ namespace ChessKit.ChessLogic
                                 {
 #>
                                 _cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                                if (!IsAttackedBy<#=p.Color.Invert()#>(_<#=p.Color.ToString().ToLower()#>KingPosition))
+                                if (!IsAttackedBy<#=p.Color.Invert()#>(_cells, _<#=p.Color.ToString().ToLower()#>KingPosition))
 <#
                                 }
                                 else
                                 {
 #>
-                                if (!IsAttackedBy<#=p.Color.Invert()#>(to))
+                                if (!IsAttackedBy<#=p.Color.Invert()#>(_cells, to))
 <#
                                 }
 #>

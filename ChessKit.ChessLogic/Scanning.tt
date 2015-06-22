@@ -8,13 +8,13 @@ using static ChessKit.ChessLogic.Primitives.Piece;
 
 namespace ChessKit.ChessLogic
 {
-    partial class Board
+    static partial class Scanning
     {
 <#
 foreach (var color in new []{Color.White, Color.Black})
 {
 #>
-        private bool IsAttackedBy<#=color#>(int cell)
+        public static bool IsAttackedBy<#=color#>(byte[] _cells, int cell)
         {
 <#
     foreach (var p in MetaPiece.All) 

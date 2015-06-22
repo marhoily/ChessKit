@@ -96,8 +96,8 @@ namespace ChessKit.ChessLogic
                 PreviousMove.Annotations = (MoveAnnotations)piece.PieceType() | ToOccupiedCell;
                 return;
             }
-            PreviousMove.Annotations = src.ValidateMove(piece,
-              moveFrom, moveTo, toPiece, src.Castlings);
+            PreviousMove.Annotations = MoveLegality.ValidateMove(_cells, piece,
+                moveFrom, moveTo, toPiece, src.Castlings);
             if (toPiece != Piece.EmptyCell) PreviousMove.Annotations |= Capture;
             SetupBoard(src, piece, moveFrom, moveTo, move.ProposedPromotion, color);
             if ((PreviousMove.Annotations & AllErrors) != 0) return;
@@ -204,15 +204,15 @@ namespace ChessKit.ChessLogic
         public bool IsAttackedBy(Color side, int square)
         {
             return side == Color.White
-                ? IsAttackedByWhite(square)
-                : IsAttackedByBlack(square);
+                ? Scanning.IsAttackedByWhite(_cells, square)
+                : Scanning.IsAttackedByBlack(_cells, square);
         }
 
         public bool IsInCheck(Color side)
         {
             return side == Color.White
-                ? IsAttackedByBlack(_whiteKingPosition)
-                : IsAttackedByWhite(_blackKingPosition);
+                ? Scanning.IsAttackedByBlack(_cells, _whiteKingPosition)
+                : Scanning.IsAttackedByWhite(_cells, _blackKingPosition);
         }
     }
 }

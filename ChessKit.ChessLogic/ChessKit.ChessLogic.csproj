@@ -39,27 +39,22 @@
     <None Include="Board.CanBeValidMove.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Board.CanBeValidMove.cs</LastGenOutput>
-      
     </None>
     <None Include="Board.Cells.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Board.Cells.cs</LastGenOutput>
-      
     </None>
     <None Include="Board.GenerateMoves.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Board.GenerateMoves.cs</LastGenOutput>
-      
     </None>
-    <None Include="Board.IsAttackedBy.tt">
+    <None Include="Scanning.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Board.IsAttackedBy.cs</LastGenOutput>
-      
+      <LastGenOutput>Scanning.cs</LastGenOutput>
     </None>
-    <None Include="Board.ValidateMove.tt">
+    <None Include="MoveLegality.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Board.ValidateMove.cs</LastGenOutput>
-      
+      <LastGenOutput>MoveLegality.generated.cs</LastGenOutput>
     </None>
     <None Include="N\Target.cd" />
     <None Include="packages.config" />
@@ -77,28 +72,27 @@
     </Compile>
     <Compile Include="Board.cs" />
     <Compile Include="Board.Fen.cs">
-      
     </Compile>
     <Compile Include="Board.GenerateMoves.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Board.GenerateMoves.tt</DependentUpon>
     </Compile>
-    <Compile Include="Board.IsAttackedBy.cs">
+    <Compile Include="Scanning.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Board.IsAttackedBy.tt</DependentUpon>
+      <DependentUpon>Scanning.tt</DependentUpon>
     </Compile>
     <Compile Include="Board.MovesCore.cs">
-      
-    </Compile>
-    <Compile Include="Board.ValidateMove.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Board.ValidateMove.tt</DependentUpon>
     </Compile>
     <Compile Include="BoardBuilder.cs" />
     <Compile Include="BoardDump.cs" />
+    <Compile Include="MoveLegality.cs" />
+    <Compile Include="MoveLegality.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoveLegality.tt</DependentUpon>
+    </Compile>
     <Compile Include="N\GetLegalMoves.cs" />
     <Compile Include="Primitives\Castlings.cs" />
     <Compile Include="Primitives\MoveErrors.cs" />

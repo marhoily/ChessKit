@@ -2,9 +2,9 @@
 
 namespace ChessKit.ChessLogic
 {
-    partial class Board
+    static partial class Scanning
     {
-        private bool IsAttackedByWhite(int cell)
+        public static bool IsAttackedByWhite(byte[] _cells, int cell)
         {
             {
                 var square = cell - 17;
@@ -228,7 +228,7 @@ namespace ChessKit.ChessLogic
             }
             return false;
         }
-        private bool IsAttackedByBlack(int cell)
+        public static bool IsAttackedByBlack(byte[] _cells, int cell)
         {
             {
                 var square = cell - -15;
