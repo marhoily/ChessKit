@@ -13,7 +13,15 @@ namespace ChessKit.ChessLogic.N
             return makeMove.Select(
                 m => board.MakeMove(m).ToLegalMove(board))
                 .ToList();
-
+        }
+        public static List<LegalMove> GetAllLegalMoves(this Position position)
+        {
+            var board = position.ToBoard();
+            var makeMove = board
+                .GetLegalMoves();
+            return makeMove.Select(
+                m => board.MakeMove(m).ToLegalMove(board))
+                .ToList();
         }
     }
 }
