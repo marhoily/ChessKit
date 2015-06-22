@@ -6,7 +6,6 @@ namespace ChessKit.ChessLogic
 {
     public static class Fen
     {
-
         /// <summary> Load position from FEN string </summary>
         /// <param name="fen">FEN string</param>
         /// <remarks>http://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation</remarks>
@@ -31,25 +30,28 @@ namespace ChessKit.ChessLogic
             }
         }
 
-        static byte[] LoadPiecePlacementSection(string fen, ref int i)
+        private static byte[] LoadPiecePlacementSection(string fen, ref int i)
         {
             var res = new byte[128];
-            for (var sq = 63; ; i++)
+            for (var sq = 63;; i++)
             {
                 if (fen[i] == ' ') break;
                 if (fen[i] >= '1' && fen[i] <= '9') sq -= fen[i] - '0';
-                else if ('/' == fen[i]) { }
+                else if ('/' == fen[i])
+                {
+                }
                 else
                 {
-                    var c = (sq / 8) * 8 + 7 - sq % 8;
-                    res[c + (c & ~7)] = (byte)fen[i].ParsePiece();
+                    var c = (sq/8)*8 + 7 - sq%8;
+                    res[c + (c & ~7)] = (byte) fen[i].ParsePiece();
                     sq--;
                 }
             }
             i++; // Skip the space
             return res;
         }
-        static Color LoadActiveColorSection(string fen, ref int i)
+
+        private static Color LoadActiveColorSection(string fen, ref int i)
         {
             var res = fen[i++].ParseColor();
             if (fen[i] != ' ')
@@ -57,12 +59,15 @@ namespace ChessKit.ChessLogic
             i++; // skip the space 
             return res;
         }
-        static Castlings LoadCastlingAvailabilitySection(string fen, ref int i)
+
+        private static Castlings LoadCastlingAvailabilitySection(string fen, ref int i)
         {
             var flags = default(Castlings);
-            for (; ; i++)
+            for (;; i++)
             {
-                if (fen[i] == '-') { }
+                if (fen[i] == '-')
+                {
+                }
                 else if (fen[i] == 'K') flags |= Castlings.WK;
                 else if (fen[i] == 'Q') flags |= Castlings.WQ;
                 else if (fen[i] == 'k') flags |= Castlings.BK;
@@ -73,7 +78,8 @@ namespace ChessKit.ChessLogic
             i++; // Skip the space
             return flags;
         }
-        static int? LoadEnPassantSection(string fen, ref int i)
+
+        private static int? LoadEnPassantSection(string fen, ref int i)
         {
             int? res = null;
             if (fen[i] != '-')
@@ -84,33 +90,34 @@ namespace ChessKit.ChessLogic
             i++; // Skip the space
             return res;
         }
-        static int LoadHalfmoveClockSection(string fen, ref int i)
+
+        private static int LoadHalfmoveClockSection(string fen, ref int i)
         {
             var res = 0;
-            for (; ; i++)
+            for (;; i++)
             {
                 if (fen[i] == ' ') break;
                 if (fen[i] >= '0' && fen[i] <= '9')
-                    res = res * 10 + fen[i] - '0';
+                    res = res*10 + fen[i] - '0';
             }
             i++; // Skip the space
             return res;
         }
-        static int LoadFullmoveNumberSection(string fen, ref int i)
+
+        private static int LoadFullmoveNumberSection(string fen, ref int i)
         {
             var res = 0;
             for (; i < fen.Length; i++)
                 if (fen[i] >= '0' && fen[i] <= '9')
-                    res = res * 10 + fen[i] - '0';
+                    res = res*10 + fen[i] - '0';
             return res;
-
         }
 
-        static class EnPassantParser
+        private static class EnPassantParser
         {
-            static readonly int[] Symbols;
-            const char Z = '-';
-            const int Illegal = 99;
+            private static readonly int[] Symbols;
+            private const char Z = '-';
+            private const int Illegal = 99;
 
             static EnPassantParser()
             {
