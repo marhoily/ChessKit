@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ChessKit.ChessLogic.Enums;
-using A = ChessKit.ChessLogic.Enums.MoveAnnotations;
+using static ChessKit.ChessLogic.Enums.MoveAnnotations;
 
 namespace ChessKit.ChessLogic
 {
@@ -66,137 +66,133 @@ namespace ChessKit.ChessLogic
             }
         }
 
-        A ValidateWhiteCastlingMove(int fromSquare, int to, Castlings Castlings)
+        MoveAnnotations ValidateWhiteCastlingMove(int fromSquare, int to, Castlings castlings)
         {
-            if (fromSquare != S.E1) return A.King | A.DoesNotMoveThisWay;
+            if (fromSquare != S.E1) return King | DoesNotMoveThisWay;
             switch (to)
             {
                 case S.C1: // Queenside
-                    if (_cells[S.D1] != 0 || _cells[S.B1] != 0) return A.King | A.DoesNotJump | A.WQ;
-                    if (_cells[S.C1] != 0) return A.King | A.Capture | A.DoesNotCaptureThisWay | A.WQ;
-                    if (IsAttackedByBlack(S.E1)) return A.King | A.CastleFromCheck | A.WQ;
-                    if (IsAttackedByBlack(S.D1)) return A.King | A.CastleThroughCheck | A.WQ;
-                    if ((Castlings & Castlings.WQ) != 0) return A.King | A.WQ;
-                    return A.King | A.WQ | A.HasNoCastling;
+                    if (_cells[S.D1] != 0 || _cells[S.B1] != 0) return King | DoesNotJump | WQ;
+                    if (_cells[S.C1] != 0) return King | Capture | DoesNotCaptureThisWay | WQ;
+                    if (IsAttackedByBlack(S.E1)) return King | CastleFromCheck | WQ;
+                    if (IsAttackedByBlack(S.D1)) return King | CastleThroughCheck | WQ;
+                    if ((castlings & Castlings.WQ) != 0) return King | WQ;
+                    return King | WQ | HasNoCastling;
                 case S.G1: // Kingside
-                    if (_cells[S.F1] != 0) return A.King | A.DoesNotJump | A.WK;
-                    if (_cells[S.G1] != 0) return A.King | A.Capture | A.DoesNotCaptureThisWay | A.WK;
-                    if (IsAttackedByBlack(S.E1)) return A.King | A.CastleFromCheck | A.WK;
-                    if (IsAttackedByBlack(S.F1)) return A.King | A.CastleThroughCheck | A.WK;
-                    if ((Castlings & Castlings.WK) != 0) return A.King | A.WK;
-                    return A.King | A.WK | A.HasNoCastling;
+                    if (_cells[S.F1] != 0) return King | DoesNotJump | WK;
+                    if (_cells[S.G1] != 0) return King | Capture | DoesNotCaptureThisWay | WK;
+                    if (IsAttackedByBlack(S.E1)) return King | CastleFromCheck | WK;
+                    if (IsAttackedByBlack(S.F1)) return King | CastleThroughCheck | WK;
+                    if ((castlings & Castlings.WK) != 0) return King | WK;
+                    return King | WK | HasNoCastling;
             }
-            return A.King | A.DoesNotMoveThisWay;
+            return King | DoesNotMoveThisWay;
         }
-        A ValidateBlackCastlingMove(int fromSquare, int to, Castlings Castlings)
+        MoveAnnotations ValidateBlackCastlingMove(int fromSquare, int to, Castlings castlings)
         {
-            if (fromSquare != S.E8) return A.King | A.DoesNotMoveThisWay;
+            if (fromSquare != S.E8) return King | DoesNotMoveThisWay;
             switch (to)
             {
                 case S.C8: // Queenside
-                    if (_cells[S.D8] != 0 || _cells[S.B8] != 0) return A.King | A.DoesNotJump | A.BQ;
-                    if (_cells[S.C8] != 0) return A.King | A.Capture | A.DoesNotCaptureThisWay | A.BQ;
-                    if (IsAttackedByWhite(S.E8)) return A.King | A.CastleFromCheck | A.BQ;
-                    if (IsAttackedByWhite(S.D8)) return A.King | A.CastleThroughCheck | A.BQ;
-                    if ((Castlings & Castlings.BQ) != 0) return A.King | A.BQ;
-                    return A.King | A.BQ | A.HasNoCastling;
+                    if (_cells[S.D8] != 0 || _cells[S.B8] != 0) return King | DoesNotJump | BQ;
+                    if (_cells[S.C8] != 0) return King | Capture | DoesNotCaptureThisWay | BQ;
+                    if (IsAttackedByWhite(S.E8)) return King | CastleFromCheck | BQ;
+                    if (IsAttackedByWhite(S.D8)) return King | CastleThroughCheck | BQ;
+                    if ((castlings & Castlings.BQ) != 0) return King | BQ;
+                    return King | BQ | HasNoCastling;
                 case S.G8: // Kingside
-                    if (_cells[S.F8] != 0) return A.King | A.DoesNotJump | A.BK;
-                    if (_cells[S.G8] != 0) return A.King | A.Capture | A.DoesNotCaptureThisWay | A.BK;
-                    if (IsAttackedByWhite(S.E8)) return A.King | A.CastleFromCheck | A.BK;
-                    if (IsAttackedByWhite(S.F8)) return A.King | A.CastleThroughCheck | A.BK;
-                    if ((Castlings & Castlings.BK) != 0) return A.King | A.BK;
-                    return A.King | A.BK | A.HasNoCastling;
+                    if (_cells[S.F8] != 0) return King | DoesNotJump | BK;
+                    if (_cells[S.G8] != 0) return King | Capture | DoesNotCaptureThisWay | BK;
+                    if (IsAttackedByWhite(S.E8)) return King | CastleFromCheck | BK;
+                    if (IsAttackedByWhite(S.F8)) return King | CastleThroughCheck | BK;
+                    if ((castlings & Castlings.BK) != 0) return King | BK;
+                    return King | BK | HasNoCastling;
             }
-            return A.King | A.DoesNotMoveThisWay;
+            return King | DoesNotMoveThisWay;
         }
-        A ValidateWhitePawnMove(int fromSquare, int to, Piece toPiece)
+        MoveAnnotations ValidateWhitePawnMove(int fromSquare, int to, Piece toPiece)
         {
             switch (to - fromSquare)
             {
                 case 32:
-                    if (fromSquare / 16 != 1) return A.Pawn | A.DoesNotMoveThisWay;
+                    if (fromSquare / 16 != 1) return Pawn | DoesNotMoveThisWay;
                     if (toPiece != 0)
-                        return A.Pawn | A.DoesNotCaptureThisWay;
+                        return Pawn | DoesNotCaptureThisWay;
                     return _cells[fromSquare + 16] != 0
-                             ? A.Pawn | A.DoesNotJump
-                             : A.Pawn | A.DoublePush;
+                             ? Pawn | DoesNotJump
+                             : Pawn | DoublePush;
                 case 16:
                     if (toPiece != 0)
-                        return A.Pawn | A.DoesNotCaptureThisWay;
-                    return to / 16 != 7 ? A.Pawn : A.Pawn | A.Promotion;
+                        return Pawn | DoesNotCaptureThisWay;
+                    return to / 16 != 7 ? Pawn : Pawn | Promotion;
                 case 17:
                 case 15:
                     if (toPiece == Piece.EmptyCell)
                         return to / 16 == 5
-                          ? A.Pawn | A.Capture | A.EnPassant
-                          : A.Pawn | A.OnlyCapturesThisWay;
-                    return to / 16 != 7 ? A.Pawn | A.Capture
-                      : A.Pawn | A.Promotion | A.Capture;
+                          ? Pawn | Capture | EnPassant
+                          : Pawn | OnlyCapturesThisWay;
+                    return to / 16 != 7 ? Pawn | Capture
+                      : Pawn | Promotion | Capture;
                 default:
-                    return A.Pawn | A.DoesNotMoveThisWay;
+                    return Pawn | DoesNotMoveThisWay;
             }
 
         }
-        A ValidateBlackPawnMove(int fromSquare, int to, Piece toPiece)
+        MoveAnnotations ValidateBlackPawnMove(int fromSquare, int to, Piece toPiece)
         {
             switch (fromSquare - to)
             {
                 case 32:
-                    if (fromSquare / 16 != 6) return A.Pawn | A.DoesNotMoveThisWay;
+                    if (fromSquare / 16 != 6) return Pawn | DoesNotMoveThisWay;
                     if (toPiece != 0)
-                        return A.Pawn | A.DoesNotCaptureThisWay;
+                        return Pawn | DoesNotCaptureThisWay;
                     return _cells[fromSquare - 16] != 0
-                             ? A.Pawn | A.DoesNotJump
-                             : A.Pawn | A.DoublePush;
+                             ? Pawn | DoesNotJump
+                             : Pawn | DoublePush;
                 case 16:
                     if (toPiece != 0)
-                        return A.Pawn | A.DoesNotCaptureThisWay;
-                    return to / 16 != 0 ? A.Pawn : A.Pawn | A.Promotion;
+                        return Pawn | DoesNotCaptureThisWay;
+                    return to / 16 != 0 ? Pawn : Pawn | Promotion;
                 case 17:
                 case 15:
                     if (toPiece == Piece.EmptyCell)
                         return to / 16 == 2
-                          ? A.Pawn | A.Capture | A.EnPassant
-                          : A.Pawn | A.OnlyCapturesThisWay;
+                          ? Pawn | Capture | EnPassant
+                          : Pawn | OnlyCapturesThisWay;
                     return to / 16 != 0
-                      ? A.Pawn | A.Capture
-                      : A.Pawn | A.Promotion | A.Capture;
+                      ? Pawn | Capture
+                      : Pawn | Promotion | Capture;
                 default:
-                    return A.Pawn | A.DoesNotMoveThisWay;
+                    return Pawn | DoesNotMoveThisWay;
             }
         }
-        void GenerateWhiteCastlingMoves(int fromSquare, Castlings Castlings, List<Move> collector)
+        void GenerateWhiteCastlingMoves(int fromSquare, Castlings castlings, List<Move> collector)
         {
             if (fromSquare != S.E1) return;
 
-            if ((Castlings & Castlings.WQ) != 0)
+            if ((castlings & Castlings.WQ) != 0)
                 if (_cells[S.D1] == 0 && _cells[S.C1] == 0 && _cells[S.B1] == 0)
                     if (!IsAttackedByBlack(S.E1) && !IsAttackedByBlack(S.D1) && !IsAttackedByBlack(S.C1))
-                        collector.Add(new Move(S.E1, S.C1,
-                            A.WQ));
+                        collector.Add(new Move(S.E1, S.C1, WQ));
 
-            if ((Castlings & Castlings.WK) != 0)
+            if ((castlings & Castlings.WK) != 0)
                 if (_cells[S.F1] == 0 && _cells[S.G1] == 0)
                     if (!IsAttackedByBlack(S.E1) && !IsAttackedByBlack(S.F1) && !IsAttackedByBlack(S.G1))
-                        collector.Add(new Move(S.E1, S.G1,
-                            A.WK));
+                        collector.Add(new Move(S.E1, S.G1, WK));
         }
-        void GenerateBlackCastlingMoves(int fromSquare, Castlings Castlings, List<Move> collector)
+        void GenerateBlackCastlingMoves(int fromSquare, Castlings castlings, List<Move> collector)
         {
             if (fromSquare != S.E8) return;
 
-            if ((Castlings & Castlings.BQ) != 0)
+            if ((castlings & Castlings.BQ) != 0)
                 if (_cells[S.D8] == 0 && _cells[S.C8] == 0 && _cells[S.B8] == 0)
                     if (!IsAttackedByWhite(S.E8) && !IsAttackedByWhite(S.D8) && !IsAttackedByWhite(S.C8))
-                        collector.Add(new Move(S.E8, S.C8,
-                            A.BQ));
+                        collector.Add(new Move(S.E8, S.C8, BQ));
 
-            if ((Castlings & Castlings.BK) != 0)
+            if ((castlings & Castlings.BK) != 0)
                 if (_cells[S.F8] == 0 && _cells[S.G8] == 0)
                     if (!IsAttackedByWhite(S.E8) && !IsAttackedByWhite(S.F8) && !IsAttackedByWhite(S.G8))
-                        collector.Add(new Move(S.E8, S.G8,
-                            A.BK));
+                        collector.Add(new Move(S.E8, S.G8, BK));
         }
         void GenerateWhitePawnMoves(int fromSquare, int? enPassantFile, List<Move> collector)
         {
@@ -210,7 +206,7 @@ namespace ChessKit.ChessLogic
                         _cells[to] = (byte)Piece.WhitePawn;
                         if (!IsAttackedByBlack(_whiteKingPosition))
                             collector.Add(new Move(fromSquare, to,
-                                to / 16 != 7 ? A.Pawn : A.Pawn | A.Promotion));
+                                to / 16 != 7 ? Pawn : Pawn | Promotion));
                         _cells[fromSquare] = (byte)Piece.WhitePawn;
                         _cells[to] = toPiece;
                     }
@@ -226,8 +222,7 @@ namespace ChessKit.ChessLogic
                         var toPiece = _cells[to];
                         _cells[to] = (byte)Piece.WhitePawn;
                         if (!IsAttackedByBlack(_whiteKingPosition))
-                            collector.Add(new Move(fromSquare, to,
-                                A.Pawn | A.DoublePush));
+                            collector.Add(new Move(fromSquare, to, Pawn | DoublePush));
                         _cells[fromSquare] = (byte)Piece.WhitePawn;
                         _cells[to] = toPiece;
                     }
@@ -247,8 +242,8 @@ namespace ChessKit.ChessLogic
                             if (!IsAttackedByBlack(_whiteKingPosition))
                                 collector.Add(new Move(fromSquare, to,
                                     to / 16 != 7
-                                    ? A.Pawn | A.Capture
-                                    : A.Pawn | A.Capture | A.Promotion));
+                                    ? Pawn | Capture
+                                    : Pawn | Capture | Promotion));
                             _cells[fromSquare] = (byte)Piece.WhitePawn;
                             _cells[to] = toPiece;
                         }
@@ -262,7 +257,7 @@ namespace ChessKit.ChessLogic
                             _cells[to - 16] = 0;
                             if (!IsAttackedByBlack(_whiteKingPosition))
                                 collector.Add(new Move(fromSquare, to,
-                                    A.Pawn | A.Capture | A.EnPassant));
+                                    Pawn | Capture | EnPassant));
                             _cells[fromSquare] = (byte)Piece.WhitePawn;
                             _cells[to - 16] = (byte)Piece.BlackPawn;
                             _cells[to] = toPiece;
@@ -283,8 +278,8 @@ namespace ChessKit.ChessLogic
                             _cells[to] = (byte)Piece.WhitePawn;
                             if (!IsAttackedByBlack(_whiteKingPosition))
                                 collector.Add(new Move(fromSquare, to,
-                                    to / 16 != 7 ? A.Pawn | A.Capture :
-                                    A.Pawn | A.Capture | A.Promotion));
+                                    to / 16 != 7 ? Pawn | Capture :
+                                    Pawn | Capture | Promotion));
                             _cells[fromSquare] = (byte)Piece.WhitePawn;
                             _cells[to] = toPiece;
                         }
@@ -298,7 +293,7 @@ namespace ChessKit.ChessLogic
                             _cells[to - 16] = 0;
                             if (!IsAttackedByBlack(_whiteKingPosition))
                                 collector.Add(new Move(fromSquare, to,
-                                    A.Pawn | A.Capture | A.EnPassant));
+                                    Pawn | Capture | EnPassant));
                             _cells[fromSquare] = (byte)Piece.WhitePawn;
                             _cells[to] = (byte)Piece.EmptyCell;
                             _cells[to - 16] = (byte)Piece.BlackPawn;
@@ -319,7 +314,7 @@ namespace ChessKit.ChessLogic
                         _cells[to] = (byte)Piece.BlackPawn;
                         if (!IsAttackedByWhite(_blackKingPosition))
                             collector.Add(new Move(fromSquare, to,
-                                to / 16 != 0 ? A.Pawn : A.Pawn | A.Promotion));
+                                to / 16 != 0 ? Pawn : Pawn | Promotion));
                         _cells[fromSquare] = (byte)Piece.BlackPawn;
                         _cells[to] = toPiece;
                     }
@@ -336,7 +331,7 @@ namespace ChessKit.ChessLogic
                         _cells[to] = (byte)Piece.BlackPawn;
                         if (!IsAttackedByWhite(_blackKingPosition))
                             collector.Add(new Move(fromSquare, to,
-                                A.Pawn | A.DoublePush));
+                                Pawn | DoublePush));
                         _cells[fromSquare] = (byte)Piece.BlackPawn;
                         _cells[to] = toPiece;
                     }
@@ -355,8 +350,8 @@ namespace ChessKit.ChessLogic
                             _cells[to] = (byte)Piece.BlackPawn;
                             if (!IsAttackedByWhite(_blackKingPosition))
                                 collector.Add(new Move(fromSquare, to,
-                                    to / 16 != 0 ? A.Pawn | A.Capture :
-                                    A.Pawn | A.Capture | A.Promotion));
+                                    to / 16 != 0 ? Pawn | Capture :
+                                    Pawn | Capture | Promotion));
                             _cells[fromSquare] = (byte)Piece.BlackPawn;
                             _cells[to] = toPiece;
                         }
@@ -370,7 +365,7 @@ namespace ChessKit.ChessLogic
                             _cells[to] = (byte)Piece.BlackPawn;
                             if (!IsAttackedByWhite(_blackKingPosition))
                                 collector.Add(new Move(fromSquare, to,
-                                    A.Pawn | A.Capture | A.EnPassant));
+                                    Pawn | Capture | EnPassant));
                             _cells[fromSquare] = (byte)Piece.BlackPawn;
                             _cells[to] = toPiece;
                             _cells[to + 16] = (byte)Piece.WhitePawn;
@@ -391,10 +386,10 @@ namespace ChessKit.ChessLogic
                             _cells[to] = (byte)Piece.BlackPawn;
                             if (!IsAttackedByWhite(_blackKingPosition))
                                 collector.Add(new Move(fromSquare, to,
-                                    to / 16 != 0 ? A.Pawn | A.Capture :
-                                    A.Pawn | A.Capture | A.Promotion));
+                                    to / 16 != 0 ? Pawn | Capture :
+                                    Pawn | Capture | Promotion));
                             _cells[fromSquare] = (byte)Piece.BlackPawn;
-                            _cells[to] = (byte)toPiece;
+                            _cells[to] = toPiece;
                         }
                     }
                     else
@@ -406,7 +401,7 @@ namespace ChessKit.ChessLogic
                             _cells[to + 16] = 0;
                             if (!IsAttackedByWhite(_blackKingPosition))
                                 collector.Add(new Move(fromSquare, to,
-                                    A.Pawn | A.Capture | A.EnPassant));
+                                    Pawn | Capture | EnPassant));
                             _cells[fromSquare] = (byte)Piece.BlackPawn;
                             _cells[to + 16] = (byte)Piece.WhitePawn;
                             _cells[to] = toPiece;

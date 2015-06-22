@@ -83,7 +83,7 @@ namespace ChessKit.ChessLogic
         {
             if (fen[i] != '-')
             {
-                EnPassantFile = EnPassant.Parse(fen[i]);
+                EnPassantFile = EnPassantParser.Parse(fen[i]);
             }
             i++; // Skip the rank, or skip the '-'
             i++; // Skip the space
@@ -172,15 +172,13 @@ namespace ChessKit.ChessLogic
         }
 
        
-        private static class EnPassant
+        private static class EnPassantParser
         {
             private static readonly int[] Symbols;
             private const char Z = '-';
             private const int Illegal = 99;
 
-            [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline",
-              Justification = "Too complex for field initialize")]
-            static EnPassant()
+            static EnPassantParser()
             {
                 Symbols = new int['z' - Z];
 
