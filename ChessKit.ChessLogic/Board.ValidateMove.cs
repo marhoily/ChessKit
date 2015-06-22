@@ -51,22 +51,14 @@ namespace ChessKit.ChessLogic
             var dx = toSquare - fromSquare;
             switch (dx)
             {
-                case 33:
-                    return Knight;
-                case 31:
-                    return Knight;
-                case -31:
-                    return Knight;
-                case -33:
-                    return Knight;
-                case 18:
-                    return Knight;
-                case 14:
-                    return Knight;
-                case -14:
-                    return Knight;
-                case -18:
-                    return Knight;
+                case 33: return Knight;
+                case 31: return Knight;
+                case -31: return Knight;
+                case -33: return Knight;
+                case 18: return Knight;
+                case 14: return Knight;
+                case -14: return Knight;
+                case -18: return Knight;
             }
             return Knight | DoesNotMoveThisWay;
         }
@@ -193,22 +185,14 @@ namespace ChessKit.ChessLogic
             var dx = toSquare - fromSquare;
             switch (dx)
             {
-                case 16:
-                    return King;
-                case 17:
-                    return King;
-                case 1:
-                    return King;
-                case -15:
-                    return King;
-                case -16:
-                    return King;
-                case -17:
-                    return King;
-                case -1:
-                    return King;
-                case 15:
-                    return King;
+                case 16: return King;
+                case 17: return King;
+                case 1: return King;
+                case -15: return King;
+                case -16: return King;
+                case -17: return King;
+                case -1: return King;
+                case 15: return King;
             }
             return King | DoesNotMoveThisWay;
         }
@@ -258,22 +242,14 @@ namespace ChessKit.ChessLogic
             var dx = toSquare - fromSquare;
             switch (dx)
             {
-                case 33:
-                    return Knight;
-                case 31:
-                    return Knight;
-                case -31:
-                    return Knight;
-                case -33:
-                    return Knight;
-                case 18:
-                    return Knight;
-                case 14:
-                    return Knight;
-                case -14:
-                    return Knight;
-                case -18:
-                    return Knight;
+                case 33: return Knight;
+                case 31: return Knight;
+                case -31: return Knight;
+                case -33: return Knight;
+                case 18: return Knight;
+                case 14: return Knight;
+                case -14: return Knight;
+                case -18: return Knight;
             }
             return Knight | DoesNotMoveThisWay;
         }
@@ -400,22 +376,14 @@ namespace ChessKit.ChessLogic
             var dx = toSquare - fromSquare;
             switch (dx)
             {
-                case 16:
-                    return King;
-                case 17:
-                    return King;
-                case 1:
-                    return King;
-                case -15:
-                    return King;
-                case -16:
-                    return King;
-                case -17:
-                    return King;
-                case -1:
-                    return King;
-                case 15:
-                    return King;
+                case 16: return King;
+                case 17: return King;
+                case 1: return King;
+                case -15: return King;
+                case -16: return King;
+                case -17: return King;
+                case -1: return King;
+                case 15: return King;
             }
             return King | DoesNotMoveThisWay;
         }

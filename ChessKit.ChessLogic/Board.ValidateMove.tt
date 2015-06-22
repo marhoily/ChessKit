@@ -51,8 +51,7 @@ namespace ChessKit.ChessLogic
             foreach (var dir in p.MoveDirections.Where(m => !m.IsSpecial))
             {
                 var delta = dir.DeltaY * 16 + dir.DeltaX;
-#>                case <#=delta#>:
-                    return <#=p.PieceType#>;
+#>                case <#=delta#>: return <#=p.PieceType#>;
 <#
         }
 #>            }
