@@ -61,6 +61,7 @@
       <LastGenOutput>Board.ValidateMove.cs</LastGenOutput>
       <DependentUpon>Board.cs</DependentUpon>
     </None>
+    <None Include="N\Target.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

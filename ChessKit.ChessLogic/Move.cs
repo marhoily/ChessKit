@@ -37,6 +37,9 @@ namespace ChessKit.ChessLogic
                 canString.Substring(3, 2).ParseCoordinate(),
                 piece.PieceType());
         }
+
+        public static implicit operator MoveR(Move move) 
+            => new MoveR(move.From, move.To, move.ProposedPromotion);
     }
 
     // TODO: Should Move be struct (con: references board)?
