@@ -9,7 +9,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
     {
         private static void Check(string fen)
         {
-            fen.ParseFen().PrintFen().Should().Be(fen);
+            fen.ParseFen().FromBoard().PrintFen().Should().Be(fen);
         }
         [Fact]
         public void Works_With_Starting_Position()

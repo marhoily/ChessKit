@@ -73,6 +73,7 @@
     <Compile Include="Board.cs" />
     <Compile Include="Board.Fen.cs">
     </Compile>
+    <Compile Include="Fen.cs" />
     <Compile Include="MoveGeneration.cs" />
     <Compile Include="MoveGeneration.generated.cs">
       <AutoGen>True</AutoGen>

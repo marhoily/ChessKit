@@ -9,6 +9,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
         private static void Check(string fen, string move, string expected)
         {
             fen.ParseFen()
+                .FromBoard()
                 .Validate(MoveR.Parse(move))
                 .Annotations
                 .ToString()

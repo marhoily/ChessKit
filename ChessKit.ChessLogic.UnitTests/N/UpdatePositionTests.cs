@@ -7,7 +7,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
     public sealed class UpdatePositionTests
     {
         private static void Check(string startFen, string move, string expectedFen)
-            => startFen.ParseFen()
+            => startFen.ParseFen().FromBoard()
                 .ValidateLegal(MoveR.Parse(move))
                 .PrintFen()
                 .Should().Be(expectedFen);

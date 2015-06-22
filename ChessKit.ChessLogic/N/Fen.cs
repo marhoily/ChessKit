@@ -44,10 +44,5 @@
         {
             return position.ToBoard().ToFenString();
         }
-
-        public static Position ParseFen(this string fenString)
-        {
-            return Board.FromFenString(fenString).FromBoard();
-        }
     }
 }

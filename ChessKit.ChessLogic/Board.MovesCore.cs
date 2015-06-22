@@ -43,6 +43,19 @@ namespace ChessKit.ChessLogic
             _blackKingPosition = Coordinates.All.SingleOrDefault(p => this[p] == Piece.BlackKing);
             Castlings = boardBuilder.CastlingAvailability;
         }
+
+        public Board(byte[] cells, Color sideOnMove, 
+            int? enPassantFile, int halfMoveClock, 
+            int moveNumber, Castlings castlings)
+        {
+            _cells = cells;
+            SideOnMove = sideOnMove;
+            EnPassantFile = enPassantFile;
+            HalfMoveClock = halfMoveClock;
+            MoveNumber = moveNumber;
+            Castlings = castlings;
+        }
+
         public Piece this[int compactPosition]
         {
             get

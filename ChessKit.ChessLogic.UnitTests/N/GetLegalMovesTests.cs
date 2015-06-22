@@ -14,7 +14,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
             try
             {
                 var f = moveFrom.ParseCoordinate();
-                var position = fen.ParseFen();
+                var position = fen.ParseFen().FromBoard();
                 var actual = position
                     .GetLegalMovesFromSquare(f)
                     .Select(m => m.Move.To.ToCoordinateString())
@@ -29,7 +29,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
             }
             finally
             {
-                Console.WriteLine(Board.FromFenString(fen).Dump());
+                Console.WriteLine(fen.ParseFen().Dump());
             }
         }
 
@@ -37,7 +37,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
         {
             try
             {
-                var position = fen.ParseFen();
+                var position = fen.ParseFen().FromBoard();
                 var actual = position
                     .GetAllLegalMoves()
                     .Select(m => m.Move.To.ToCoordinateString())
@@ -54,7 +54,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
             }
             finally
             {
-                Console.WriteLine(Board.FromFenString(fen).Dump());
+                Console.WriteLine(fen.ParseFen().Dump());
             }
 
         }

@@ -35,7 +35,7 @@ namespace ChessKit.ChessLogic.UnitTests
 		[InlineData("rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 0 3", "mate")]
 		public void TestCheckAndMate(string fen, string expected)
 		{
-			var board = Board.FromFenString(fen);
+			var board = Fen.ParseFen(fen);
 			board.IsCheck.Should().Be(expected == "check");
 			board.IsMate.Should().Be(expected == "mate");
 		}
@@ -43,7 +43,7 @@ namespace ChessKit.ChessLogic.UnitTests
 		[Fact]
 		public void TestDumb()
 		{
-			Console.WriteLine(Board.FromFenString(
+			Console.WriteLine(Fen.ParseFen(
 			  "rnbqkbnr/pp1ppp1p/6p1/2p5/7P/2N5/PPPPPPP1/R1BQKBNR b KQkq c6 0 3")
 			  .Dump());
 		}
@@ -66,7 +66,7 @@ namespace ChessKit.ChessLogic.UnitTests
 			Console.WriteLine(d.Move);
 			Console.WriteLine();
 
-			var board = Board.FromFenString(d.StartingFen);
+			var board = Fen.ParseFen(d.StartingFen);
 			var expected = Move.Parse(d.Move);
 			if (d.ExpectedToBeValid)
 			{
@@ -87,7 +87,7 @@ namespace ChessKit.ChessLogic.UnitTests
 			Console.WriteLine(d.Move);
 			Console.WriteLine();
 
-			var board = Board.FromFenString(d.StartingFen);
+			var board = Fen.ParseFen(d.StartingFen);
 			var expected = Move.Parse(d.Move);
 			if (!d.ExpectedToBeValid) return;
 			board.CanBeValidMove(
