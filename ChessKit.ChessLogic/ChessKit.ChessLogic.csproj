@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="BoardBuilder.cs" />
     <Compile Include="BoardDump.cs" />
+    <Compile Include="N\GetLegalMoves.cs" />
     <Compile Include="Primitives\Castlings.cs" />
     <Compile Include="Primitives\MoveErrors.cs" />
     <Compile Include="Primitives\MoveInfo.cs" />

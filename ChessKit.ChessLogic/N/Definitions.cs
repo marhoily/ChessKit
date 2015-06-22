@@ -35,7 +35,7 @@ namespace ChessKit.ChessLogic.N
     public sealed class LegalMove : ValidateMove
     {
         /// The move that was checked for the legality
-        public Move Move { get; }
+        public MoveR Move { get; }
 
         /// The position in which the move was checked
         public Position OriginalPosition { get; }
@@ -56,7 +56,7 @@ namespace ChessKit.ChessLogic.N
         /// Warnings to the move
         public MoveWarnings Warnings { get; }
 
-        public LegalMove(Move move, Position originalPosition, PositionCore resultPosition, PieceType piece,
+        public LegalMove(MoveR move, Position originalPosition, PositionCore resultPosition, PieceType piece,
             Castlings castling, MoveAnnotations annotations, MoveWarnings warnings)
         {
             Move = move;

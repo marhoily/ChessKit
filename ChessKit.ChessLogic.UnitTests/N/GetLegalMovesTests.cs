@@ -1,11 +1,31 @@
-﻿using Xunit;
+﻿using System;
+using System.Linq;
+using ChessKit.ChessLogic.N;
+using ChessKit.ChessLogic.Primitives;
+using FluentAssertions;
+using Xunit;
 
 namespace ChessKit.ChessLogic.UnitTests.N
 {
-    internal class GetLegalMovesTests
+    public class GetLegalMovesTests
     {
         static void Check(string fen, string coordinate, string[] expected)
         {
+            Console.WriteLine(Board.FromFenString(fen).Dump());
+            var position = fen.ParseFen();
+            position.GetLegalMovesFromSquare(coordinate.ParseCoordinate())
+                .Select(m => m.Move.To.ToCoordinateString())
+                .OrderBy(s => s).ToArray()
+                .Should().Equal(expected);
+            
+            //let f = Idx64.Parse from
+
+            //let actual =
+            //    p
+            //    |> GetLegalMoves.FromSquare f
+            //    |> List.map toString
+            //    |> List.sort
+            //actual |> should equal(expected |> List.sort)
         }
 
         static void CheckAll(string fen, string[] expected)

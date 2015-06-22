@@ -17,7 +17,8 @@ namespace ChessKit.ChessLogic
             To = to;
             ProposedPromotion = promoteTo;
         }
-        public override string ToString() => $"{From}-{To}";
+        public override string ToString() 
+            => $"{From.ToCoordinateString()}-{To.ToCoordinateString()}";
 
         public static MoveR Parse(string canString)
         {
