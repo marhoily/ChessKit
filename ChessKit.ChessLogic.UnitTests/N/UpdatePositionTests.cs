@@ -19,12 +19,12 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
         [Fact]
         public void Black_Take_EnPassant() => Check(
-            "Nnbqkbnr/ppp3pp/8/2P2p2/4pP2/3p4/PP1PP1PP/R1BQKBNR b KQk f3 0 7 ", "e4-f3",
+            "Nnbqkbnr/ppp3pp/8/2P2p2/4pP2/3p4/PP1PP1PP/R1BQKBNR b KQk f3 0 7", "e4-f3",
             "Nnbqkbnr/ppp3pp/8/2P2p2/8/3p1p2/PP1PP1PP/R1BQKBNR w KQk - 0 1");
 
         [Fact]
         public void WhiteKingCastling() => Check(
-            "r3k2r/p3bppp/np3n2/2p1B3/7P/1P1b3B/P1PNP2P/RNQ1K2R w KQkq - 2 14 ", "e1-g1",
+            "r3k2r/p3bppp/np3n2/2p1B3/7P/1P1b3B/P1PNP2P/RNQ1K2R w KQkq - 2 14", "e1-g1",
             "r3k2r/p3bppp/np3n2/2p1B3/7P/1P1b3B/P1PNP2P/RNQ2RK1 b kq - 0 1");
 
         [Fact]
@@ -49,17 +49,17 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
         [Fact]
         public void EnPassant() => Check(
-            "rnbqkb1r/pppppppp/7n/8/8/7N/PPPPPPPP/RNBQKB1R w KQkq - 2 2 ", "f2-f4",
+            "rnbqkb1r/pppppppp/7n/8/8/7N/PPPPPPPP/RNBQKB1R w KQkq - 2 2", "f2-f4",
             "rnbqkb1r/pppppppp/7n/8/5P2/7N/PPPPP1PP/RNBQKB1R b KQkq f3 0 1");
 
         [Fact]
         public void Castling1() => Check(
-            "rnbqkbnr/ppp3pp/1N6/3ppp2/8/8/PPPPPPPP/R1BQKBNR w KQkq - 0 4 ", "b6-a8",
+            "rnbqkbnr/ppp3pp/1N6/3ppp2/8/8/PPPPPPPP/R1BQKBNR w KQkq - 0 4", "b6-a8",
             "Nnbqkbnr/ppp3pp/8/3ppp2/8/8/PPPPPPPP/R1BQKBNR b KQk - 0 1");
 
         [Fact]
         public void Castling2() => Check(
-            "r1bknb1r/pp1pp1pp/n1pB4/5p2/3q1P2/QP5N/P1PPP1PP/RN2KB1R b KQ - 10 10 ", "d4-a1",
+            "r1bknb1r/pp1pp1pp/n1pB4/5p2/3q1P2/QP5N/P1PPP1PP/RN2KB1R b KQ - 10 10", "d4-a1",
             "r1bknb1r/pp1pp1pp/n1pB4/5p2/5P2/QP5N/P1PPP1PP/qN2KB1R w K - 0 1");
 
         [Fact]
@@ -74,12 +74,12 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
         [Fact]
         public void Rook_take_should_remove_castling_option() => Check(
-            "1r2kbnr/p2p3p/nq4N1/2pQp2P/1p3pp1/PPPP2P1/4PPb1/R1B1K1R1 w Qk - 0 19 ", "g6-h8",
+            "1r2kbnr/p2p3p/nq4N1/2pQp2P/1p3pp1/PPPP2P1/4PPb1/R1B1K1R1 w Qk - 0 19", "g6-h8",
             "1r2kbnN/p2p3p/nq6/2pQp2P/1p3pp1/PPPP2P1/4PPb1/R1B1K1R1 b Q - 0 1");
 
         [Fact]
         public void King_move_should_kill_castling() => Check(
-            "1r2kb1N/p1Qpn3/nq5p/4p2P/1p1p1pp1/PPP3P1/4PP2/R1B1KbR1 w Q - 2 23 ", "e1-f1",
+            "1r2kb1N/p1Qpn3/nq5p/4p2P/1p1p1pp1/PPP3P1/4PP2/R1B1KbR1 w Q - 2 23", "e1-f1",
             "1r2kb1N/p1Qpn3/nq5p/4p2P/1p1p1pp1/PPP3P1/4PP2/R1B2KR1 b - - 0 1");
 
         [Fact]
@@ -104,7 +104,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
         [Fact]
         public void Promotion() => Check(
-            "8/3kbN2/1nr4p/1q1p3P/pPR3P1/2Bp2p1/1Kp5/6R1 b - - 4 64 ", "c2-c1=Q",
+            "8/3kbN2/1nr4p/1q1p3P/pPR3P1/2Bp2p1/1Kp5/6R1 b - - 4 64", "c2-c1=Q",
             "8/3kbN2/1nr4p/1q1p3P/pPR3P1/2Bp2p1/1K6/2q3R1 w - - 0 1");
 
         [Fact]
@@ -114,7 +114,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
         [Fact]
         public void IsValidPawnMove2() => Check(
-            "8/1P4k1/8/8/3N4/1n1b2B1/1K6/8 w - - 51 130 ", "b7-b8=B",
+            "8/1P4k1/8/8/3N4/1n1b2B1/1K6/8 w - - 51 130", "b7-b8=B",
             "1B6/6k1/8/8/3N4/1n1b2B1/1K6/8 b - - 0 1");
 
 
