@@ -146,22 +146,22 @@ namespace ChessKit.ChessLogic
                 {
                     _cells[moveTo + (color == Color.White ? -16 : +16)] = 0;
                 }
-                else if (PreviousMove.Annotations == WK) // TODO: Move it up?
+                else if (PreviousMove.Annotations == (King | WK)) // TODO: Move it up?
                 {
                     _cells[S.H1] = (byte)Piece.EmptyCell;
                     _cells[S.F1] = (byte)Piece.WhiteRook;
                 }
-                else if (PreviousMove.Annotations == WQ)
+                else if (PreviousMove.Annotations == (King | WQ))
                 {
                     _cells[S.A1] = (byte)Piece.EmptyCell;
                     _cells[S.D1] = (byte)Piece.WhiteRook;
                 }
-                else if (PreviousMove.Annotations == BK)
+                else if (PreviousMove.Annotations == (King | BK))
                 {
                     _cells[S.H8] = (byte)Piece.EmptyCell;
                     _cells[S.F8] = (byte)Piece.BlackRook;
                 }
-                else if (PreviousMove.Annotations == BQ)
+                else if (PreviousMove.Annotations == (King | BQ))
                 {
                     _cells[S.A8] = (byte)Piece.EmptyCell;
                     _cells[S.D8] = (byte)Piece.BlackRook;
