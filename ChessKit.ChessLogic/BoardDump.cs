@@ -28,7 +28,7 @@ namespace ChessKit.ChessLogic
             sb.AppendLine(" ╟───┼───┼───┼───┼───┼───┼───┼───╢");
             sb.AppendLine("1║ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 ║");
             sb.AppendLine(" ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝");
-            foreach (var position in CoordinateExtensions.All)
+            foreach (var position in Coordinates.All)
             {
                 var piece = board[position];
                 sb[((7 - position.GetY()) * 2 + 1) * 36 + position.GetX() * 4 + 3]

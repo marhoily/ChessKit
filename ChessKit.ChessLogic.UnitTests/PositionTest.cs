@@ -48,7 +48,7 @@ namespace ChessKit.ChessLogic.UnitTests
       position.GetX().Should().Be(1);
       position.GetY().Should().Be(6);
 
-      new Action(() => CoordinateExtensions.ParseCoordinate(null) ).ShouldThrow<ArgumentNullException      >();
+      new Action(() => Coordinates.ParseCoordinate(null) ).ShouldThrow<ArgumentNullException      >();
       new Action(() => "".ParseCoordinate()   ).ShouldThrow<ArgumentOutOfRangeException>();
       new Action(() => "1".ParseCoordinate()  ).ShouldThrow<ArgumentOutOfRangeException>();
       new Action(() => "a11".ParseCoordinate()).ShouldThrow<ArgumentOutOfRangeException>();
@@ -73,7 +73,7 @@ namespace ChessKit.ChessLogic.UnitTests
     [Fact]
     public void OnBoard()
     {
-      Assert.Equal(64, CoordinateExtensions.All.Count());
+      Assert.Equal(64, Coordinates.All.Count());
     }
   }
 }
