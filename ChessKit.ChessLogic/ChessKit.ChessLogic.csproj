@@ -36,9 +36,9 @@
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <None Include="ApiConcept.dgml" />
-    <None Include="Board.CanBeValidMove.tt">
+    <None Include="CanBeValid.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Board.CanBeValidMove.cs</LastGenOutput>
+      <LastGenOutput>CanBeValid.cs</LastGenOutput>
     </None>
     <None Include="Board.Cells.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -60,10 +60,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.CanBeValidMove.cs">
+    <Compile Include="CanBeValid.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Board.CanBeValidMove.tt</DependentUpon>
+      <DependentUpon>CanBeValid.tt</DependentUpon>
     </Compile>
     <Compile Include="Board.Cells.cs">
       <AutoGen>True</AutoGen>
