@@ -6,6 +6,7 @@
 <#@ import namespace="ChessKit.ChessLogic.Enums" #>
 <#@ import namespace="ChessKit.ChessLogic.Internals" #>
 using ChessKit.ChessLogic.Enums;
+using A = ChessKit.ChessLogic.Enums.MoveAnnotations;
 
 namespace ChessKit.ChessLogic
 {

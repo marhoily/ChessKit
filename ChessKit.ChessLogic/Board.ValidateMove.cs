@@ -1,4 +1,5 @@
 ﻿using ChessKit.ChessLogic.Enums;
+using A = ChessKit.ChessLogic.Enums.MoveAnnotations;
 
 namespace ChessKit.ChessLogic
 {
