@@ -24,15 +24,8 @@ namespace ChessKit.ChessLogic.UnitTests.N
                     .Select(t => position.Validate(new MoveR(f, t)))
                     .OfType<LegalMove>()
                     .Select(m => m.Move.To.ToCoordinateString())
+                    .OrderBy(s => s)
                     .Should().Equal(actual);
-                /*    let expected2 = 
-        [ for i = 0 to 63 do
-              let t = Move.Create f i PieceType.None
-              match MoveLegality.Validate t p with
-              | LegalMove _ -> yield Idx64.ToString i
-              | _ -> () ]
-    actual |> should equal (expected2 |> List.sort)
-*/
             }
             finally
             {
