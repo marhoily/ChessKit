@@ -10,6 +10,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
         {
             fen.ParseFen()
                 .Validate(MoveR.Parse(move))
+                .Annotations
                 .ToString()
                 .Should()
                 .Be(expected);

@@ -50,21 +50,18 @@ namespace ChessKit.ChessLogic.N
         /// The castling, if the move was castling, -or- None
         public Castlings Castling { get; }
 
-        /// Annotations (capture, promotion, etc.) to the move
-        public MoveAnnotations Annotations { get; }
-
         /// Warnings to the move
         public MoveWarnings Warnings { get; }
 
         public LegalMove(MoveR move, Position originalPosition, PositionCore resultPosition, PieceType piece,
             Castlings castling, MoveAnnotations annotations, MoveWarnings warnings)
+            : base(annotations)
         {
             Move = move;
             OriginalPosition = originalPosition;
             ResultPosition = resultPosition;
             Piece = piece;
             Castling = castling;
-            Annotations = annotations;
             Warnings = warnings;
         }
     }
@@ -103,7 +100,7 @@ namespace ChessKit.ChessLogic.N
     public sealed class IllegalMove : ValidateMove
     {
         /// The move that was checked for the legality
-        public Move Move { get; }
+        public MoveR Move { get; }
 
         /// The position in which the move was checked
         public Position OriginalPosition { get; }
@@ -114,23 +111,20 @@ namespace ChessKit.ChessLogic.N
         /// The castling, if the move was castling attempt, -or- None
         public Castlings Castling { get; }
 
-        /// Annotations (capture, promotion attempt, etc.) to the move
-        public MoveAnnotations Observations { get; }
-
         /// Warnings to the move
         public MoveWarnings Warnings { get; }
 
         /// Non-empty set of the errors to the move
         public MoveErrors Errors { get; }
 
-        public IllegalMove(Move move, Position originalPosition, PieceType piece, Castlings castling,
-            MoveAnnotations observations, MoveWarnings warnings, MoveErrors errors)
+        public IllegalMove(MoveR move, Position originalPosition, PieceType piece, Castlings castling,
+            MoveAnnotations annotations, MoveWarnings warnings, MoveErrors errors)
+            : base(annotations)
         {
             Move = move;
             OriginalPosition = originalPosition;
             Piece = piece;
             Castling = castling;
-            Observations = observations;
             Warnings = warnings;
             Errors = errors;
         }
@@ -138,5 +132,12 @@ namespace ChessKit.ChessLogic.N
 
     public abstract class ValidateMove
     {
+        protected ValidateMove(MoveAnnotations annotations)
+        {
+            Annotations = annotations;
+        }
+
+        /// Annotations (capture, promotion attempt, etc.) to the move
+        public MoveAnnotations Annotations { get; }
     }
 }

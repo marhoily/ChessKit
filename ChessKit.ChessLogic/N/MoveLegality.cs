@@ -5,13 +5,26 @@ namespace ChessKit.ChessLogic.N
 {
     public static class MoveLegality
     {
-        public static MoveAnnotations Validate(this Position position, MoveR move)
+        public static ValidateMove Validate(this Position position, MoveR move)
         {
             var move1 = new Move(move.From, move.To, move.ProposedPromotion);
-            var makeMove = position.ToBoard().MakeMove(move1);
+            var prevBoard = position.ToBoard();
+            var makeMove = prevBoard.MakeMove(move1);
             var annotations = makeMove.PreviousMove.Annotations;
+            var flags = (int)annotations;
+            if ((annotations & MoveAnnotations.AllErrors) != 0)
+                return new IllegalMove(move, position,
+                    PieceType.None,
+                    Castlings.All | (Castlings)flags,
+                    annotations,
+                    MoveWarnings.All | (MoveWarnings)flags,
+                    MoveErrors.All | (MoveErrors)flags);
 
-            return annotations;
+            return new LegalMove(move, position,
+                position.Core, PieceType.None,
+                Castlings.All | (Castlings)flags,
+                annotations,
+                MoveWarnings.All | (MoveWarnings)flags);
         }
 
         public static LegalMove ToLegalMove(this Board nextBoard, Board prevBoard)
