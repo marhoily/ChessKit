@@ -128,7 +128,9 @@ namespace ChessKit.ChessLogic
                 case 17:
                 case 15:
                     if (toPiece == Piece.EmptyCell)
-                        return to / 16 == 5
+                        return (to / 16 == 5) 
+                            && _cells[to] == (byte) None
+                            && (_cells[to - 16] & (byte)AllPieces) == (byte)Pawn
                           ? Pawn | Capture | EnPassant
                           : Pawn | OnlyCapturesThisWay;
                     return to / 16 != 7 ? Pawn | Capture
@@ -156,7 +158,9 @@ namespace ChessKit.ChessLogic
                 case 17:
                 case 15:
                     if (toPiece == Piece.EmptyCell)
-                        return to / 16 == 2
+                        return (to / 16 == 2)
+                            && _cells[to] == (byte)None
+                            && (_cells[to + 16] & (byte)AllPieces) == (byte)Pawn
                           ? Pawn | Capture | EnPassant
                           : Pawn | OnlyCapturesThisWay;
                     return to / 16 != 0
