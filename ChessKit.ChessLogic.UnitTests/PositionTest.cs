@@ -31,49 +31,49 @@ namespace ChessKit.ChessLogic.UnitTests
       const int position = 3 + 16 * 1;
       position.GetFile().Should().Be('d');
       position.GetRank().Should().Be(2);
-      position.ToSquareString().Should().Be("d2");
+      position.ToCoordinateString().Should().Be("d2");
     }
     [Fact]
     public void Parse()
     {
-      var position = Coordinate.Parse("a1");
+      var position = CoordinateExtensions.Parse("a1");
       position.GetX().Should().Be(0);
       position.GetY().Should().Be(0);
 
-      position = Coordinate.Parse("h4");
+      position = CoordinateExtensions.Parse("h4");
       position.GetX().Should().Be(7);
       position.GetY().Should().Be(3);
 
-      position = Coordinate.Parse("B7");
+      position = CoordinateExtensions.Parse("B7");
       position.GetX().Should().Be(1);
       position.GetY().Should().Be(6);
 
-      new Action(() => Coordinate.Parse(null) ).ShouldThrow<ArgumentNullException      >();
-      new Action(() => Coordinate.Parse("")   ).ShouldThrow<ArgumentOutOfRangeException>();
-      new Action(() => Coordinate.Parse("1")  ).ShouldThrow<ArgumentOutOfRangeException>();
-      new Action(() => Coordinate.Parse("a11")).ShouldThrow<ArgumentOutOfRangeException>();
-      new Action(() => Coordinate.Parse("!1") ).ShouldThrow<ArgumentOutOfRangeException>();
-      new Action(() => Coordinate.Parse("a0") ).ShouldThrow<ArgumentOutOfRangeException>();
-      new Action(() => Coordinate.Parse("1a") ).ShouldThrow<FormatException            >();
-      new Action(() => Coordinate.Parse("1a") ).ShouldThrow<FormatException            >();
-      new Action(() => Coordinate.Parse("a9") ).ShouldThrow<ArgumentOutOfRangeException>();
-      new Action(() => Coordinate.Parse("i8") ).ShouldThrow<ArgumentOutOfRangeException>();
+      new Action(() => CoordinateExtensions.Parse(null) ).ShouldThrow<ArgumentNullException      >();
+      new Action(() => CoordinateExtensions.Parse("")   ).ShouldThrow<ArgumentOutOfRangeException>();
+      new Action(() => CoordinateExtensions.Parse("1")  ).ShouldThrow<ArgumentOutOfRangeException>();
+      new Action(() => CoordinateExtensions.Parse("a11")).ShouldThrow<ArgumentOutOfRangeException>();
+      new Action(() => CoordinateExtensions.Parse("!1") ).ShouldThrow<ArgumentOutOfRangeException>();
+      new Action(() => CoordinateExtensions.Parse("a0") ).ShouldThrow<ArgumentOutOfRangeException>();
+      new Action(() => CoordinateExtensions.Parse("1a") ).ShouldThrow<FormatException            >();
+      new Action(() => CoordinateExtensions.Parse("1a") ).ShouldThrow<FormatException            >();
+      new Action(() => CoordinateExtensions.Parse("a9") ).ShouldThrow<ArgumentOutOfRangeException>();
+      new Action(() => CoordinateExtensions.Parse("i8") ).ShouldThrow<ArgumentOutOfRangeException>();
     }
     [Fact]
     public void Equality()
     {
-      Assert.False(Coordinate.Parse("b2").Equals(Coordinate.Parse("a1")));
-      Assert.True(Coordinate.Parse("b2").Equals((object)Coordinate.Parse("b2")));
-      Assert.False(Coordinate.Parse("h1") == Coordinate.Parse("a1"));
-      Assert.True(Coordinate.Parse("h1") != Coordinate.Parse("a1"));
-      Assert.False(Coordinate.Parse("b2").Equals(new object()));
-      Assert.False(Coordinate.Parse("d3").Equals(null));
+      Assert.False(CoordinateExtensions.Parse("b2").Equals(CoordinateExtensions.Parse("a1")));
+      Assert.True(CoordinateExtensions.Parse("b2").Equals((object)CoordinateExtensions.Parse("b2")));
+      Assert.False(CoordinateExtensions.Parse("h1") == CoordinateExtensions.Parse("a1"));
+      Assert.True(CoordinateExtensions.Parse("h1") != CoordinateExtensions.Parse("a1"));
+      Assert.False(CoordinateExtensions.Parse("b2").Equals(new object()));
+      Assert.False(CoordinateExtensions.Parse("d3").Equals(null));
     }
 
     [Fact]
     public void OnBoard()
     {
-      Assert.Equal(64, Coordinate.All.Count());
+      Assert.Equal(64, CoordinateExtensions.All.Count());
     }
   }
 }

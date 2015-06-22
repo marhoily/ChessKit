@@ -113,7 +113,7 @@
     <Compile Include="Enums\PieceExtensions.cs" />
     <Compile Include="Enums\ColorExtensions.cs" />
     <Compile Include="Enums\PieceType.cs" />
-    <Compile Include="Enums\Coordinate.cs" />
+    <Compile Include="Enums\CoordinateExtensions.cs" />
     <Compile Include="N\Definitions.cs" />
     <Compile Include="N\Fen.cs" />
     <Compile Include="N\MoveLegality.cs" />

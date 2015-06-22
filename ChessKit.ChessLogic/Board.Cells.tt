@@ -24,10 +24,10 @@ namespace ChessKit.ChessLogic
 		public static class S
 		{
 <#
-foreach (var p in Coordinate.All)
+foreach (var p in CoordinateExtensions.All)
 {
 #>
-			public const int <#=p.ToSquareString().ToUpper()#> = <#=p.GetY()#> * 16 + <#=p.GetX()#>;
+			public const int <#=p.ToCoordinateString().ToUpper()#> = <#=p.GetY()#> * 16 + <#=p.GetX()#>;
 <#
 }
 #>

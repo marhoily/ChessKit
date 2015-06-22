@@ -199,7 +199,7 @@ namespace ChessKit.ChessLogic
         }
         #endregion
 
-        public Piece this[string index] => this[Coordinate.Parse(index)];
+        public Piece this[string index] => this[CoordinateExtensions.Parse(index)];
 
         public bool IsAttackedBy(Color side, int square)
         {

@@ -17,13 +17,13 @@ namespace ChessKit.ChessLogic.UnitTests
         [Fact]
         public void UsualMove()
         {
-            var move = new Move(Coordinate.Parse("e2"), Coordinate.Parse("e4"))
+            var move = new Move(CoordinateExtensions.Parse("e2"), CoordinateExtensions.Parse("e4"))
             {
                 Annotations = MoveAnnotations.Rook
             };
 
-            move.From.Should().Be(Coordinate.Parse("e2"));
-            move.To.Should().Be(Coordinate.Parse("e4"));
+            move.From.Should().Be(CoordinateExtensions.Parse("e2"));
+            move.To.Should().Be(CoordinateExtensions.Parse("e4"));
 
             move.ProposedPromotion.Should().Be(PieceType.Queen);
 
@@ -33,14 +33,14 @@ namespace ChessKit.ChessLogic.UnitTests
         [Fact]
         public void PromotionMove()
         {
-            var move = new Move(Coordinate.Parse("e2"), Coordinate.Parse("e4"), PieceType.Queen)
+            var move = new Move(CoordinateExtensions.Parse("e2"), CoordinateExtensions.Parse("e4"), PieceType.Queen)
             {
                 Annotations = MoveAnnotations.Promotion
             };
 
 
-            move.From.Should().Be(Coordinate.Parse("e2"));
-            move.To.Should().Be(Coordinate.Parse("e4"));
+            move.From.Should().Be(CoordinateExtensions.Parse("e2"));
+            move.To.Should().Be(CoordinateExtensions.Parse("e4"));
 
             move.ProposedPromotion.Should().Be(PieceType.Queen);
 
@@ -51,12 +51,12 @@ namespace ChessKit.ChessLogic.UnitTests
         public void Parse()
         {
             var position = Move.Parse("a1-b1");
-            position.From.Should().Be(Coordinate.Parse("a1"));
-            position.To.Should().Be(Coordinate.Parse("b1"));
+            position.From.Should().Be(CoordinateExtensions.Parse("a1"));
+            position.To.Should().Be(CoordinateExtensions.Parse("b1"));
 
             position = Move.Parse("h4-g8");
-            position.From.Should().Be(Coordinate.Parse("h4"));
-            position.To.Should().Be(Coordinate.Parse("g8"));
+            position.From.Should().Be(CoordinateExtensions.Parse("h4"));
+            position.To.Should().Be(CoordinateExtensions.Parse("g8"));
 
             new Action(() => Move.Parse(null)).ShouldThrow<ArgumentException>();
             new Action(() => Move.Parse("")).ShouldThrow<ArgumentException>();

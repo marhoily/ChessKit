@@ -6,14 +6,14 @@ namespace ChessKit.ChessLogic.Enums
 {
     /// <summary>Identifies chess board cell coordinates in a user-friendly manner</summary>
     /// <remarks>http://en.wikipedia.org/wiki/Chess</remarks>
-    public static class Coordinate
+    public static class CoordinateExtensions
     {
+        /// <param name="position">"a1" or "A1"</param>
         public static int ParseCoordinate(this string position)
         {
             return Parse(position);
         }
 
-        /// <param name="position">"a1" or "A1"</param>
         public static int Parse(string position)
         {
             if (position == null) throw new ArgumentNullException(nameof(position));
@@ -25,7 +25,7 @@ namespace ChessKit.ChessLogic.Enums
             return x + y * 16;
         }
 
-        public static bool TryParse(string position, out int result)
+        public static bool TryParseCoordinate(string position, out int result)
         {
             if (position == null) throw new ArgumentNullException(nameof(position));
             result = -1;
@@ -53,7 +53,7 @@ namespace ChessKit.ChessLogic.Enums
 
         public static char GetFile(this int x) => (char)((x & 7) + 'a');
         public static int GetRank(this int x) => (x >> 4) + 1;
-        public static string ToSquareString(this int x)
+        public static string ToCoordinateString(this int x)
             => x.GetFile().ToString()+ x.GetRank();
 
     }

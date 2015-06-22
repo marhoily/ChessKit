@@ -40,7 +40,7 @@ namespace ChessKit.ChessLogic.Enums
             }
         }
 
-        public static bool TryParse(this char ch, out Piece piece)
+        public static bool TryParsePiece(this char ch, out Piece piece)
         {
             switch (ch)
             {
@@ -87,10 +87,10 @@ namespace ChessKit.ChessLogic.Enums
             return true;
         }
 
-        public static Piece Parse(this char ch)
+        public static Piece ParsePiece(this char ch)
         {
             Piece res;
-            if (!TryParse(ch, out res))
+            if (!TryParsePiece(ch, out res))
                 throw new Exception("Unexpected");
             return res;
         }

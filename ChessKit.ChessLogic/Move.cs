@@ -25,15 +25,15 @@ namespace ChessKit.ChessLogic
                 throw new ArgumentException("should not be null or empty", "canString");
             if (canString.Length == 5)
                 return new MoveR(
-                    Coordinate.Parse(canString.Substring(0, 2)),
-                    Coordinate.Parse(canString.Substring(3, 2)));
+                    CoordinateExtensions.Parse(canString.Substring(0, 2)),
+                    CoordinateExtensions.Parse(canString.Substring(3, 2)));
             if (canString.Length != 7) throw new ArgumentOutOfRangeException("canString");
             Piece piece;
-            if (!canString[6].TryParse(out piece))
+            if (!canString[6].TryParsePiece(out piece))
                 throw new ArgumentOutOfRangeException(nameof(canString));
             return new MoveR(
-                Coordinate.Parse(canString.Substring(0, 2)),
-                Coordinate.Parse(canString.Substring(3, 2)),
+                CoordinateExtensions.Parse(canString.Substring(0, 2)),
+                CoordinateExtensions.Parse(canString.Substring(3, 2)),
                 piece.PieceType());
         }
     }
@@ -85,15 +85,15 @@ namespace ChessKit.ChessLogic
                 throw new ArgumentException("should not be null or empty", "canString");
             if (canString.Length == 5)
                 return new Move(
-                    Coordinate.Parse(canString.Substring(0, 2)),
-                    Coordinate.Parse(canString.Substring(3, 2)));
+                    CoordinateExtensions.Parse(canString.Substring(0, 2)),
+                    CoordinateExtensions.Parse(canString.Substring(3, 2)));
             if (canString.Length != 7) throw new ArgumentOutOfRangeException("canString");
             Piece piece;
-            if (!canString[6].TryParse(out piece))
+            if (!canString[6].TryParsePiece(out piece))
                 throw new ArgumentOutOfRangeException(nameof(canString));
             return new Move(
-                Coordinate.Parse(canString.Substring(0, 2)),
-                Coordinate.Parse(canString.Substring(3, 2)),
+                CoordinateExtensions.Parse(canString.Substring(0, 2)),
+                CoordinateExtensions.Parse(canString.Substring(3, 2)),
                 piece.PieceType());
         }
 

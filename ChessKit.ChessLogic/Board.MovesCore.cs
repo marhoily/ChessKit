@@ -40,8 +40,8 @@ namespace ChessKit.ChessLogic
             EnPassantFile = boardBuilder.EnPassantFile;
             HalfMoveClock = boardBuilder.HalfMoveClock;
             MoveNumber = boardBuilder.MoveNumber;
-            _whiteKingPosition = Coordinate.All.SingleOrDefault(p => this[p] == Piece.WhiteKing);
-            _blackKingPosition = Coordinate.All.SingleOrDefault(p => this[p] == Piece.BlackKing);
+            _whiteKingPosition = CoordinateExtensions.All.SingleOrDefault(p => this[p] == Piece.WhiteKing);
+            _blackKingPosition = CoordinateExtensions.All.SingleOrDefault(p => this[p] == Piece.BlackKing);
             Castlings = boardBuilder.CastlingAvailability;
         }
         public Piece this[int compactPosition]

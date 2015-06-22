@@ -183,12 +183,12 @@ namespace ChessKit.ChessLogic
             var prom = PieceType.Queen;
             if (san[index - 1] == '=')
             {
-                prom = san[index].Parse().PieceType();
+                prom = san[index].ParsePiece().PieceType();
                 index -= 2;
             }
 
             if (index < 1) return null;
-            var to = Coordinate.Parse(san.Substring(index - 1, 2));
+            var to = CoordinateExtensions.Parse(san.Substring(index - 1, 2));
             index -= 2;
 
             // remove capture char (if any)
@@ -214,7 +214,7 @@ namespace ChessKit.ChessLogic
             var pieceChar = PieceType.Pawn;
             if (index > -1)
             {
-                pieceChar = san[index].Parse().PieceType();
+                pieceChar = san[index].ParsePiece().PieceType();
                 index--;
             }
             if (index != -1) throw new FormatException("Illegal characters");
