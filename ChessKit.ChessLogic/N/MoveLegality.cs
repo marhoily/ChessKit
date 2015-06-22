@@ -10,5 +10,13 @@ namespace ChessKit.ChessLogic.N
             var makeMove = position.ToBoard().MakeMove(move1);
             return makeMove.PreviousMove.Annotations;
         }
+
+        public static Position ValidateLegal(this Position position, MoveR move)
+        {
+            var move1 = new Move(move.From, move.To, move.ProposedPromotion);
+            var makeMove = position.ToBoard().MakeMove(move1);
+            var validateLegal = makeMove.FromBoard().Core;
+            return new Position(validateLegal, 0, 1, GameStates.None, null);
+        }
     }
 }

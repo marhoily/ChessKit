@@ -1,13 +1,17 @@
-﻿using Xunit;
+﻿using ChessKit.ChessLogic.N;
+using FluentAssertions;
+using Xunit;
 
 namespace ChessKit.ChessLogic.UnitTests.N
 {
     public sealed class UpdatePositionTests
     {
         private static void Check(string startFen, string move, string expectedFen)
-        {
-            
-        }
+            => startFen.ParseFen()
+                .ValidateLegal(MoveR.Parse(move))
+                .PrintFen()
+                .Should().Be(expectedFen);
+
         [Fact]
         public void IsValidPawnMove() => Check(
             "r1bqkb1r/pppppppp/2n2n2/8/PP6/N7/2PPPPPP/R1BQKBNR b KQkq b3 0 3", "e7-e5",
