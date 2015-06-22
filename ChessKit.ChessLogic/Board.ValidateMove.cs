@@ -1,12 +1,11 @@
 ﻿using ChessKit.ChessLogic.Enums;
-using A = ChessKit.ChessLogic.Enums.MoveAnnotations;
 using static ChessKit.ChessLogic.Enums.MoveAnnotations;
 
 namespace ChessKit.ChessLogic
 {
   partial class Board
   {
-    private A ValidateWhiteBishopMove(int fromSquare, int toSquare)
+    private MoveAnnotations ValidateWhiteBishopMove(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
       if (dx % 17 == 0) 
@@ -14,52 +13,64 @@ namespace ChessKit.ChessLogic
         var steps = dx / 17;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
-            if (i == toSquare) return A.Bishop;
-            else if (this[i] != Piece.EmptyCell) return A.Bishop | A.DoesNotJump;
+            if (i == toSquare) return Bishop;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Bishop | DoesNotJump;
       }
       if (dx % -15 == 0) 
       {
         var steps = dx / -15;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
-            if (i == toSquare) return A.Bishop;
-            else if (this[i] != Piece.EmptyCell) return A.Bishop | A.DoesNotJump;
+            if (i == toSquare) return Bishop;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Bishop | DoesNotJump;
       }
       if (dx % -17 == 0) 
       {
         var steps = dx / -17;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
-            if (i == toSquare) return A.Bishop;
-            else if (this[i] != Piece.EmptyCell) return A.Bishop | A.DoesNotJump;
+            if (i == toSquare) return Bishop;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Bishop | DoesNotJump;
       }
       if (dx % 15 == 0) 
       {
         var steps = dx / 15;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
-            if (i == toSquare) return A.Bishop;
-            else if (this[i] != Piece.EmptyCell) return A.Bishop | A.DoesNotJump;
+            if (i == toSquare) return Bishop;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Bishop | DoesNotJump;
       }
-          return A.Bishop | A.DoesNotMoveThisWay;
+          return Bishop | DoesNotMoveThisWay;
     }
-    private static A ValidateWhiteKnightMove(int fromSquare, int toSquare)
+    private static MoveAnnotations ValidateWhiteKnightMove(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
       switch (dx)
       {      
-        case 33: return A.Knight;
-        case 31: return A.Knight;
-        case -31: return A.Knight;
-        case -33: return A.Knight;
-        case 18: return A.Knight;
-        case 14: return A.Knight;
-        case -14: return A.Knight;
-        case -18: return A.Knight;
+        case 33:
+          return Knight;
+        case 31:
+          return Knight;
+        case -31:
+          return Knight;
+        case -33:
+          return Knight;
+        case 18:
+          return Knight;
+        case 14:
+          return Knight;
+        case -14:
+          return Knight;
+        case -18:
+          return Knight;
       }
-	  return A.Knight | A.DoesNotMoveThisWay;
+	  return Knight | DoesNotMoveThisWay;
     }
-    private A ValidateWhiteRookMove(int fromSquare, int toSquare)
+    private MoveAnnotations ValidateWhiteRookMove(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
       if (dx % 16 == 0) 
@@ -67,36 +78,40 @@ namespace ChessKit.ChessLogic
         var steps = dx / 16;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
-            if (i == toSquare) return A.Rook;
-            else if (this[i] != Piece.EmptyCell) return A.Rook | A.DoesNotJump;
+            if (i == toSquare) return Rook;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Rook | DoesNotJump;
       }
       if (dx % 1 == 0) 
       {
         var steps = dx / 1;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
-            if (i == toSquare) return A.Rook;
-            else if (this[i] != Piece.EmptyCell) return A.Rook | A.DoesNotJump;
+            if (i == toSquare) return Rook;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Rook | DoesNotJump;
       }
       if (dx % -16 == 0) 
       {
         var steps = dx / -16;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
-            if (i == toSquare) return A.Rook;
-            else if (this[i] != Piece.EmptyCell) return A.Rook | A.DoesNotJump;
+            if (i == toSquare) return Rook;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Rook | DoesNotJump;
       }
       if (dx % -1 == 0) 
       {
         var steps = dx / -1;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
-            if (i == toSquare) return A.Rook;
-            else if (this[i] != Piece.EmptyCell) return A.Rook | A.DoesNotJump;
+            if (i == toSquare) return Rook;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Rook | DoesNotJump;
       }
-          return A.Rook | A.DoesNotMoveThisWay;
+          return Rook | DoesNotMoveThisWay;
     }
-    private A ValidateWhiteQueenMove(int fromSquare, int toSquare)
+    private MoveAnnotations ValidateWhiteQueenMove(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
       if (dx % 16 == 0) 
@@ -104,84 +119,100 @@ namespace ChessKit.ChessLogic
         var steps = dx / 16;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % 1 == 0) 
       {
         var steps = dx / 1;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % -16 == 0) 
       {
         var steps = dx / -16;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % -1 == 0) 
       {
         var steps = dx / -1;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % 17 == 0) 
       {
         var steps = dx / 17;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % -15 == 0) 
       {
         var steps = dx / -15;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % -17 == 0) 
       {
         var steps = dx / -17;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % 15 == 0) 
       {
         var steps = dx / 15;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
-          return A.Queen | A.DoesNotMoveThisWay;
+          return Queen | DoesNotMoveThisWay;
     }
-    private static A ValidateWhiteKingMove(int fromSquare, int toSquare)
+    private static MoveAnnotations ValidateWhiteKingMove(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
       switch (dx)
       {      
-        case 16: return A.King;
-        case 17: return A.King;
-        case 1: return A.King;
-        case -15: return A.King;
-        case -16: return A.King;
-        case -17: return A.King;
-        case -1: return A.King;
-        case 15: return A.King;
+        case 16:
+          return King;
+        case 17:
+          return King;
+        case 1:
+          return King;
+        case -15:
+          return King;
+        case -16:
+          return King;
+        case -17:
+          return King;
+        case -1:
+          return King;
+        case 15:
+          return King;
       }
-	  return A.King | A.DoesNotMoveThisWay;
+	  return King | DoesNotMoveThisWay;
     }
-    private A ValidateBlackBishopMove(int fromSquare, int toSquare)
+    private MoveAnnotations ValidateBlackBishopMove(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
       if (dx % 17 == 0) 
@@ -189,52 +220,64 @@ namespace ChessKit.ChessLogic
         var steps = dx / 17;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
-            if (i == toSquare) return A.Bishop;
-            else if (this[i] != Piece.EmptyCell) return A.Bishop | A.DoesNotJump;
+            if (i == toSquare) return Bishop;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Bishop | DoesNotJump;
       }
       if (dx % -15 == 0) 
       {
         var steps = dx / -15;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
-            if (i == toSquare) return A.Bishop;
-            else if (this[i] != Piece.EmptyCell) return A.Bishop | A.DoesNotJump;
+            if (i == toSquare) return Bishop;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Bishop | DoesNotJump;
       }
       if (dx % -17 == 0) 
       {
         var steps = dx / -17;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
-            if (i == toSquare) return A.Bishop;
-            else if (this[i] != Piece.EmptyCell) return A.Bishop | A.DoesNotJump;
+            if (i == toSquare) return Bishop;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Bishop | DoesNotJump;
       }
       if (dx % 15 == 0) 
       {
         var steps = dx / 15;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
-            if (i == toSquare) return A.Bishop;
-            else if (this[i] != Piece.EmptyCell) return A.Bishop | A.DoesNotJump;
+            if (i == toSquare) return Bishop;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Bishop | DoesNotJump;
       }
-          return A.Bishop | A.DoesNotMoveThisWay;
+          return Bishop | DoesNotMoveThisWay;
     }
-    private static A ValidateBlackKnightMove(int fromSquare, int toSquare)
+    private static MoveAnnotations ValidateBlackKnightMove(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
       switch (dx)
       {      
-        case 33: return A.Knight;
-        case 31: return A.Knight;
-        case -31: return A.Knight;
-        case -33: return A.Knight;
-        case 18: return A.Knight;
-        case 14: return A.Knight;
-        case -14: return A.Knight;
-        case -18: return A.Knight;
+        case 33:
+          return Knight;
+        case 31:
+          return Knight;
+        case -31:
+          return Knight;
+        case -33:
+          return Knight;
+        case 18:
+          return Knight;
+        case 14:
+          return Knight;
+        case -14:
+          return Knight;
+        case -18:
+          return Knight;
       }
-	  return A.Knight | A.DoesNotMoveThisWay;
+	  return Knight | DoesNotMoveThisWay;
     }
-    private A ValidateBlackRookMove(int fromSquare, int toSquare)
+    private MoveAnnotations ValidateBlackRookMove(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
       if (dx % 16 == 0) 
@@ -242,36 +285,40 @@ namespace ChessKit.ChessLogic
         var steps = dx / 16;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
-            if (i == toSquare) return A.Rook;
-            else if (this[i] != Piece.EmptyCell) return A.Rook | A.DoesNotJump;
+            if (i == toSquare) return Rook;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Rook | DoesNotJump;
       }
       if (dx % 1 == 0) 
       {
         var steps = dx / 1;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
-            if (i == toSquare) return A.Rook;
-            else if (this[i] != Piece.EmptyCell) return A.Rook | A.DoesNotJump;
+            if (i == toSquare) return Rook;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Rook | DoesNotJump;
       }
       if (dx % -16 == 0) 
       {
         var steps = dx / -16;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
-            if (i == toSquare) return A.Rook;
-            else if (this[i] != Piece.EmptyCell) return A.Rook | A.DoesNotJump;
+            if (i == toSquare) return Rook;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Rook | DoesNotJump;
       }
       if (dx % -1 == 0) 
       {
         var steps = dx / -1;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
-            if (i == toSquare) return A.Rook;
-            else if (this[i] != Piece.EmptyCell) return A.Rook | A.DoesNotJump;
+            if (i == toSquare) return Rook;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Rook | DoesNotJump;
       }
-          return A.Rook | A.DoesNotMoveThisWay;
+          return Rook | DoesNotMoveThisWay;
     }
-    private A ValidateBlackQueenMove(int fromSquare, int toSquare)
+    private MoveAnnotations ValidateBlackQueenMove(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
       if (dx % 16 == 0) 
@@ -279,85 +326,101 @@ namespace ChessKit.ChessLogic
         var steps = dx / 16;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % 1 == 0) 
       {
         var steps = dx / 1;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % -16 == 0) 
       {
         var steps = dx / -16;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % -1 == 0) 
       {
         var steps = dx / -1;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % 17 == 0) 
       {
         var steps = dx / 17;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % -15 == 0) 
       {
         var steps = dx / -15;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % -17 == 0) 
       {
         var steps = dx / -17;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
       if (dx % 15 == 0) 
       {
         var steps = dx / 15;
         if (steps >= 0 && steps < 8) 
             for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
-            if (i == toSquare) return A.Queen;
-            else if (this[i] != Piece.EmptyCell) return A.Queen | A.DoesNotJump;
+            if (i == toSquare) return Queen;
+            else if (this[i] != Piece.EmptyCell) 
+			  return Queen | DoesNotJump;
       }
-          return A.Queen | A.DoesNotMoveThisWay;
+          return Queen | DoesNotMoveThisWay;
     }
-    private static A ValidateBlackKingMove(int fromSquare, int toSquare)
+    private static MoveAnnotations ValidateBlackKingMove(int fromSquare, int toSquare)
     {
 	  var dx = toSquare - fromSquare;
       switch (dx)
       {      
-        case 16: return A.King;
-        case 17: return A.King;
-        case 1: return A.King;
-        case -15: return A.King;
-        case -16: return A.King;
-        case -17: return A.King;
-        case -1: return A.King;
-        case 15: return A.King;
+        case 16:
+          return King;
+        case 17:
+          return King;
+        case 1:
+          return King;
+        case -15:
+          return King;
+        case -16:
+          return King;
+        case -17:
+          return King;
+        case -1:
+          return King;
+        case 15:
+          return King;
       }
-	  return A.King | A.DoesNotMoveThisWay;
+	  return King | DoesNotMoveThisWay;
     }
   
-    private A ValidateMove(Piece piece, int fromSquare, int toSquare, Piece toPiece, Castlings castlingAvailability)
+    private MoveAnnotations ValidateMove(Piece piece, int fromSquare, int toSquare, Piece toPiece, Castlings castlingAvailability)
     {
 	  switch (piece)
       {
@@ -377,8 +440,8 @@ namespace ChessKit.ChessLogic
           return ValidateWhiteQueenMove(fromSquare, toSquare);
 
         case Piece.WhiteKing:
-          if (ValidateWhiteKingMove(fromSquare, toSquare) == A.King)
-            return A.King;
+          if (ValidateWhiteKingMove(fromSquare, toSquare) == King)
+            return King;
 		  return ValidateWhiteCastlingMove(fromSquare, toSquare, castlingAvailability);
 
         case Piece.BlackPawn:
@@ -397,8 +460,8 @@ namespace ChessKit.ChessLogic
           return ValidateBlackQueenMove(fromSquare, toSquare);
 
         case Piece.BlackKing:
-          if (ValidateBlackKingMove(fromSquare, toSquare) == A.King)
-            return A.King;
+          if (ValidateBlackKingMove(fromSquare, toSquare) == King)
+            return King;
 		  return ValidateBlackCastlingMove(fromSquare, toSquare, castlingAvailability);
 
         default: throw new System.InvalidOperationException("Unknown piece: " + piece);
