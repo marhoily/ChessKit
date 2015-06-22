@@ -81,7 +81,9 @@ namespace ChessKit.ChessLogic
 
         public bool IsProposedPromotion => (Annotations & (MoveAnnotations.Promotion)) != 0;
 
-        public override string ToString() => $"{From}-{To}";
+       // public override string ToString() => $"{From}-{To}";
+        public override string ToString()
+            => $"{From.ToCoordinateString()}-{To.ToCoordinateString()}";
 
         public static Move Parse(string canString)
         {

@@ -54,6 +54,8 @@ namespace ChessKit.ChessLogic
             HalfMoveClock = halfMoveClock;
             MoveNumber = moveNumber;
             Castlings = castlings;
+            _whiteKingPosition = Coordinates.All.SingleOrDefault(p => this[p] == Piece.WhiteKing);
+            _blackKingPosition = Coordinates.All.SingleOrDefault(p => this[p] == Piece.BlackKing);
         }
 
         public Piece this[int compactPosition]
