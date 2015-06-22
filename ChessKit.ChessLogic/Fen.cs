@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using ChessKit.ChessLogic.Primitives;
 using JetBrains.Annotations;
 
@@ -162,6 +163,67 @@ namespace ChessKit.ChessLogic
                     throw new FormatException("illegal character");
                 return res;
             }
+        }
+        public static string ToFenString(this Board board)
+        {
+            var fen = new StringBuilder(77);
+            for (int empty = 0, sq = 63; sq >= 0; sq--)
+            {
+                var idx = (sq / 8) * 8 + 7 - sq % 8;
+                idx = idx + (idx & ~7);
+                if (board[idx] == 0)
+                {
+                    empty++;
+                    if (0 == sq % 8)
+                    {
+                        if (empty != 0) fen.Append((char)('0' + empty));
+                        if (sq != 0) fen.Append('/');
+                        empty = 0;
+                    }
+                    continue;
+                }
+
+                if (empty != 0) fen.Append((char)('0' + empty));
+                fen.Append(board[idx].GetSymbol());
+                empty = 0;
+                if (sq != 0 && sq % 8 == 0) fen.Append('/');
+            }
+
+            fen.Append(' ');
+            fen.Append(board.SideOnMove == Color.White ? 'w' : 'b');
+
+            fen.Append(' ');
+            var castling = board.Castlings;
+            if (castling == Castlings.None)
+            {
+                fen.Append('-');
+            }
+            else
+            {
+                if ((castling & Castlings.WK) != 0) fen.Append('K');
+                if ((castling & Castlings.WQ) != 0) fen.Append('Q');
+                if ((castling & Castlings.BK) != 0) fen.Append('k');
+                if ((castling & Castlings.BQ) != 0) fen.Append('q');
+            }
+
+            fen.Append(' ');
+            if (!board.EnPassantFile.HasValue)
+            {
+                fen.Append('-');
+            }
+            else
+            {
+                fen.Append("abcdefgh"[board.EnPassantFile.GetValueOrDefault()]);
+                fen.Append(board.SideOnMove == Color.White ? '6' : '3');
+            }
+
+            fen.Append(' ');
+            fen.Append(board.HalfMoveClock);
+
+            fen.Append(' ');
+            fen.Append(board.MoveNumber);
+
+            return fen.ToString();
         }
     }
 }
