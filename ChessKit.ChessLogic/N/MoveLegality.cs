@@ -1,3 +1,4 @@
+using System;
 using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic.N
@@ -16,6 +17,8 @@ namespace ChessKit.ChessLogic.N
             var move1 = new Move(move.From, move.To, move.ProposedPromotion);
             var makeMove = position.ToBoard().MakeMove(move1);
             var validateLegal = makeMove.FromBoard().Core;
+            if ((makeMove.PreviousMove.Annotations & MoveAnnotations.AllErrors) != 0)
+                throw new Exception(makeMove.PreviousMove.Annotations.ToString());
             return new Position(validateLegal, 0, 1, GameStates.None, null);
         }
     }
