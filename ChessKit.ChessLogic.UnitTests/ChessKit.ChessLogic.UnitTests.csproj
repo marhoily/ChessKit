@@ -79,6 +79,7 @@
     <Compile Include="N\FenTests.cs" />
     <Compile Include="N\MoveLegalityTests.cs" />
     <Compile Include="N\ScanningTests.cs" />
+    <Compile Include="N\UpdatePositionTests.cs" />
     <Compile Include="PositionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestMoveData.cs" />
