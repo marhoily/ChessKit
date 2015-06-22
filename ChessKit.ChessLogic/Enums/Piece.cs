@@ -1,8 +1,8 @@
 using System;
-using static ChessKit.ChessLogic.Enums.Color;
-using static ChessKit.ChessLogic.Enums.PieceType;
+using static ChessKit.ChessLogic.Primitives.Color;
+using static ChessKit.ChessLogic.Primitives.PieceType;
 
-namespace ChessKit.ChessLogic.Enums
+namespace ChessKit.ChessLogic.Primitives
 {
     /// <summary>Represents pieces on the board (color + type) </summary>
     [Flags]

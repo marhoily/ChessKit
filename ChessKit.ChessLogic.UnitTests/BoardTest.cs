@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using ChessKit.ChessLogic.Enums;
+using ChessKit.ChessLogic.Primitives;
 using FluentAssertions;
 using Xunit;
 

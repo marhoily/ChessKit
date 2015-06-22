@@ -1,6 +1,6 @@
 using System;
 
-namespace ChessKit.ChessLogic.Enums
+namespace ChessKit.ChessLogic.Primitives
 {
     [Flags]
     public enum MoveAnnotations

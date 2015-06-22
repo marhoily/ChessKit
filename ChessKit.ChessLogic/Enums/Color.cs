@@ -1,6 +1,6 @@
 using System;
 
-namespace ChessKit.ChessLogic.Enums
+namespace ChessKit.ChessLogic.Primitives
 {
     /// <summary>Represents chess piece/player's side color</summary>
     public enum Color

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChessKit.ChessLogic.Enums
+namespace ChessKit.ChessLogic.Primitives
 {
     /// <summary> Represents different piece types </summary>
     public enum PieceType

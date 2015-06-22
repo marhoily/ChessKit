@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using ChessKit.ChessLogic.Enums;
+using ChessKit.ChessLogic.Primitives;
 using JetBrains.Annotations;
 
 namespace ChessKit.ChessLogic.Internals

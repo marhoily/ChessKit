@@ -2,9 +2,9 @@
 <#@ output extension=".cs" #>
 <#@ Assembly Name="System.Core" #>
 <#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
-<#@ import namespace="ChessKit.ChessLogic.Enums" #>
+<#@ import namespace="ChessKit.ChessLogic.Primitives" #>
 <#@ import namespace="ChessKit.ChessLogic.Internals" #>
-using static ChessKit.ChessLogic.Enums.Piece;
+using static ChessKit.ChessLogic.Primitives.Piece;
 
 namespace ChessKit.ChessLogic
 {

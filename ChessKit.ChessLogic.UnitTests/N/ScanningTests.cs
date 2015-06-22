@@ -1,4 +1,4 @@
-using ChessKit.ChessLogic.Enums;
+using ChessKit.ChessLogic.Primitives;
 using ChessKit.ChessLogic.N;
 using FluentAssertions;
 using Xunit;

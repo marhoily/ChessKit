@@ -1,4 +1,4 @@
-﻿using static ChessKit.ChessLogic.Enums.Piece;
+﻿using static ChessKit.ChessLogic.Primitives.Piece;
 
 namespace ChessKit.ChessLogic
 {

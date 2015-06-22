@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ChessKit.ChessLogic.Enums;
-using static ChessKit.ChessLogic.Enums.MoveAnnotations;
+using ChessKit.ChessLogic.Primitives;
+using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
 
 namespace ChessKit.ChessLogic
 {

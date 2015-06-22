@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ChessKit.ChessLogic.Enums;
+using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic.N
 {

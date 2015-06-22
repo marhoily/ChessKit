@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChessKit.ChessLogic.Enums
+namespace ChessKit.ChessLogic.Primitives
 {
     public static class PieceExtensions
     {
@@ -11,12 +11,12 @@ namespace ChessKit.ChessLogic.Enums
 
         public static Color Color(this Piece piece)
         {
-            return (Color)piece & Enums.Color.All;
+            return (Color)piece & Primitives.Color.All;
         }
 
         public static PieceType PieceType(this Piece piece)
         {
-            return (PieceType)piece & Enums.PieceType.All;
+            return (PieceType)piece & Primitives.PieceType.All;
         }
 
         public static char GetSymbol(this Piece piece)

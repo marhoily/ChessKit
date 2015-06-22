@@ -3,10 +3,10 @@
 <#@ Assembly Name="System.Core" #>
 <#@ Assembly Name="$(ProjectDir)bin\Debug\ChessKit.ChessLogic.dll" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="ChessKit.ChessLogic.Enums" #>
+<#@ import namespace="ChessKit.ChessLogic.Primitives" #>
 <#@ import namespace="ChessKit.ChessLogic.Internals" #>
-using ChessKit.ChessLogic.Enums;
-using static ChessKit.ChessLogic.Enums.MoveAnnotations;
+using ChessKit.ChessLogic.Primitives;
+using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
 
 namespace ChessKit.ChessLogic
 {

@@ -1,5 +1,5 @@
 using System;
-using ChessKit.ChessLogic.Enums;
+using ChessKit.ChessLogic.Primitives;
 
 // ReSharper disable IntroduceOptionalParameters.Global
 

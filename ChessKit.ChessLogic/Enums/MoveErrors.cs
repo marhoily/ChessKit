@@ -1,6 +1,6 @@
 using System;
 
-namespace ChessKit.ChessLogic.Enums
+namespace ChessKit.ChessLogic.Primitives
 {
     /// <summary>Critical errors that can be noticed about the move during
     /// the legality check</summary>

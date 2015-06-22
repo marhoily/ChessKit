@@ -2,7 +2,7 @@ using System;
 
 // ReSharper disable InconsistentNaming
 
-namespace ChessKit.ChessLogic.Enums
+namespace ChessKit.ChessLogic.Primitives
 {
     /// <summary> Represents different castling options 
     ///   that can be available to players </summary>

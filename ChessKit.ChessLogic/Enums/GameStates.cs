@@ -1,4 +1,4 @@
-namespace ChessKit.ChessLogic.Enums
+namespace ChessKit.ChessLogic.Primitives
 {
     /// <summary> Represents different outcomes 
     /// to the position a move can have </summary>

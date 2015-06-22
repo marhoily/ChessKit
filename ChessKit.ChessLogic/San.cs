@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using ChessKit.ChessLogic.Enums;
+using ChessKit.ChessLogic.Primitives;
 using JetBrains.Annotations;
 
 namespace ChessKit.ChessLogic

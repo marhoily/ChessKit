@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
-using ChessKit.ChessLogic.Enums;
+using ChessKit.ChessLogic.Primitives;
 using JetBrains.Annotations;
 
 namespace ChessKit.ChessLogic

@@ -1,6 +1,6 @@
 using System;
 
-namespace ChessKit.ChessLogic.Enums
+namespace ChessKit.ChessLogic.Primitives
 {
     /// <summary>Notes that can be made 
     ///     to the move during the legality check </summary>
