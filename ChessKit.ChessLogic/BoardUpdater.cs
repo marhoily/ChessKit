@@ -2,7 +2,7 @@
 using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
-using S = ChessKit.ChessLogic.Board.S;
+using S = ChessKit.ChessLogic.Cells;
 
 namespace ChessKit.ChessLogic
 {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using ChessKit.ChessLogic.Primitives;
-using static ChessKit.ChessLogic.Board.S;
+using static ChessKit.ChessLogic.Cells;
 
 namespace ChessKit.ChessLogic
 {

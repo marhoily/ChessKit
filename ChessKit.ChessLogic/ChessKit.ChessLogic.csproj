@@ -40,9 +40,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CanBeValid.cs</LastGenOutput>
     </None>
-    <None Include="Board.Cells.tt">
+    <None Include="Cells.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Board.Cells.cs</LastGenOutput>
+      <LastGenOutput>Cells.cs</LastGenOutput>
     </None>
     <None Include="MoveGeneration.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -66,10 +66,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CanBeValid.tt</DependentUpon>
     </Compile>
-    <Compile Include="Board.Cells.cs">
+    <Compile Include="Cells.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Board.Cells.tt</DependentUpon>
+      <DependentUpon>Cells.tt</DependentUpon>
     </Compile>
     <Compile Include="Board.cs" />
     <Compile Include="Fen.cs" />
