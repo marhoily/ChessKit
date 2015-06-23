@@ -20,7 +20,7 @@ namespace ChessKit.ChessLogic.N
             var makeMove = board
                 .GetLegalMoves();
             return makeMove.Select(
-                m => board.MakeMove(m).ToLegalMove(board))
+                m => position.ValidateLegal(m))
                 .ToList();
         }
     }
