@@ -19,8 +19,14 @@ namespace ChessKit.ChessLogic.N
 
             var newMoveNumber =
                 prev.FullMoveNumber + (color == Color.Black ? 1 : 0);
+
+            var isCheck = core.IsInCheck(core.ActiveColor);
+
+            var newState = GameStates.None;
+            if (isCheck) newState |= GameStates.Check;
+
             return new Position(core, newHalfMoveClock, 
-                newMoveNumber, GameStates.None, legalMove);
+                newMoveNumber, newState, legalMove);
         }
     }
 }

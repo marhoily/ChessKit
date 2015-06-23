@@ -1,7 +1,10 @@
+using System;
+
 namespace ChessKit.ChessLogic.Primitives
 {
     /// <summary> Represents different outcomes 
     /// to the position a move can have </summary>
+    [Flags]
     public enum GameStates
     {
         None = 0,
