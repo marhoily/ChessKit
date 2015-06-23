@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
 using ChessKit.ChessLogic.Primitives;
+using MoreLinq;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
 using static ChessKit.ChessLogic.Primitives.GameStates;
 
@@ -41,24 +41,11 @@ namespace ChessKit.ChessLogic.N
             if (!isCheck && noMoves) newState |= Stalemate;
             if (newHalfMoveClock >= 50) newState |= FiftyMoveRule;
 
-            //var isRepetition = 
-            //    tempPosition.GetHistory()
-            //    .;
-/*
-                let isRepetition = 
-        let rec toSequence pos = 
-            seq { 
-                yield pos.Core
-                if pos.Move <> None then 
-                    let next = pos.Move.Value.OriginalPosition
-                    yield! toSequence next
-            }
-        toSequence position
-        |> Seq.countBy id
-        |> Seq.map snd
-        |> Seq.max
-        > 2*/
-
+            var isRepetition = tempPosition.GetHistory()
+                .Prepend(tempPosition)
+                .CountBy()
+                .MaxBy(x => x.Value).Value > 2;
+            if (isRepetition) newState |= Repetition;
 
             return new Position(core, newHalfMoveClock,
                 newMoveNumber, newState, legalMove);
@@ -89,7 +76,7 @@ namespace ChessKit.ChessLogic.N
 
             public bool MoveNext()
             {
-                Current = Current.Move.OriginalPosition;
+                Current = Current?.Move?.OriginalPosition;
                 return Current != null;
             }
 
@@ -104,6 +91,20 @@ namespace ChessKit.ChessLogic.N
             public void Dispose()
             {
             }
+        }
+
+        private static Dictionary<T, int> CountBy<T>(this IEnumerable<T> source)
+        {
+            var res = new Dictionary<T, int>();
+            foreach (var item in source)
+            {
+                int counter;
+                if (res.TryGetValue(item, out counter))
+                    res.Add(item, 1);
+                else
+                    res[item] = counter + 1;
+            }
+            return res;
         }
     }
 }
