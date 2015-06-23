@@ -60,6 +60,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardUpdater.cs" />
     <Compile Include="CanBeValid.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

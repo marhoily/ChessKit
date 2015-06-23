@@ -5,6 +5,54 @@ namespace ChessKit.ChessLogic
 {
     static partial class MoveLegality
     {
+        public static MoveAnnotations ValidateMove(Board src, MoveR move)
+        {
+            var moveFrom = move.From;
+            var piece = src[moveFrom];
+            var color = piece.Color();
+            var moveTo = move.To;
+            var toPiece = src[moveTo];
+            if (piece == Piece.EmptyCell)
+            {
+                return EmptyCell;
+            }
+            var pieceType = (MoveAnnotations)piece.PieceType();
+            if (color != src.SideOnMove)
+            {
+                return pieceType | WrongSideToMove;
+            }
+            if (toPiece != Piece.EmptyCell && toPiece.Color() == color)
+            {
+                return pieceType | ToOccupiedCell;
+            }
+            var notes = ValidateMove(
+                src._cells, piece, moveFrom,
+                moveTo, toPiece, src.Castlings);
+
+            if ((notes & AllErrors) != 0) return notes;
+            if (toPiece != Piece.EmptyCell) notes |= Capture;
+
+            if ((notes & EnPassant) != 0)
+            {
+                if (src.EnPassantFile != moveTo % 16)
+                {
+                    return notes | HasNoEnPassant;
+                }
+            }
+            else if ((notes & Promotion) != 0)
+            {
+                if (move.ProposedPromotion == PieceType.None)
+                {
+                    return notes | MissingPromotionHint;
+                }
+            }
+            else if (move.ProposedPromotion != PieceType.None)
+            {
+                return notes | PromotionHintIsNotNeeded;
+            }
+            return notes;
+        }
+
         static MoveAnnotations ValidateWhiteCastlingMove(byte[] _cells, int fromSquare, int to, Castlings castlings)
         {
             if (fromSquare != Board.S.E1) return King | DoesNotMoveThisWay;
@@ -109,6 +157,5 @@ namespace ChessKit.ChessLogic
                     return Pawn | DoesNotMoveThisWay;
             }
         }
-
     }
 }

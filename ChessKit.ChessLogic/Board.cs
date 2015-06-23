@@ -226,8 +226,8 @@ namespace ChessKit.ChessLogic
         private const int BytesCount = 128;
 
         internal readonly byte[] _cells;
-        private int _whiteKingPosition;
-        private int _blackKingPosition;
+        internal int _whiteKingPosition;
+        internal int _blackKingPosition;
 
         /// <summary>Deep copy</summary>
         private Board(Board source)

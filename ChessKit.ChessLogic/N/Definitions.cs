@@ -53,16 +53,15 @@ namespace ChessKit.ChessLogic.N
         /// Warnings to the move
         public MoveWarnings Warnings { get; }
 
-        public LegalMove(MoveR move, Position originalPosition, PositionCore resultPosition, PieceType piece,
-            Castlings castling, MoveAnnotations annotations, MoveWarnings warnings)
+        public LegalMove(MoveR move, Position originalPosition, PositionCore resultPosition, PieceType piece, MoveAnnotations annotations)
             : base(annotations)
         {
             Move = move;
             OriginalPosition = originalPosition;
             ResultPosition = resultPosition;
             Piece = piece;
-            Castling = castling;
-            Warnings = warnings;
+            Castling = Castlings.All | (Castlings) annotations;
+            Warnings = MoveWarnings.All | (MoveWarnings)annotations;
         }
     }
 
@@ -117,16 +116,16 @@ namespace ChessKit.ChessLogic.N
         /// Non-empty set of the errors to the move
         public MoveErrors Errors { get; }
 
-        public IllegalMove(MoveR move, Position originalPosition, PieceType piece, Castlings castling,
-            MoveAnnotations annotations, MoveWarnings warnings, MoveErrors errors)
+        public IllegalMove(MoveR move, Position originalPosition, 
+            PieceType piece, MoveAnnotations annotations)
             : base(annotations)
         {
             Move = move;
             OriginalPosition = originalPosition;
             Piece = piece;
-            Castling = castling;
-            Warnings = warnings;
-            Errors = errors;
+            Castling = Castlings.All&(Castlings)annotations;
+            Warnings = MoveWarnings.All & (MoveWarnings)annotations;
+            Errors = MoveErrors.All & (MoveErrors)annotations;
         }
     }
 

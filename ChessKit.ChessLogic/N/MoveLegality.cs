@@ -15,16 +15,11 @@ namespace ChessKit.ChessLogic.N
             if ((annotations & MoveAnnotations.AllErrors) != 0)
                 return new IllegalMove(move, position,
                     PieceType.None,
-                    Castlings.All | (Castlings)flags,
-                    annotations,
-                    MoveWarnings.All | (MoveWarnings)flags,
-                    MoveErrors.All | (MoveErrors)flags);
+                    annotations);
 
             return new LegalMove(move, position,
                 position.Core, PieceType.None,
-                Castlings.All | (Castlings)flags,
-                annotations,
-                MoveWarnings.All | (MoveWarnings)flags);
+                annotations);
         }
 
         public static LegalMove ToLegalMove(this Board nextBoard, Board prevBoard)
@@ -38,9 +33,7 @@ namespace ChessKit.ChessLogic.N
             var flags = (int) move.Annotations;
             return new LegalMove(moveR, prevBoard.FromBoard(),
                 position.Core, PieceType.None,
-                Castlings.All | (Castlings) flags,
-                move.Annotations,
-                MoveWarnings.All | (MoveWarnings) flags);
+                move.Annotations);
 
         }
         public static Position ValidateLegal(this Position position, MoveR move)
