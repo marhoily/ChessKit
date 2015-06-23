@@ -39,14 +39,14 @@ namespace ChessKit.ChessLogic
         /// <param name="board">The game</param>
         /// <param name="move">The move</param>
         /// <returns></returns>
-        public static string GetSanEnd([NotNull] this Position board, [NotNull] Move move)
+        public static string GetSanEnd([NotNull] this Position board, [NotNull] MoveR move)
         {
             if (board == null) throw new ArgumentNullException("board");
             if (move == null) throw new ArgumentNullException("move");
 
             var sb = new StringBuilder(3);
 
-            if ((move.Annotations & MoveAnnotations.Promotion) != 0)
+            if (move.ProposedPromotion != 0)
                 sb.Append('=').Append(move.ProposedPromotion.With(Color.White).GetSymbol());
 
             if ((board.Properties & GameStates.Check) != 0) sb.Append('+');

@@ -39,38 +39,23 @@ namespace ChessKit.ChessLogic
         }
 
         public static implicit operator MoveR(Move move) 
-            => new MoveR(move.From, move.To, move.ProposedPromotion);
+            => new MoveR(move.From, move.To);
     }
 
     // TODO: Should Move be struct (con: references board)?
     // TODO: Crazy ctors! Public setters. Not immutable!
     public sealed class Move : IEquatable<Move>
     {
-        public Move(int from, int to)
-            : this(from, to, PieceType.None)
-        {
-        }
-
-        public Move(int from, int to, PieceType promotion)
-        {
-            // TODO: if (from == to) throw new ArgumentException("to equals from!", "to");
-            From = from;
-            To = to;
-            ProposedPromotion = promotion;
-        }
-
         public Move(int from, int to, MoveAnnotations annotations)
         {
             To = to;
             From = from;
             Annotations = annotations;
-            ProposedPromotion = PieceType.Queen;
         }
 
         public int From { get; }
         public int To { get; }
         public MoveAnnotations Annotations { get; set; }
-        public PieceType ProposedPromotion { get; set; }
         public bool IsValid => (Annotations & MoveAnnotations.AllErrors) == 0;
 
         public bool IsKingsideCastling
@@ -85,24 +70,7 @@ namespace ChessKit.ChessLogic
         public override string ToString()
             => $"{From.ToCoordinateString()}-{To.ToCoordinateString()}";
 
-        public static Move Parse(string canString)
-        {
-            if (string.IsNullOrEmpty(canString))
-                throw new ArgumentException("should not be null or empty", "canString");
-            if (canString.Length == 5)
-                return new Move(
-                    canString.Substring(0, 2).ParseCoordinate(),
-                    canString.Substring(3, 2).ParseCoordinate());
-            if (canString.Length != 7) throw new ArgumentOutOfRangeException("canString");
-            Piece piece;
-            if (!canString[6].TryParsePiece(out piece))
-                throw new ArgumentOutOfRangeException(nameof(canString));
-            return new Move(
-                canString.Substring(0, 2).ParseCoordinate(),
-                canString.Substring(3, 2).ParseCoordinate(),
-                piece.PieceType());
-        }
-
+      
         #region ' Equality '
 
         public bool Equals(Move other)
@@ -110,8 +78,7 @@ namespace ChessKit.ChessLogic
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
             return From.Equals(other.From)
-                   && To.Equals(other.To)
-                   && ProposedPromotion == other.ProposedPromotion;
+                   && To.Equals(other.To);
         }
 
         public override bool Equals(object obj)
@@ -128,7 +95,6 @@ namespace ChessKit.ChessLogic
             {
                 var hashCode = From.GetHashCode();
                 hashCode = (hashCode*397) ^ To.GetHashCode();
-                hashCode = (hashCode*397) ^ (int) ProposedPromotion;
                 return hashCode;
             }
         }
