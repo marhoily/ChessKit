@@ -29,7 +29,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
             }
             finally
             {
-                Console.WriteLine(fen.ParseFen().Dump());
+                Console.WriteLine(fen.ParseFen().FromBoard().Dump());
             }
         }
 
@@ -54,7 +54,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
             }
             finally
             {
-                Console.WriteLine(fen.ParseFen().Dump());
+                Console.WriteLine(fen.ParseFen().FromBoard().Dump());
             }
 
         }

@@ -47,6 +47,7 @@ namespace ChessKit.ChessLogic.UnitTests
 		{
 			Console.WriteLine(Fen.ParseFen(
 			  "rnbqkbnr/pp1ppp1p/6p1/2p5/7P/2N5/PPPPPPP1/R1BQKBNR b KQkq c6 0 3")
+              .FromBoard()
 			  .Dump());
 		}
 

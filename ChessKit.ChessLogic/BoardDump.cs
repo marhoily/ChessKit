@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
 using JetBrains.Annotations;
 
@@ -7,7 +8,7 @@ namespace ChessKit.ChessLogic
 {
     public static class BoardDump
     {
-        public static string Dump([NotNull] this Board board)
+        public static string Dump([NotNull] this Position board)
         {
             if (board == null) throw new ArgumentNullException("board");
             var sb = new StringBuilder(17 * 36);
@@ -30,7 +31,7 @@ namespace ChessKit.ChessLogic
             sb.AppendLine(" ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝");
             foreach (var position in Coordinates.All)
             {
-                var piece = board[position];
+                var piece = (Piece)board.Core.Squares[position];
                 sb[((7 - position.GetY()) * 2 + 1) * 36 + position.GetX() * 4 + 3]
                     = piece.GetSymbol();
             }
