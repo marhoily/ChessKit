@@ -25,7 +25,7 @@ namespace ChessKit.ChessLogic.UnitTests
             move.From.Should().Be("e2".ParseCoordinate());
             move.To.Should().Be("e4".ParseCoordinate());
 
-            move.ProposedPromotion.Should().Be(PieceType.Queen);
+            move.ProposedPromotion.Should().Be(PieceType.None);
 
             move.Annotations.Should().Be(MoveAnnotations.Rook);
         }

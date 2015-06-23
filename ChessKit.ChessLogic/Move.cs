@@ -47,7 +47,7 @@ namespace ChessKit.ChessLogic
     public sealed class Move : IEquatable<Move>
     {
         public Move(int from, int to)
-            : this(from, to, PieceType.Queen)
+            : this(from, to, PieceType.None)
         {
         }
 
