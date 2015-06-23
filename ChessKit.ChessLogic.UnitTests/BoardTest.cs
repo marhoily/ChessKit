@@ -47,14 +47,13 @@ namespace ChessKit.ChessLogic.UnitTests
 		{
 			Console.WriteLine(Fen.ParseFen(
 			  "rnbqkbnr/pp1ppp1p/6p1/2p5/7P/2N5/PPPPPPP1/R1BQKBNR b KQkq c6 0 3")
-              .FromBoard()
 			  .Dump());
 		}
 
 		[Fact]
 		public void GetLegalMovesTimeout()
 		{
-			var board = Board.StartPosition.FromBoard();
+			var board = Board.StartPosition;
 			for (var i = 0; i < 180; i++)
 			{
 				var legalMoves = board.GetAllLegalMoves();
@@ -69,7 +68,7 @@ namespace ChessKit.ChessLogic.UnitTests
 			Console.WriteLine(d.Move);
 			Console.WriteLine();
 
-			var board = d.StartingFen.ParseFen().FromBoard();
+			var board = d.StartingFen.ParseFen();
 			var expected = MoveR.Parse(d.Move);
             var legalMoves = board.GetLegalMovesFromSquare(expected.From);
 			if (d.ExpectedToBeValid)
@@ -99,8 +98,8 @@ namespace ChessKit.ChessLogic.UnitTests
 			var expected = MoveR.Parse(d.Move);
 			if (!d.ExpectedToBeValid) return;
             CanBeValid.CanBeValidMove(
-                board.Cells,
-				board[expected.From],
+                board.Core.Squares,
+                (Piece)board.Core.Squares[expected.From],
 				expected.From,
 				expected.To).Should().BeTrue();
 		}

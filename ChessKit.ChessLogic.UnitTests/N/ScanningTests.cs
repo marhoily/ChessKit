@@ -8,7 +8,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
     public sealed class ScanningTests
     {
         private static void IsAttackedBy(string fen, string square, Color color, bool expected)
-            => fen.ParseFen().FromBoard().Core
+            => fen.ParseFen().Core
                 .IsAttackedBy(color, square.ParseCoordinate())
                 .Should().Be(expected);
 
@@ -171,7 +171,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
         // =============== Board.IsInCheck ===============
 
         private static void IsInCheck(string fen, Color color, bool expected)
-            => fen.ParseFen().FromBoard().Core
+            => fen.ParseFen().Core
                 .IsInCheck(color)
                 .Should().Be(expected);
 

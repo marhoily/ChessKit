@@ -21,29 +21,29 @@ namespace ChessKit.ChessLogic.UnitTests.N
 
         [Fact]
         public void Fifty_moves_rule_clock_increments_after_move() =>
-            Play(Board.StartPosition.FromBoard(), "g1-f3")
+            Play(Board.StartPosition, "g1-f3")
                 .HalfMoveClock.Should().Be(1);
 
         [Fact]
         public void Fifty_moves_rule_clock_resets_after_pawn_advance() =>
-            Play(Board.StartPosition.FromBoard(), "g1-f3", "e7-e5")
+            Play(Board.StartPosition, "g1-f3", "e7-e5")
                 .HalfMoveClock.Should().Be(0);
 
         [Fact]
         public void Fifty_moves_rule_clock_resets_after_pawn_capture() =>
-            Play(Board.StartPosition.FromBoard(), 
+            Play(Board.StartPosition, 
                 "e2-e4", "d7-d5", "g1-f3","d5-e4")
                 .HalfMoveClock.Should().Be(0);
 
         [Fact]
         public void Fifty_moves_rule_clock_resets_after_capture() =>
-            Play(Board.StartPosition.FromBoard(), 
+            Play(Board.StartPosition, 
                 "e2-e4", "d7-d5", "e4-d5", "d8-d5")
                 .HalfMoveClock.Should().Be(0);
 
         [Fact]
         public void Full_moves_clock_does_not_increment_after_white_move() =>
-            Play(Board.StartPosition.FromBoard(), "e2-e4")
+            Play(Board.StartPosition, "e2-e4")
                 .FullMoveNumber.Should().Be(1);
 
         [Fact]
@@ -81,21 +81,21 @@ namespace ChessKit.ChessLogic.UnitTests.N
         public void PositionCore_Structural_Equality_Should_Work()
         {
             const string fen = "r2q1r1k/p1p1b3/4pnQp/3p4/8/2NB4/PPP2PPP/R5K1 b - - 3 16";
-            var c1 = fen.ParseFen().FromBoard().Core;
-            var c2 = fen.ParseFen().FromBoard().Core;
+            var c1 = fen.ParseFen().Core;
+            var c2 = fen.ParseFen().Core;
             c1.Should().Be(c2);
             c1.GetHashCode().Should().Be(c2.GetHashCode());
         }
 
         private static void CheckProperties(string fen, string move, string expectedProperties)
-            => fen.ParseFen().FromBoard()
+            => fen.ParseFen()
                 .ValidateLegal(MoveR.Parse(move))
                 .ToPosition()
                 .Properties.ToString()
                 .Should().Be(expectedProperties);
 
         private static Position Play(string startPositionFen, params string[] moves)
-            => Play(startPositionFen.ParseFen().FromBoard(), moves);
+            => Play(startPositionFen.ParseFen(), moves);
         private static Position Play(Position startPosition, params string[] moves)
             => moves.Aggregate(
                 startPosition,

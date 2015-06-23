@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic
@@ -7,7 +8,7 @@ namespace ChessKit.ChessLogic
     public sealed partial class Board
     {
         /// <summary>Board with all pieces set into the start position</summary>
-        public static readonly Board StartPosition = 
+        public static readonly Position StartPosition = 
             "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
             .ParseFen();
 

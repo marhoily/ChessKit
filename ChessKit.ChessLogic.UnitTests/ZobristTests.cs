@@ -27,7 +27,7 @@ namespace ChessKit.ChessLogic.UnitTests
 
         private static void Check(string fen, ulong expectedHash)
         {
-            fen.ParseFen().FromBoard().Core.GetHash()
+            fen.ParseFen().Core.GetHash()
                 .Should().Be(expectedHash);
         }
     }

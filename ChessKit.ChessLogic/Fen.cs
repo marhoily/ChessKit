@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
@@ -11,7 +12,7 @@ namespace ChessKit.ChessLogic
         /// <summary> Load position from FEN string </summary>
         /// <param name="fen">FEN string</param>
         /// <remarks>http://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation</remarks>
-        public static Board ParseFen([NotNull] this string fen)
+        public static Position ParseFen([NotNull] this string fen)
         {
             if (fen == null) throw new ArgumentNullException(nameof(fen));
             var offset = 0;
@@ -23,8 +24,12 @@ namespace ChessKit.ChessLogic
                 var enPassant = LoadEnPassantSection(fen, ref offset);
                 var halfmoveClock = LoadHalfmoveClockSection(fen, ref offset);
                 var moveNumber = LoadFullmoveNumberSection(fen, ref offset);
-                return new Board(cells, color, enPassant,
-                    halfmoveClock, moveNumber, castling);
+                var whiteKing = Coordinates.All.SingleOrDefault(p => ((Piece)cells[p]) == Piece.WhiteKing);
+                var blackKing = Coordinates.All.SingleOrDefault(p => ((Piece)cells[p]) == Piece.BlackKing);
+                return new Position(
+                    new PositionCore(cells, color, castling, enPassant),
+                    halfmoveClock, moveNumber, 
+                    GameStates.None, null, whiteKing, blackKing);
             }
             catch (IndexOutOfRangeException x)
             {
