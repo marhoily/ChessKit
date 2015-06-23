@@ -33,18 +33,11 @@ namespace ChessKit.ChessLogic.UnitTests.N
                 "e2-e4", "d7-d5", "g1-f3","d5-e4")
                 .HalfMoveClock.Should().Be(0);
 
-
-        /*
-                [<Fact>]
-                let ``Fifty_moves_rule_clock_resets_after_pawn_capture``() = 
-                    let res = play [ "e4"; "d5"; "Nf3"; "dxe4" ]
-                    res.HalfMoveClock |> should equal 0
-
-                [<Fact>]
-                let ``Fifty_moves_rule_clock_resets_after_capture``() = 
-                    let res = play [ "e4"; "d5"; "exd5"; "Qxd5" ]
-                    res.HalfMoveClock |> should equal 0
-                    */
+        [Fact]
+        public void Fifty_moves_rule_clock_resets_after_capture() =>
+            Play(Board.StartPosition.FromBoard(), 
+                "e2-e4", "d7-d5", "e4-d5", "d8-d5")
+                .HalfMoveClock.Should().Be(0);
 
         private static void CheckProperties(string fen, string move, string expectedProperties)
             => fen.ParseFen().FromBoard()
