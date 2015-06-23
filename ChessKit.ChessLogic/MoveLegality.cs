@@ -1,4 +1,6 @@
-﻿using ChessKit.ChessLogic.Primitives;
+﻿using System;
+using ChessKit.ChessLogic.N;
+using ChessKit.ChessLogic.Primitives;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
 using S = ChessKit.ChessLogic.Cells;
 
@@ -6,6 +8,23 @@ namespace ChessKit.ChessLogic
 {
     static partial class MoveLegality
     {
+        public static AnalyzedMove Validate(this Position position, MoveR move)
+        {
+            return BoardUpdater.MakeMove(position, move);
+        }
+
+        public static LegalMove ValidateLegal(this Position position, MoveR move)
+        {
+            var analyzedMove = BoardUpdater.MakeMove(position, move);
+            var legalMove = analyzedMove as LegalMove;
+
+            if (legalMove != null)
+            {
+                return legalMove;
+            }
+            throw new Exception(analyzedMove.Annotations.ToString());
+        }
+
         static MoveAnnotations ValidateWhiteCastlingMove(byte[] _cells, int fromSquare, int to, Castlings castlings)
         {
             if (fromSquare != S.E1) return King | DoesNotMoveThisWay;
