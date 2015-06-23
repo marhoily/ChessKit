@@ -65,6 +65,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CanBeValid.tt</DependentUpon>
     </Compile>
+    <Compile Include="Algorithms\Scanning.cs" />
     <Compile Include="AnalyzedMove.cs" />
     <Compile Include="IllegalMove.cs" />
     <Compile Include="LegalMove.cs" />
@@ -109,7 +110,6 @@
     <Compile Include="Primitives\ColorExtensions.cs" />
     <Compile Include="Primitives\PieceType.cs" />
     <Compile Include="Primitives\Coordinates.cs" />
-    <Compile Include="Algorithms\Scanning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Algorithms\San.cs" />
     <Compile Include="Algorithms\Scanning.generated.cs">
