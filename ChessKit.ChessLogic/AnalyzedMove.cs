@@ -4,12 +4,12 @@ namespace ChessKit.ChessLogic
 {
     public abstract class AnalyzedMove
     {
-        protected AnalyzedMove(MoveAnnotations annotations)
+        internal AnalyzedMove(MoveAnnotations annotations)
         {
             Annotations = annotations;
         }
 
         /// Annotations (capture, promotion attempt, etc.) to the move
-        public MoveAnnotations Annotations { get; }
+        internal MoveAnnotations Annotations { get; }
     }
 }

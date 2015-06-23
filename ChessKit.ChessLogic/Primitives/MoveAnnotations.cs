@@ -3,7 +3,7 @@ using System;
 namespace ChessKit.ChessLogic.Primitives
 {
     [Flags]
-    public enum MoveAnnotations
+    internal enum MoveAnnotations
     {
         None = 0,
 

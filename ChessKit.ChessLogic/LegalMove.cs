@@ -24,8 +24,9 @@ namespace ChessKit.ChessLogic
         /// Warnings to the move
         public MoveWarnings Warnings { get; }
 
-        public LegalMove(Move move, Position originalPosition, PositionCore resultPosition, PieceType piece,
-            MoveAnnotations annotations)
+        internal LegalMove(Move move, 
+            Position originalPosition, PositionCore resultPosition, 
+            PieceType piece, MoveAnnotations annotations)
             : base(annotations)
         {
             Move = move;

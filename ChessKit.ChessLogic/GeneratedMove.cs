@@ -7,7 +7,7 @@ namespace ChessKit.ChessLogic
 {
     public sealed class GeneratedMove : IEquatable<GeneratedMove>
     {
-        public GeneratedMove(int from, int to, MoveAnnotations annotations)
+        internal GeneratedMove(int from, int to, MoveAnnotations annotations)
         {
             To = to;
             From = from;
@@ -16,7 +16,7 @@ namespace ChessKit.ChessLogic
 
         public int From { get; }
         public int To { get; }
-        public MoveAnnotations Annotations { get; }
+        internal MoveAnnotations Annotations { get; }
 
         public override string ToString()
             => $"{From.ToCoordinateString()}-{To.ToCoordinateString()}";

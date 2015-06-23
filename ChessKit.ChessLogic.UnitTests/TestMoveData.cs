@@ -13,7 +13,7 @@ namespace ChessKit.ChessLogic.UnitTests
 
         public bool ExpectedToBeValid => (ExpectedAnnotations & MoveAnnotations.AllErrors) == 0;
 
-        public MoveAnnotations ExpectedAnnotations
+        internal MoveAnnotations ExpectedAnnotations
         {
             get
             {

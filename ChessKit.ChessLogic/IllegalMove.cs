@@ -23,7 +23,7 @@ namespace ChessKit.ChessLogic
         /// Non-empty set of the errors to the move
         public MoveErrors Errors { get; }
 
-        public IllegalMove(Move move, Position originalPosition,
+        internal IllegalMove(Move move, Position originalPosition,
             PieceType piece, MoveAnnotations annotations)
             : base(annotations)
         {
