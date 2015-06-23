@@ -12,6 +12,9 @@ namespace ChessKit.ChessLogic.UnitTests.N
         [Fact]
         public void GivesMate() => CheckProperties(
             "2K5/8/2k4r/8/8/8/8/8 b - - 0 9", "h6-h8", "Mate");
+        [Fact]
+        public void GivesStalemate() => CheckProperties(
+            "7k/7P/8/7K/8/8/8/8 w - - 0 1", "h5-h6", "Stalemate");
 
         private static void CheckProperties(string fen, string move, string expectedProperties)
         {
