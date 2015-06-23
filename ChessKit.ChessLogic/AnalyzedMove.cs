@@ -4,9 +4,17 @@ namespace ChessKit.ChessLogic
 {
     public abstract class AnalyzedMove
     {
-        internal AnalyzedMove(MoveAnnotations annotations)
+        /// The move that was checked for the legality
+        public Move Move { get; }
+
+        /// The position in which the move was checked
+        public Position OriginalPosition { get; }
+
+        internal AnalyzedMove(MoveAnnotations annotations, Position originalPosition, Move move)
         {
             Annotations = annotations;
+            OriginalPosition = originalPosition;
+            Move = move;
         }
 
         /// Annotations (capture, promotion attempt, etc.) to the move

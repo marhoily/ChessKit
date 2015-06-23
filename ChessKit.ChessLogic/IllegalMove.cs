@@ -5,17 +5,12 @@ namespace ChessKit.ChessLogic
     /// Represents an illegal move as returned by the legality check
     public sealed class IllegalMove : AnalyzedMove
     {
-        /// The move that was checked for the legality
-        public Move Move { get; }
-
-        /// The position in which the move was checked
-        public Position OriginalPosition { get; }
+        /// Errors to the move
+        public MoveErrors Errors => MoveErrors.All & (MoveErrors)Annotations;
 
         internal IllegalMove(Move move, Position originalPosition, MoveAnnotations annotations)
-            : base(annotations)
+            : base(annotations, originalPosition, move)
         {
-            Move = move;
-            OriginalPosition = originalPosition;
         }
     }
 }
