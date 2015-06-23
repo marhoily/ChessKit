@@ -21,29 +21,30 @@ namespace ChessKit.ChessLogic.UnitTests.N
         public void Fifty_moves_rule_clock_increments_after_move() =>
             Play(Board.StartPosition.FromBoard(), "g1-f3")
                 .HalfMoveClock.Should().Be(1);
-                
+
+        [Fact]
+        public void Fifty_moves_rule_clock_resets_after_pawn_advance() =>
+            Play(Board.StartPosition.FromBoard(), "g1-f3", "e7-e5")
+                .HalfMoveClock.Should().Be(0);
+
+        [Fact]
+        public void Fifty_moves_rule_clock_resets_after_pawn_capture() =>
+            Play(Board.StartPosition.FromBoard(), 
+                "e2-e4", "d7-d5", "g1-f3","d5-e4")
+                .HalfMoveClock.Should().Be(0);
+
 
         /*
-        [<Fact>]
-        let ``Fifty_moves_rule_clock_increments_after_move``() = 
-            let res = play [ "Nf3" ]
-            res.HalfMoveClock |> should equal 1
+                [<Fact>]
+                let ``Fifty_moves_rule_clock_resets_after_pawn_capture``() = 
+                    let res = play [ "e4"; "d5"; "Nf3"; "dxe4" ]
+                    res.HalfMoveClock |> should equal 0
 
-        [<Fact>]
-        let ``Fifty_moves_rule_clock_resets_after_pawn_advance``() = 
-            let res = play [ "Nf3"; "e5" ]
-            res.HalfMoveClock |> should equal 0
-
-        [<Fact>]
-        let ``Fifty_moves_rule_clock_resets_after_pawn_capture``() = 
-            let res = play [ "e4"; "d5"; "Nf3"; "dxe4" ]
-            res.HalfMoveClock |> should equal 0
-
-        [<Fact>]
-        let ``Fifty_moves_rule_clock_resets_after_capture``() = 
-            let res = play [ "e4"; "d5"; "exd5"; "Qxd5" ]
-            res.HalfMoveClock |> should equal 0
-            */
+                [<Fact>]
+                let ``Fifty_moves_rule_clock_resets_after_capture``() = 
+                    let res = play [ "e4"; "d5"; "exd5"; "Qxd5" ]
+                    res.HalfMoveClock |> should equal 0
+                    */
 
         private static void CheckProperties(string fen, string move, string expectedProperties)
             => fen.ParseFen().FromBoard()
