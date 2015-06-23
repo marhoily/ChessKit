@@ -1,3 +1,5 @@
+using ChessKit.ChessLogic.Primitives;
+
 namespace ChessKit.ChessLogic.N
 {
     public static class Transiotion
@@ -31,12 +33,12 @@ namespace ChessKit.ChessLogic.N
         {
             return new Position(
                 new PositionCore(
-                    b._cells, b.SideOnMove,
+                    b.Cells, b.SideOnMove,
                     b.Castlings, b.EnPassantFile),
                 b.HalfMoveClock, b.MoveNumber,
-                b.GameState, null,
-                b._whiteKingPosition,
-                b._blackKingPosition);
+                GameStates.None, null,
+                b.WhiteKingPosition,
+                b.BlackKingPosition);
         }
 
     }

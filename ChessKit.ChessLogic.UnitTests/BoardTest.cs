@@ -98,7 +98,7 @@ namespace ChessKit.ChessLogic.UnitTests
 			var expected = MoveR.Parse(d.Move);
 			if (!d.ExpectedToBeValid) return;
             CanBeValid.CanBeValidMove(
-                board._cells,
+                board.Cells,
 				board[expected.From],
 				expected.From,
 				expected.To).Should().BeTrue();

@@ -26,7 +26,7 @@ namespace ChessKit.ChessLogic
                 return pieceType | ToOccupiedCell;
             }
             var notes = ValidateMove(
-                src._cells, piece, moveFrom,
+                src.Cells, piece, moveFrom,
                 moveTo, toPiece, src.Castlings);
 
             if ((notes & AllErrors) != 0) return notes;
