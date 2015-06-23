@@ -53,6 +53,16 @@ namespace ChessKit.ChessLogic.UnitTests.N
                 .Should().Be("FiftyMoveRule");
 
         [Fact]
+        public void Draw_By_Repetition() =>
+            Play("r3qr1k/p1p1b3/4pnQp/3p4/8/2NB4/PPP2PPP/R5K1 w - - 0 17", 
+                "g6-h6", "h8-g8", "h6-g5", "g8-h8",
+                "g5-h6", "h8-g8", "h6-g5", "g8-h8",
+                "g5-h6", "h8-g8", "h6-g5", "g8-h8",
+                "g5-h6")
+                .Properties.ToString()
+                .Should().Be("Check, Repetition");
+
+        [Fact]
         public void PositionCore_Structural_Equality_Should_Work()
         {
             const string fen = "r2q1r1k/p1p1b3/4pnQp/3p4/8/2NB4/PPP2PPP/R5K1 b - - 3 16";
