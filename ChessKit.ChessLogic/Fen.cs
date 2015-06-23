@@ -170,14 +170,14 @@ namespace ChessKit.ChessLogic
                 return res;
             }
         }
-        public static string ToFenString(this Board board)
+        public static string ToFenString(this Position board)
         {
             var fen = new StringBuilder(77);
             for (int empty = 0, sq = 63; sq >= 0; sq--)
             {
                 var idx = (sq / 8) * 8 + 7 - sq % 8;
                 idx = idx + (idx & ~7);
-                if (board[idx] == 0)
+                if (board.Core.Squares[idx] == 0)
                 {
                     empty++;
                     if (0 == sq % 8)
@@ -190,16 +190,16 @@ namespace ChessKit.ChessLogic
                 }
 
                 if (empty != 0) fen.Append((char)('0' + empty));
-                fen.Append(board[idx].GetSymbol());
+                fen.Append(((Piece)board.Core.Squares[idx]).GetSymbol());
                 empty = 0;
                 if (sq != 0 && sq % 8 == 0) fen.Append('/');
             }
 
             fen.Append(' ');
-            fen.Append(board.SideOnMove == Color.White ? 'w' : 'b');
+            fen.Append(board.Core.ActiveColor == Color.White ? 'w' : 'b');
 
             fen.Append(' ');
-            var castling = board.Castlings;
+            var castling = board.Core.CastlingAvailability;
             if (castling == Castlings.None)
             {
                 fen.Append('-');
@@ -213,27 +213,27 @@ namespace ChessKit.ChessLogic
             }
 
             fen.Append(' ');
-            if (!board.EnPassantFile.HasValue)
+            if (!board.Core.EnPassant.HasValue)
             {
                 fen.Append('-');
             }
             else
             {
-                fen.Append("abcdefgh"[board.EnPassantFile.GetValueOrDefault()]);
-                fen.Append(board.SideOnMove == Color.White ? '6' : '3');
+                fen.Append("abcdefgh"[board.Core.EnPassant.GetValueOrDefault()]);
+                fen.Append(board.Core.ActiveColor == Color.White ? '6' : '3');
             }
 
             fen.Append(' ');
             fen.Append(board.HalfMoveClock);
 
             fen.Append(' ');
-            fen.Append(board.MoveNumber);
+            fen.Append(board.FullMoveNumber);
 
             return fen.ToString();
         }
         public static string PrintFen(this Position position)
         {
-            return position.ToBoard().ToFenString();
+            return position.ToFenString();
         }
     }
 }
