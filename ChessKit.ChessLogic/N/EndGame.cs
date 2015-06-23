@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ChessKit.ChessLogic.Primitives;
 using MoreLinq;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
@@ -43,6 +44,7 @@ namespace ChessKit.ChessLogic.N
 
             var isRepetition = tempPosition.GetHistory()
                 .Prepend(tempPosition)
+                .Select(p => p.Core)
                 .CountBy()
                 .MaxBy(x => x.Value).Value > 2;
             if (isRepetition) newState |= Repetition;
