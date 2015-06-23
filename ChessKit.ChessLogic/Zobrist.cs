@@ -8,6 +8,96 @@ namespace ChessKit.ChessLogic
     /// <summary> http://hardy.uhasselt.be/Toga/book_format.html </summary>
     public static class Zobrist
     {
+        /// <summary>
+        /// Returns a Zobrist hash of the current position.
+        /// </summary>
+        /// <remarks>
+        ///  A zobrist hash is an exclusive or of pseudo random values picked from
+        ///  an array.Which values are picked is decided by features of the
+        ///  position, such as piece positions, castling rights and en-passant
+        ///  squares.For this implementation an array of 781 values is required.
+        /// 
+        ///  The default behaviour is to use values from `POLYGLOT_RANDOM_ARRAY`,
+        ///  which makes for hashes compatible with polyglot opening books.
+        /// </remarks>
+        /// <returns></returns>
+        public static ulong GetHash(this PositionCore position)
+        {
+            var keys = ZobristKeys;
+            var result = 0UL;
+
+            var squares = position.Squares;
+            for (var i = 0; i < 64; i++)
+            {
+                var piece = squares[i + (i & ~7)];
+                if (piece != 0 && (((Color)piece & Color.All) == Color.Black))
+                {
+                    var indexOf = IndexOf(piece);
+                    var key = keys[64 * indexOf + i];
+                    result ^= key;
+                }
+            }
+
+            for (var j = 0; j < 64; j++)
+            {
+                var p2 = squares[j + (j & ~7)];
+                var inf = (Piece)p2;
+                if (p2 != 0 && (((Color)p2 & Color.All) == Color.White))
+                {
+                    var idx2 = IndexOf(p2);
+                    var key2 = keys[64 * idx2 + j];
+                    result ^= key2;
+                }
+            }
+
+            var ca = position.CastlingAvailability;
+            if ((ca & WK) != 0) result ^= keys[768 + 0];
+            if ((ca & WQ) != 0) result ^= keys[768 + 1];
+            if ((ca & BK) != 0) result ^= keys[768 + 2];
+            if ((ca & BQ) != 0) result ^= keys[768 + 3];
+
+            if (position.EnPassant.HasValue)
+            {
+                // But only if theres actually a pawn ready to capture it. 
+                // Legality of the potential capture is irrelevant.
+                var enpSquare = 0;
+                switch (position.ActiveColor) {
+                    case Color.White: enpSquare = 4*16; break;
+                    case Color.Black: enpSquare = 3*16; break;
+                }
+                enpSquare += position.EnPassant.Value;
+                if (squares[enpSquare - 1] != 0 || squares[enpSquare + 1] != 0)
+                    result ^= keys[772 + position.EnPassant.Value];
+            }
+
+            if (position.ActiveColor == Color.White)
+                result ^= keys[780];
+
+            return result;
+        }
+
+        private static int IndexOf(byte piece)
+        {
+            switch ((Piece)piece)
+            {
+                case Piece.BlackPawn: return 00;
+                case Piece.WhitePawn: return 01;
+                case Piece.BlackKnight: return 02;
+                case Piece.WhiteKnight: return 03;
+                case Piece.BlackBishop: return 04;
+                case Piece.WhiteBishop: return 05;
+                case Piece.BlackRook: return 06;
+                case Piece.WhiteRook: return 07;
+                case Piece.BlackQueen: return 08;
+                case Piece.WhiteQueen: return 09;
+                case Piece.BlackKing: return 10;
+                case Piece.WhiteKing: return 11;
+                default:
+                    throw new ArgumentOutOfRangeException(
+               nameof(piece), piece, null);
+            }
+        }
+
         #region ' ZobristKeys '
 
         /// <summary>
@@ -215,95 +305,5 @@ namespace ChessKit.ChessLogic
             };
 
         #endregion
-
-        /// <summary>
-        /// Returns a Zobrist hash of the current position.
-        /// </summary>
-        /// <remarks>
-        ///  A zobrist hash is an exclusive or of pseudo random values picked from
-        ///  an array.Which values are picked is decided by features of the
-        ///  position, such as piece positions, castling rights and en-passant
-        ///  squares.For this implementation an array of 781 values is required.
-        /// 
-        ///  The default behaviour is to use values from `POLYGLOT_RANDOM_ARRAY`,
-        ///  which makes for hashes compatible with polyglot opening books.
-        /// </remarks>
-        /// <returns></returns>
-        public static ulong GetHash(this PositionCore position)
-        {
-            var keys = ZobristKeys;
-            var result = 0UL;
-
-            var squares = position.Squares;
-            for (var i = 0; i < 64; i++)
-            {
-                var piece = squares[i + (i & ~7)];
-                if (piece != 0 && (((Color)piece & Color.All) == Color.Black))
-                {
-                    var indexOf = IndexOf(piece);
-                    var key = keys[64 * indexOf + i];
-                    result ^= key;
-                }
-            }
-
-            for (var j = 0; j < 64; j++)
-            {
-                var p2 = squares[j + (j & ~7)];
-                var inf = (Piece)p2;
-                if (p2 != 0 && (((Color)p2 & Color.All) == Color.White))
-                {
-                    var idx2 = IndexOf(p2);
-                    var key2 = keys[64 * idx2 + j];
-                    result ^= key2;
-                }
-            }
-
-            var ca = position.CastlingAvailability;
-            if ((ca & WK) != 0) result ^= keys[768 + 0];
-            if ((ca & WQ) != 0) result ^= keys[768 + 1];
-            if ((ca & BK) != 0) result ^= keys[768 + 2];
-            if ((ca & BQ) != 0) result ^= keys[768 + 3];
-
-            if (position.EnPassant.HasValue)
-            {
-                // But only if theres actually a pawn ready to capture it. 
-                // Legality of the potential capture is irrelevant.
-                var enpSquare = 0;
-                switch (position.ActiveColor) {
-                    case Color.White: enpSquare = 4*16; break;
-                    case Color.Black: enpSquare = 3*16; break;
-                }
-                enpSquare += position.EnPassant.Value;
-                if (squares[enpSquare - 1] != 0 || squares[enpSquare + 1] != 0)
-                    result ^= keys[772 + position.EnPassant.Value];
-            }
-
-            if (position.ActiveColor == Color.White)
-                result ^= keys[780];
-
-            return result;
-        }
-
-        private static int IndexOf(byte piece)
-        {
-            switch ((Piece)piece)
-            {
-                case Piece.BlackPawn: return 00;
-                case Piece.WhitePawn: return 01;
-                case Piece.BlackKnight: return 02;
-                case Piece.WhiteKnight: return 03;
-                case Piece.BlackBishop: return 04;
-                case Piece.WhiteBishop: return 05;
-                case Piece.BlackRook: return 06;
-                case Piece.WhiteRook: return 07;
-                case Piece.BlackQueen: return 08;
-                case Piece.WhiteQueen: return 09;
-                case Piece.BlackKing: return 10;
-                case Piece.WhiteKing: return 11;
-                default:
-                    throw new ArgumentOutOfRangeException(
-               nameof(piece), piece, null);
-            }
-        }
     }
 }
