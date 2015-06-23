@@ -1,4 +1,5 @@
-﻿using ChessKit.ChessLogic.N;
+﻿using System.Linq;
+using ChessKit.ChessLogic.N;
 using FluentAssertions;
 using Xunit;
 
@@ -16,13 +17,46 @@ namespace ChessKit.ChessLogic.UnitTests.N
         public void GivesStalemate() => CheckProperties(
             "7k/7P/8/7K/8/8/8/8 w - - 0 1", "h5-h6", "Stalemate");
 
+        [Fact]
+        public void Fifty_moves_rule_clock_increments_after_move() =>
+            Play(Board.StartPosition.FromBoard(), "g1-f3")
+                .HalfMoveClock.Should().Be(1);
+                
+
+        /*
+        [<Fact>]
+        let ``Fifty_moves_rule_clock_increments_after_move``() = 
+            let res = play [ "Nf3" ]
+            res.HalfMoveClock |> should equal 1
+
+        [<Fact>]
+        let ``Fifty_moves_rule_clock_resets_after_pawn_advance``() = 
+            let res = play [ "Nf3"; "e5" ]
+            res.HalfMoveClock |> should equal 0
+
+        [<Fact>]
+        let ``Fifty_moves_rule_clock_resets_after_pawn_capture``() = 
+            let res = play [ "e4"; "d5"; "Nf3"; "dxe4" ]
+            res.HalfMoveClock |> should equal 0
+
+        [<Fact>]
+        let ``Fifty_moves_rule_clock_resets_after_capture``() = 
+            let res = play [ "e4"; "d5"; "exd5"; "Qxd5" ]
+            res.HalfMoveClock |> should equal 0
+            */
+
         private static void CheckProperties(string fen, string move, string expectedProperties)
-        {
-            fen.ParseFen().FromBoard()
+            => fen.ParseFen().FromBoard()
                 .ValidateLegal(MoveR.Parse(move))
                 .ToPosition()
                 .Properties.ToString()
                 .Should().Be(expectedProperties);
-        }
+
+        private static Position Play(Position startPosition, params string[] moves)
+            => moves.Aggregate(
+                startPosition,
+                (position, nextMove) => position
+                    .ValidateLegal(MoveR.Parse(nextMove))
+                    .ToPosition());
     }
 }

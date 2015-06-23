@@ -1,5 +1,6 @@
 ﻿using ChessKit.ChessLogic.Primitives;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
+using static ChessKit.ChessLogic.Primitives.GameStates;
 
 namespace ChessKit.ChessLogic.N
 {
@@ -25,9 +26,10 @@ namespace ChessKit.ChessLogic.N
             var noMoves = tempPosition.GetAllLegalMoves().Count == 0;
 
             var newState = default(GameStates);
-            if (isCheck && noMoves) newState |= GameStates.Mate;
-            if (isCheck && !noMoves) newState |= GameStates.Check;
-            if (!isCheck && noMoves) newState |= GameStates.Stalemate;
+            if (isCheck && noMoves) newState |= Mate;
+            if (isCheck && !noMoves) newState |= Check;
+            if (!isCheck && noMoves) newState |= Stalemate;
+            if (newHalfMoveClock >= 50) newState |= FiftyMoveRule;
 
             return new Position(core, newHalfMoveClock, 
                 newMoveNumber, newState, legalMove);
