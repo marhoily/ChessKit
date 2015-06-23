@@ -1,4 +1,5 @@
 ﻿using ChessKit.ChessLogic.N;
+using ChessKit.ChessLogic.Primitives;
 using FluentAssertions;
 using Xunit;
 
@@ -7,10 +8,13 @@ namespace ChessKit.ChessLogic.UnitTests.N
     public sealed class UpdatePositionTests
     {
         private static void Check(string startFen, string move, string expectedFen)
-            => startFen.ParseFen().FromBoard()
-                .ValidateLegal(MoveR.Parse(move))
+        {
+            var validateLegal = startFen.ParseFen().FromBoard()
+                .ValidateLegal(MoveR.Parse(move));
+            new Position(validateLegal.ResultPosition, 0, 1, GameStates.None, validateLegal)
                 .PrintFen()
                 .Should().Be(expectedFen);
+        }
 
         [Fact]
         public void IsValidPawnMove() => Check(

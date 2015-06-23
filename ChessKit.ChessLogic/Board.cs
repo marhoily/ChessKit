@@ -280,7 +280,7 @@ namespace ChessKit.ChessLogic
             {
                 return (Piece)_cells[compactPosition];
             }
-            set
+            private set
             {
                 _cells[compactPosition] = (byte)value;
 

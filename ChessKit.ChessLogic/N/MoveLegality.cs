@@ -8,19 +8,18 @@ namespace ChessKit.ChessLogic.N
         public static AnalyzedMove Validate(this Position position, MoveR move)
         {
             return BoardUpdater.MakeMove(position.ToBoard(), move);
-            /*var move1 = new Move(move.From, move.To, move.ProposedPromotion);
-            var prevBoard = position.ToBoard();
-            var makeMove = prevBoard.MakeMove(move1);
-            var annotations = makeMove.PreviousMove.Annotations;
-            var flags = (int)annotations;
-            if ((annotations & MoveAnnotations.AllErrors) != 0)
-                return new IllegalMove(move, position,
-                    PieceType.None,
-                    annotations);
+        }
 
-            return new LegalMove(move, position,
-                position.Core, PieceType.None,
-                annotations);*/
+        public static LegalMove ValidateLegal(this Position position, MoveR move)
+        {
+            var analyzedMove = BoardUpdater.MakeMove(position.ToBoard(), move);
+            var legalMove = analyzedMove as LegalMove;
+
+            if (legalMove != null)
+            {
+                return legalMove;
+            }
+            throw new Exception(analyzedMove.Annotations.ToString());
         }
 
         public static LegalMove ToLegalMove(this Board nextBoard, Board prevBoard)
@@ -36,15 +35,6 @@ namespace ChessKit.ChessLogic.N
                 position.Core, PieceType.None,
                 move.Annotations);
 
-        }
-        public static Position ValidateLegal(this Position position, MoveR move)
-        {
-            var move1 = new Move(move.From, move.To, move.ProposedPromotion);
-            var makeMove = position.ToBoard().MakeMove(move1);
-            var validateLegal = makeMove.FromBoard().Core;
-            if ((makeMove.PreviousMove.Annotations & MoveAnnotations.AllErrors) != 0)
-                throw new Exception(makeMove.PreviousMove.Annotations.ToString());
-            return new Position(validateLegal, 0, 1, GameStates.None, null);
         }
     }
 }
