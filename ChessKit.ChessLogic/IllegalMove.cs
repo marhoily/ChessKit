@@ -14,12 +14,6 @@ namespace ChessKit.ChessLogic
         /// The piece type that was moved
         public PieceType Piece { get; }
 
-        /// The castling, if the move was castling attempt, -or- None
-        public Castlings Castling { get; }
-
-        /// Warnings to the move
-        public MoveWarnings Warnings { get; }
-
         /// Non-empty set of the errors to the move
         public MoveErrors Errors { get; }
 
@@ -30,8 +24,6 @@ namespace ChessKit.ChessLogic
             Move = move;
             OriginalPosition = originalPosition;
             Piece = piece;
-            Castling = Castlings.All & (Castlings) annotations;
-            Warnings = MoveWarnings.All & (MoveWarnings) annotations;
             Errors = MoveErrors.All & (MoveErrors) annotations;
         }
     }

@@ -18,12 +18,6 @@ namespace ChessKit.ChessLogic
         /// The piece type that was moved
         public PieceType Piece { get; }
 
-        /// The castling, if the move was castling, -or- None
-        public Castlings Castling { get; }
-
-        /// Warnings to the move
-        public MoveWarnings Warnings { get; }
-
         internal LegalMove(Move move, 
             Position originalPosition, PositionCore resultPosition, 
             PieceType piece, MoveAnnotations annotations)
@@ -33,8 +27,6 @@ namespace ChessKit.ChessLogic
             OriginalPosition = originalPosition;
             ResultPosition = resultPosition;
             Piece = piece;
-            Castling = Castlings.All | (Castlings) annotations;
-            Warnings = MoveWarnings.All | (MoveWarnings) annotations;
         }
     }
 }
