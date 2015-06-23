@@ -11,7 +11,7 @@ namespace ChessKit.ChessLogic.N
             var makeMove = board
                 .GetLegalMoves(coordinate);
             return makeMove.Select(
-                m => board.MakeMove(m).ToLegalMove(board))
+                m => position.ValidateLegal(m))
                 .ToList();
         }
         public static List<LegalMove> GetAllLegalMoves(this Position position)
