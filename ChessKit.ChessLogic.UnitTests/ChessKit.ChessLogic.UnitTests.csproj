@@ -76,12 +76,12 @@
   <ItemGroup>
     <Compile Include="BoardTest.cs" />
     <Compile Include="MoveTest.cs" />
-    <Compile Include="N\EndGameTests.cs" />
-    <Compile Include="N\FenTests.cs" />
-    <Compile Include="N\GetLegalMovesTests.cs" />
-    <Compile Include="N\MoveLegalityTests.cs" />
-    <Compile Include="N\ScanningTests.cs" />
-    <Compile Include="N\UpdatePositionTests.cs" />
+    <Compile Include="EndGameTests.cs" />
+    <Compile Include="FenTests.cs" />
+    <Compile Include="GetLegalMovesTests.cs" />
+    <Compile Include="MoveLegalityTests.cs" />
+    <Compile Include="ScanningTests.cs" />
+    <Compile Include="UpdatePositionTests.cs" />
     <Compile Include="PositionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestMoveData.cs" />

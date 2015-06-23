@@ -4,7 +4,7 @@ using ChessKit.ChessLogic.Primitives;
 using FluentAssertions;
 using Xunit;
 
-namespace ChessKit.ChessLogic.UnitTests.N
+namespace ChessKit.ChessLogic.UnitTests
 {
     public class GetLegalMovesTests
     {

@@ -2,7 +2,7 @@
 using FluentAssertions;
 using Xunit;
 
-namespace ChessKit.ChessLogic.UnitTests.N
+namespace ChessKit.ChessLogic.UnitTests
 {
     public sealed class EndGameTests
     {
