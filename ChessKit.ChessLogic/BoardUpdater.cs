@@ -10,7 +10,7 @@ namespace ChessKit.ChessLogic
     {
         private const int BytesCount = 128;
 
-        public static ValidateMove MakeMove(Board src, MoveR move)
+        public static AnalyzedMove MakeMove(Board src, MoveR move)
         {
             var whiteKingPosition = src._whiteKingPosition;
             var blackKingPosition = src._blackKingPosition;

@@ -32,7 +32,7 @@ namespace ChessKit.ChessLogic.N
     }
 
     /// Represents legal move as returned by the legality check
-    public sealed class LegalMove : ValidateMove
+    public sealed class LegalMove : AnalyzedMove
     {
         /// The move that was checked for the legality
         public MoveR Move { get; }
@@ -96,7 +96,7 @@ namespace ChessKit.ChessLogic.N
     }
 
     /// Represents an illegal move as returned by the legality check
-    public sealed class IllegalMove : ValidateMove
+    public sealed class IllegalMove : AnalyzedMove
     {
         /// The move that was checked for the legality
         public MoveR Move { get; }
@@ -129,9 +129,9 @@ namespace ChessKit.ChessLogic.N
         }
     }
 
-    public abstract class ValidateMove
+    public abstract class AnalyzedMove
     {
-        protected ValidateMove(MoveAnnotations annotations)
+        protected AnalyzedMove(MoveAnnotations annotations)
         {
             Annotations = annotations;
         }
