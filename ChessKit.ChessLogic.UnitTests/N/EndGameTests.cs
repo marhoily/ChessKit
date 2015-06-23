@@ -39,6 +39,17 @@ namespace ChessKit.ChessLogic.UnitTests.N
                 "e2-e4", "d7-d5", "e4-d5", "d8-d5")
                 .HalfMoveClock.Should().Be(0);
 
+        [Fact]
+        public void Full_moves_clock_does_not_increment_after_white_move() =>
+            Play(Board.StartPosition.FromBoard(), "e2-e4")
+                .FullMoveNumber.Should().Be(1);
+
+        [Fact]
+        public void Full_moves_clock_does_increment_after_black_move() =>
+            Play("7K/5n2/4b3/8/8/8/7k/8 w - - 49 1", "h8-g7", "f7-g5")
+                .Properties.ToString()
+                .Should().Be("FiftyMoveRule");
+
         private static void CheckProperties(string fen, string move, string expectedProperties)
             => fen.ParseFen().FromBoard()
                 .ValidateLegal(MoveR.Parse(move))
@@ -46,6 +57,8 @@ namespace ChessKit.ChessLogic.UnitTests.N
                 .Properties.ToString()
                 .Should().Be(expectedProperties);
 
+        private static Position Play(string startPositionFen, params string[] moves)
+            => Play(startPositionFen.ParseFen().FromBoard(), moves);
         private static Position Play(Position startPosition, params string[] moves)
             => moves.Aggregate(
                 startPosition,
