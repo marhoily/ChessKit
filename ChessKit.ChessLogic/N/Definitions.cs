@@ -1,10 +1,11 @@
-﻿using ChessKit.ChessLogic.Primitives;
+﻿using System;
+using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic.N
 {
     /// The part of the chess position that can be compared
     /// to determine threefold repetitions
-    public sealed class PositionCore
+    public sealed class PositionCore : IEquatable<PositionCore>
     {
         /// An array of the 64 squares the chess board consists of
         /// Note that index 0 corresponds to a8, and NOT a1!
@@ -29,6 +30,41 @@ namespace ChessKit.ChessLogic.N
             CastlingAvailability = castlingAvailability;
             EnPassant = enPassant;
         }
+
+        #region ' Equality '
+
+        public bool Equals(PositionCore other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            for (var i = 0; i < 64; i++)
+            {
+                var sq = i + (i & ~7);
+                if (Squares[sq] != other.Squares[sq])
+                    return false;
+            }
+            return ActiveColor == other.ActiveColor &&
+                   CastlingAvailability == other.CastlingAvailability && 
+                   EnPassant == other.EnPassant;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj is PositionCore && Equals((PositionCore)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            var hash = this.GetHash();
+            return unchecked ((int) hash & (int) (hash >> 32));
+        }
+
+        public static bool operator ==(PositionCore left, PositionCore right) => Equals(left, right);
+        public static bool operator !=(PositionCore left, PositionCore right) => !Equals(left, right);
+
+        #endregion        
     }
 
     /// Represents legal move as returned by the legality check
@@ -53,7 +89,8 @@ namespace ChessKit.ChessLogic.N
         /// Warnings to the move
         public MoveWarnings Warnings { get; }
 
-        public LegalMove(MoveR move, Position originalPosition, PositionCore resultPosition, PieceType piece, MoveAnnotations annotations)
+        public LegalMove(MoveR move, Position originalPosition, PositionCore resultPosition, PieceType piece,
+            MoveAnnotations annotations)
             : base(annotations)
         {
             Move = move;
@@ -61,7 +98,7 @@ namespace ChessKit.ChessLogic.N
             ResultPosition = resultPosition;
             Piece = piece;
             Castling = Castlings.All | (Castlings) annotations;
-            Warnings = MoveWarnings.All | (MoveWarnings)annotations;
+            Warnings = MoveWarnings.All | (MoveWarnings) annotations;
         }
     }
 
@@ -116,16 +153,16 @@ namespace ChessKit.ChessLogic.N
         /// Non-empty set of the errors to the move
         public MoveErrors Errors { get; }
 
-        public IllegalMove(MoveR move, Position originalPosition, 
+        public IllegalMove(MoveR move, Position originalPosition,
             PieceType piece, MoveAnnotations annotations)
             : base(annotations)
         {
             Move = move;
             OriginalPosition = originalPosition;
             Piece = piece;
-            Castling = Castlings.All&(Castlings)annotations;
-            Warnings = MoveWarnings.All & (MoveWarnings)annotations;
-            Errors = MoveErrors.All & (MoveErrors)annotations;
+            Castling = Castlings.All & (Castlings) annotations;
+            Warnings = MoveWarnings.All & (MoveWarnings) annotations;
+            Errors = MoveErrors.All & (MoveErrors) annotations;
         }
     }
 
