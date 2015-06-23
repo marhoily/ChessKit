@@ -87,7 +87,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MoveLegality.tt</DependentUpon>
     </Compile>
-    <Compile Include="N\GetLegalMoves.cs" />
+    <Compile Include="GetLegalMoves.cs" />
     <Compile Include="Primitives\Castlings.cs" />
     <Compile Include="Primitives\MoveErrors.cs" />
     <Compile Include="Primitives\MoveInfo.cs" />
