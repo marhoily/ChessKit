@@ -7,15 +7,16 @@ namespace ChessKit.ChessLogic.UnitTests.N
     public sealed class EndGameTests
     {
         [Fact]
-        public void GivesCheck() => CheckAnnotations(
+        public void GivesCheck() => CheckProperties(
             "8/2Rk4/1q4BP/8/8/6K1/8/8 b - - 24 119", "b6-c7", "Check");
 
-        private static void CheckAnnotations(string fen, string move, string expectedAnnotations)
+        private static void CheckProperties(string fen, string move, string expectedProperties)
         {
             fen.ParseFen().FromBoard()
                 .ValidateLegal(MoveR.Parse(move))
-                .Annotations.ToString()
-                .Should().Be(expectedAnnotations);
+                .ToPosition()
+                .Properties.ToString()
+                .Should().Be(expectedProperties);
         }
     }
 }

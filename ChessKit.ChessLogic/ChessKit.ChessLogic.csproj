@@ -79,6 +79,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MoveGeneration.tt</DependentUpon>
     </Compile>
+    <Compile Include="N\EndGame.cs" />
     <Compile Include="N\Transiotion.cs" />
     <Compile Include="Scanning.cs">
       <AutoGen>True</AutoGen>
