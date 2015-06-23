@@ -34,7 +34,9 @@ namespace ChessKit.ChessLogic.N
                     b._cells, b.SideOnMove,
                     b.Castlings, b.EnPassantFile),
                 b.HalfMoveClock, b.MoveNumber,
-                b.GameState, null);
+                b.GameState, null,
+                b._whiteKingPosition,
+                b._blackKingPosition);
         }
 
     }

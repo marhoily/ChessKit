@@ -10,56 +10,57 @@ namespace ChessKit.ChessLogic
     {
         private const int BytesCount = 128;
 
-        public static AnalyzedMove MakeMove(Board src, MoveR move)
+        public static AnalyzedMove MakeMove(Position src, MoveR move)
         {
-            var whiteKingPosition = src._whiteKingPosition;
-            var blackKingPosition = src._blackKingPosition;
+            var whiteKingPosition = src.WhiteKing;
+            var blackKingPosition = src.BlackKing;
 
             var cells = new byte[BytesCount];
-            Buffer.BlockCopy(src._cells, 0, cells, 0, BytesCount);
+            var sourceCells = src.Core.Squares;
+            Buffer.BlockCopy(sourceCells, 0, cells, 0, BytesCount);
 
             MoveAnnotations notes;
             // Piece in the from cell?
             var moveFrom = move.From;
-            var piece = src[moveFrom];
+            var piece = (Piece)sourceCells[moveFrom];
             if (piece == Piece.EmptyCell)
             {
                 notes = EmptyCell;
-                return new IllegalMove(move, src.FromBoard(), 
+                return new IllegalMove(move, src, 
                     PieceType.None, notes);
             }
 
             // Side to move?
             var color = piece.Color();
-            if (color != src.SideOnMove)
+            if (color != src.Core.ActiveColor)
             {
                 notes = (MoveAnnotations)piece.PieceType() | WrongSideToMove;
-                return new IllegalMove(move, src.FromBoard(),
+                return new IllegalMove(move, src,
                     piece.PieceType(), notes); 
             }
 
             // Move to occupied cell?
             var moveTo = move.To;
-            var toPiece = src[moveTo];
+            var toPiece = (Piece) sourceCells[moveTo];
             if (toPiece != Piece.EmptyCell && toPiece.Color() == color)
             {
                 notes = (MoveAnnotations)piece.PieceType() | ToOccupiedCell;
-                return new IllegalMove(move, src.FromBoard(),
+                return new IllegalMove(move, src,
                     piece.PieceType(), notes);
             }
             notes = MoveLegality.ValidateMove(cells, piece,
-                moveFrom, moveTo, toPiece, src.Castlings);
+                moveFrom, moveTo, toPiece, src.Core.CastlingAvailability);
             if (toPiece != Piece.EmptyCell) notes |= Capture;
             // ---------------- SetupBoard ---------------------
             if ((notes & AllErrors) != 0)
-                return new IllegalMove(move, src.FromBoard(),
+                return new IllegalMove(move, src,
                     piece.PieceType(), notes);
             if ((notes & EnPassant) != 0)
             {
-                if (src.EnPassantFile != moveTo % 16)
+                if (src.Core.EnPassant != moveTo % 16)
                 {
                     notes |= HasNoEnPassant;
-                    return new IllegalMove(move, src.FromBoard(),
+                    return new IllegalMove(move, src,
                         piece.PieceType(), notes);
                 }
             }
@@ -122,7 +123,7 @@ namespace ChessKit.ChessLogic
                         break;
                 }
             }
-            var isUnderCheck = src.SideOnMove == Color.White
+            var isUnderCheck = src.Core.ActiveColor == Color.White
                 ? Scanning.IsAttackedByBlack(cells, whiteKingPosition)
                 : Scanning.IsAttackedByWhite(cells, blackKingPosition);
 
@@ -130,7 +131,7 @@ namespace ChessKit.ChessLogic
             {
                 notes |= MoveToCheck;
             }
-            var castlings = src.Castlings
+            var castlings = src.Core.CastlingAvailability
               & ~KilledAvailability(moveTo)
               & ~KilledAvailability(moveFrom);
 
@@ -138,12 +139,12 @@ namespace ChessKit.ChessLogic
 
             // ---------------- ---------- ---------------------
             if ((notes & AllErrors) != 0)
-                return new IllegalMove(move, src.FromBoard(),
+                return new IllegalMove(move, src,
                     piece.PieceType(), notes);
 
             var positionCore = new PositionCore(cells, sideOnMove, castlings, enPassantFile);
             var legalMove = new LegalMove(
-                move, src.FromBoard(), positionCore, 
+                move, src, positionCore, 
                 piece.PieceType(), notes);
             return legalMove;
         }
