@@ -80,13 +80,11 @@
       <DependentUpon>MoveGeneration.tt</DependentUpon>
     </Compile>
     <Compile Include="N\EndGame.cs" />
-    <Compile Include="N\Transiotion.cs" />
     <Compile Include="Scanning.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Scanning.tt</DependentUpon>
     </Compile>
-    <Compile Include="BoardBuilder.cs" />
     <Compile Include="BoardDump.cs" />
     <Compile Include="MoveLegality.cs" />
     <Compile Include="MoveLegality.generated.cs">

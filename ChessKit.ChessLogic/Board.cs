@@ -25,38 +25,13 @@ namespace ChessKit.ChessLogic
         /// <summary>The number of the full move. It starts at 1, and is incremented after Black's move</summary>
         public int MoveNumber { get; private set; }
 
-        public bool IsAttackedBy(Color side, int square)
-        {
-            return side == Color.White
-                ? Scanning.IsAttackedByWhite(Cells, square)
-                : Scanning.IsAttackedByBlack(Cells, square);
-        }
 
-        public bool IsInCheck(Color side)
-        {
-            return side == Color.White
-                ? Scanning.IsAttackedByBlack(Cells, WhiteKingPosition)
-                : Scanning.IsAttackedByWhite(Cells, BlackKingPosition);
-        }
 
         private const int BytesCount = 128;
 
         internal byte[] Cells { get;  }
         internal int WhiteKingPosition { get; }
         internal int BlackKingPosition { get; }
-
-        internal Board(BoardBuilder boardBuilder)
-        {
-            Cells = new byte[BytesCount];
-            Buffer.BlockCopy(boardBuilder._cells, 0, Cells, 0, BytesCount);
-            SideOnMove = boardBuilder.SideOnMove;
-            EnPassantFile = boardBuilder.EnPassantFile;
-            HalfMoveClock = boardBuilder.HalfMoveClock;
-            MoveNumber = boardBuilder.MoveNumber;
-            WhiteKingPosition = Coordinates.All.SingleOrDefault(p => this[p] == Piece.WhiteKing);
-            BlackKingPosition = Coordinates.All.SingleOrDefault(p => this[p] == Piece.BlackKing);
-            Castlings = boardBuilder.CastlingAvailability;
-        }
 
         public Board(byte[] cells, Color sideOnMove,
             int? enPassantFile, int halfMoveClock,
