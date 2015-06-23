@@ -1,7 +1,7 @@
 ﻿using System;
 using ChessKit.ChessLogic.Primitives;
 
-namespace ChessKit.ChessLogic.N
+namespace ChessKit.ChessLogic
 {
     /// The part of the chess position that can be compared
     /// to determine threefold repetitions

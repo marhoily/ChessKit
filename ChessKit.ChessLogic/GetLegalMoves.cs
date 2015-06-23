@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic

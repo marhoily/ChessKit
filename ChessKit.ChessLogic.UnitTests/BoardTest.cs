@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
 using FluentAssertions;
 using Xunit;

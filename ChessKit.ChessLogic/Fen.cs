@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
 using JetBrains.Annotations;
 

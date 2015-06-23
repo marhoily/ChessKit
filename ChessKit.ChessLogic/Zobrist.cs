@@ -1,5 +1,4 @@
 ﻿using System;
-using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
 using static ChessKit.ChessLogic.Primitives.Castlings;
 

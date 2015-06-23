@@ -1,42 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ChessKit.ChessLogic.N.PositionCore">
+  <Class Name="ChessKit.ChessLogic.PositionCore">
     <Position X="1.25" Y="2.75" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAAAABAA=</HashCode>
-      <FileName>N\Definitions.cs</FileName>
+      <HashCode>AAAAQAACAAAAAAgAgAAAAAAAAAAAAIAADAAAAAAABiA=</HashCode>
+      <FileName>Definitions.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ChessKit.ChessLogic.N.LegalMove">
+  <Class Name="ChessKit.ChessLogic.LegalMove">
     <Position X="5.75" Y="2.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAoAAgAAAAAAAAAAAAACAAAAAAAAAoAAAAAA=</HashCode>
-      <FileName>N\Definitions.cs</FileName>
+      <FileName>Definitions.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Move" />
-      <Property Name="ResultPosition" />
       <Property Name="OriginalPosition" />
+      <Property Name="ResultPosition" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="ChessKit.ChessLogic.N.Position">
+  <Class Name="ChessKit.ChessLogic.Position">
     <Position X="3.75" Y="0.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
       <HashCode>AAIAAAAAAIAAAAAAAAAgAAAAAAAAAAAAAAAAAAASAAA=</HashCode>
-      <FileName>N\Definitions.cs</FileName>
+      <FileName>Definitions.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Move" />
       <Property Name="Core" />
+      <Property Name="Move" />
     </ShowAsAssociation>
   </Class>
   <Class Name="ChessKit.ChessLogic.MoveR">
@@ -45,7 +46,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AgAgAAAAAAAAAAAEAAAAgAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AgQgAAAAAAAAAAAEAAAAgAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Move.cs</FileName>
     </TypeIdentifier>
   </Class>

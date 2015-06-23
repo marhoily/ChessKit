@@ -1,6 +1,4 @@
-﻿using ChessKit.ChessLogic.N;
-
-namespace ChessKit.ChessLogic
+﻿namespace ChessKit.ChessLogic
 {
     public static class Board
     {
