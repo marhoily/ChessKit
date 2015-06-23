@@ -7,7 +7,8 @@ namespace ChessKit.ChessLogic.N
     {
         public static AnalyzedMove Validate(this Position position, MoveR move)
         {
-            var move1 = new Move(move.From, move.To, move.ProposedPromotion);
+            return BoardUpdater.MakeMove(position.ToBoard(), move);
+            /*var move1 = new Move(move.From, move.To, move.ProposedPromotion);
             var prevBoard = position.ToBoard();
             var makeMove = prevBoard.MakeMove(move1);
             var annotations = makeMove.PreviousMove.Annotations;
@@ -19,7 +20,7 @@ namespace ChessKit.ChessLogic.N
 
             return new LegalMove(move, position,
                 position.Core, PieceType.None,
-                annotations);
+                annotations);*/
         }
 
         public static LegalMove ToLegalMove(this Board nextBoard, Board prevBoard)

@@ -84,6 +84,17 @@ namespace ChessKit.ChessLogic
             }
 
             cells[moveTo] = (byte)piece;
+
+            switch (piece)
+            {
+                case Piece.WhiteKing:
+                    whiteKingPosition = moveTo;
+                    break;
+                case Piece.BlackKing:
+                    blackKingPosition = moveTo;
+                    break;
+            }
+
             cells[moveFrom] = 0;
             var enPassantFile = new int?();
             if ((notes & (DoublePush | EnPassant | AllCastlings)) != 0)
