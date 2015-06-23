@@ -1,8 +1,9 @@
 ﻿/* This code is auto-generated! 
  * It is strongly adviced not to change it manually! */
+
 using ChessKit.ChessLogic.Primitives;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Algorithms
 {
     static class CanBeValid
     {

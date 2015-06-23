@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using ChessKit.ChessLogic.Algorithms;
+using FluentAssertions;
 using Xunit;
 
 namespace ChessKit.ChessLogic.UnitTests

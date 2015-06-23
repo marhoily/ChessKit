@@ -2,7 +2,7 @@
 using System.Linq;
 using ChessKit.ChessLogic.Primitives;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Algorithms
 {
     public static class GetLegalMoves
     {

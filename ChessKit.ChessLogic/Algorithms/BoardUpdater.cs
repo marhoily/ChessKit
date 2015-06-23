@@ -1,9 +1,8 @@
 ﻿using System;
 using ChessKit.ChessLogic.Primitives;
-using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
 using S = ChessKit.ChessLogic.Cells;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Algorithms
 {
     public static class BoardUpdater
     {
@@ -24,7 +23,7 @@ namespace ChessKit.ChessLogic
             var piece = (Piece)sourceCells[moveFrom];
             if (piece == Piece.EmptyCell)
             {
-                notes = EmptyCell;
+                notes = MoveAnnotations.EmptyCell;
                 return new IllegalMove(move, src, 
                     PieceType.None, notes);
             }
@@ -33,7 +32,7 @@ namespace ChessKit.ChessLogic
             var color = piece.Color();
             if (color != src.Core.ActiveColor)
             {
-                notes = (MoveAnnotations)piece.PieceType() | WrongSideToMove;
+                notes = (MoveAnnotations)piece.PieceType() | MoveAnnotations.WrongSideToMove;
                 return new IllegalMove(move, src,
                     piece.PieceType(), notes); 
             }
@@ -43,39 +42,39 @@ namespace ChessKit.ChessLogic
             var toPiece = (Piece) sourceCells[moveTo];
             if (toPiece != Piece.EmptyCell && toPiece.Color() == color)
             {
-                notes = (MoveAnnotations)piece.PieceType() | ToOccupiedCell;
+                notes = (MoveAnnotations)piece.PieceType() | MoveAnnotations.ToOccupiedCell;
                 return new IllegalMove(move, src,
                     piece.PieceType(), notes);
             }
             notes = MoveLegality.ValidateMove(cells, piece,
                 moveFrom, moveTo, toPiece, src.Core.CastlingAvailability);
-            if (toPiece != Piece.EmptyCell) notes |= Capture;
+            if (toPiece != Piece.EmptyCell) notes |= MoveAnnotations.Capture;
             // ---------------- SetupBoard ---------------------
-            if ((notes & AllErrors) != 0)
+            if ((notes & MoveAnnotations.AllErrors) != 0)
                 return new IllegalMove(move, src,
                     piece.PieceType(), notes);
-            if ((notes & EnPassant) != 0)
+            if ((notes & MoveAnnotations.EnPassant) != 0)
             {
                 if (src.Core.EnPassant != moveTo % 16)
                 {
-                    notes |= HasNoEnPassant;
+                    notes |= MoveAnnotations.HasNoEnPassant;
                     return new IllegalMove(move, src,
                         piece.PieceType(), notes);
                 }
             }
-            else if ((notes & Promotion) != 0)
+            else if ((notes & MoveAnnotations.Promotion) != 0)
             {
                 var proposedPromotion = move.ProposedPromotion;
                 if (move.ProposedPromotion == PieceType.None)
                 {
-                    notes |= MissingPromotionHint;
+                    notes |= MoveAnnotations.MissingPromotionHint;
                     proposedPromotion = PieceType.Queen;
                 }
                 piece = proposedPromotion.With(color);
             }
             else if (move.ProposedPromotion != PieceType.None)
             {
-                notes |= PromotionHintIsNotNeeded;
+                notes |= MoveAnnotations.PromotionHintIsNotNeeded;
             }
 
             cells[moveTo] = (byte)piece;
@@ -92,31 +91,31 @@ namespace ChessKit.ChessLogic
 
             cells[moveFrom] = 0;
             var enPassantFile = new int?();
-            if ((notes & (DoublePush | EnPassant | AllCastlings)) != 0)
+            if ((notes & (MoveAnnotations.DoublePush | MoveAnnotations.EnPassant | MoveAnnotations.AllCastlings)) != 0)
             {
-                if ((notes & DoublePush) != 0)
+                if ((notes & MoveAnnotations.DoublePush) != 0)
                 {
                     enPassantFile = moveFrom % 16;
                 }
-                else if ((notes & EnPassant) != 0)
+                else if ((notes & MoveAnnotations.EnPassant) != 0)
                 {
                     cells[moveTo + (color == Color.White ? -16 : +16)] = 0;
                 }
                 else switch (notes)
                 {
-                    case (King | WK):
+                    case (MoveAnnotations.King | MoveAnnotations.WK):
                         cells[S.H1] = (byte)Piece.EmptyCell;
                         cells[S.F1] = (byte)Piece.WhiteRook;
                         break;
-                    case (King | WQ):
+                    case (MoveAnnotations.King | MoveAnnotations.WQ):
                         cells[S.A1] = (byte)Piece.EmptyCell;
                         cells[S.D1] = (byte)Piece.WhiteRook;
                         break;
-                    case (King | BK):
+                    case (MoveAnnotations.King | MoveAnnotations.BK):
                         cells[S.H8] = (byte)Piece.EmptyCell;
                         cells[S.F8] = (byte)Piece.BlackRook;
                         break;
-                    case (King | BQ):
+                    case (MoveAnnotations.King | MoveAnnotations.BQ):
                         cells[S.A8] = (byte)Piece.EmptyCell;
                         cells[S.D8] = (byte)Piece.BlackRook;
                         break;
@@ -128,7 +127,7 @@ namespace ChessKit.ChessLogic
 
             if (isUnderCheck)
             {
-                notes |= MoveToCheck;
+                notes |= MoveAnnotations.MoveToCheck;
             }
             var castlings = src.Core.CastlingAvailability
               & ~KilledAvailability(moveTo)
@@ -137,7 +136,7 @@ namespace ChessKit.ChessLogic
             var sideOnMove = color.Invert();
 
             // ---------------- ---------- ---------------------
-            if ((notes & AllErrors) != 0)
+            if ((notes & MoveAnnotations.AllErrors) != 0)
                 return new IllegalMove(move, src,
                     piece.PieceType(), notes);
 

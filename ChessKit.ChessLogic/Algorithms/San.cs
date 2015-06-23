@@ -6,7 +6,7 @@ using System.Text;
 using ChessKit.ChessLogic.Primitives;
 using JetBrains.Annotations;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Algorithms
 {
     public static class San
     {

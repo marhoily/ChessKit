@@ -1,38 +1,37 @@
 using System.Collections.Generic;
 using ChessKit.ChessLogic.Primitives;
-using static ChessKit.ChessLogic.Cells;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Algorithms
 {
     static partial class MoveGeneration
     {
         static void GenerateWhiteCastlingMoves(byte[] _cells, int fromSquare, Castlings castlings, List<Move> collector)
         {
-            if (fromSquare != E1) return;
+            if (fromSquare != Cells.E1) return;
 
             if ((castlings & Castlings.WQ) != 0)
-                if (_cells[D1] == 0 && _cells[C1] == 0 && _cells[B1] == 0)
-                    if (!Scanning.IsAttackedByBlack(_cells, E1) && !Scanning.IsAttackedByBlack(_cells, D1) && !Scanning.IsAttackedByBlack(_cells, C1))
-                        collector.Add(new Move(E1, C1, MoveAnnotations.WQ));
+                if (_cells[Cells.D1] == 0 && _cells[Cells.C1] == 0 && _cells[Cells.B1] == 0)
+                    if (!Scanning.IsAttackedByBlack(_cells, Cells.E1) && !Scanning.IsAttackedByBlack(_cells, Cells.D1) && !Scanning.IsAttackedByBlack(_cells, Cells.C1))
+                        collector.Add(new Move(Cells.E1, Cells.C1, MoveAnnotations.WQ));
 
             if ((castlings & Castlings.WK) != 0)
-                if (_cells[F1] == 0 && _cells[G1] == 0)
-                    if (!Scanning.IsAttackedByBlack(_cells, E1) && !Scanning.IsAttackedByBlack(_cells, F1) && !Scanning.IsAttackedByBlack(_cells, G1))
-                        collector.Add(new Move(E1, G1, MoveAnnotations.WK));
+                if (_cells[Cells.F1] == 0 && _cells[Cells.G1] == 0)
+                    if (!Scanning.IsAttackedByBlack(_cells, Cells.E1) && !Scanning.IsAttackedByBlack(_cells, Cells.F1) && !Scanning.IsAttackedByBlack(_cells, Cells.G1))
+                        collector.Add(new Move(Cells.E1, Cells.G1, MoveAnnotations.WK));
         }
         static void GenerateBlackCastlingMoves(byte[] _cells, int fromSquare, Castlings castlings, List<Move> collector)
         {
-            if (fromSquare != E8) return;
+            if (fromSquare != Cells.E8) return;
 
             if ((castlings & Castlings.BQ) != 0)
-                if (_cells[D8] == 0 && _cells[C8] == 0 && _cells[B8] == 0)
-                    if (!Scanning.IsAttackedByWhite(_cells, E8) && !Scanning.IsAttackedByWhite(_cells, D8) && !Scanning.IsAttackedByWhite(_cells, C8))
-                        collector.Add(new Move(E8, C8, MoveAnnotations.BQ));
+                if (_cells[Cells.D8] == 0 && _cells[Cells.C8] == 0 && _cells[Cells.B8] == 0)
+                    if (!Scanning.IsAttackedByWhite(_cells, Cells.E8) && !Scanning.IsAttackedByWhite(_cells, Cells.D8) && !Scanning.IsAttackedByWhite(_cells, Cells.C8))
+                        collector.Add(new Move(Cells.E8, Cells.C8, MoveAnnotations.BQ));
 
             if ((castlings & Castlings.BK) != 0)
-                if (_cells[F8] == 0 && _cells[G8] == 0)
-                    if (!Scanning.IsAttackedByWhite(_cells, E8) && !Scanning.IsAttackedByWhite(_cells, F8) && !Scanning.IsAttackedByWhite(_cells, G8))
-                        collector.Add(new Move(E8, G8, MoveAnnotations.BK));
+                if (_cells[Cells.F8] == 0 && _cells[Cells.G8] == 0)
+                    if (!Scanning.IsAttackedByWhite(_cells, Cells.E8) && !Scanning.IsAttackedByWhite(_cells, Cells.F8) && !Scanning.IsAttackedByWhite(_cells, Cells.G8))
+                        collector.Add(new Move(Cells.E8, Cells.G8, MoveAnnotations.BK));
         }
         static void GenerateWhitePawnMoves(byte[] _cells, int _whiteKingPosition, int fromSquare, int? enPassantFile, List<Move> collector)
         {

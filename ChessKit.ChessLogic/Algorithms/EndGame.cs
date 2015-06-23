@@ -5,7 +5,7 @@ using System.Linq;
 using ChessKit.ChessLogic.Primitives;
 using MoreLinq;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Algorithms
 {
     public static class EndGame
     {

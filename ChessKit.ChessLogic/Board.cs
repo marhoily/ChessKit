@@ -1,4 +1,6 @@
-﻿namespace ChessKit.ChessLogic
+﻿using ChessKit.ChessLogic.Algorithms;
+
+namespace ChessKit.ChessLogic
 {
     public static class Board
     {

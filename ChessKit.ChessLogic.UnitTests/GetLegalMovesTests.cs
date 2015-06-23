@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using ChessKit.ChessLogic.Algorithms;
 using ChessKit.ChessLogic.Primitives;
 using FluentAssertions;
 using Xunit;

@@ -35,24 +35,23 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <None Include="ApiConcept.dgml" />
-    <None Include="CanBeValid.tt">
+    <None Include="Algorithms\CanBeValid.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CanBeValid.cs</LastGenOutput>
     </None>
-    <None Include="Cells.tt">
+    <None Include="Primitives\Cells.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Cells.cs</LastGenOutput>
     </None>
-    <None Include="MoveGeneration.tt">
+    <None Include="Algorithms\MoveGeneration.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MoveGeneration.generated.cs</LastGenOutput>
     </None>
-    <None Include="Scanning.tt">
+    <None Include="Algorithms\Scanning.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Scanning.generated.cs</LastGenOutput>
     </None>
-    <None Include="MoveLegality.tt">
+    <None Include="Algorithms\MoveLegality.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MoveLegality.generated.cs</LastGenOutput>
     </None>
@@ -60,35 +59,40 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardUpdater.cs" />
-    <Compile Include="CanBeValid.cs">
+    <Compile Include="Algorithms\BoardUpdater.cs" />
+    <Compile Include="Algorithms\CanBeValid.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CanBeValid.tt</DependentUpon>
     </Compile>
-    <Compile Include="Cells.cs">
+    <Compile Include="AnalyzedMove.cs" />
+    <Compile Include="IllegalMove.cs" />
+    <Compile Include="LegalMove.cs" />
+    <Compile Include="MoveR.cs" />
+    <Compile Include="Position.cs" />
+    <Compile Include="Primitives\Cells.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Cells.tt</DependentUpon>
     </Compile>
     <Compile Include="Board.cs" />
-    <Compile Include="Fen.cs" />
-    <Compile Include="MoveGeneration.cs" />
-    <Compile Include="MoveGeneration.generated.cs">
+    <Compile Include="Algorithms\Fen.cs" />
+    <Compile Include="Algorithms\MoveGeneration.cs" />
+    <Compile Include="Algorithms\MoveGeneration.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MoveGeneration.tt</DependentUpon>
     </Compile>
-    <Compile Include="EndGame.cs" />
-    <Compile Include="BoardDump.cs" />
-    <Compile Include="MoveLegality.cs" />
-    <Compile Include="MoveLegality.generated.cs">
+    <Compile Include="Algorithms\EndGame.cs" />
+    <Compile Include="Algorithms\BoardDump.cs" />
+    <Compile Include="Algorithms\MoveLegality.cs" />
+    <Compile Include="Algorithms\MoveLegality.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MoveLegality.tt</DependentUpon>
     </Compile>
-    <Compile Include="GetLegalMoves.cs" />
-    <Compile Include="Definitions.cs" />
+    <Compile Include="Algorithms\GetLegalMoves.cs" />
+    <Compile Include="PositionCore.cs" />
     <Compile Include="Primitives\Castlings.cs" />
     <Compile Include="Primitives\MoveErrors.cs" />
     <Compile Include="Primitives\MoveInfo.cs" />
@@ -105,15 +109,15 @@
     <Compile Include="Primitives\ColorExtensions.cs" />
     <Compile Include="Primitives\PieceType.cs" />
     <Compile Include="Primitives\Coordinates.cs" />
-    <Compile Include="Scanning.cs" />
+    <Compile Include="Algorithms\Scanning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="San.cs" />
-    <Compile Include="Scanning.generated.cs">
+    <Compile Include="Algorithms\San.cs" />
+    <Compile Include="Algorithms\Scanning.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Scanning.tt</DependentUpon>
     </Compile>
-    <Compile Include="Zobrist.cs" />
+    <Compile Include="Algorithms\Zobrist.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

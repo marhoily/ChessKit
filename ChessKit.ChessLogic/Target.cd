@@ -7,7 +7,7 @@
     </Compartments>
     <TypeIdentifier>
       <HashCode>AAAAQAACAAAAAAgAgAAAAAAAAAAAAIAADAAAAAAABiA=</HashCode>
-      <FileName>Definitions.cs</FileName>
+      <FileName>PositionCore.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -18,12 +18,12 @@
     </Compartments>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAoAAgAAAAAAAAAAAAACAAAAAAAAAoAAAAAA=</HashCode>
-      <FileName>Definitions.cs</FileName>
+      <FileName>LegalMove.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Move" />
       <Property Name="OriginalPosition" />
       <Property Name="ResultPosition" />
+      <Property Name="Move" />
     </ShowAsAssociation>
   </Class>
   <Class Name="ChessKit.ChessLogic.Position">
@@ -33,21 +33,18 @@
     </Compartments>
     <TypeIdentifier>
       <HashCode>AAIAAAAAAIAAAAAAAAAgAAAAAAAAAAAAAAAAAAASAAA=</HashCode>
-      <FileName>Definitions.cs</FileName>
+      <FileName>Position.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Core" />
       <Property Name="Move" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="ChessKit.ChessLogic.MoveR">
-    <Position X="8.25" Y="2.75" Width="2" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
+  <Class Name="ChessKit.ChessLogic.MoveR" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgQgAAAAAAAAAAAEAAAAgAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Move.cs</FileName>
+      <FileName>MoveR.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

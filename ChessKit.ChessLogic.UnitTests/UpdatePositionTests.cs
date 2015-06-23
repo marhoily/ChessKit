@@ -1,4 +1,5 @@
-﻿using ChessKit.ChessLogic.Primitives;
+﻿using ChessKit.ChessLogic.Algorithms;
+using ChessKit.ChessLogic.Primitives;
 using FluentAssertions;
 using Xunit;
 

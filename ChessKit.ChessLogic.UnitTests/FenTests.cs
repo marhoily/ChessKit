@@ -1,4 +1,5 @@
 ﻿using System;
+using ChessKit.ChessLogic.Algorithms;
 using FluentAssertions;
 using Xunit;
 

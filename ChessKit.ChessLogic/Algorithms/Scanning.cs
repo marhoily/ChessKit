@@ -1,6 +1,6 @@
 ﻿using ChessKit.ChessLogic.Primitives;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Algorithms
 {
     public static partial class Scanning
     {

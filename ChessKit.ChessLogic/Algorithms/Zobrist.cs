@@ -1,8 +1,7 @@
 ﻿using System;
 using ChessKit.ChessLogic.Primitives;
-using static ChessKit.ChessLogic.Primitives.Castlings;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Algorithms
 {
     /// <summary> http://hardy.uhasselt.be/Toga/book_format.html </summary>
     public static class Zobrist
@@ -34,10 +33,10 @@ namespace ChessKit.ChessLogic
             }
 
             var ca = position.CastlingAvailability;
-            if ((ca & WK) != 0) result ^= keys[768 + 0];
-            if ((ca & WQ) != 0) result ^= keys[768 + 1];
-            if ((ca & BK) != 0) result ^= keys[768 + 2];
-            if ((ca & BQ) != 0) result ^= keys[768 + 3];
+            if ((ca & Castlings.WK) != 0) result ^= keys[768 + 0];
+            if ((ca & Castlings.WQ) != 0) result ^= keys[768 + 1];
+            if ((ca & Castlings.BK) != 0) result ^= keys[768 + 2];
+            if ((ca & Castlings.BQ) != 0) result ^= keys[768 + 3];
 
             if (position.EnPassant.HasValue)
             {

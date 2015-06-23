@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using ChessKit.ChessLogic.Algorithms;
 using FluentAssertions;
 using Xunit;
 

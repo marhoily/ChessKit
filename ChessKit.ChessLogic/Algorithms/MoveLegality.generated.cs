@@ -1,9 +1,9 @@
 ﻿/* This code is auto-generated! 
  * It is strongly adviced not to change it manually! */
-using ChessKit.ChessLogic.Primitives;
-using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
 
-namespace ChessKit.ChessLogic
+using ChessKit.ChessLogic.Primitives;
+
+namespace ChessKit.ChessLogic.Algorithms
 {
     static partial class MoveLegality
     {
@@ -15,54 +15,54 @@ namespace ChessKit.ChessLogic
                 var steps = dx / 17;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
-                        if (i == toSquare) return Bishop;
+                        if (i == toSquare) return MoveAnnotations.Bishop;
                         else if (cells[i] != 0)
-                            return Bishop | DoesNotJump;
+                            return MoveAnnotations.Bishop | MoveAnnotations.DoesNotJump;
             }
             if (dx % -15 == 0)
             {
                 var steps = dx / -15;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
-                        if (i == toSquare) return Bishop;
+                        if (i == toSquare) return MoveAnnotations.Bishop;
                         else if (cells[i] != 0)
-                            return Bishop | DoesNotJump;
+                            return MoveAnnotations.Bishop | MoveAnnotations.DoesNotJump;
             }
             if (dx % -17 == 0)
             {
                 var steps = dx / -17;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
-                        if (i == toSquare) return Bishop;
+                        if (i == toSquare) return MoveAnnotations.Bishop;
                         else if (cells[i] != 0)
-                            return Bishop | DoesNotJump;
+                            return MoveAnnotations.Bishop | MoveAnnotations.DoesNotJump;
             }
             if (dx % 15 == 0)
             {
                 var steps = dx / 15;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
-                        if (i == toSquare) return Bishop;
+                        if (i == toSquare) return MoveAnnotations.Bishop;
                         else if (cells[i] != 0)
-                            return Bishop | DoesNotJump;
+                            return MoveAnnotations.Bishop | MoveAnnotations.DoesNotJump;
             }
-            return Bishop | DoesNotMoveThisWay;
+            return MoveAnnotations.Bishop | MoveAnnotations.DoesNotMoveThisWay;
         }
         private static MoveAnnotations ValidateWhiteKnightMove(int fromSquare, int toSquare)
         {
             var dx = toSquare - fromSquare;
             switch (dx)
             {
-                case 33: return Knight;
-                case 31: return Knight;
-                case -31: return Knight;
-                case -33: return Knight;
-                case 18: return Knight;
-                case 14: return Knight;
-                case -14: return Knight;
-                case -18: return Knight;
+                case 33: return MoveAnnotations.Knight;
+                case 31: return MoveAnnotations.Knight;
+                case -31: return MoveAnnotations.Knight;
+                case -33: return MoveAnnotations.Knight;
+                case 18: return MoveAnnotations.Knight;
+                case 14: return MoveAnnotations.Knight;
+                case -14: return MoveAnnotations.Knight;
+                case -18: return MoveAnnotations.Knight;
             }
-            return Knight | DoesNotMoveThisWay;
+            return MoveAnnotations.Knight | MoveAnnotations.DoesNotMoveThisWay;
         }
         private static MoveAnnotations ValidateWhiteRookMove(byte[] cells, int fromSquare, int toSquare)
         {
@@ -72,38 +72,38 @@ namespace ChessKit.ChessLogic
                 var steps = dx / 16;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
-                        if (i == toSquare) return Rook;
+                        if (i == toSquare) return MoveAnnotations.Rook;
                         else if (cells[i] != 0)
-                            return Rook | DoesNotJump;
+                            return MoveAnnotations.Rook | MoveAnnotations.DoesNotJump;
             }
             if (dx % 1 == 0)
             {
                 var steps = dx / 1;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
-                        if (i == toSquare) return Rook;
+                        if (i == toSquare) return MoveAnnotations.Rook;
                         else if (cells[i] != 0)
-                            return Rook | DoesNotJump;
+                            return MoveAnnotations.Rook | MoveAnnotations.DoesNotJump;
             }
             if (dx % -16 == 0)
             {
                 var steps = dx / -16;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
-                        if (i == toSquare) return Rook;
+                        if (i == toSquare) return MoveAnnotations.Rook;
                         else if (cells[i] != 0)
-                            return Rook | DoesNotJump;
+                            return MoveAnnotations.Rook | MoveAnnotations.DoesNotJump;
             }
             if (dx % -1 == 0)
             {
                 var steps = dx / -1;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
-                        if (i == toSquare) return Rook;
+                        if (i == toSquare) return MoveAnnotations.Rook;
                         else if (cells[i] != 0)
-                            return Rook | DoesNotJump;
+                            return MoveAnnotations.Rook | MoveAnnotations.DoesNotJump;
             }
-            return Rook | DoesNotMoveThisWay;
+            return MoveAnnotations.Rook | MoveAnnotations.DoesNotMoveThisWay;
         }
         private static MoveAnnotations ValidateWhiteQueenMove(byte[] cells, int fromSquare, int toSquare)
         {
@@ -113,90 +113,90 @@ namespace ChessKit.ChessLogic
                 var steps = dx / 16;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % 1 == 0)
             {
                 var steps = dx / 1;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % -16 == 0)
             {
                 var steps = dx / -16;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % -1 == 0)
             {
                 var steps = dx / -1;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % 17 == 0)
             {
                 var steps = dx / 17;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % -15 == 0)
             {
                 var steps = dx / -15;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % -17 == 0)
             {
                 var steps = dx / -17;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % 15 == 0)
             {
                 var steps = dx / 15;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
-            return Queen | DoesNotMoveThisWay;
+            return MoveAnnotations.Queen | MoveAnnotations.DoesNotMoveThisWay;
         }
         private static MoveAnnotations ValidateWhiteKingMove(int fromSquare, int toSquare)
         {
             var dx = toSquare - fromSquare;
             switch (dx)
             {
-                case 16: return King;
-                case 17: return King;
-                case 1: return King;
-                case -15: return King;
-                case -16: return King;
-                case -17: return King;
-                case -1: return King;
-                case 15: return King;
+                case 16: return MoveAnnotations.King;
+                case 17: return MoveAnnotations.King;
+                case 1: return MoveAnnotations.King;
+                case -15: return MoveAnnotations.King;
+                case -16: return MoveAnnotations.King;
+                case -17: return MoveAnnotations.King;
+                case -1: return MoveAnnotations.King;
+                case 15: return MoveAnnotations.King;
             }
-            return King | DoesNotMoveThisWay;
+            return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
         }
         private static MoveAnnotations ValidateBlackBishopMove(byte[] cells, int fromSquare, int toSquare)
         {
@@ -206,54 +206,54 @@ namespace ChessKit.ChessLogic
                 var steps = dx / 17;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
-                        if (i == toSquare) return Bishop;
+                        if (i == toSquare) return MoveAnnotations.Bishop;
                         else if (cells[i] != 0)
-                            return Bishop | DoesNotJump;
+                            return MoveAnnotations.Bishop | MoveAnnotations.DoesNotJump;
             }
             if (dx % -15 == 0)
             {
                 var steps = dx / -15;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
-                        if (i == toSquare) return Bishop;
+                        if (i == toSquare) return MoveAnnotations.Bishop;
                         else if (cells[i] != 0)
-                            return Bishop | DoesNotJump;
+                            return MoveAnnotations.Bishop | MoveAnnotations.DoesNotJump;
             }
             if (dx % -17 == 0)
             {
                 var steps = dx / -17;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
-                        if (i == toSquare) return Bishop;
+                        if (i == toSquare) return MoveAnnotations.Bishop;
                         else if (cells[i] != 0)
-                            return Bishop | DoesNotJump;
+                            return MoveAnnotations.Bishop | MoveAnnotations.DoesNotJump;
             }
             if (dx % 15 == 0)
             {
                 var steps = dx / 15;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
-                        if (i == toSquare) return Bishop;
+                        if (i == toSquare) return MoveAnnotations.Bishop;
                         else if (cells[i] != 0)
-                            return Bishop | DoesNotJump;
+                            return MoveAnnotations.Bishop | MoveAnnotations.DoesNotJump;
             }
-            return Bishop | DoesNotMoveThisWay;
+            return MoveAnnotations.Bishop | MoveAnnotations.DoesNotMoveThisWay;
         }
         private static MoveAnnotations ValidateBlackKnightMove(int fromSquare, int toSquare)
         {
             var dx = toSquare - fromSquare;
             switch (dx)
             {
-                case 33: return Knight;
-                case 31: return Knight;
-                case -31: return Knight;
-                case -33: return Knight;
-                case 18: return Knight;
-                case 14: return Knight;
-                case -14: return Knight;
-                case -18: return Knight;
+                case 33: return MoveAnnotations.Knight;
+                case 31: return MoveAnnotations.Knight;
+                case -31: return MoveAnnotations.Knight;
+                case -33: return MoveAnnotations.Knight;
+                case 18: return MoveAnnotations.Knight;
+                case 14: return MoveAnnotations.Knight;
+                case -14: return MoveAnnotations.Knight;
+                case -18: return MoveAnnotations.Knight;
             }
-            return Knight | DoesNotMoveThisWay;
+            return MoveAnnotations.Knight | MoveAnnotations.DoesNotMoveThisWay;
         }
         private static MoveAnnotations ValidateBlackRookMove(byte[] cells, int fromSquare, int toSquare)
         {
@@ -263,38 +263,38 @@ namespace ChessKit.ChessLogic
                 var steps = dx / 16;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
-                        if (i == toSquare) return Rook;
+                        if (i == toSquare) return MoveAnnotations.Rook;
                         else if (cells[i] != 0)
-                            return Rook | DoesNotJump;
+                            return MoveAnnotations.Rook | MoveAnnotations.DoesNotJump;
             }
             if (dx % 1 == 0)
             {
                 var steps = dx / 1;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
-                        if (i == toSquare) return Rook;
+                        if (i == toSquare) return MoveAnnotations.Rook;
                         else if (cells[i] != 0)
-                            return Rook | DoesNotJump;
+                            return MoveAnnotations.Rook | MoveAnnotations.DoesNotJump;
             }
             if (dx % -16 == 0)
             {
                 var steps = dx / -16;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
-                        if (i == toSquare) return Rook;
+                        if (i == toSquare) return MoveAnnotations.Rook;
                         else if (cells[i] != 0)
-                            return Rook | DoesNotJump;
+                            return MoveAnnotations.Rook | MoveAnnotations.DoesNotJump;
             }
             if (dx % -1 == 0)
             {
                 var steps = dx / -1;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
-                        if (i == toSquare) return Rook;
+                        if (i == toSquare) return MoveAnnotations.Rook;
                         else if (cells[i] != 0)
-                            return Rook | DoesNotJump;
+                            return MoveAnnotations.Rook | MoveAnnotations.DoesNotJump;
             }
-            return Rook | DoesNotMoveThisWay;
+            return MoveAnnotations.Rook | MoveAnnotations.DoesNotMoveThisWay;
         }
         private static MoveAnnotations ValidateBlackQueenMove(byte[] cells, int fromSquare, int toSquare)
         {
@@ -304,90 +304,90 @@ namespace ChessKit.ChessLogic
                 var steps = dx / 16;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 16; (i & 0x88) == 0; i += 16)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % 1 == 0)
             {
                 var steps = dx / 1;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 1; (i & 0x88) == 0; i += 1)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % -16 == 0)
             {
                 var steps = dx / -16;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -16; (i & 0x88) == 0; i += -16)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % -1 == 0)
             {
                 var steps = dx / -1;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -1; (i & 0x88) == 0; i += -1)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % 17 == 0)
             {
                 var steps = dx / 17;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 17; (i & 0x88) == 0; i += 17)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % -15 == 0)
             {
                 var steps = dx / -15;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -15; (i & 0x88) == 0; i += -15)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % -17 == 0)
             {
                 var steps = dx / -17;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + -17; (i & 0x88) == 0; i += -17)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
             if (dx % 15 == 0)
             {
                 var steps = dx / 15;
                 if (steps >= 0 && steps < 8)
                     for (var i = fromSquare + 15; (i & 0x88) == 0; i += 15)
-                        if (i == toSquare) return Queen;
+                        if (i == toSquare) return MoveAnnotations.Queen;
                         else if (cells[i] != 0)
-                            return Queen | DoesNotJump;
+                            return MoveAnnotations.Queen | MoveAnnotations.DoesNotJump;
             }
-            return Queen | DoesNotMoveThisWay;
+            return MoveAnnotations.Queen | MoveAnnotations.DoesNotMoveThisWay;
         }
         private static MoveAnnotations ValidateBlackKingMove(int fromSquare, int toSquare)
         {
             var dx = toSquare - fromSquare;
             switch (dx)
             {
-                case 16: return King;
-                case 17: return King;
-                case 1: return King;
-                case -15: return King;
-                case -16: return King;
-                case -17: return King;
-                case -1: return King;
-                case 15: return King;
+                case 16: return MoveAnnotations.King;
+                case 17: return MoveAnnotations.King;
+                case 1: return MoveAnnotations.King;
+                case -15: return MoveAnnotations.King;
+                case -16: return MoveAnnotations.King;
+                case -17: return MoveAnnotations.King;
+                case -1: return MoveAnnotations.King;
+                case 15: return MoveAnnotations.King;
             }
-            return King | DoesNotMoveThisWay;
+            return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
         }
 
         public static MoveAnnotations ValidateMove(byte[] cells, Piece piece, int fromSquare, int toSquare, Piece toPiece, Castlings castlingAvailability)
@@ -410,8 +410,8 @@ namespace ChessKit.ChessLogic
                     return ValidateWhiteQueenMove(cells, fromSquare, toSquare);
 
                 case Piece.WhiteKing:
-                    if (ValidateWhiteKingMove(fromSquare, toSquare) == King)
-                        return King;
+                    if (ValidateWhiteKingMove(fromSquare, toSquare) == MoveAnnotations.King)
+                        return MoveAnnotations.King;
                     return ValidateWhiteCastlingMove(cells, fromSquare, toSquare, castlingAvailability);
 
                 case Piece.BlackPawn:
@@ -430,8 +430,8 @@ namespace ChessKit.ChessLogic
                     return ValidateBlackQueenMove(cells, fromSquare, toSquare);
 
                 case Piece.BlackKing:
-                    if (ValidateBlackKingMove(fromSquare, toSquare) == King)
-                        return King;
+                    if (ValidateBlackKingMove(fromSquare, toSquare) == MoveAnnotations.King)
+                        return MoveAnnotations.King;
                     return ValidateBlackCastlingMove(cells, fromSquare, toSquare, castlingAvailability);
 
                 default: throw new System.InvalidOperationException("Unknown piece: " + piece);
