@@ -2,12 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
 using MoreLinq;
-using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
-using static ChessKit.ChessLogic.Primitives.GameStates;
 
-namespace ChessKit.ChessLogic.N
+namespace ChessKit.ChessLogic
 {
     public static class EndGame
     {
@@ -26,7 +25,7 @@ namespace ChessKit.ChessLogic.N
             var tempPosition = new Position(core, 0, 0, 0, legalMove);
 
             var newHalfMoveClock =
-                piece == PieceType.Pawn || (obs & Capture) != 0
+                piece == PieceType.Pawn || (obs & MoveAnnotations.Capture) != 0
                     ? 0
                     : prev.HalfMoveClock + 1;
 
@@ -37,17 +36,17 @@ namespace ChessKit.ChessLogic.N
             var noMoves = tempPosition.GetAllLegalMoves().Count == 0;
 
             var newState = default(GameStates);
-            if (isCheck && noMoves) newState |= Mate;
-            if (isCheck && !noMoves) newState |= Check;
-            if (!isCheck && noMoves) newState |= Stalemate;
-            if (newHalfMoveClock >= 50) newState |= FiftyMoveRule;
+            if (isCheck && noMoves) newState |= GameStates.Mate;
+            if (isCheck && !noMoves) newState |= GameStates.Check;
+            if (!isCheck && noMoves) newState |= GameStates.Stalemate;
+            if (newHalfMoveClock >= 50) newState |= GameStates.FiftyMoveRule;
 
             var isRepetition = tempPosition.GetHistory()
                 .Prepend(tempPosition)
                 .Select(p => p.Core)
                 .CountBy()
                 .MaxBy(x => x.Value).Value > 2;
-            if (isRepetition) newState |= Repetition;
+            if (isRepetition) newState |= GameStates.Repetition;
 
             return new Position(core, newHalfMoveClock,
                 newMoveNumber, newState, legalMove);

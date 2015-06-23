@@ -79,7 +79,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MoveGeneration.tt</DependentUpon>
     </Compile>
-    <Compile Include="N\EndGame.cs" />
+    <Compile Include="EndGame.cs" />
     <Compile Include="BoardDump.cs" />
     <Compile Include="MoveLegality.cs" />
     <Compile Include="MoveLegality.generated.cs">
