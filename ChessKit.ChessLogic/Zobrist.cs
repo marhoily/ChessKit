@@ -30,24 +30,8 @@ namespace ChessKit.ChessLogic
             for (var i = 0; i < 64; i++)
             {
                 var piece = squares[i + (i & ~7)];
-                if (piece != 0 && (((Color)piece & Color.All) == Color.Black))
-                {
-                    var indexOf = IndexOf(piece);
-                    var key = keys[64 * indexOf + i];
-                    result ^= key;
-                }
-            }
-
-            for (var j = 0; j < 64; j++)
-            {
-                var p2 = squares[j + (j & ~7)];
-                var inf = (Piece)p2;
-                if (p2 != 0 && (((Color)p2 & Color.All) == Color.White))
-                {
-                    var idx2 = IndexOf(p2);
-                    var key2 = keys[64 * idx2 + j];
-                    result ^= key2;
-                }
+                if (piece != 0)
+                    result ^= keys[64*IndexOf(piece) + i];
             }
 
             var ca = position.CastlingAvailability;
@@ -78,8 +62,7 @@ namespace ChessKit.ChessLogic
 
         private static int IndexOf(byte piece)
         {
-            switch ((Piece)piece)
-            {
+            switch ((Piece)piece) {
                 case Piece.BlackPawn: return 00;
                 case Piece.WhitePawn: return 01;
                 case Piece.BlackKnight: return 02;
@@ -92,9 +75,8 @@ namespace ChessKit.ChessLogic
                 case Piece.WhiteQueen: return 09;
                 case Piece.BlackKing: return 10;
                 case Piece.WhiteKing: return 11;
-                default:
-                    throw new ArgumentOutOfRangeException(
-               nameof(piece), piece, null);
+                default: throw new ArgumentOutOfRangeException( 
+                    nameof(piece), piece, null);
             }
         }
 
