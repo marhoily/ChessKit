@@ -34,41 +34,6 @@ namespace ChessKit.ChessLogic
 
         #region ' MakeMove '
 
-        public List<Move> GetLegalMoves()
-        {
-            // BUG: Actually creates boards, but only returns moves!
-            var res = new List<Move>(50);
-            var sideOnMove = SideOnMove;
-            for (var moveFrom = 0; moveFrom < 64; moveFrom++)
-            {
-                var moveFromSq = moveFrom + (moveFrom & ~7);
-                var piece = this[moveFromSq];
-                if (piece == 0) continue;
-                if (piece.Color() != sideOnMove) continue;
-                MoveGeneration.GenerateMoves(_cells, _whiteKingPosition, 
-                    _blackKingPosition, piece, moveFromSq, EnPassantFile, Castlings, res);
-            }
-            return res;
-        }
-        public List<Move> GetLegalMoves(int moveFrom)
-        {
-            var piece = this[moveFrom];
-            if (piece == Piece.EmptyCell) return new List<Move>();
-            if (piece.Color() != SideOnMove) return new List<Move>();
-            var res = new List<Move>(28);
-            MoveGeneration.GenerateMoves(_cells, _whiteKingPosition, 
-                _blackKingPosition, piece, moveFrom, EnPassantFile, Castlings, res);
-            return res;
-        }
-
-
-        private void SetStatus()
-        {
-            if (!IsUnderCheck(SideOnMove)) return;
-            GameState = GetLegalMoves().Count > 0
-                ? GameStates.Check : GameStates.Mate;
-        }
-
         public Board MakeMove(Move move)
         {
             return new Board(this, move);

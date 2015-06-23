@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
 using JetBrains.Annotations;
 
@@ -15,12 +16,12 @@ namespace ChessKit.ChessLogic
         /// without checking the status of the game or if it's a valid move.
         /// </summary>
         /// <returns></returns>
-        public static string GetSanIndex([NotNull] this Board board)
+        public static string GetSanIndex([NotNull] this Position board)
         {
             if (board == null) throw new ArgumentNullException("board");
             var sb = new StringBuilder(5);
-            sb.Append(board.MoveNumber.ToString(CultureInfo.InvariantCulture));
-            if (board.SideOnMove == Color.White)
+            sb.Append(board.FullMoveNumber.ToString(CultureInfo.InvariantCulture));
+            if (board.Core.ActiveColor == Color.White)
             {
                 sb.Append('.');
             }
@@ -38,7 +39,7 @@ namespace ChessKit.ChessLogic
         /// <param name="board">The game</param>
         /// <param name="move">The move</param>
         /// <returns></returns>
-        public static string GetSanEnd([NotNull] this Board board, [NotNull] Move move)
+        public static string GetSanEnd([NotNull] this Position board, [NotNull] Move move)
         {
             if (board == null) throw new ArgumentNullException("board");
             if (move == null) throw new ArgumentNullException("move");
@@ -48,8 +49,8 @@ namespace ChessKit.ChessLogic
             if ((move.Annotations & MoveAnnotations.Promotion) != 0)
                 sb.Append('=').Append(move.ProposedPromotion.With(Color.White).GetSymbol());
 
-            if (board.IsCheck) sb.Append('+');
-            else if (board.IsMate) sb.Append('#');
+            if ((board.Properties & GameStates.Check) != 0) sb.Append('+');
+            else if ((board.Properties & GameStates.Mate) != 0) sb.Append('#');
 
             return sb.ToString();
         }
@@ -61,7 +62,7 @@ namespace ChessKit.ChessLogic
         /// <param name="board">The game</param>
         /// <param name="move">The move</param>
         /// <returns></returns>
-        public static string GetSanBegin([NotNull] this Board board, Move move)
+        public static string GetSanBegin([NotNull] this Position board, Move move)
         {
             if (board == null) throw new ArgumentNullException("board");
 
@@ -86,15 +87,15 @@ namespace ChessKit.ChessLogic
                 }
                 else
                 {
-                    sb.Append(board[move.From].GetSymbol());
+                    sb.Append(((Piece)board.Core.Squares[move.From]).GetSymbol());
 
                     // TODO: move should have Piece prop?
                     var disambiguationList = new List<int>(
-                        from m in board.GetLegalMoves()
-                        where m.From != move.From
-                              && m.To == move.To
-                              && board[move.From] == board[m.From]
-                        select m.From);
+                        from m in board.GetAllLegalMoves()
+                        where m.Move.From != move.From
+                              && m.Move.To == move.To
+                              && board.Core.Squares[move.From] == board.Core.Squares[m.Move.From]
+                        select m.Move.From);
 
                     if (disambiguationList.Count > 0)
                     {
@@ -153,7 +154,7 @@ namespace ChessKit.ChessLogic
             return sb.ToString();
         }
 
-        public static string GetSan([NotNull] this Board board, Move move)
+        public static string GetSan([NotNull] this Position board, Move move)
         {
             if (board == null) throw new ArgumentNullException("board");
             return board.GetSanBegin(move) /*+ board.GetSanEnd(move)*/;
@@ -166,13 +167,13 @@ namespace ChessKit.ChessLogic
         /// <param name="board">The game</param>
         /// <param name="san">The SAN string</param>
         /// <returns></returns>
-        public static Move ParseMoveFromSan([NotNull] this Board board, [NotNull] string san)
+        public static LegalMove ParseMoveFromSan([NotNull] this Position board, [NotNull] string san)
         {
             if (board == null) throw new ArgumentNullException("board");
             if (san == null) throw new ArgumentNullException("san");
 
-            if (san == "O-O") return Move.Parse(board.SideOnMove == Color.White ? "e1-g1" : "e8-g8");
-            if (san == "O-O-O") return Move.Parse(board.SideOnMove == Color.White ? "e1-c1" : "e8-c8");
+            if (san == "O-O") return board.ValidateLegal(MoveR.Parse(board.Core.ActiveColor == Color.White ? "e1-g1" : "e8-g8"));
+            if (san == "O-O-O") return board.ValidateLegal(MoveR.Parse(board.Core.ActiveColor == Color.White ? "e1-c1" : "e8-c8"));
 
             var index = san.Length - 1;
             // remove chess and checkmate representation (if any)
@@ -221,22 +222,23 @@ namespace ChessKit.ChessLogic
             return GetMove(board, to, file, rank, pieceChar, prom);
         }
 
-        private static Move GetMove(Board board, int to, int? file, int? rank, PieceType pieceChar, PieceType prom)
+        private static LegalMove GetMove(Position board, int to, int? file, int? rank, PieceType pieceChar, PieceType prom)
         {
-            var move = default(Move);
-            foreach (var m in board.GetLegalMoves())
-                if (m.To == to)
-                    if (file == null || file == m.From.GetX())
-                        if (rank == null || rank == m.From.GetY())
-                            if (board[m.From].PieceType() == pieceChar)
+            var move = default(LegalMove);
+            foreach (var m in board.GetAllLegalMoves())
+                if (m.Move.To == to)
+                    if (file == null || file == m.Move.From.GetX())
+                        if (rank == null || rank == m.Move.From.GetY())
+                            if (((Piece)board.Core.Squares[m.Move.From]).PieceType() == pieceChar)
                             {
                                 if (move != null) throw new FormatException("Ambiguity");
                                 move = m;
                             }
             if (move == null) return null;
-            if (move.IsProposedPromotion)
+            if ((move.Annotations & MoveAnnotations.Promotion) != 0)
             {
-                move.ProposedPromotion = prom;
+                return board.ValidateLegal(
+                    new MoveR(move.Move.From, move.Move.To, prom));
             }
             return move;
         }

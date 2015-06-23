@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
 using FluentAssertions;
 using Xunit;
@@ -51,11 +53,11 @@ namespace ChessKit.ChessLogic.UnitTests
 		[Fact]
 		public void GetLegalMovesTimeout()
 		{
-			var board = Board.StartPosition;
+			var board = Board.StartPosition.FromBoard();
 			for (var i = 0; i < 180; i++)
 			{
-				var legalMoves = board.GetLegalMoves();
-				board = board.MakeMove(legalMoves[0]);
+				var legalMoves = board.GetAllLegalMoves();
+			    board = legalMoves[0].ToPosition();
 			}
 		}
 		[Theory]
@@ -66,17 +68,22 @@ namespace ChessKit.ChessLogic.UnitTests
 			Console.WriteLine(d.Move);
 			Console.WriteLine();
 
-			var board = Fen.ParseFen(d.StartingFen);
+			var board = d.StartingFen.ParseFen().FromBoard();
 			var expected = Move.Parse(d.Move);
+            var legalMoves = board.GetLegalMovesFromSquare(expected.From);
 			if (d.ExpectedToBeValid)
 			{
-				board.GetLegalMoves(expected.From).Should().Contain(expected);
-				var single = board.GetLegalMoves(expected.From).Single(m => m == expected);
+			    legalMoves
+                    .Select(m => m.Move.ToString())
+                    .Should().Contain(d.Move);
+			    var single = legalMoves.Single(m => m.Move.ToString() == d.Move);
 				single.Annotations.Should().Be(d.ExpectedAnnotations);
 			}
 			else
 			{
-				board.GetLegalMoves(expected.From).Should().NotContain(expected);
+                legalMoves
+                    .Select(m => m.Move.ToString())
+                    .Should().NotContain(d.Move);
 			}
 		}
         [Theory]
