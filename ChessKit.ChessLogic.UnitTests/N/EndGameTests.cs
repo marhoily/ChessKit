@@ -10,9 +10,11 @@ namespace ChessKit.ChessLogic.UnitTests.N
         [Fact]
         public void GivesCheck() => CheckProperties(
             "8/2Rk4/1q4BP/8/8/6K1/8/8 b - - 24 119", "b6-c7", "Check");
+
         [Fact]
         public void GivesMate() => CheckProperties(
             "2K5/8/2k4r/8/8/8/8/8 b - - 0 9", "h6-h8", "Mate");
+
         [Fact]
         public void GivesStalemate() => CheckProperties(
             "7k/7P/8/7K/8/8/8/8 w - - 0 1", "h5-h6", "Stalemate");
@@ -49,6 +51,16 @@ namespace ChessKit.ChessLogic.UnitTests.N
             Play("7K/5n2/4b3/8/8/8/7k/8 w - - 49 1", "h8-g7", "f7-g5")
                 .Properties.ToString()
                 .Should().Be("FiftyMoveRule");
+
+        [Fact]
+        public void PositionCore_Structural_Equality_Should_Work()
+        {
+            const string fen = "r2q1r1k/p1p1b3/4pnQp/3p4/8/2NB4/PPP2PPP/R5K1 b - - 3 16";
+            var c1 = fen.ParseFen().FromBoard().Core;
+            var c2 = fen.ParseFen().FromBoard().Core;
+            c1.Should().Be(c2);
+            c1.GetHashCode().Should().Be(c2.GetHashCode());
+        }
 
         private static void CheckProperties(string fen, string move, string expectedProperties)
             => fen.ParseFen().FromBoard()
