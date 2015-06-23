@@ -108,9 +108,9 @@ namespace ChessKit.ChessLogic.N
             {
                 int counter;
                 if (res.TryGetValue(item, out counter))
-                    res.Add(item, 1);
+                   res[item] = counter + 1;
                 else
-                    res[item] = counter + 1;
+                    res.Add(item, 1);
             }
             return res;
         }
