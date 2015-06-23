@@ -14,8 +14,8 @@ namespace ChessKit.ChessLogic.N
         public static bool IsInCheck(this PositionCore core, Color side)
         {
             return side == Color.White
-                ? Scanning.IsAttackedByBlack(core.Squares, -1)
-                : Scanning.IsAttackedByWhite(core.Squares, -1);
+                ? Scanning.IsAttackedByBlack(core.Squares, core.WhiteKing)
+                : Scanning.IsAttackedByWhite(core.Squares, core.BlackKing);
         }
     }
 }

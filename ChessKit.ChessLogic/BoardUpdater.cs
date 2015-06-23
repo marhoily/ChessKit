@@ -12,8 +12,8 @@ namespace ChessKit.ChessLogic
 
         public static AnalyzedMove MakeMove(Position src, MoveR move)
         {
-            var whiteKingPosition = src.WhiteKing;
-            var blackKingPosition = src.BlackKing;
+            var whiteKingPosition = src.Core.WhiteKing;
+            var blackKingPosition = src.Core.BlackKing;
 
             var cells = new byte[BytesCount];
             var sourceCells = src.Core.Squares;
@@ -142,7 +142,9 @@ namespace ChessKit.ChessLogic
                 return new IllegalMove(move, src,
                     piece.PieceType(), notes);
 
-            var positionCore = new PositionCore(cells, sideOnMove, castlings, enPassantFile);
+            var positionCore = new PositionCore(
+                cells, sideOnMove, castlings, enPassantFile, 
+                whiteKingPosition, blackKingPosition);
             var legalMove = new LegalMove(
                 move, src, positionCore, 
                 piece.PieceType(), notes);

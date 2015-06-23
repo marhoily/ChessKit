@@ -27,9 +27,8 @@ namespace ChessKit.ChessLogic
                 var whiteKing = Coordinates.All.SingleOrDefault(p => ((Piece)cells[p]) == Piece.WhiteKing);
                 var blackKing = Coordinates.All.SingleOrDefault(p => ((Piece)cells[p]) == Piece.BlackKing);
                 return new Position(
-                    new PositionCore(cells, color, castling, enPassant),
-                    halfmoveClock, moveNumber, 
-                    GameStates.None, null, whiteKing, blackKing);
+                    new PositionCore(cells, color, castling, enPassant, whiteKing, blackKing),
+                    halfmoveClock, moveNumber, GameStates.None, null);
             }
             catch (IndexOutOfRangeException x)
             {

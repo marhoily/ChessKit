@@ -12,7 +12,7 @@ namespace ChessKit.ChessLogic.UnitTests.N
             var validateLegal = startFen.ParseFen()
                 .ValidateLegal(MoveR.Parse(move));
             new Position(validateLegal.ResultPosition, 0, 1, 
-                GameStates.None, validateLegal, -1, -1)
+                GameStates.None, validateLegal)
                 .PrintFen()
                 .Should().Be(expectedFen);
         }

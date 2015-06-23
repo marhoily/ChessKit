@@ -23,12 +23,17 @@ namespace ChessKit.ChessLogic.N
         /// made pawn double move -or- ...
         public int? EnPassant { get; }
 
-        public PositionCore(byte[] squares, Color activeColor, Castlings castlingAvailability, int? enPassant)
+        public int WhiteKing { get; }
+        public int BlackKing { get; }
+
+        public PositionCore(byte[] squares, Color activeColor, Castlings castlingAvailability, int? enPassant, int whiteKing, int blackKing)
         {
             Squares = squares;
             ActiveColor = activeColor;
             CastlingAvailability = castlingAvailability;
             EnPassant = enPassant;
+            WhiteKing = whiteKing;
+            BlackKing = blackKing;
         }
 
         #region ' Equality '
@@ -106,8 +111,6 @@ namespace ChessKit.ChessLogic.N
     /// (adding Properties to the position is a bit CPU consuming)
     public sealed class Position
     {
-        public int WhiteKing { get; }
-        public int BlackKing { get; }
         /// Stuff that was calculated immediately with the legality check
         public PositionCore Core { get; }
 
@@ -124,15 +127,13 @@ namespace ChessKit.ChessLogic.N
         /// some other position, -or- ...
         public LegalMove Move { get; }
 
-        public Position(PositionCore core, int halfMoveClock, int fullMoveNumber, GameStates properties, LegalMove move, int whiteKing, int blackKing)
+        public Position(PositionCore core, int halfMoveClock, int fullMoveNumber, GameStates properties, LegalMove move)
         {
             Core = core;
             HalfMoveClock = halfMoveClock;
             FullMoveNumber = fullMoveNumber;
             Properties = properties;
             Move = move;
-            WhiteKing = whiteKing;
-            BlackKing = blackKing;
         }
     }
 

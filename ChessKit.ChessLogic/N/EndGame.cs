@@ -23,8 +23,7 @@ namespace ChessKit.ChessLogic.N
             var piece = legalMove.Piece;
             var obs = legalMove.Annotations;
             var color = prev.Core.ActiveColor;
-            var tempPosition = new Position(core, 0, 0, 0, 
-                legalMove, prev.WhiteKing, prev.BlackKing);
+            var tempPosition = new Position(core, 0, 0, 0, legalMove);
 
             var newHalfMoveClock =
                 piece == PieceType.Pawn || (obs & Capture) != 0
@@ -50,13 +49,8 @@ namespace ChessKit.ChessLogic.N
                 .MaxBy(x => x.Value).Value > 2;
             if (isRepetition) newState |= Repetition;
 
-            var whiteKing = Coordinates.All.SingleOrDefault(
-                p => (Piece)core.Squares[p] == Piece.WhiteKing);
-            var blackKing = Coordinates.All.SingleOrDefault(
-                p => (Piece)core.Squares[p] == Piece.BlackKing);
-
             return new Position(core, newHalfMoveClock,
-                newMoveNumber, newState, legalMove, whiteKing, blackKing);
+                newMoveNumber, newState, legalMove);
         }
 
 

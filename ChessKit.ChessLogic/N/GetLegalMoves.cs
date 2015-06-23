@@ -18,7 +18,7 @@ namespace ChessKit.ChessLogic.N
                 if (piece == 0) continue;
                 if (piece.Color() != sideOnMove) continue;
                 MoveGeneration.GenerateMoves(position.Core.Squares, 
-                    position.WhiteKing, position.BlackKing, 
+                    position.Core.WhiteKing, position.Core.BlackKing, 
                     piece, moveFromSq, position.Core.EnPassant, 
                     position.Core.CastlingAvailability, res);
             }
@@ -32,7 +32,7 @@ namespace ChessKit.ChessLogic.N
             if (piece.Color() != sideOnMove) return new List<Move>();
             var res = new List<Move>(28);
             MoveGeneration.GenerateMoves(position.Core.Squares,
-                position.WhiteKing, position.BlackKing,
+                position.Core.WhiteKing, position.Core.BlackKing,
                 piece, moveFrom, position.Core.EnPassant,
                 position.Core.CastlingAvailability, res);
             return res;
