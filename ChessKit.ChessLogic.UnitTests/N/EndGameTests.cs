@@ -53,8 +53,18 @@ namespace ChessKit.ChessLogic.UnitTests.N
                 .Should().Be("FiftyMoveRule");
 
         [Fact]
+        public void GetHistory() =>
+            Play("r3qr1k/p1p1b3/4pnQp/3p4/8/2NB4/PPP2PPP/R5K1 w - - 0 17",
+                "g6-h6", "h8-g8", "h6-g5", "g8-h8",
+                "g5-h6", "h8-g8", "h6-g5", "g8-h8",
+                "g5-h6", "h8-g8", "h6-g5", "g8-h8",
+                "g5-h6")
+                .GetHistory().Select(p => p.Core.GetHashCode())
+                .Should().Equal(1,1);
+
+        [Fact]
         public void Draw_By_Repetition() =>
-            Play("r3qr1k/p1p1b3/4pnQp/3p4/8/2NB4/PPP2PPP/R5K1 w - - 0 17", 
+            Play("r3qr1k/p1p1b3/4pnQp/3p4/8/2NB4/PPP2PPP/R5K1 w - - 0 17",
                 "g6-h6", "h8-g8", "h6-g5", "g8-h8",
                 "g5-h6", "h8-g8", "h6-g5", "g8-h8",
                 "g5-h6", "h8-g8", "h6-g5", "g8-h8",
