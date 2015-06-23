@@ -5,6 +5,8 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="ChessKit.ChessLogic.Primitives" #>
 <#@ import namespace="ChessKit.ChessLogic.Internals" #>
+/* This code is auto-generated! 
+ * It is strongly adviced not to change it manually! */
 using System.Collections.Generic;
 using ChessKit.ChessLogic.Primitives;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;

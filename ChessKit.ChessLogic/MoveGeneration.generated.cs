@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿/* This code is auto-generated! 
+ * It is strongly adviced not to change it manually! */
+using System.Collections.Generic;
 using ChessKit.ChessLogic.Primitives;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
 using static ChessKit.ChessLogic.Scanning;
