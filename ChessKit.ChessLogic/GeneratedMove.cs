@@ -5,8 +5,6 @@ using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic
 {
-    // TODO: Should Move be struct (con: references board)?
-    // TODO: Crazy ctors! Public setters. Not immutable!
     public sealed class GeneratedMove : IEquatable<GeneratedMove>
     {
         public GeneratedMove(int from, int to, MoveAnnotations annotations)
@@ -18,22 +16,11 @@ namespace ChessKit.ChessLogic
 
         public int From { get; }
         public int To { get; }
-        public MoveAnnotations Annotations { get; set; }
-        public bool IsValid => (Annotations & MoveAnnotations.AllErrors) == 0;
+        public MoveAnnotations Annotations { get; }
 
-        public bool IsKingsideCastling
-            => (Annotations & (MoveAnnotations.BK | MoveAnnotations.WK)) != 0;
-
-        public bool IsQueensideCastling
-            => (Annotations & (MoveAnnotations.BQ | MoveAnnotations.WQ)) != 0;
-
-        public bool IsProposedPromotion => (Annotations & (MoveAnnotations.Promotion)) != 0;
-
-       // public override string ToString() => $"{From}-{To}";
         public override string ToString()
             => $"{From.ToCoordinateString()}-{To.ToCoordinateString()}";
 
-      
         #region ' Equality '
 
         public bool Equals(GeneratedMove other)
