@@ -42,14 +42,14 @@ namespace ChessKit.ChessLogic.Algorithms
         {
             var makeMove = position.InnternalGetLegalMoves(coordinate);
             return makeMove.Select(
-                m => position.ValidateLegal(m))
+                m => position.ValidateLegal(new Move(m.From, m.To)))
                 .ToList();
         }
         public static List<LegalMove> GetAllLegalMoves(this Position position)
         {
             var makeMove = position.InnternalGetLegalMoves();
             return makeMove.Select(
-                m => position.ValidateLegal(m))
+                m => position.ValidateLegal(new Move(m.From, m.To)))
                 .ToList();
         }
     }

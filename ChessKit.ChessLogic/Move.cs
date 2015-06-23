@@ -39,8 +39,5 @@ namespace ChessKit.ChessLogic
                 canString.Substring(3, 2).ParseCoordinate(),
                 piece.PieceType());
         }
-
-        public static implicit operator Move(GeneratedMove move) 
-            => new Move(move.From, move.To);
     }
 }

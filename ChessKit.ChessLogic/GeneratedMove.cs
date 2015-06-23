@@ -5,7 +5,7 @@ using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic
 {
-    public sealed class GeneratedMove : IEquatable<GeneratedMove>
+    internal sealed class GeneratedMove : IEquatable<GeneratedMove>
     {
         internal GeneratedMove(int from, int to, MoveAnnotations annotations)
         {

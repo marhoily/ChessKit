@@ -61,7 +61,7 @@ namespace ChessKit.ChessLogic.Algorithms
         /// <param name="board">The game</param>
         /// <param name="move">The move</param>
         /// <returns></returns>
-        public static string GetSanBegin([NotNull] this Position board, GeneratedMove move)
+        public static string GetSanBegin([NotNull] this Position board, LegalMove move)
         {
             if (board == null) throw new ArgumentNullException("board");
 
@@ -82,18 +82,18 @@ namespace ChessKit.ChessLogic.Algorithms
                 if ((move.Annotations & MoveAnnotations.Pawn) != 0)
                 {
                     if ((move.Annotations & MoveAnnotations.Capture) != 0)
-                        sb.Append(move.From.GetFile());
+                        sb.Append(move.Move.FromCell.GetFile());
                 }
                 else
                 {
-                    sb.Append(((Piece)board.Core.Squares[move.From]).GetSymbol());
+                    sb.Append(((Piece)board.Core.Squares[move.Move.FromCell]).GetSymbol());
 
                     // TODO: move should have Piece prop?
                     var disambiguationList = new List<int>(
                         from m in board.GetAllLegalMoves()
-                        where m.Move.FromCell != move.From
-                              && m.Move.ToCell == move.To
-                              && board.Core.Squares[move.From] == board.Core.Squares[m.Move.FromCell]
+                        where m.Move.FromCell != move.Move.FromCell
+                              && m.Move.ToCell == move.Move.ToCell
+                              && board.Core.Squares[move.Move.FromCell] == board.Core.Squares[m.Move.FromCell]
                         select m.Move.FromCell);
 
                     if (disambiguationList.Count > 0)
@@ -104,7 +104,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         for (var index = 0; index < disambiguationList.Count; index++)
                         {
                             var m = disambiguationList[index];
-                            if (move.From.GetFile() == m.GetFile())
+                            if (move.Move.FromCell.GetFile() == m.GetFile())
                             {
                                 uniqueFile = false;
                                 break;
@@ -112,7 +112,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         }
                         if (uniqueFile)
                         {
-                            sb.Append(move.From.GetFile());
+                            sb.Append(move.Move.FromCell.GetFile());
                         }
                         else
                         {
@@ -120,7 +120,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             for (var i = 0; i < disambiguationList.Count; i++)
                             {
                                 var m = disambiguationList[i];
-                                if (move.From.GetRank() == m.GetRank())
+                                if (move.Move.FromCell.GetRank() == m.GetRank())
                                 {
                                     uniqueRank = false;
                                     break;
@@ -130,11 +130,11 @@ namespace ChessKit.ChessLogic.Algorithms
                             // ReSharper restore LoopCanBeConvertedToQuery
                             if (uniqueRank)
                             {
-                                sb.Append(move.From.GetRank().ToString(CultureInfo.InvariantCulture));
+                                sb.Append(move.Move.FromCell.GetRank().ToString(CultureInfo.InvariantCulture));
                             }
                             else
                             {
-                                sb.Append(move.From);
+                                sb.Append(move.Move.FromCell);
                             }
                         }
                     }
@@ -147,13 +147,13 @@ namespace ChessKit.ChessLogic.Algorithms
                 }
 
                 // add destination square
-                sb.Append(move.To);
+                sb.Append(move.Move.ToCell);
             }
 
             return sb.ToString();
         }
 
-        public static string GetSan([NotNull] this Position board, GeneratedMove move)
+        public static string GetSan([NotNull] this Position board, LegalMove move)
         {
             if (board == null) throw new ArgumentNullException("board");
             return board.GetSanBegin(move) /*+ board.GetSanEnd(move)*/;
