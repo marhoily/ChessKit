@@ -1,4 +1,6 @@
-﻿using static ChessKit.ChessLogic.Primitives.Piece;
+﻿/* This code is auto-generated! 
+ * It is strongly adviced not to change it manually! */
+using static ChessKit.ChessLogic.Primitives.Piece;
 
 namespace ChessKit.ChessLogic
 {
