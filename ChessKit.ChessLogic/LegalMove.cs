@@ -6,7 +6,7 @@ namespace ChessKit.ChessLogic
     public sealed class LegalMove : AnalyzedMove
     {
         /// The move that was checked for the legality
-        public MoveR Move { get; }
+        public Move Move { get; }
 
         /// The position in which the move was checked
         public Position OriginalPosition { get; }
@@ -24,7 +24,7 @@ namespace ChessKit.ChessLogic
         /// Warnings to the move
         public MoveWarnings Warnings { get; }
 
-        public LegalMove(MoveR move, Position originalPosition, PositionCore resultPosition, PieceType piece,
+        public LegalMove(Move move, Position originalPosition, PositionCore resultPosition, PieceType piece,
             MoveAnnotations annotations)
             : base(annotations)
         {

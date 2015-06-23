@@ -10,7 +10,7 @@ namespace ChessKit.ChessLogic.UnitTests
         private static void Check(string startFen, string move, string expectedFen)
         {
             var validateLegal = startFen.ParseFen()
-                .ValidateLegal(MoveR.Parse(move));
+                .ValidateLegal(Move.Parse(move));
             new Position(validateLegal.ResultPosition, 0, 1, 
                 GameStates.None, validateLegal)
                 .PrintFen()

@@ -89,7 +89,7 @@ namespace ChessKit.ChessLogic.UnitTests
 
         private static void CheckProperties(string fen, string move, string expectedProperties)
             => fen.ParseFen()
-                .ValidateLegal(MoveR.Parse(move))
+                .ValidateLegal(Move.Parse(move))
                 .ToPosition()
                 .Properties.ToString()
                 .Should().Be(expectedProperties);
@@ -100,7 +100,7 @@ namespace ChessKit.ChessLogic.UnitTests
             => moves.Aggregate(
                 startPosition,
                 (position, nextMove) => position
-                    .ValidateLegal(MoveR.Parse(nextMove))
+                    .ValidateLegal(Move.Parse(nextMove))
                     .ToPosition());
     }
 }

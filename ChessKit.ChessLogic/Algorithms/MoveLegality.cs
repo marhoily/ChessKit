@@ -6,12 +6,12 @@ namespace ChessKit.ChessLogic.Algorithms
 {
     static partial class MoveLegality
     {
-        public static AnalyzedMove Validate(this Position position, MoveR move)
+        public static AnalyzedMove Validate(this Position position, Move move)
         {
             return BoardUpdater.MakeMove(position, move);
         }
 
-        public static LegalMove ValidateLegal(this Position position, MoveR move)
+        public static LegalMove ValidateLegal(this Position position, Move move)
         {
             var analyzedMove = BoardUpdater.MakeMove(position, move);
             var legalMove = analyzedMove as LegalMove;

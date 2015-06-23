@@ -17,13 +17,13 @@ namespace ChessKit.ChessLogic.UnitTests
                 var position = fen.ParseFen();
                 var actual = position
                     .GetLegalMovesFromSquare(f)
-                    .Select(m => m.Move.To.ToCoordinateString())
+                    .Select(m => m.Move.ToCell.ToCoordinateString())
                     .OrderBy(s => s);
                 actual.Should().Equal(expected.OrderBy(s => s));
                 Coordinates.All
-                    .Select(t => position.Validate(new MoveR(f, t)))
+                    .Select(t => position.Validate(new Move(f, t)))
                     .OfType<LegalMove>()
-                    .Select(m => m.Move.To.ToCoordinateString())
+                    .Select(m => m.Move.ToCell.ToCoordinateString())
                     .OrderBy(s => s)
                     .Should().Equal(actual);
             }
@@ -40,15 +40,15 @@ namespace ChessKit.ChessLogic.UnitTests
                 var position = fen.ParseFen();
                 var actual = position
                     .GetAllLegalMoves()
-                    .Select(m => m.Move.To.ToCoordinateString())
+                    .Select(m => m.Move.ToCell.ToCoordinateString())
                     .OrderBy(s => s);
                 actual.Should().Equal(expected.OrderBy(s => s));
                 Coordinates.All
-                    .Select(f => Coordinates.All.Select(t => new MoveR(f, t)))
+                    .Select(f => Coordinates.All.Select(t => new Move(f, t)))
                     .SelectMany(r => r)
                     .Select(moveR => position.Validate(moveR))
                     .OfType<LegalMove>()
-                    .Select(m => m.Move.To.ToCoordinateString())
+                    .Select(m => m.Move.ToCell.ToCoordinateString())
                     .OrderBy(s => s)
                     .Should().Equal(actual);
             }

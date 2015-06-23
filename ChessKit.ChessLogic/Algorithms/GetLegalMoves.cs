@@ -6,10 +6,10 @@ namespace ChessKit.ChessLogic.Algorithms
 {
     public static class GetLegalMoves
     {
-        static List<Move> InnternalGetLegalMoves(this Position position)
+        static List<GeneratedMove> InnternalGetLegalMoves(this Position position)
         {
             // BUG: Actually creates boards, but only returns moves!
-            var res = new List<Move>(50);
+            var res = new List<GeneratedMove>(50);
             var sideOnMove = position.Core.ActiveColor;
             for (var moveFrom = 0; moveFrom < 64; moveFrom++)
             {
@@ -24,13 +24,13 @@ namespace ChessKit.ChessLogic.Algorithms
             }
             return res;
         }
-        static List<Move> InnternalGetLegalMoves(this Position position, int moveFrom)
+        static List<GeneratedMove> InnternalGetLegalMoves(this Position position, int moveFrom)
         {
             var sideOnMove = position.Core.ActiveColor;
             var piece = (Piece)position.Core.Squares[moveFrom];
-            if (piece == Piece.EmptyCell) return new List<Move>();
-            if (piece.Color() != sideOnMove) return new List<Move>();
-            var res = new List<Move>(28);
+            if (piece == Piece.EmptyCell) return new List<GeneratedMove>();
+            if (piece.Color() != sideOnMove) return new List<GeneratedMove>();
+            var res = new List<GeneratedMove>(28);
             MoveGeneration.GenerateMoves(position.Core.Squares,
                 position.Core.WhiteKing, position.Core.BlackKing,
                 piece, moveFrom, position.Core.EnPassant,

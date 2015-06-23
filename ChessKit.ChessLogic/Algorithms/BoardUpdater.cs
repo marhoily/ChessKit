@@ -8,7 +8,7 @@ namespace ChessKit.ChessLogic.Algorithms
     {
         private const int BytesCount = 128;
 
-        public static AnalyzedMove MakeMove(Position src, MoveR move)
+        public static AnalyzedMove MakeMove(Position src, Move move)
         {
             var whiteKingPosition = src.Core.WhiteKing;
             var blackKingPosition = src.Core.BlackKing;
@@ -19,7 +19,7 @@ namespace ChessKit.ChessLogic.Algorithms
 
             MoveAnnotations notes;
             // Piece in the from cell?
-            var moveFrom = move.From;
+            var moveFrom = move.FromCell;
             var piece = (Piece)sourceCells[moveFrom];
             if (piece == Piece.EmptyCell)
             {
@@ -38,7 +38,7 @@ namespace ChessKit.ChessLogic.Algorithms
             }
 
             // Move to occupied cell?
-            var moveTo = move.To;
+            var moveTo = move.ToCell;
             var toPiece = (Piece) sourceCells[moveTo];
             if (toPiece != Piece.EmptyCell && toPiece.Color() == color)
             {

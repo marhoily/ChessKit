@@ -38,7 +38,7 @@ namespace ChessKit.ChessLogic.Algorithms
         /// <param name="board">The game</param>
         /// <param name="move">The move</param>
         /// <returns></returns>
-        public static string GetSanEnd([NotNull] this Position board, [NotNull] MoveR move)
+        public static string GetSanEnd([NotNull] this Position board, [NotNull] Move move)
         {
             if (board == null) throw new ArgumentNullException("board");
             if (move == null) throw new ArgumentNullException("move");
@@ -61,7 +61,7 @@ namespace ChessKit.ChessLogic.Algorithms
         /// <param name="board">The game</param>
         /// <param name="move">The move</param>
         /// <returns></returns>
-        public static string GetSanBegin([NotNull] this Position board, Move move)
+        public static string GetSanBegin([NotNull] this Position board, GeneratedMove move)
         {
             if (board == null) throw new ArgumentNullException("board");
 
@@ -91,10 +91,10 @@ namespace ChessKit.ChessLogic.Algorithms
                     // TODO: move should have Piece prop?
                     var disambiguationList = new List<int>(
                         from m in board.GetAllLegalMoves()
-                        where m.Move.From != move.From
-                              && m.Move.To == move.To
-                              && board.Core.Squares[move.From] == board.Core.Squares[m.Move.From]
-                        select m.Move.From);
+                        where m.Move.FromCell != move.From
+                              && m.Move.ToCell == move.To
+                              && board.Core.Squares[move.From] == board.Core.Squares[m.Move.FromCell]
+                        select m.Move.FromCell);
 
                     if (disambiguationList.Count > 0)
                     {
@@ -153,7 +153,7 @@ namespace ChessKit.ChessLogic.Algorithms
             return sb.ToString();
         }
 
-        public static string GetSan([NotNull] this Position board, Move move)
+        public static string GetSan([NotNull] this Position board, GeneratedMove move)
         {
             if (board == null) throw new ArgumentNullException("board");
             return board.GetSanBegin(move) /*+ board.GetSanEnd(move)*/;
@@ -171,8 +171,8 @@ namespace ChessKit.ChessLogic.Algorithms
             if (board == null) throw new ArgumentNullException("board");
             if (san == null) throw new ArgumentNullException("san");
 
-            if (san == "O-O") return board.ValidateLegal(MoveR.Parse(board.Core.ActiveColor == Color.White ? "e1-g1" : "e8-g8"));
-            if (san == "O-O-O") return board.ValidateLegal(MoveR.Parse(board.Core.ActiveColor == Color.White ? "e1-c1" : "e8-c8"));
+            if (san == "O-O") return board.ValidateLegal(Move.Parse(board.Core.ActiveColor == Color.White ? "e1-g1" : "e8-g8"));
+            if (san == "O-O-O") return board.ValidateLegal(Move.Parse(board.Core.ActiveColor == Color.White ? "e1-c1" : "e8-c8"));
 
             var index = san.Length - 1;
             // remove chess and checkmate representation (if any)
@@ -225,10 +225,10 @@ namespace ChessKit.ChessLogic.Algorithms
         {
             var move = default(LegalMove);
             foreach (var m in board.GetAllLegalMoves())
-                if (m.Move.To == to)
-                    if (file == null || file == m.Move.From.GetX())
-                        if (rank == null || rank == m.Move.From.GetY())
-                            if (((Piece)board.Core.Squares[m.Move.From]).PieceType() == pieceChar)
+                if (m.Move.ToCell == to)
+                    if (file == null || file == m.Move.FromCell.GetX())
+                        if (rank == null || rank == m.Move.FromCell.GetY())
+                            if (((Piece)board.Core.Squares[m.Move.FromCell]).PieceType() == pieceChar)
                             {
                                 if (move != null) throw new FormatException("Ambiguity");
                                 move = m;
@@ -237,7 +237,7 @@ namespace ChessKit.ChessLogic.Algorithms
             if ((move.Annotations & MoveAnnotations.Promotion) != 0)
             {
                 return board.ValidateLegal(
-                    new MoveR(move.Move.From, move.Move.To, prom));
+                    new Move(move.Move.FromCell, move.Move.ToCell, prom));
             }
             return move;
         }

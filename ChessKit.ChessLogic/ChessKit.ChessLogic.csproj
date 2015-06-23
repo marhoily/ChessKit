@@ -69,7 +69,7 @@
     <Compile Include="AnalyzedMove.cs" />
     <Compile Include="IllegalMove.cs" />
     <Compile Include="LegalMove.cs" />
-    <Compile Include="MoveR.cs" />
+    <Compile Include="Move.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Primitives\Cells.cs">
       <AutoGen>True</AutoGen>
@@ -102,7 +102,7 @@
     <Compile Include="Primitives\GameStates.cs" />
     <Compile Include="Internals\ImmutableAttribute.cs" />
     <Compile Include="Internals\MetaPiece.cs" />
-    <Compile Include="Move.cs" />
+    <Compile Include="GeneratedMove.cs" />
     <Compile Include="Internals\MoveDirection.cs" />
     <Compile Include="Primitives\MoveAnnotations.cs" />
     <Compile Include="Primitives\Color.cs" />

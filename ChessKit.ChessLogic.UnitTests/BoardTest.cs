@@ -69,8 +69,8 @@ namespace ChessKit.ChessLogic.UnitTests
 			Console.WriteLine();
 
 			var board = d.StartingFen.ParseFen();
-			var expected = MoveR.Parse(d.Move);
-            var legalMoves = board.GetLegalMovesFromSquare(expected.From);
+			var expected = Move.Parse(d.Move);
+            var legalMoves = board.GetLegalMovesFromSquare(expected.FromCell);
 			if (d.ExpectedToBeValid)
 			{
 			    legalMoves
@@ -95,13 +95,13 @@ namespace ChessKit.ChessLogic.UnitTests
 			Console.WriteLine();
 
 			var board = d.StartingFen.ParseFen();
-			var expected = MoveR.Parse(d.Move);
+			var expected = Move.Parse(d.Move);
 			if (!d.ExpectedToBeValid) return;
             CanBeValid.CanBeValidMove(
                 board.Core.Squares,
-                (Piece)board.Core.Squares[expected.From],
-				expected.From,
-				expected.To).Should().BeTrue();
+                (Piece)board.Core.Squares[expected.FromCell],
+				expected.FromCell,
+				expected.ToCell).Should().BeTrue();
 		}
     }
 }

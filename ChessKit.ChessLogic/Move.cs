@@ -1,71 +1,46 @@
 using System;
 using ChessKit.ChessLogic.Primitives;
 
-// ReSharper disable IntroduceOptionalParameters.Global
-
 namespace ChessKit.ChessLogic
 {
-    // TODO: Should Move be struct (con: references board)?
-    // TODO: Crazy ctors! Public setters. Not immutable!
-    public sealed class Move : IEquatable<Move>
+    public sealed class Move
     {
-        public Move(int from, int to, MoveAnnotations annotations)
+        public int FromCell { get; }
+        public int ToCell { get; }
+        public PieceType ProposedPromotion { get; }
+
+        public Move(int fromCell, int toCell, PieceType promoteTo = PieceType.None)
         {
-            To = to;
-            From = from;
-            Annotations = annotations;
+            FromCell = fromCell;
+            ToCell = toCell;
+            ProposedPromotion = promoteTo;
+        }
+        public override string ToString() 
+            => $"{FromCell.ToCoordinateString()}-{ToCell.ToCoordinateString()}";
+
+        public static Move Parse(string canString)
+        {
+            if (string.IsNullOrEmpty(canString))
+                throw new ArgumentException(
+                    "should not be null or empty", 
+                    nameof(canString));
+
+            if (canString.Length == 5)
+                return new Move(
+                    canString.Substring(0, 2).ParseCoordinate(),
+                    canString.Substring(3, 2).ParseCoordinate());
+            if (canString.Length != 7)
+                throw new ArgumentOutOfRangeException(nameof(canString));
+            Piece piece;
+            if (!canString[6].TryParsePiece(out piece))
+                throw new ArgumentOutOfRangeException(nameof(canString));
+            return new Move(
+                canString.Substring(0, 2).ParseCoordinate(),
+                canString.Substring(3, 2).ParseCoordinate(),
+                piece.PieceType());
         }
 
-        public int From { get; }
-        public int To { get; }
-        public MoveAnnotations Annotations { get; set; }
-        public bool IsValid => (Annotations & MoveAnnotations.AllErrors) == 0;
-
-        public bool IsKingsideCastling
-            => (Annotations & (MoveAnnotations.BK | MoveAnnotations.WK)) != 0;
-
-        public bool IsQueensideCastling
-            => (Annotations & (MoveAnnotations.BQ | MoveAnnotations.WQ)) != 0;
-
-        public bool IsProposedPromotion => (Annotations & (MoveAnnotations.Promotion)) != 0;
-
-       // public override string ToString() => $"{From}-{To}";
-        public override string ToString()
-            => $"{From.ToCoordinateString()}-{To.ToCoordinateString()}";
-
-      
-        #region ' Equality '
-
-        public bool Equals(Move other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return From.Equals(other.From)
-                   && To.Equals(other.To);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((Move) obj);
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var hashCode = From.GetHashCode();
-                hashCode = (hashCode*397) ^ To.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        public static bool operator ==(Move left, Move right) => Equals(left, right);
-
-        public static bool operator !=(Move left, Move right) => !Equals(left, right);
-
-        #endregion
+        public static implicit operator Move(GeneratedMove move) 
+            => new Move(move.From, move.To);
     }
 }
