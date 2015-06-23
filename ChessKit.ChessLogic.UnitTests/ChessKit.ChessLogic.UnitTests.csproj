@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="BoardTest.cs" />
     <Compile Include="MoveTest.cs" />
+    <Compile Include="N\EndGameTests.cs" />
     <Compile Include="N\FenTests.cs" />
     <Compile Include="N\GetLegalMovesTests.cs" />
     <Compile Include="N\MoveLegalityTests.cs" />
