@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using ChessKit.ChessLogic.N;
 using ChessKit.ChessLogic.Primitives;
-//using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
 using static ChessKit.ChessLogic.Primitives.Castlings;
 
 namespace ChessKit.ChessLogic
@@ -233,18 +231,25 @@ namespace ChessKit.ChessLogic
         /// <returns></returns>
         public static ulong GetHash(this PositionCore position)
         {
+            var keys = ZobristKeys;
+            var result = 0UL;
             // Hash in the board setup.
-            var zobrist_hash = board_zobrist_hash(position);
 
-            // Default random array is polyglot compatible.
-            var array = ZobristKeys;
+            var squares = position.Squares;
+            for (var i = 0; i < 64; i++)
+            {
+                var piece = squares[i + (i & ~7)];
+                if (piece != 0)
+                    result ^= keys[64*IndexOf(piece) + i];
+            }
+
 
             // Hash in the castling flags.
             var ca = position.CastlingAvailability;
-            if ((ca & WK) != 0) zobrist_hash ^= array[768];
-            if ((ca & WQ) != 0) zobrist_hash ^= array[768 + 1];
-            if ((ca & BK) != 0) zobrist_hash ^= array[768 + 2];
-            if ((ca & BQ) != 0) zobrist_hash ^= array[768 + 3];
+            if ((ca & WK) != 0) result ^= keys[768];
+            if ((ca & WQ) != 0) result ^= keys[768 + 1];
+            if ((ca & BK) != 0) result ^= keys[768 + 2];
+            if ((ca & BQ) != 0) result ^= keys[768 + 3];
 
             // Hash in the en-passant file.
             if (position.EnPassant.HasValue)
@@ -252,36 +257,18 @@ namespace ChessKit.ChessLogic
                 // But only if theres actually a pawn ready to capture it. 
                 // Legality of the potential capture is irrelevant.
                 if (position.ActiveColor == Color.White)
-                    zobrist_hash ^= array[772 + position.EnPassant.Value];
+                    result ^= keys[772 + position.EnPassant.Value];
             }
-            // # Hash in the turn.
+            // Hash in the turn.
             if (position.ActiveColor == Color.White)
-                zobrist_hash ^= array[780];
+                result ^= keys[780];
 
-            return zobrist_hash;
+            return result;
         }
 
-        public static ulong board_zobrist_hash(PositionCore position)
+        private static int IndexOf(byte piece)
         {
-            var array = ZobristKeys;
-            var squares = position.Squares;
-
-            var zobrist_hash = 0UL;
-
-            for (var i = 0; i < 64; i++)
-            {
-                var piece = (Piece)squares[i + (i & ~7)];
-                if (piece != Piece.EmptyCell)
-                    zobrist_hash ^= array[64*IndexOf(piece) + i];
-            }
-
-
-            return zobrist_hash;
-        }
-
-        private static int IndexOf(Piece piece)
-        {
-            switch (piece)
+            switch ((Piece)piece)
             {
                 case Piece.BlackPawn:      return 00;
                 case Piece.WhitePawn:      return 01;
@@ -298,66 +285,6 @@ namespace ChessKit.ChessLogic
                 default: throw new ArgumentOutOfRangeException(
                     nameof(piece), piece, null);
             }
-        }
-        /// <summary>Computes the board hash using Zobrist method. </summary>
-        /// <param name="board">The board</param>
-        /// <returns>hash code</returns>
-        public static ulong GetHash1(this PositionCore board)
-        {
-            if (board == null) throw new ArgumentNullException(nameof(board));
-
-            ulong hash = 0;
-            var squares = board.Squares;
-            for (int i = 0; i < 64; i++)
-            {
-                var piece = (Piece)squares[i + (i & ~7)];
-                if (piece != Piece.EmptyCell)
-                {
-                    hash ^= ZobristKeys[IndexOf(piece) * 64 + i];
-                    Debug.WriteLine(hash);
-                }
-            }
-
-            // if White is to move, XOR the corresponding Zobrist key
-            if (board.ActiveColor == Color.White)
-            {
-                hash ^= ZobristKeys[12 * 64];
-            }
-
-            // if the Kings could castle, the corresponding Zobrist keys
-            if ((board.CastlingAvailability & Castlings.WQ) != 0)
-            {
-                hash ^= ZobristKeys[12 * 64 + 1];
-            }
-            if ((board.CastlingAvailability & Castlings.WK) != 0)
-            {
-                hash ^= ZobristKeys[12 * 64 + 2];
-            }
-            if ((board.CastlingAvailability & Castlings.BQ) != 0)
-            {
-                hash ^= ZobristKeys[12 * 64 + 3];
-            }
-            if ((board.CastlingAvailability & Castlings.BK) != 0)
-            {
-                hash ^= ZobristKeys[12 * 64 + 4];
-            }
-
-            if (board.EnPassant.HasValue)
-            {
-                if (board.ActiveColor == Color.Black)
-                {
-                    hash ^= ZobristKeys[12 * 64 + 5 + board.EnPassant.Value];
-                }
-                if (board.ActiveColor == Color.White)
-                {
-                    hash ^= ZobristKeys[12 * 64 + 13 + board.EnPassant.Value];
-                }
-
-            }
-
-            return hash;
-            // XOR the first 4 bytes with the last 4 bytes to return an 32-bit integer
-            //return (int)((hash & 0xFFFFFFFF) ^ (hash >> 32));
         }
     }
 }
