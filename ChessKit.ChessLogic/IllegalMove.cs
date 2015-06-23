@@ -11,20 +11,11 @@ namespace ChessKit.ChessLogic
         /// The position in which the move was checked
         public Position OriginalPosition { get; }
 
-        /// The piece type that was moved
-        public PieceType Piece { get; }
-
-        /// Non-empty set of the errors to the move
-        public MoveErrors Errors { get; }
-
-        internal IllegalMove(Move move, Position originalPosition,
-            PieceType piece, MoveAnnotations annotations)
+        internal IllegalMove(Move move, Position originalPosition, MoveAnnotations annotations)
             : base(annotations)
         {
             Move = move;
             OriginalPosition = originalPosition;
-            Piece = piece;
-            Errors = MoveErrors.All & (MoveErrors) annotations;
         }
     }
 }

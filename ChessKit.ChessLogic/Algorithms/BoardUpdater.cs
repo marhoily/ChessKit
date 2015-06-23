@@ -24,8 +24,7 @@ namespace ChessKit.ChessLogic.Algorithms
             if (piece == Piece.EmptyCell)
             {
                 notes = MoveAnnotations.EmptyCell;
-                return new IllegalMove(move, src, 
-                    PieceType.None, notes);
+                return new IllegalMove(move, src, notes);
             }
 
             // Side to move?
@@ -33,8 +32,7 @@ namespace ChessKit.ChessLogic.Algorithms
             if (color != src.Core.ActiveColor)
             {
                 notes = (MoveAnnotations)piece.PieceType() | MoveAnnotations.WrongSideToMove;
-                return new IllegalMove(move, src,
-                    piece.PieceType(), notes); 
+                return new IllegalMove(move, src, notes); 
             }
 
             // Move to occupied cell?
@@ -43,23 +41,20 @@ namespace ChessKit.ChessLogic.Algorithms
             if (toPiece != Piece.EmptyCell && toPiece.Color() == color)
             {
                 notes = (MoveAnnotations)piece.PieceType() | MoveAnnotations.ToOccupiedCell;
-                return new IllegalMove(move, src,
-                    piece.PieceType(), notes);
+                return new IllegalMove(move, src, notes);
             }
             notes = MoveLegality.ValidateMove(cells, piece,
                 moveFrom, moveTo, toPiece, src.Core.CastlingAvailability);
             if (toPiece != Piece.EmptyCell) notes |= MoveAnnotations.Capture;
             // ---------------- SetupBoard ---------------------
             if ((notes & MoveAnnotations.AllErrors) != 0)
-                return new IllegalMove(move, src,
-                    piece.PieceType(), notes);
+                return new IllegalMove(move, src, notes);
             if ((notes & MoveAnnotations.EnPassant) != 0)
             {
                 if (src.Core.EnPassant != moveTo % 16)
                 {
                     notes |= MoveAnnotations.HasNoEnPassant;
-                    return new IllegalMove(move, src,
-                        piece.PieceType(), notes);
+                    return new IllegalMove(move, src, notes);
                 }
             }
             else if ((notes & MoveAnnotations.Promotion) != 0)
@@ -137,15 +132,13 @@ namespace ChessKit.ChessLogic.Algorithms
 
             // ---------------- ---------- ---------------------
             if ((notes & MoveAnnotations.AllErrors) != 0)
-                return new IllegalMove(move, src,
-                    piece.PieceType(), notes);
+                return new IllegalMove(move, src, notes);
 
             var positionCore = new PositionCore(
                 cells, sideOnMove, castlings, enPassantFile, 
                 whiteKingPosition, blackKingPosition);
             var legalMove = new LegalMove(
-                move, src, positionCore, 
-                piece.PieceType(), notes);
+                move, src, positionCore, notes);
             return legalMove;
         }
 

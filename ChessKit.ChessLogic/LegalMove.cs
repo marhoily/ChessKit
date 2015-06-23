@@ -15,18 +15,13 @@ namespace ChessKit.ChessLogic
         /// (use legalMove.ToPosition() method to get full position)
         public PositionCore ResultPosition { get; }
 
-        /// The piece type that was moved
-        public PieceType Piece { get; }
-
-        internal LegalMove(Move move, 
-            Position originalPosition, PositionCore resultPosition, 
-            PieceType piece, MoveAnnotations annotations)
+        internal LegalMove(Move move, Position originalPosition,
+            PositionCore resultPosition, MoveAnnotations annotations)
             : base(annotations)
         {
             Move = move;
             OriginalPosition = originalPosition;
             ResultPosition = resultPosition;
-            Piece = piece;
         }
     }
 }

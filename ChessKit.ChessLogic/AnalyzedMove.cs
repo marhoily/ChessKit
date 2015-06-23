@@ -17,6 +17,8 @@ namespace ChessKit.ChessLogic
 
         /// Warnings to the move
         public MoveWarnings Warnings => MoveWarnings.All & (MoveWarnings)Annotations;
+        /// The piece type that was moved
+        public PieceType Piece => PieceType.All & (PieceType)Annotations;
 
     }
 }
