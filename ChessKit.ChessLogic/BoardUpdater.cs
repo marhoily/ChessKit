@@ -18,11 +18,6 @@ namespace ChessKit.ChessLogic
             var cells = new byte[BytesCount];
             Buffer.BlockCopy(src._cells, 0, cells, 0, BytesCount);
 
-            Func<Color, bool> isUnderCheck = 
-                kingColor => kingColor == Color.White
-                ? Scanning.IsAttackedByBlack(cells, whiteKingPosition)
-                : Scanning.IsAttackedByWhite(cells, blackKingPosition);
-
             MoveAnnotations notes;
             // Piece in the from cell?
             var moveFrom = move.From;
@@ -127,7 +122,11 @@ namespace ChessKit.ChessLogic
                         break;
                 }
             }
-            if (isUnderCheck(src.SideOnMove))
+            var isUnderCheck = src.SideOnMove == Color.White
+                ? Scanning.IsAttackedByBlack(cells, whiteKingPosition)
+                : Scanning.IsAttackedByWhite(cells, blackKingPosition);
+
+            if (isUnderCheck)
             {
                 notes |= MoveToCheck;
             }
