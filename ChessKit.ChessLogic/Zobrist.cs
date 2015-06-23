@@ -233,33 +233,51 @@ namespace ChessKit.ChessLogic
         {
             var keys = ZobristKeys;
             var result = 0UL;
-            // Hash in the board setup.
 
             var squares = position.Squares;
             for (var i = 0; i < 64; i++)
             {
                 var piece = squares[i + (i & ~7)];
-                if (piece != 0)
-                    result ^= keys[64*IndexOf(piece) + i];
+                if (piece != 0 && (((Color)piece & Color.All) == Color.Black))
+                {
+                    var indexOf = IndexOf(piece);
+                    var key = keys[64 * indexOf + i];
+                    result ^= key;
+                }
             }
 
+            for (var j = 0; j < 64; j++)
+            {
+                var p2 = squares[j + (j & ~7)];
+                var inf = (Piece)p2;
+                if (p2 != 0 && (((Color)p2 & Color.All) == Color.White))
+                {
+                    var idx2 = IndexOf(p2);
+                    var key2 = keys[64 * idx2 + j];
+                    result ^= key2;
+                }
+            }
 
-            // Hash in the castling flags.
             var ca = position.CastlingAvailability;
-            if ((ca & WK) != 0) result ^= keys[768];
+            if ((ca & WK) != 0) result ^= keys[768 + 0];
             if ((ca & WQ) != 0) result ^= keys[768 + 1];
             if ((ca & BK) != 0) result ^= keys[768 + 2];
             if ((ca & BQ) != 0) result ^= keys[768 + 3];
 
-            // Hash in the en-passant file.
             if (position.EnPassant.HasValue)
             {
                 // But only if theres actually a pawn ready to capture it. 
                 // Legality of the potential capture is irrelevant.
-                if (position.ActiveColor == Color.White)
+                var enpSquare = 0;
+                switch (position.ActiveColor) {
+                    case Color.White: enpSquare = 4*16; break;
+                    case Color.Black: enpSquare = 3*16; break;
+                }
+                enpSquare += position.EnPassant.Value;
+                if (squares[enpSquare - 1] != 0 || squares[enpSquare + 1] != 0)
                     result ^= keys[772 + position.EnPassant.Value];
             }
-            // Hash in the turn.
+
             if (position.ActiveColor == Color.White)
                 result ^= keys[780];
 
@@ -270,20 +288,21 @@ namespace ChessKit.ChessLogic
         {
             switch ((Piece)piece)
             {
-                case Piece.BlackPawn:      return 00;
-                case Piece.WhitePawn:      return 01;
-                case Piece.BlackKnight:    return 02;
-                case Piece.WhiteKnight:    return 03;
-                case Piece.BlackBishop:    return 04;
-                case Piece.WhiteBishop:    return 05;
-                case Piece.BlackRook:      return 06;
-                case Piece.WhiteRook:      return 07;
-                case Piece.BlackQueen:     return 08;
-                case Piece.WhiteKing:      return 09;
-                case Piece.BlackKing:      return 10;
-                case Piece.WhiteQueen:     return 11;
-                default: throw new ArgumentOutOfRangeException(
-                    nameof(piece), piece, null);
+                case Piece.BlackPawn: return 00;
+                case Piece.WhitePawn: return 01;
+                case Piece.BlackKnight: return 02;
+                case Piece.WhiteKnight: return 03;
+                case Piece.BlackBishop: return 04;
+                case Piece.WhiteBishop: return 05;
+                case Piece.BlackRook: return 06;
+                case Piece.WhiteRook: return 07;
+                case Piece.BlackQueen: return 08;
+                case Piece.WhiteQueen: return 09;
+                case Piece.BlackKing: return 10;
+                case Piece.WhiteKing: return 11;
+                default:
+                    throw new ArgumentOutOfRangeException(
+               nameof(piece), piece, null);
             }
         }
     }
