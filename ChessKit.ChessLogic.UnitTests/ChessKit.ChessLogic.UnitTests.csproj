@@ -80,6 +80,7 @@
     <Compile Include="FenTests.cs" />
     <Compile Include="GetLegalMovesTests.cs" />
     <Compile Include="MoveLegalityTests.cs" />
+    <Compile Include="SanTests.cs" />
     <Compile Include="ScanningTests.cs" />
     <Compile Include="UpdatePositionTests.cs" />
     <Compile Include="PositionTest.cs" />
