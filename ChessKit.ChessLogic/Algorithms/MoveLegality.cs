@@ -21,10 +21,8 @@ namespace ChessKit.ChessLogic.Algorithms
             var whiteKingSquare = source.Core.WhiteKing;
             var blackKingSquare = source.Core.BlackKing;
 
-            const int bytesCount = 128;
-            var cells = new byte[bytesCount];
             var sourceCells = source.Core.Cells;
-            Buffer.BlockCopy(sourceCells, 0, cells, 0, bytesCount);
+            var cells = source.Core.GetCopyOfCells();
 
             MoveAnnotations notes;
             // Piece in the from cell?

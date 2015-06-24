@@ -74,12 +74,14 @@
   <Class Name="ChessKit.ChessLogic.PositionCore" BaseTypeListCollapsed="true">
     <Position X="3" Y="4.75" Width="2" />
     <Members>
+      <Field Name="BytesCount" Hidden="true" />
+      <Property Name="Cells" Hidden="true" />
       <Method Name="Equals" Hidden="true" />
       <Method Name="GetHashCode" Hidden="true" />
       <Method Name="operator !=" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAAAAAgAgAICAAAAAAAAAIAACAAAAAAABiA=</HashCode>
+      <HashCode>AAAAAAACAAAAAAgAiAICCAAAAAAAAIAAKAAAAAAABiA=</HashCode>
       <FileName>PositionCore.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
