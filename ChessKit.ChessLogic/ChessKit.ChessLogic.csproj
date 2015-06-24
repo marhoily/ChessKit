@@ -59,7 +59,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\BoardUpdater.cs" />
     <Compile Include="Algorithms\CanBeValid.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
