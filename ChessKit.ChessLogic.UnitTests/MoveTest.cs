@@ -23,7 +23,7 @@ namespace ChessKit.ChessLogic.UnitTests
             move.FromCell.Should().Be("e2".ParseCoordinate());
             move.ToCell.Should().Be("e4".ParseCoordinate());
 
-            move.ProposedPromotion.Should().Be(PieceType.None);
+            move.PromoteTo.Should().Be(PieceType.None);
         }
 
         [Fact]
@@ -35,7 +35,7 @@ namespace ChessKit.ChessLogic.UnitTests
             move.FromCell.Should().Be("e2".ParseCoordinate());
             move.ToCell.Should().Be("e4".ParseCoordinate());
 
-            move.ProposedPromotion.Should().Be(PieceType.Queen);
+            move.PromoteTo.Should().Be(PieceType.Queen);
         }
 
         [Fact]

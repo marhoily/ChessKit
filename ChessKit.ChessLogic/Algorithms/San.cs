@@ -5,14 +5,15 @@ using System.Linq;
 using System.Text;
 using ChessKit.ChessLogic.Primitives;
 using JetBrains.Annotations;
+using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
 
 namespace ChessKit.ChessLogic.Algorithms
 {
     public static class San
     {
         /// <summary>
-        /// Get the SAN (standard algebraic notation) index for a move - move number and the side to move
-        /// without checking the status of the game or if it's a valid move.
+        ///     Get the SAN (standard algebraic notation) index for a move - move number and the side to move
+        ///     without checking the status of the game or if it's a valid move.
         /// </summary>
         /// <returns></returns>
         public static string GetSanIndex([NotNull] this Position board)
@@ -32,8 +33,9 @@ namespace ChessKit.ChessLogic.Algorithms
         }
 
         /// <summary>
-        /// Gets the end of the SAN (standard algebraic notation) for a move - promotion and check/checkmate representation - after the move is made
-        /// without checking the status of the game or if it's a valid move.
+        ///     Gets the end of the SAN (standard algebraic notation) for a move - promotion and check/checkmate representation -
+        ///     after the move is made
+        ///     without checking the status of the game or if it's a valid move.
         /// </summary>
         /// <param name="board">The game</param>
         /// <param name="move">The move</param>
@@ -45,8 +47,8 @@ namespace ChessKit.ChessLogic.Algorithms
 
             var sb = new StringBuilder(3);
 
-            if (move.ProposedPromotion != 0)
-                sb.Append('=').Append(move.ProposedPromotion.With(Color.White).GetSymbol());
+            if (move.PromoteTo != 0)
+                sb.Append('=').Append(move.PromoteTo.With(Color.White).GetSymbol());
 
             if ((board.Properties & GameStates.Check) != 0) sb.Append('+');
             else if ((board.Properties & GameStates.Mate) != 0) sb.Append('#');
@@ -55,38 +57,37 @@ namespace ChessKit.ChessLogic.Algorithms
         }
 
         /// <summary>
-        /// Gets the begin of the SAN (standard algebraic notation) for a move - without promotion or check/checkmate representation -  before the move is made
-        /// without checking the status of the game or if it's a valid move.
+        ///     Gets the begin of the SAN (standard algebraic notation) for a move - without promotion or check/checkmate
+        ///     representation -  before the move is made
+        ///     without checking the status of the game or if it's a valid move.
         /// </summary>
         /// <param name="board">The game</param>
         /// <param name="move">The move</param>
         /// <returns></returns>
         public static string GetSanBegin([NotNull] this Position board, LegalMove move)
         {
-            if (board == null) throw new ArgumentNullException("board");
+            if (board == null) throw new ArgumentNullException(nameof(board));
 
             var sb = new StringBuilder(6);
 
-            if ((move.Annotations & (MoveAnnotations.WK | MoveAnnotations.BK)) !=
-                0)
+            if ((move.Annotations & (WK | BK)) != 0)
             {
                 sb.Append("O-O");
             }
-            else if ((move.Annotations &
-                      (MoveAnnotations.WQ | MoveAnnotations.BQ)) != 0)
+            else if ((move.Annotations & (WQ | BQ)) != 0)
             {
                 sb.Append("O-O-O");
             }
             else
             {
-                if ((move.Annotations & MoveAnnotations.Pawn) != 0)
+                if ((move.Annotations & Pawn) != 0)
                 {
-                    if ((move.Annotations & MoveAnnotations.Capture) != 0)
+                    if ((move.Annotations & Capture) != 0)
                         sb.Append(move.Move.FromCell.GetFile());
                 }
                 else
                 {
-                    sb.Append(((Piece)board.Core.Squares[move.Move.FromCell]).GetSymbol());
+                    sb.Append(((Piece) board.Core.Squares[move.Move.FromCell]).GetSymbol());
 
                     // TODO: move should have Piece prop?
                     var disambiguationList = new List<int>(
@@ -141,7 +142,7 @@ namespace ChessKit.ChessLogic.Algorithms
                 }
 
                 // if there is a capture, add capture notation
-                if ((move.Annotations & MoveAnnotations.Capture) == MoveAnnotations.Capture)
+                if ((move.Annotations & Capture) == Capture)
                 {
                     sb.Append('x');
                 }
@@ -155,13 +156,13 @@ namespace ChessKit.ChessLogic.Algorithms
 
         public static string GetSan([NotNull] this Position board, LegalMove move)
         {
-            if (board == null) throw new ArgumentNullException("board");
+            if (board == null) throw new ArgumentNullException(nameof(board));
             return board.GetSanBegin(move) /*+ board.GetSanEnd(move)*/;
         }
 
         /// <summary>
-        /// Gets a move from its SAN (standard algebraic notation).
-        /// Throws ArgumentException if it's not a valid move.
+        ///     Gets a move from its SAN (standard algebraic notation).
+        ///     Throws ArgumentException if it's not a valid move.
         /// </summary>
         /// <param name="board">The game</param>
         /// <param name="san">The SAN string</param>
@@ -171,8 +172,10 @@ namespace ChessKit.ChessLogic.Algorithms
             if (board == null) throw new ArgumentNullException("board");
             if (san == null) throw new ArgumentNullException("san");
 
-            if (san == "O-O") return board.ValidateLegal(Move.Parse(board.Core.ActiveColor == Color.White ? "e1-g1" : "e8-g8"));
-            if (san == "O-O-O") return board.ValidateLegal(Move.Parse(board.Core.ActiveColor == Color.White ? "e1-c1" : "e8-c8"));
+            if (san == "O-O")
+                return board.ValidateLegal(Move.Parse(board.Core.ActiveColor == Color.White ? "e1-g1" : "e8-g8"));
+            if (san == "O-O-O")
+                return board.ValidateLegal(Move.Parse(board.Core.ActiveColor == Color.White ? "e1-c1" : "e8-c8"));
 
             var index = san.Length - 1;
             // remove chess and checkmate representation (if any)
@@ -221,20 +224,21 @@ namespace ChessKit.ChessLogic.Algorithms
             return GetMove(board, to, file, rank, pieceChar, prom);
         }
 
-        private static LegalMove GetMove(Position board, int to, int? file, int? rank, PieceType pieceChar, PieceType prom)
+        private static LegalMove GetMove(Position board, int to, int? file, int? rank, PieceType pieceChar,
+            PieceType prom)
         {
             var move = default(LegalMove);
             foreach (var m in board.GetAllLegalMoves())
                 if (m.Move.ToCell == to)
                     if (file == null || file == m.Move.FromCell.GetX())
                         if (rank == null || rank == m.Move.FromCell.GetY())
-                            if (((Piece)board.Core.Squares[m.Move.FromCell]).PieceType() == pieceChar)
+                            if (((Piece) board.Core.Squares[m.Move.FromCell]).PieceType() == pieceChar)
                             {
                                 if (move != null) throw new FormatException("Ambiguity");
                                 move = m;
                             }
             if (move == null) return null;
-            if ((move.Annotations & MoveAnnotations.Promotion) != 0)
+            if ((move.Annotations & Promotion) != 0)
             {
                 return board.ValidateLegal(
                     new Move(move.Move.FromCell, move.Move.ToCell, prom));

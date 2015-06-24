@@ -59,15 +59,15 @@ namespace ChessKit.ChessLogic.Algorithms
             }
             else if ((notes & MoveAnnotations.Promotion) != 0)
             {
-                var proposedPromotion = move.ProposedPromotion;
-                if (move.ProposedPromotion == PieceType.None)
+                var proposedPromotion = move.PromoteTo;
+                if (move.PromoteTo == PieceType.None)
                 {
                     notes |= MoveAnnotations.MissingPromotionHint;
                     proposedPromotion = PieceType.Queen;
                 }
                 piece = proposedPromotion.With(color);
             }
-            else if (move.ProposedPromotion != PieceType.None)
+            else if (move.PromoteTo != PieceType.None)
             {
                 notes |= MoveAnnotations.PromotionHintIsNotNeeded;
             }

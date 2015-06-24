@@ -7,16 +7,21 @@ namespace ChessKit.ChessLogic
     {
         public int FromCell { get; }
         public int ToCell { get; }
-        public PieceType ProposedPromotion { get; }
+        public PieceType PromoteTo { get; }
 
         public Move(int fromCell, int toCell, PieceType promoteTo = PieceType.None)
         {
             FromCell = fromCell;
             ToCell = toCell;
-            ProposedPromotion = promoteTo;
+            PromoteTo = promoteTo;
         }
-        public override string ToString() 
-            => $"{FromCell.ToCoordinateString()}-{ToCell.ToCoordinateString()}";
+        public override string ToString()
+        {
+            string s = $"{FromCell.ToCoordinateString()}-{ToCell.ToCoordinateString()}";
+            return PromoteTo != PieceType.None 
+                ? $"{s}={PromoteTo.With(Color.White).GetSymbol()}" 
+                : s;
+        }
 
         public static Move Parse(string canString)
         {
