@@ -9,7 +9,7 @@ namespace ChessKit.ChessLogic.UnitTests
     {
         private static void IsAttackedBy(string fen, string square, Color color, bool expected)
             => fen.ParseFen().Core
-                .IsAttackedBy(color, square.ParseCoordinate())
+                .IsSquareAttackedBySide(color, square.ParseCoordinate())
                 .Should().Be(expected);
 
         [Fact]
