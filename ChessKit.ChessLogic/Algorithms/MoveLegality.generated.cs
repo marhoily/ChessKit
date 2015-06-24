@@ -390,7 +390,7 @@ namespace ChessKit.ChessLogic.Algorithms
             return King | DoesNotMoveThisWay;
         }
 
-        public static MoveAnnotations ValidateMove(byte[] cells, Piece piece, int fromSquare, int toSquare, Piece capture, Castlings availableCastlings)
+        private static MoveAnnotations ValidateMove(byte[] cells, Piece piece, int fromSquare, int toSquare, Piece capture, Castlings availableCastlings)
         {
             switch (piece)
             {
