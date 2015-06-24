@@ -4,24 +4,24 @@ using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic
 {
-    /// The part of the chess position that can be compared
-    /// to determine threefold repetitions
+    /// <summary>The part of the chess position that can be compared
+    /// to determine threefold repetitions</summary>
     public sealed class PositionCore : IEquatable<PositionCore>
     {
-        /// An array of the 64 squares the chess board consists of
+        /// <summary>An array of the 64 squares the chess board consists of
         /// Note that index 0 corresponds to a8, and NOT a1!
-        /// Indexes read left to right, top to bottom!
+        /// Indexes read left to right, top to bottom!</summary>
         public byte[] Squares { get; }
 
-        /// The color of the side that makes the next move
+        /// <summary>The color of the side that makes the next move</summary>
         public Color ActiveColor { get; }
 
-        /// Castlings available to the both sides
-        /// (one that changes when they move their kings/rooks)
+        /// <summary>Castlings available to the both sides
+        /// (one that changes when they move their kings/rooks)</summary>
         public Castlings CastlingAvailability { get; }
 
-        /// The index is the file the opponent last
-        /// made pawn double move -or- ...
+        /// <summary>The index is the file the opponent last
+        /// made pawn double move -or- ...</summary>
         public int? EnPassant { get; }
 
         public int WhiteKing { get; }

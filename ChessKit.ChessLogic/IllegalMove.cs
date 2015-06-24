@@ -2,10 +2,10 @@ using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic
 {
-    /// Represents an illegal move as returned by the legality check
+    /// <summary>Represents an illegal move as returned by the legality check</summary>
     public sealed class IllegalMove : AnalyzedMove
     {
-        /// Errors to the move
+        /// <summary>Errors to the move</summary>
         public MoveErrors Errors => MoveErrors.All & (MoveErrors)Annotations;
 
         internal IllegalMove(Move move, Position originalPosition, MoveAnnotations annotations)

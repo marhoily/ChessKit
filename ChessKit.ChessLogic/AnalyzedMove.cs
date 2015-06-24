@@ -2,12 +2,13 @@ using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic
 {
+    /// <summary>Represents move after validation</summary>
     public abstract class AnalyzedMove
     {
-        /// The move that was checked for the legality
+        /// <summary>The move that was checked for the legality</summary>
         public Move Move { get; }
 
-        /// The position in which the move was checked
+        /// <summary>The position in which the move was checked</summary>
         public Position OriginalPosition { get; }
 
         internal AnalyzedMove(MoveAnnotations annotations, Position originalPosition, Move move)
@@ -17,15 +18,15 @@ namespace ChessKit.ChessLogic
             Move = move;
         }
 
-        /// Annotations (capture, promotion attempt, etc.) to the move
+        /// <summary>Annotations (capture, promotion attempt, etc.) to the move</summary>
         internal MoveAnnotations Annotations { get; }
 
-        /// The castling, if the move was castling attempt, -or- None
+        /// <summary>The castling, if the move was castling attempt, -or- None</summary>
         public Castlings Castling => Castlings.All & (Castlings)Annotations;
 
-        /// Warnings to the move
+        /// <summary>Warnings to the move</summary>
         public MoveWarnings Warnings => MoveWarnings.All & (MoveWarnings)Annotations;
-        /// The piece type that was moved
+        /// <summary>The piece type that was moved</summary>
         public PieceType Piece => PieceType.All & (PieceType)Annotations;
 
     }
