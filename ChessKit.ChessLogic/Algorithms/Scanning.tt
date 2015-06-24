@@ -8,7 +8,7 @@
  * It is strongly adviced not to change it manually! */
 using static ChessKit.ChessLogic.Primitives.Piece;
 
-namespace ChessKit.ChessLogic
+namespace ChessKit.ChessLogic.Algorithms
 {
     static partial class Scanning
     {
