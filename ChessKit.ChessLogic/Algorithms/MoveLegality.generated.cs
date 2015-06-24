@@ -1,5 +1,7 @@
 ﻿/* This code is auto-generated! 
  * It is strongly adviced not to change it manually! */
+
+using System;
 using ChessKit.ChessLogic.Primitives;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
 
@@ -434,7 +436,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         return King;
                     return ValidateBlackCastlingMove(cells, fromSquare, toSquare, castlingAvailability);
 
-                default: throw new System.InvalidOperationException("Unknown piece: " + piece);
+                default: throw new InvalidOperationException("Unknown piece: " + piece);
             }
         }
     }

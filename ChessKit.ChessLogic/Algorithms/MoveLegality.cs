@@ -7,19 +7,165 @@ namespace ChessKit.ChessLogic.Algorithms
 {
     static partial class MoveLegality
     {
-        public static AnalyzedMove Validate(this Position position, Move move)
+        public static LegalMove ValidateLegal(this Position source, Move move)
         {
-            return BoardUpdater.MakeMove(position, move);
-        }
-
-        public static LegalMove ValidateLegal(this Position position, Move move)
-        {
-            var analyzedMove = BoardUpdater.MakeMove(position, move);
+            var analyzedMove = Validate(source, move);
             var legalMove = analyzedMove as LegalMove;
             if (legalMove == null)
                 throw new Exception(analyzedMove.Annotations.ToString());
             return legalMove;
         }
+
+        public static AnalyzedMove Validate(this Position source, Move move)
+        {
+            var whiteKingSquare = source.Core.WhiteKing;
+            var blackKingSquare = source.Core.BlackKing;
+
+            const int bytesCount = 128;
+            var cells = new byte[bytesCount];
+            var sourceCells = source.Core.Squares;
+            Buffer.BlockCopy(sourceCells, 0, cells, 0, bytesCount);
+
+            MoveAnnotations notes;
+            // Piece in the from cell?
+            var moveFrom = move.FromCell;
+            var piece = (Piece)sourceCells[moveFrom];
+            if (piece == Piece.EmptyCell)
+            {
+                notes = EmptyCell;
+                return new IllegalMove(move, source, notes);
+            }
+
+            // Side to move?
+            var color = piece.Color();
+            if (color != source.Core.ActiveColor)
+            {
+                notes = (MoveAnnotations)piece.PieceType() | WrongSideToMove;
+                return new IllegalMove(move, source, notes);
+            }
+
+            // Move to occupied cell?
+            var moveTo = move.ToCell;
+            var toPiece = (Piece)sourceCells[moveTo];
+            if (toPiece != Piece.EmptyCell && toPiece.Color() == color)
+            {
+                notes = (MoveAnnotations)piece.PieceType() | ToOccupiedCell;
+                return new IllegalMove(move, source, notes);
+            }
+            notes = ValidateMove(cells, piece,
+                moveFrom, moveTo, toPiece, source.Core.CastlingAvailability);
+            if (toPiece != Piece.EmptyCell) notes |= Capture;
+            // ---------------- SetupBoard ---------------------
+            if ((notes & AllErrors) != 0)
+                return new IllegalMove(move, source, notes);
+            if ((notes & EnPassant) != 0)
+            {
+                if (source.Core.EnPassant != moveTo % 16)
+                {
+                    notes |= HasNoEnPassant;
+                    return new IllegalMove(move, source, notes);
+                }
+            }
+            else if ((notes & Promotion) != 0)
+            {
+                var proposedPromotion = move.PromoteTo;
+                if (move.PromoteTo == PieceType.None)
+                {
+                    notes |= MissingPromotionHint;
+                    proposedPromotion = PieceType.Queen;
+                }
+                piece = proposedPromotion.With(color);
+            }
+            else if (move.PromoteTo != PieceType.None)
+            {
+                notes |= PromotionHintIsNotNeeded;
+            }
+
+            cells[moveTo] = (byte)piece;
+
+            switch (piece)
+            {
+                case Piece.WhiteKing:
+                    whiteKingSquare = moveTo;
+                    break;
+                case Piece.BlackKing:
+                    blackKingSquare = moveTo;
+                    break;
+            }
+
+            cells[moveFrom] = 0;
+            var enPassantFile = new int?();
+            if ((notes & (DoublePush | EnPassant | AllCastlings)) != 0)
+            {
+                if ((notes & DoublePush) != 0)
+                {
+                    enPassantFile = moveFrom % 16;
+                }
+                else if ((notes & EnPassant) != 0)
+                {
+                    cells[moveTo + (color == Color.White ? -16 : +16)] = 0;
+                }
+                else
+                    switch (notes)
+                    {
+                        case (King | WK):
+                            cells[S.H1] = (byte)Piece.EmptyCell;
+                            cells[S.F1] = (byte)Piece.WhiteRook;
+                            break;
+                        case (King | WQ):
+                            cells[S.A1] = (byte)Piece.EmptyCell;
+                            cells[S.D1] = (byte)Piece.WhiteRook;
+                            break;
+                        case (King | BK):
+                            cells[S.H8] = (byte)Piece.EmptyCell;
+                            cells[S.F8] = (byte)Piece.BlackRook;
+                            break;
+                        case (King | BQ):
+                            cells[S.A8] = (byte)Piece.EmptyCell;
+                            cells[S.D8] = (byte)Piece.BlackRook;
+                            break;
+                    }
+            }
+            var isUnderCheck = source.Core.ActiveColor == Color.White
+                ? cells.IsSquareAttackedByBlack(whiteKingSquare)
+                : cells.IsSquareAttackedByWhite(blackKingSquare);
+
+            if (isUnderCheck)
+            {
+                notes |= MoveToCheck;
+            }
+            var castlings = source.Core.CastlingAvailability
+                            & ~KilledAvailability(moveTo)
+                            & ~KilledAvailability(moveFrom);
+
+            var sideOnMove = color.Invert();
+
+            // ---------------- ---------- ---------------------
+            if ((notes & AllErrors) != 0)
+                return new IllegalMove(move, source, notes);
+
+            var positionCore = new PositionCore(
+                cells, sideOnMove, castlings, enPassantFile,
+                whiteKingSquare, blackKingSquare);
+            var legalMove = new LegalMove(
+                move, source, positionCore, notes);
+            return legalMove;
+        }
+
+        private static Castlings KilledAvailability(int pos)
+        {
+            switch (pos)
+            {
+                case Cells.A1: return Castlings.WQ;
+                case Cells.E1: return Castlings.White;
+                case Cells.H1: return Castlings.WK;
+                case Cells.A8: return Castlings.BQ;
+                case Cells.E8: return Castlings.Black;
+                case Cells.H8: return Castlings.BK;
+                default: return Castlings.None;
+            }
+        }
+
 
         static MoveAnnotations ValidateWhiteCastlingMove(byte[] cells, int fromSquare, int toSquare, Castlings availableCastlings)
         {
