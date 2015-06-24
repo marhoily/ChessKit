@@ -154,12 +154,12 @@ namespace ChessKit.ChessLogic.Algorithms
         {
             switch (pos)
             {
-                case Cells.A1: return Castlings.WQ;
-                case Cells.E1: return Castlings.White;
-                case Cells.H1: return Castlings.WK;
-                case Cells.A8: return Castlings.BQ;
-                case Cells.E8: return Castlings.Black;
-                case Cells.H8: return Castlings.BK;
+                case S.A1: return Castlings.WQ;
+                case S.E1: return Castlings.White;
+                case S.H1: return Castlings.WK;
+                case S.A8: return Castlings.BQ;
+                case S.E8: return Castlings.Black;
+                case S.H8: return Castlings.BK;
                 default: return Castlings.None;
             }
         }

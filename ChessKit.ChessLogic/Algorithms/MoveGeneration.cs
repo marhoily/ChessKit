@@ -11,12 +11,12 @@ namespace ChessKit.ChessLogic.Algorithms
 
             if ((castlings & Castlings.WQ) != 0)
                 if (cells[Cells.D1] == 0 && cells[Cells.C1] == 0 && cells[Cells.B1] == 0)
-                    if (!Attacks.IsSquareAttackedByBlack(cells, Cells.E1) && !Attacks.IsSquareAttackedByBlack(cells, Cells.D1) && !Attacks.IsSquareAttackedByBlack(cells, Cells.C1))
+                    if (!cells.IsSquareAttackedByBlack(Cells.E1) && !cells.IsSquareAttackedByBlack(Cells.D1) && !cells.IsSquareAttackedByBlack(Cells.C1))
                         collector.Add(new GeneratedMove(Cells.E1, Cells.C1, MoveAnnotations.WQ));
 
             if ((castlings & Castlings.WK) != 0)
                 if (cells[Cells.F1] == 0 && cells[Cells.G1] == 0)
-                    if (!Attacks.IsSquareAttackedByBlack(cells, Cells.E1) && !Attacks.IsSquareAttackedByBlack(cells, Cells.F1) && !Attacks.IsSquareAttackedByBlack(cells, Cells.G1))
+                    if (!cells.IsSquareAttackedByBlack(Cells.E1) && !cells.IsSquareAttackedByBlack(Cells.F1) && !cells.IsSquareAttackedByBlack(Cells.G1))
                         collector.Add(new GeneratedMove(Cells.E1, Cells.G1, MoveAnnotations.WK));
         }
         static void GenerateBlackCastlingMoves(byte[] cells, int fromSquare, Castlings castlings, List<GeneratedMove> collector)
@@ -25,12 +25,12 @@ namespace ChessKit.ChessLogic.Algorithms
 
             if ((castlings & Castlings.BQ) != 0)
                 if (cells[Cells.D8] == 0 && cells[Cells.C8] == 0 && cells[Cells.B8] == 0)
-                    if (!Attacks.IsSquareAttackedByWhite(cells, Cells.E8) && !Attacks.IsSquareAttackedByWhite(cells, Cells.D8) && !Attacks.IsSquareAttackedByWhite(cells, Cells.C8))
+                    if (!cells.IsSquareAttackedByWhite(Cells.E8) && !cells.IsSquareAttackedByWhite(Cells.D8) && !cells.IsSquareAttackedByWhite(Cells.C8))
                         collector.Add(new GeneratedMove(Cells.E8, Cells.C8, MoveAnnotations.BQ));
 
             if ((castlings & Castlings.BK) != 0)
                 if (cells[Cells.F8] == 0 && cells[Cells.G8] == 0)
-                    if (!Attacks.IsSquareAttackedByWhite(cells, Cells.E8) && !Attacks.IsSquareAttackedByWhite(cells, Cells.F8) && !Attacks.IsSquareAttackedByWhite(cells, Cells.G8))
+                    if (!cells.IsSquareAttackedByWhite(Cells.E8) && !cells.IsSquareAttackedByWhite(Cells.F8) && !cells.IsSquareAttackedByWhite(Cells.G8))
                         collector.Add(new GeneratedMove(Cells.E8, Cells.G8, MoveAnnotations.BK));
         }
         static void GenerateWhitePawnMoves(byte[] cells, int whiteKing, int fromSquare, int? enPassantFile, List<GeneratedMove> collector)
@@ -43,7 +43,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         cells[fromSquare] = 0;
                         var toPiece = cells[to];
                         cells[to] = (byte)Piece.WhitePawn;
-                        if (!Attacks.IsSquareAttackedByBlack(cells, whiteKing))
+                        if (!cells.IsSquareAttackedByBlack(whiteKing))
                             collector.Add(new GeneratedMove(fromSquare, to,
                                 to / 16 != 7 ? MoveAnnotations.Pawn : MoveAnnotations.Pawn | MoveAnnotations.Promotion));
                         cells[fromSquare] = (byte)Piece.WhitePawn;
@@ -60,7 +60,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         cells[fromSquare] = 0;
                         var toPiece = cells[to];
                         cells[to] = (byte)Piece.WhitePawn;
-                        if (!Attacks.IsSquareAttackedByBlack(cells, whiteKing))
+                        if (!cells.IsSquareAttackedByBlack(whiteKing))
                             collector.Add(new GeneratedMove(fromSquare, to, MoveAnnotations.Pawn | MoveAnnotations.DoublePush));
                         cells[fromSquare] = (byte)Piece.WhitePawn;
                         cells[to] = toPiece;
@@ -78,7 +78,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = 0;
                             cells[to] = (byte)Piece.WhitePawn;
-                            if (!Attacks.IsSquareAttackedByBlack(cells, whiteKing))
+                            if (!cells.IsSquareAttackedByBlack(whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to,
                                     to / 16 != 7
                                         ? MoveAnnotations.Pawn | MoveAnnotations.Capture
@@ -94,7 +94,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             cells[fromSquare] = 0;
                             cells[to] = (byte)Piece.WhitePawn;
                             cells[to - 16] = 0;
-                            if (!Attacks.IsSquareAttackedByBlack(cells, whiteKing))
+                            if (!cells.IsSquareAttackedByBlack(whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to,
                                     MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
                             cells[fromSquare] = (byte)Piece.WhitePawn;
@@ -115,7 +115,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = 0;
                             cells[to] = (byte)Piece.WhitePawn;
-                            if (!Attacks.IsSquareAttackedByBlack(cells, whiteKing))
+                            if (!cells.IsSquareAttackedByBlack(whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to,
                                     to / 16 != 7 ? MoveAnnotations.Pawn | MoveAnnotations.Capture :
                                         MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.Promotion));
@@ -130,7 +130,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             cells[fromSquare] = 0;
                             cells[to] = (byte)Piece.WhitePawn;
                             cells[to - 16] = 0;
-                            if (!Attacks.IsSquareAttackedByBlack(cells, whiteKing))
+                            if (!cells.IsSquareAttackedByBlack(whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to,
                                     MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
                             cells[fromSquare] = (byte)Piece.WhitePawn;
@@ -151,7 +151,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         cells[fromSquare] = 0;
                         var toPiece = cells[to];
                         cells[to] = (byte)Piece.BlackPawn;
-                        if (!Attacks.IsSquareAttackedByWhite(cells, blackKing))
+                        if (!cells.IsSquareAttackedByWhite(blackKing))
                             collector.Add(new GeneratedMove(fromSquare, to,
                                 to / 16 != 0 ? MoveAnnotations.Pawn : MoveAnnotations.Pawn | MoveAnnotations.Promotion));
                         cells[fromSquare] = (byte)Piece.BlackPawn;
@@ -168,7 +168,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         cells[fromSquare] = 0;
                         var toPiece = cells[to];
                         cells[to] = (byte)Piece.BlackPawn;
-                        if (!Attacks.IsSquareAttackedByWhite(cells, blackKing))
+                        if (!cells.IsSquareAttackedByWhite(blackKing))
                             collector.Add(new GeneratedMove(fromSquare, to,
                                 MoveAnnotations.Pawn | MoveAnnotations.DoublePush));
                         cells[fromSquare] = (byte)Piece.BlackPawn;
@@ -187,7 +187,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = 0;
                             cells[to] = (byte)Piece.BlackPawn;
-                            if (!Attacks.IsSquareAttackedByWhite(cells, blackKing))
+                            if (!cells.IsSquareAttackedByWhite(blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to,
                                     to / 16 != 0 ? MoveAnnotations.Pawn | MoveAnnotations.Capture :
                                         MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.Promotion));
@@ -202,7 +202,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             cells[fromSquare] = 0;
                             cells[to + 16] = 0;
                             cells[to] = (byte)Piece.BlackPawn;
-                            if (!Attacks.IsSquareAttackedByWhite(cells, blackKing))
+                            if (!cells.IsSquareAttackedByWhite(blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to,
                                     MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
                             cells[fromSquare] = (byte)Piece.BlackPawn;
@@ -223,7 +223,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = 0;
                             cells[to] = (byte)Piece.BlackPawn;
-                            if (!Attacks.IsSquareAttackedByWhite(cells, blackKing))
+                            if (!cells.IsSquareAttackedByWhite(blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to,
                                     to / 16 != 0 ? MoveAnnotations.Pawn | MoveAnnotations.Capture :
                                         MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.Promotion));
@@ -238,7 +238,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             cells[fromSquare] = 0;
                             cells[to] = (byte)Piece.BlackPawn;
                             cells[to + 16] = 0;
-                            if (!Attacks.IsSquareAttackedByWhite(cells, blackKing))
+                            if (!cells.IsSquareAttackedByWhite(blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to,
                                     MoveAnnotations.Pawn | MoveAnnotations.Capture | MoveAnnotations.EnPassant));
                             cells[fromSquare] = (byte)Piece.BlackPawn;
