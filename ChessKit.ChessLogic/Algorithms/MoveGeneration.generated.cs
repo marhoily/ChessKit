@@ -9,15 +9,15 @@ namespace ChessKit.ChessLogic.Algorithms
 {
     static partial class MoveGeneration
     {
-        public static void GenerateMoves(byte[] _cells, 
-			 int _whiteKingPosition, int _blackKingPosition, Piece piece, int fromSquare,
+        public static void GenerateMoves(byte[] cells, 
+			 int whiteKing, int blackKing, Piece piece, int fromSquare,
              int? enPassantFile, Castlings castlingAvailability, List<GeneratedMove> collector)
         {
             switch (piece)
             {
                 #region ' White Pawn '
                 case Piece.WhitePawn:
-                    GenerateWhitePawnMoves(_cells, _whiteKingPosition,fromSquare, enPassantFile, collector);
+                    GenerateWhitePawnMoves(cells, whiteKing,fromSquare, enPassantFile, collector);
                     break;
                 #endregion
 
@@ -25,96 +25,96 @@ namespace ChessKit.ChessLogic.Algorithms
                 case Piece.WhiteBishop:
                     for (var to = fromSquare + 17; (to & 0x88) == 0; to += 17)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteBishop;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
-                            _cells[fromSquare] = (byte)Piece.WhiteBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteBishop;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteBishop;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteBishop;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -15; (to & 0x88) == 0; to += -15)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteBishop;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
-                            _cells[fromSquare] = (byte)Piece.WhiteBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteBishop;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteBishop;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteBishop;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -17; (to & 0x88) == 0; to += -17)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteBishop;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
-                            _cells[fromSquare] = (byte)Piece.WhiteBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteBishop;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteBishop;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteBishop;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + 15; (to & 0x88) == 0; to += 15)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteBishop;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
-                            _cells[fromSquare] = (byte)Piece.WhiteBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteBishop;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteBishop;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteBishop;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
@@ -128,24 +128,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 33;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                         }
                     }
@@ -153,24 +153,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 31;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                         }
                     }
@@ -178,24 +178,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -31;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                         }
                     }
@@ -203,24 +203,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -33;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                         }
                     }
@@ -228,24 +228,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 18;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                         }
                     }
@@ -253,24 +253,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 14;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                         }
                     }
@@ -278,24 +278,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -14;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                         }
                     }
@@ -303,24 +303,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -18;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.WhiteKnight;
+                                if (!IsAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.WhiteKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.WhiteKnight;
                             }
                         }
                     }
@@ -331,96 +331,96 @@ namespace ChessKit.ChessLogic.Algorithms
                 case Piece.WhiteRook:
                     for (var to = fromSquare + 16; (to & 0x88) == 0; to += 16)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteRook;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
-                            _cells[fromSquare] = (byte)Piece.WhiteRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteRook;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteRook;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteRook;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + 1; (to & 0x88) == 0; to += 1)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteRook;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
-                            _cells[fromSquare] = (byte)Piece.WhiteRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteRook;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteRook;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteRook;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -16; (to & 0x88) == 0; to += -16)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteRook;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
-                            _cells[fromSquare] = (byte)Piece.WhiteRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteRook;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteRook;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteRook;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -1; (to & 0x88) == 0; to += -1)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteRook;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
-                            _cells[fromSquare] = (byte)Piece.WhiteRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteRook;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteRook;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteRook;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
@@ -432,192 +432,192 @@ namespace ChessKit.ChessLogic.Algorithms
                 case Piece.WhiteQueen:
                     for (var to = fromSquare + 16; (to & 0x88) == 0; to += 16)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + 1; (to & 0x88) == 0; to += 1)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -16; (to & 0x88) == 0; to += -16)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -1; (to & 0x88) == 0; to += -1)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + 17; (to & 0x88) == 0; to += 17)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -15; (to & 0x88) == 0; to += -15)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -17; (to & 0x88) == 0; to += -17)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + 15; (to & 0x88) == 0; to += 15)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(_cells, _whiteKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.WhiteQueen;
+                            if (!IsAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.WhiteQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.WhiteQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
@@ -631,20 +631,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 16;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                         }
                     }
@@ -652,20 +652,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 17;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                         }
                     }
@@ -673,20 +673,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 1;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                         }
                     }
@@ -694,20 +694,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -15;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                         }
                     }
@@ -715,20 +715,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -16;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                         }
                     }
@@ -736,20 +736,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -17;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                         }
                     }
@@ -757,20 +757,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -1;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                         }
                     }
@@ -778,30 +778,30 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 15;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.WhiteKing;
+                                cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                         }
                     }
-                    GenerateWhiteCastlingMoves(_cells, fromSquare, castlingAvailability, collector);
+                    GenerateWhiteCastlingMoves(cells, fromSquare, castlingAvailability, collector);
                     break;
                 #endregion
 
                 #region ' Black Pawn '
                 case Piece.BlackPawn:
-                    GenerateBlackPawnMoves(_cells, _blackKingPosition,fromSquare, enPassantFile, collector);
+                    GenerateBlackPawnMoves(cells, blackKing,fromSquare, enPassantFile, collector);
                     break;
                 #endregion
 
@@ -809,96 +809,96 @@ namespace ChessKit.ChessLogic.Algorithms
                 case Piece.BlackBishop:
                     for (var to = fromSquare + 17; (to & 0x88) == 0; to += 17)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackBishop;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
-                            _cells[fromSquare] = (byte)Piece.BlackBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackBishop;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackBishop;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackBishop;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -15; (to & 0x88) == 0; to += -15)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackBishop;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
-                            _cells[fromSquare] = (byte)Piece.BlackBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackBishop;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackBishop;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackBishop;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -17; (to & 0x88) == 0; to += -17)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackBishop;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
-                            _cells[fromSquare] = (byte)Piece.BlackBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackBishop;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackBishop;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackBishop;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + 15; (to & 0x88) == 0; to += 15)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackBishop;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
-                            _cells[fromSquare] = (byte)Piece.BlackBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackBishop;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackBishop;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackBishop;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackBishop;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
@@ -912,24 +912,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 33;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                         }
                     }
@@ -937,24 +937,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 31;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                         }
                     }
@@ -962,24 +962,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -31;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                         }
                     }
@@ -987,24 +987,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -33;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                         }
                     }
@@ -1012,24 +1012,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 18;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                         }
                     }
@@ -1037,24 +1037,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 14;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                         }
                     }
@@ -1062,24 +1062,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -14;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                         }
                     }
@@ -1087,24 +1087,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -18;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                _cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                cells[to] = (byte)Piece.BlackKnight;
+                                if (!IsAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
-                                _cells[to] = toPiece;
-                                _cells[fromSquare] = (byte)Piece.BlackKnight;
+                                cells[to] = toPiece;
+                                cells[fromSquare] = (byte)Piece.BlackKnight;
                             }
                         }
                     }
@@ -1115,96 +1115,96 @@ namespace ChessKit.ChessLogic.Algorithms
                 case Piece.BlackRook:
                     for (var to = fromSquare + 16; (to & 0x88) == 0; to += 16)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackRook;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
-                            _cells[fromSquare] = (byte)Piece.BlackRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackRook;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackRook;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackRook;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + 1; (to & 0x88) == 0; to += 1)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackRook;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
-                            _cells[fromSquare] = (byte)Piece.BlackRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackRook;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackRook;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackRook;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -16; (to & 0x88) == 0; to += -16)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackRook;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
-                            _cells[fromSquare] = (byte)Piece.BlackRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackRook;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackRook;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackRook;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -1; (to & 0x88) == 0; to += -1)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackRook;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
-                            _cells[fromSquare] = (byte)Piece.BlackRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackRook;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackRook;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackRook;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackRook;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
@@ -1216,192 +1216,192 @@ namespace ChessKit.ChessLogic.Algorithms
                 case Piece.BlackQueen:
                     for (var to = fromSquare + 16; (to & 0x88) == 0; to += 16)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + 1; (to & 0x88) == 0; to += 1)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -16; (to & 0x88) == 0; to += -16)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -1; (to & 0x88) == 0; to += -1)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + 17; (to & 0x88) == 0; to += 17)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -15; (to & 0x88) == 0; to += -15)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + -17; (to & 0x88) == 0; to += -17)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
                     }
                     for (var to = fromSquare + 15; (to & 0x88) == 0; to += 15)
                     {
-                        var toPiece = _cells[to];
+                        var toPiece = cells[to];
                         if (toPiece == 0)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                         }
                         else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                         {
-                            _cells[fromSquare] = (byte)Piece.EmptyCell;
-                            _cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(_cells, _blackKingPosition))
+                            cells[fromSquare] = (byte)Piece.EmptyCell;
+                            cells[to] = (byte)Piece.BlackQueen;
+                            if (!IsAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
-                            _cells[fromSquare] = (byte)Piece.BlackQueen;
-                            _cells[to] = toPiece;
+                            cells[fromSquare] = (byte)Piece.BlackQueen;
+                            cells[to] = toPiece;
                             break;
                         }
                         else break;
@@ -1415,20 +1415,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 16;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                         }
                     }
@@ -1436,20 +1436,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 17;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                         }
                     }
@@ -1457,20 +1457,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 1;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                         }
                     }
@@ -1478,20 +1478,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -15;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                         }
                     }
@@ -1499,20 +1499,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -16;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                         }
                     }
@@ -1520,20 +1520,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -17;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                         }
                     }
@@ -1541,20 +1541,20 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + -1;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                         }
                     }
@@ -1562,24 +1562,24 @@ namespace ChessKit.ChessLogic.Algorithms
                         var to = fromSquare + 15;
                         if ((to & 0x88) == 0)
                         {
-                            var toPiece = _cells[to];
+                            var toPiece = cells[to];
                             if (toPiece == 0)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
-                                _cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(_cells, to))
+                                cells[fromSquare] = (byte)Piece.EmptyCell;
+                                if (!IsAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
-                                _cells[fromSquare] = (byte)Piece.BlackKing;
+                                cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                         }
                     }
-                    GenerateBlackCastlingMoves(_cells, fromSquare, castlingAvailability, collector);
+                    GenerateBlackCastlingMoves(cells, fromSquare, castlingAvailability, collector);
                     break;
                 #endregion
 
