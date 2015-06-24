@@ -55,7 +55,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MoveLegality.generated.cs</LastGenOutput>
     </None>
-    <None Include="Target.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
