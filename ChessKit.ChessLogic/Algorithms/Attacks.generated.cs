@@ -6,7 +6,7 @@ namespace ChessKit.ChessLogic.Algorithms
 {
     static partial class Attacks
     {
-        public static bool IsAttackedByWhite(byte[] cells, int cell)
+        public static bool IsSquareAttackedByWhite(byte[] cells, int cell)
         {
             {
                 var square = cell - 17;
@@ -230,7 +230,7 @@ namespace ChessKit.ChessLogic.Algorithms
             }
             return false;
         }
-        public static bool IsAttackedByBlack(byte[] cells, int cell)
+        public static bool IsSquareAttackedByBlack(byte[] cells, int cell)
         {
             {
                 var square = cell - -15;

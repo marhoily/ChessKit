@@ -30,7 +30,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
                             cells[fromSquare] = (byte)Piece.WhiteBishop;
                             cells[to] = toPiece;
@@ -39,7 +39,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteBishop;
                             cells[to] = toPiece;
@@ -54,7 +54,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
                             cells[fromSquare] = (byte)Piece.WhiteBishop;
                             cells[to] = toPiece;
@@ -63,7 +63,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteBishop;
                             cells[to] = toPiece;
@@ -78,7 +78,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
                             cells[fromSquare] = (byte)Piece.WhiteBishop;
                             cells[to] = toPiece;
@@ -87,7 +87,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteBishop;
                             cells[to] = toPiece;
@@ -102,7 +102,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
                             cells[fromSquare] = (byte)Piece.WhiteBishop;
                             cells[to] = toPiece;
@@ -111,7 +111,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteBishop;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteBishop;
                             cells[to] = toPiece;
@@ -133,7 +133,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -142,7 +142,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -158,7 +158,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -167,7 +167,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -183,7 +183,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -192,7 +192,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -208,7 +208,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -217,7 +217,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -233,7 +233,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -242,7 +242,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -258,7 +258,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -267,7 +267,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -283,7 +283,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -292,7 +292,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -308,7 +308,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -317,7 +317,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.WhiteKnight;
-                                if (!IsAttackedByBlack(cells, whiteKing))
+                                if (!IsSquareAttackedByBlack(cells, whiteKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.WhiteKnight;
@@ -336,7 +336,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
                             cells[fromSquare] = (byte)Piece.WhiteRook;
                             cells[to] = toPiece;
@@ -345,7 +345,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteRook;
                             cells[to] = toPiece;
@@ -360,7 +360,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
                             cells[fromSquare] = (byte)Piece.WhiteRook;
                             cells[to] = toPiece;
@@ -369,7 +369,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteRook;
                             cells[to] = toPiece;
@@ -384,7 +384,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
                             cells[fromSquare] = (byte)Piece.WhiteRook;
                             cells[to] = toPiece;
@@ -393,7 +393,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteRook;
                             cells[to] = toPiece;
@@ -408,7 +408,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
                             cells[fromSquare] = (byte)Piece.WhiteRook;
                             cells[to] = toPiece;
@@ -417,7 +417,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteRook;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteRook;
                             cells[to] = toPiece;
@@ -437,7 +437,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -446,7 +446,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -461,7 +461,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -470,7 +470,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -485,7 +485,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -494,7 +494,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -509,7 +509,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -518,7 +518,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -533,7 +533,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -542,7 +542,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -557,7 +557,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -566,7 +566,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -581,7 +581,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -590,7 +590,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -605,7 +605,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -614,7 +614,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.WhiteQueen;
-                            if (!IsAttackedByBlack(cells, whiteKing))
+                            if (!IsSquareAttackedByBlack(cells, whiteKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.WhiteQueen;
                             cells[to] = toPiece;
@@ -635,14 +635,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
@@ -656,14 +656,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
@@ -677,14 +677,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
@@ -698,14 +698,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
@@ -719,14 +719,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
@@ -740,14 +740,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
@@ -761,14 +761,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
@@ -782,14 +782,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.White)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByBlack(cells, to))
+                                if (!IsSquareAttackedByBlack(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.WhiteKing;
                             }
@@ -814,7 +814,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
                             cells[fromSquare] = (byte)Piece.BlackBishop;
                             cells[to] = toPiece;
@@ -823,7 +823,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
                             cells[fromSquare] = (byte)Piece.BlackBishop;
                             cells[to] = toPiece;
@@ -838,7 +838,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
                             cells[fromSquare] = (byte)Piece.BlackBishop;
                             cells[to] = toPiece;
@@ -847,7 +847,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
                             cells[fromSquare] = (byte)Piece.BlackBishop;
                             cells[to] = toPiece;
@@ -862,7 +862,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
                             cells[fromSquare] = (byte)Piece.BlackBishop;
                             cells[to] = toPiece;
@@ -871,7 +871,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
                             cells[fromSquare] = (byte)Piece.BlackBishop;
                             cells[to] = toPiece;
@@ -886,7 +886,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop));
                             cells[fromSquare] = (byte)Piece.BlackBishop;
                             cells[to] = toPiece;
@@ -895,7 +895,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackBishop;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Bishop | Capture));
                             cells[fromSquare] = (byte)Piece.BlackBishop;
                             cells[to] = toPiece;
@@ -917,7 +917,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -926,7 +926,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -942,7 +942,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -951,7 +951,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -967,7 +967,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -976,7 +976,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -992,7 +992,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -1001,7 +1001,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -1017,7 +1017,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -1026,7 +1026,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -1042,7 +1042,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -1051,7 +1051,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -1067,7 +1067,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -1076,7 +1076,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -1092,7 +1092,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -1101,7 +1101,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
                                 cells[to] = (byte)Piece.BlackKnight;
-                                if (!IsAttackedByWhite(cells, blackKing))
+                                if (!IsSquareAttackedByWhite(cells, blackKing))
                                     collector.Add(new GeneratedMove(fromSquare, to, Knight | Capture));
                                 cells[to] = toPiece;
                                 cells[fromSquare] = (byte)Piece.BlackKnight;
@@ -1120,7 +1120,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
                             cells[fromSquare] = (byte)Piece.BlackRook;
                             cells[to] = toPiece;
@@ -1129,7 +1129,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
                             cells[fromSquare] = (byte)Piece.BlackRook;
                             cells[to] = toPiece;
@@ -1144,7 +1144,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
                             cells[fromSquare] = (byte)Piece.BlackRook;
                             cells[to] = toPiece;
@@ -1153,7 +1153,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
                             cells[fromSquare] = (byte)Piece.BlackRook;
                             cells[to] = toPiece;
@@ -1168,7 +1168,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
                             cells[fromSquare] = (byte)Piece.BlackRook;
                             cells[to] = toPiece;
@@ -1177,7 +1177,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
                             cells[fromSquare] = (byte)Piece.BlackRook;
                             cells[to] = toPiece;
@@ -1192,7 +1192,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook));
                             cells[fromSquare] = (byte)Piece.BlackRook;
                             cells[to] = toPiece;
@@ -1201,7 +1201,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackRook;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Rook | Capture));
                             cells[fromSquare] = (byte)Piece.BlackRook;
                             cells[to] = toPiece;
@@ -1221,7 +1221,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1230,7 +1230,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1245,7 +1245,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1254,7 +1254,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1269,7 +1269,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1278,7 +1278,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1293,7 +1293,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1302,7 +1302,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1317,7 +1317,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1326,7 +1326,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1341,7 +1341,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1350,7 +1350,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1365,7 +1365,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1374,7 +1374,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1389,7 +1389,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1398,7 +1398,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.BlackQueen;
-                            if (!IsAttackedByWhite(cells, blackKing))
+                            if (!IsSquareAttackedByWhite(cells, blackKing))
                                 collector.Add(new GeneratedMove(fromSquare, to, Queen | Capture));
                             cells[fromSquare] = (byte)Piece.BlackQueen;
                             cells[to] = toPiece;
@@ -1419,14 +1419,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
@@ -1440,14 +1440,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
@@ -1461,14 +1461,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
@@ -1482,14 +1482,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
@@ -1503,14 +1503,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
@@ -1524,14 +1524,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
@@ -1545,14 +1545,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
@@ -1566,14 +1566,14 @@ namespace ChessKit.ChessLogic.Algorithms
                             if (toPiece == 0)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
                             else if ((Color)(toPiece & (byte)Color.Black) != Color.Black)
                             {
                                 cells[fromSquare] = (byte)Piece.EmptyCell;
-                                if (!IsAttackedByWhite(cells, to))
+                                if (!IsSquareAttackedByWhite(cells, to))
                                     collector.Add(new GeneratedMove(fromSquare, to, King | Capture));
                                 cells[fromSquare] = (byte)Piece.BlackKing;
                             }
