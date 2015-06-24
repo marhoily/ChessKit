@@ -10,14 +10,13 @@
 using System.Collections.Generic;
 using ChessKit.ChessLogic.Primitives;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
-//using static ChessKit.ChessLogic.Algorithms.Attacks;
 
 namespace ChessKit.ChessLogic.Algorithms
 {
     static partial class MoveGeneration
     {
         public static void GenerateMoves(byte[] cells, 
-			 int whiteKing, int blackKing, Piece piece, int fromSquare,
+			 int whiteKingSquare, int blackKingSquare, Piece piece, int fromSquare,
              int? enPassantFile, Castlings castlingAvailability, List<GeneratedMove> collector)
         {
             switch (piece)
@@ -43,7 +42,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                            if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>King))
+                            if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>KingSquare))
                                 collector.Add(new GeneratedMove(fromSquare, to, <#=p.PieceType#>));
                             cells[fromSquare] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             cells[to] = toPiece;
@@ -52,7 +51,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                            if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>King))
+                            if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>KingSquare))
                                 collector.Add(new GeneratedMove(fromSquare, to, <#=p.PieceType#> | Capture));
                             cells[fromSquare] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             cells[to] = toPiece;
@@ -66,7 +65,7 @@ namespace ChessKit.ChessLogic.Algorithms
         else if (p.PieceType == PieceType.Pawn)
         {
 #>
-                    Generate<#=p.Color#>PawnMoves(cells, <#=lowerColor#>King,fromSquare, enPassantFile, collector);
+                    Generate<#=p.Color#>PawnMoves(cells, <#=lowerColor#>KingSquare, fromSquare, enPassantFile, collector);
 <#
         }
         else // Non-slider move
@@ -88,7 +87,7 @@ namespace ChessKit.ChessLogic.Algorithms
                                 {
 #>
                                 cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                                if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>King))
+                                if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>KingSquare))
 <#
                                 }
                                 else
@@ -117,7 +116,7 @@ namespace ChessKit.ChessLogic.Algorithms
                                 {
 #>
                                 cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                                if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>King))
+                                if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>KingSquare))
 <#
                                 }
                                 else
