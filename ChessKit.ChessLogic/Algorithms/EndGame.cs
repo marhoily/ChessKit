@@ -20,18 +20,18 @@ namespace ChessKit.ChessLogic.Algorithms
             var prev = legalMove.OriginalPosition;
             var piece = legalMove.Piece;
             var obs = legalMove.Annotations;
-            var color = prev.Core.ActiveColor;
+            var color = prev.Core.Turn;
             var tempPosition = new Position(core, 0, 0, 0, legalMove);
 
             var newHalfMoveClock =
                 piece == PieceType.Pawn || (obs & MoveAnnotations.Capture) != 0
                     ? 0
-                    : prev.HalfMoveClock + 1;
+                    : prev.FiftyMovesClock + 1;
 
             var newMoveNumber =
-                prev.FullMoveNumber + (color == Color.Black ? 1 : 0);
+                prev.MoveNumber + (color == Color.Black ? 1 : 0);
 
-            var isCheck = core.IsInCheck(core.ActiveColor);
+            var isCheck = core.IsInCheck(core.Turn);
             var noMoves = tempPosition.GetAllLegalMoves().Count == 0;
 
             var newState = default(GameStates);

@@ -20,8 +20,8 @@ namespace ChessKit.ChessLogic.Algorithms
         {
             if (position == null) throw new ArgumentNullException(nameof(position));
             var sb = new StringBuilder(5);
-            sb.Append(position.FullMoveNumber.ToString(CultureInfo.InvariantCulture));
-            if (position.Core.ActiveColor == Color.White)
+            sb.Append(position.MoveNumber.ToString(CultureInfo.InvariantCulture));
+            if (position.Core.Turn == Color.White)
             {
                 sb.Append('.');
             }
@@ -173,9 +173,9 @@ namespace ChessKit.ChessLogic.Algorithms
             if (san == null) throw new ArgumentNullException(nameof(san));
 
             if (san == "O-O")
-                return position.ValidateLegal(Move.Parse(position.Core.ActiveColor == Color.White ? "e1-g1" : "e8-g8"));
+                return position.ValidateLegal(Move.Parse(position.Core.Turn == Color.White ? "e1-g1" : "e8-g8"));
             if (san == "O-O-O")
-                return position.ValidateLegal(Move.Parse(position.Core.ActiveColor == Color.White ? "e1-c1" : "e8-c8"));
+                return position.ValidateLegal(Move.Parse(position.Core.Turn == Color.White ? "e1-c1" : "e8-c8"));
 
             var index = san.Length - 1;
             // remove chess and checkmate representation (if any)

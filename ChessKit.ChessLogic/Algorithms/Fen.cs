@@ -17,12 +17,12 @@ namespace ChessKit.ChessLogic.Algorithms
             var offset = 0;
             try
             {
-                var cells = LoadPiecePlacementSection(fen, ref offset);
-                var color = LoadActiveColorSection(fen, ref offset);
-                var castling = LoadCastlingAvailabilitySection(fen, ref offset);
-                var enPassant = LoadEnPassantSection(fen, ref offset);
-                var halfmoveClock = LoadHalfmoveClockSection(fen, ref offset);
-                var moveNumber = LoadFullmoveNumberSection(fen, ref offset);
+                var cells = PiecePlacement(fen, ref offset);
+                var color = ActiveColor(fen, ref offset);
+                var castling = CastlingAvailability(fen, ref offset);
+                var enPassant = EnPassant(fen, ref offset);
+                var halfmoveClock = HalfmoveClock(fen, ref offset);
+                var moveNumber = FullmoveNumber(fen, ref offset);
                 var whiteKing = Coordinates.All.SingleOrDefault(p => ((Piece)cells[p]) == Piece.WhiteKing);
                 var blackKing = Coordinates.All.SingleOrDefault(p => ((Piece)cells[p]) == Piece.BlackKing);
                 return new Position(
@@ -35,7 +35,7 @@ namespace ChessKit.ChessLogic.Algorithms
             }
         }
 
-        private static byte[] LoadPiecePlacementSection(string fen, ref int i)
+        private static byte[] PiecePlacement(string fen, ref int i)
         {
             var res = new byte[128];
             for (var sq = 63;; i++)
@@ -56,7 +56,7 @@ namespace ChessKit.ChessLogic.Algorithms
             return res;
         }
 
-        private static Color LoadActiveColorSection(string fen, ref int i)
+        private static Color ActiveColor(string fen, ref int i)
         {
             var res = fen[i++].ParseColor();
             if (fen[i] != ' ')
@@ -65,7 +65,7 @@ namespace ChessKit.ChessLogic.Algorithms
             return res;
         }
 
-        private static Castlings LoadCastlingAvailabilitySection(string fen, ref int i)
+        private static Castlings CastlingAvailability(string fen, ref int i)
         {
             var flags = default(Castlings);
             for (;; i++)
@@ -84,7 +84,7 @@ namespace ChessKit.ChessLogic.Algorithms
             return flags;
         }
 
-        private static int? LoadEnPassantSection(string fen, ref int i)
+        private static int? EnPassant(string fen, ref int i)
         {
             int? res = null;
             if (fen[i] != '-')
@@ -96,7 +96,7 @@ namespace ChessKit.ChessLogic.Algorithms
             return res;
         }
 
-        private static int LoadHalfmoveClockSection(string fen, ref int i)
+        private static int HalfmoveClock(string fen, ref int i)
         {
             var res = 0;
             for (;; i++)
@@ -109,7 +109,7 @@ namespace ChessKit.ChessLogic.Algorithms
             return res;
         }
 
-        private static int LoadFullmoveNumberSection(string fen, ref int i)
+        private static int FullmoveNumber(string fen, ref int i)
         {
             var res = 0;
             for (; i < fen.Length; i++)
@@ -194,7 +194,7 @@ namespace ChessKit.ChessLogic.Algorithms
             }
 
             fen.Append(' ');
-            fen.Append(position.Core.ActiveColor == Color.White ? 'w' : 'b');
+            fen.Append(position.Core.Turn == Color.White ? 'w' : 'b');
 
             fen.Append(' ');
             var castling = position.Core.CastlingAvailability;
@@ -218,14 +218,14 @@ namespace ChessKit.ChessLogic.Algorithms
             else
             {
                 fen.Append("abcdefgh"[position.Core.EnPassant.GetValueOrDefault()]);
-                fen.Append(position.Core.ActiveColor == Color.White ? '6' : '3');
+                fen.Append(position.Core.Turn == Color.White ? '6' : '3');
             }
 
             fen.Append(' ');
-            fen.Append(position.HalfMoveClock);
+            fen.Append(position.FiftyMovesClock);
 
             fen.Append(' ');
-            fen.Append(position.FullMoveNumber);
+            fen.Append(position.MoveNumber);
 
             return fen.ToString();
         }

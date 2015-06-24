@@ -10,10 +10,10 @@ namespace ChessKit.ChessLogic
         public PositionCore Core { get; }
 
         /// <summary>50 moves rule counter</summary>
-        public int HalfMoveClock { get; }
+        public int FiftyMovesClock { get; }
 
         /// <summary>Number of full moves (white, then black) counted</summary>
-        public int FullMoveNumber { get; }
+        public int MoveNumber { get; }
 
         /// <summary>Properties of the position like check, mate and stalemate</summary>
         public GameStates Properties { get; }
@@ -22,11 +22,11 @@ namespace ChessKit.ChessLogic
         /// some other position, -or- ...</summary>
         public LegalMove Move { get; }
 
-        public Position(PositionCore core, int halfMoveClock, int fullMoveNumber, GameStates properties, LegalMove move)
+        public Position(PositionCore core, int fiftyMovesClock, int moveNumber, GameStates properties, LegalMove move)
         {
             Core = core;
-            HalfMoveClock = halfMoveClock;
-            FullMoveNumber = fullMoveNumber;
+            FiftyMovesClock = fiftyMovesClock;
+            MoveNumber = moveNumber;
             Properties = properties;
             Move = move;
         }

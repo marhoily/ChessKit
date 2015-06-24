@@ -33,7 +33,7 @@ namespace ChessKit.ChessLogic.Algorithms
                 // But only if theres actually a pawn ready to capture it. 
                 // Legality of the potential capture is irrelevant.
                 var enpSquare = 0;
-                switch (position.ActiveColor) {
+                switch (position.Turn) {
                     case Color.White: enpSquare = 4*16; break;
                     case Color.Black: enpSquare = 3*16; break;
                 }
@@ -42,7 +42,7 @@ namespace ChessKit.ChessLogic.Algorithms
                     result ^= keys[772 + position.EnPassant.Value];
             }
 
-            if (position.ActiveColor == Color.White)
+            if (position.Turn == Color.White)
                 result ^= keys[780];
 
             return result;

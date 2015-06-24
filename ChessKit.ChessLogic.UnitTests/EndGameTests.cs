@@ -22,29 +22,29 @@ namespace ChessKit.ChessLogic.UnitTests
         [Fact]
         public void Fifty_moves_rule_clock_increments_after_move() =>
             Play(Board.StartPosition, "g1-f3")
-                .HalfMoveClock.Should().Be(1);
+                .FiftyMovesClock.Should().Be(1);
 
         [Fact]
         public void Fifty_moves_rule_clock_resets_after_pawn_advance() =>
             Play(Board.StartPosition, "g1-f3", "e7-e5")
-                .HalfMoveClock.Should().Be(0);
+                .FiftyMovesClock.Should().Be(0);
 
         [Fact]
         public void Fifty_moves_rule_clock_resets_after_pawn_capture() =>
             Play(Board.StartPosition, 
                 "e2-e4", "d7-d5", "g1-f3","d5-e4")
-                .HalfMoveClock.Should().Be(0);
+                .FiftyMovesClock.Should().Be(0);
 
         [Fact]
         public void Fifty_moves_rule_clock_resets_after_capture() =>
             Play(Board.StartPosition, 
                 "e2-e4", "d7-d5", "e4-d5", "d8-d5")
-                .HalfMoveClock.Should().Be(0);
+                .FiftyMovesClock.Should().Be(0);
 
         [Fact]
         public void Full_moves_clock_does_not_increment_after_white_move() =>
             Play(Board.StartPosition, "e2-e4")
-                .FullMoveNumber.Should().Be(1);
+                .MoveNumber.Should().Be(1);
 
         [Fact]
         public void Full_moves_clock_does_increment_after_black_move() =>

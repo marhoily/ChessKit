@@ -38,7 +38,7 @@ namespace ChessKit.ChessLogic.Algorithms
 
             // Side to move?
             var color = piece.Color();
-            if (color != source.Core.ActiveColor)
+            if (color != source.Core.Turn)
             {
                 notes = (MoveAnnotations)piece.PieceType() | WrongSideToMove;
                 return new IllegalMove(move, source, notes);
@@ -126,7 +126,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             break;
                     }
             }
-            var isUnderCheck = source.Core.ActiveColor == Color.White
+            var isUnderCheck = source.Core.Turn == Color.White
                 ? cells.IsSquareAttackedByBlack(whiteKingSquare)
                 : cells.IsSquareAttackedByWhite(blackKingSquare);
 
@@ -138,14 +138,12 @@ namespace ChessKit.ChessLogic.Algorithms
                             & ~KilledAvailability(moveTo)
                             & ~KilledAvailability(moveFrom);
 
-            var sideOnMove = color.Invert();
-
             // ---------------- ---------- ---------------------
             if ((notes & AllErrors) != 0)
                 return new IllegalMove(move, source, notes);
 
             var positionCore = new PositionCore(
-                cells, sideOnMove, castlings, enPassantFile,
+                cells, color.Invert(), castlings, enPassantFile,
                 whiteKingSquare, blackKingSquare);
             var legalMove = new LegalMove(
                 move, source, positionCore, notes);

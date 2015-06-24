@@ -9,13 +9,13 @@ namespace ChessKit.ChessLogic.Algorithms
         static List<GeneratedMove> InternalGetLegalMoves(this Position position)
         {
             var res = new List<GeneratedMove>(50);
-            var sideOnMove = position.Core.ActiveColor;
+            var turn = position.Core.Turn;
             for (var moveFrom = 0; moveFrom < 64; moveFrom++)
             {
                 var moveFromSq = moveFrom + (moveFrom & ~7);
                 var piece =(Piece) position.Core.Cells[moveFromSq];
                 if (piece == 0) continue;
-                if (piece.Color() != sideOnMove) continue;
+                if (piece.Color() != turn) continue;
                 MoveGeneration.GenerateMoves(position.Core.Cells, 
                     position.Core.WhiteKing, position.Core.BlackKing, 
                     piece, moveFromSq, position.Core.EnPassant, 
@@ -25,7 +25,7 @@ namespace ChessKit.ChessLogic.Algorithms
         }
         static List<GeneratedMove> InternalGetLegalMoves(this Position position, int moveFrom)
         {
-            var sideToMove = position.Core.ActiveColor;
+            var sideToMove = position.Core.Turn;
             var piece = (Piece)position.Core.Cells[moveFrom];
             if (piece == Piece.EmptyCell) return new List<GeneratedMove>();
             if (piece.Color() != sideToMove) return new List<GeneratedMove>();

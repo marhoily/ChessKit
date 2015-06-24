@@ -14,7 +14,7 @@ namespace ChessKit.ChessLogic
         public byte[] Cells { get; }
 
         /// <summary>The color of the side that makes the next move</summary>
-        public Color ActiveColor { get; }
+        public Color Turn { get; }
 
         /// <summary>Castlings available to the both sides
         /// (one that changes when they move their kings/rooks)</summary>
@@ -27,10 +27,10 @@ namespace ChessKit.ChessLogic
         public int WhiteKing { get; }
         public int BlackKing { get; }
 
-        public PositionCore(byte[] cells, Color activeColor, Castlings castlingAvailability, int? enPassant, int whiteKing, int blackKing)
+        public PositionCore(byte[] cells, Color turn, Castlings castlingAvailability, int? enPassant, int whiteKing, int blackKing)
         {
             Cells = cells;
-            ActiveColor = activeColor;
+            Turn = turn;
             CastlingAvailability = castlingAvailability;
             EnPassant = enPassant;
             WhiteKing = whiteKing;
@@ -49,7 +49,7 @@ namespace ChessKit.ChessLogic
                 if (Cells[sq] != other.Cells[sq])
                     return false;
             }
-            return ActiveColor == other.ActiveColor &&
+            return Turn == other.Turn &&
                    CastlingAvailability == other.CastlingAvailability && 
                    EnPassant == other.EnPassant;
         }
