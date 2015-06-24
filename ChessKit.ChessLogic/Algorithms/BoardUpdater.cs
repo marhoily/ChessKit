@@ -8,13 +8,13 @@ namespace ChessKit.ChessLogic.Algorithms
     {
         private const int BytesCount = 128;
 
-        public static AnalyzedMove MakeMove(Position src, Move move)
+        public static AnalyzedMove MakeMove(Position source, Move move)
         {
-            var whiteKingSquare = src.Core.WhiteKing;
-            var blackKingSquare = src.Core.BlackKing;
+            var whiteKingSquare = source.Core.WhiteKing;
+            var blackKingSquare = source.Core.BlackKing;
 
             var cells = new byte[BytesCount];
-            var sourceCells = src.Core.Squares;
+            var sourceCells = source.Core.Squares;
             Buffer.BlockCopy(sourceCells, 0, cells, 0, BytesCount);
 
             MoveAnnotations notes;
@@ -24,15 +24,15 @@ namespace ChessKit.ChessLogic.Algorithms
             if (piece == Piece.EmptyCell)
             {
                 notes = MoveAnnotations.EmptyCell;
-                return new IllegalMove(move, src, notes);
+                return new IllegalMove(move, source, notes);
             }
 
             // Side to move?
             var color = piece.Color();
-            if (color != src.Core.ActiveColor)
+            if (color != source.Core.ActiveColor)
             {
                 notes = (MoveAnnotations)piece.PieceType() | MoveAnnotations.WrongSideToMove;
-                return new IllegalMove(move, src, notes); 
+                return new IllegalMove(move, source, notes); 
             }
 
             // Move to occupied cell?
@@ -41,20 +41,20 @@ namespace ChessKit.ChessLogic.Algorithms
             if (toPiece != Piece.EmptyCell && toPiece.Color() == color)
             {
                 notes = (MoveAnnotations)piece.PieceType() | MoveAnnotations.ToOccupiedCell;
-                return new IllegalMove(move, src, notes);
+                return new IllegalMove(move, source, notes);
             }
             notes = MoveLegality.ValidateMove(cells, piece,
-                moveFrom, moveTo, toPiece, src.Core.CastlingAvailability);
+                moveFrom, moveTo, toPiece, source.Core.CastlingAvailability);
             if (toPiece != Piece.EmptyCell) notes |= MoveAnnotations.Capture;
             // ---------------- SetupBoard ---------------------
             if ((notes & MoveAnnotations.AllErrors) != 0)
-                return new IllegalMove(move, src, notes);
+                return new IllegalMove(move, source, notes);
             if ((notes & MoveAnnotations.EnPassant) != 0)
             {
-                if (src.Core.EnPassant != moveTo % 16)
+                if (source.Core.EnPassant != moveTo % 16)
                 {
                     notes |= MoveAnnotations.HasNoEnPassant;
-                    return new IllegalMove(move, src, notes);
+                    return new IllegalMove(move, source, notes);
                 }
             }
             else if ((notes & MoveAnnotations.Promotion) != 0)
@@ -116,7 +116,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         break;
                 }
             }
-            var isUnderCheck = src.Core.ActiveColor == Color.White
+            var isUnderCheck = source.Core.ActiveColor == Color.White
                 ? cells.IsSquareAttackedByBlack(whiteKingSquare)
                 : cells.IsSquareAttackedByWhite(blackKingSquare);
 
@@ -124,7 +124,7 @@ namespace ChessKit.ChessLogic.Algorithms
             {
                 notes |= MoveAnnotations.MoveToCheck;
             }
-            var castlings = src.Core.CastlingAvailability
+            var castlings = source.Core.CastlingAvailability
               & ~KilledAvailability(moveTo)
               & ~KilledAvailability(moveFrom);
 
@@ -132,13 +132,13 @@ namespace ChessKit.ChessLogic.Algorithms
 
             // ---------------- ---------- ---------------------
             if ((notes & MoveAnnotations.AllErrors) != 0)
-                return new IllegalMove(move, src, notes);
+                return new IllegalMove(move, source, notes);
 
             var positionCore = new PositionCore(
                 cells, sideOnMove, castlings, enPassantFile, 
                 whiteKingSquare, blackKingSquare);
             var legalMove = new LegalMove(
-                move, src, positionCore, notes);
+                move, source, positionCore, notes);
             return legalMove;
         }
 
