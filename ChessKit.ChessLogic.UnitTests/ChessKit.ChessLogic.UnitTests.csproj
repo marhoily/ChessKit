@@ -81,7 +81,7 @@
     <Compile Include="GetLegalMovesTests.cs" />
     <Compile Include="MoveLegalityTests.cs" />
     <Compile Include="SanTests.cs" />
-    <Compile Include="ScanningTests.cs" />
+    <Compile Include="AttacksTests.cs" />
     <Compile Include="UpdatePositionTests.cs" />
     <Compile Include="PositionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

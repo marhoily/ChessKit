@@ -47,9 +47,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MoveGeneration.generated.cs</LastGenOutput>
     </None>
-    <None Include="Algorithms\Scanning.tt">
+    <None Include="Algorithms\Attacks.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Scanning.generated.cs</LastGenOutput>
+      <LastGenOutput>Attacks.generated.cs</LastGenOutput>
     </None>
     <None Include="Algorithms\MoveLegality.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -64,7 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CanBeValid.tt</DependentUpon>
     </Compile>
-    <Compile Include="Algorithms\Scanning.cs" />
+    <Compile Include="Algorithms\Attacks.cs" />
     <Compile Include="AnalyzedMove.cs" />
     <Compile Include="IllegalMove.cs" />
     <Compile Include="LegalMove.cs" />
@@ -111,10 +111,10 @@
     <Compile Include="Primitives\Coordinates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Algorithms\San.cs" />
-    <Compile Include="Algorithms\Scanning.generated.cs">
+    <Compile Include="Algorithms\Attacks.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Scanning.tt</DependentUpon>
+      <DependentUpon>Attacks.tt</DependentUpon>
     </Compile>
     <Compile Include="Algorithms\Zobrist.cs" />
   </ItemGroup>
