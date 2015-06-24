@@ -29,7 +29,7 @@ namespace ChessKit.ChessLogic.Primitives
             var y = int.Parse(position[1].ToString(), CultureInfo.InvariantCulture) - 1;
             if (x < 0 || x > 7) return false;
             if (y < 0 || y > 7) return false;
-            result = x + y*16;
+            result = x + y * 16;
             return true;
         }
         /// <summary>Gets all 64 positions on board</summary>
@@ -37,9 +37,8 @@ namespace ChessKit.ChessLogic.Primitives
         {
             get
             {
-                for (var i = 0; i < 8; i++)
-                    for (var j = 0; j < 8; j++)
-                        yield return j + i * 16;
+                for (var i = 0; i < 64; i++)
+                    yield return i + (i & ~7);
             }
         }
 
@@ -49,7 +48,7 @@ namespace ChessKit.ChessLogic.Primitives
         public static char GetFile(this int x) => (char)((x & 7) + 'a');
         public static int GetRank(this int x) => (x >> 4) + 1;
         public static string ToCoordinateString(this int x)
-            => x.GetFile().ToString()+ x.GetRank();
+            => x.GetFile().ToString() + x.GetRank();
 
     }
 }

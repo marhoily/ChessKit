@@ -9,7 +9,7 @@ namespace ChessKit.ChessLogic.Algorithms
     {
         public static string Dump([NotNull] this Position board)
         {
-            if (board == null) throw new ArgumentNullException("board");
+            if (board == null) throw new ArgumentNullException(nameof(board));
             var sb = new StringBuilder(17 * 36);
             sb.AppendLine(" ╔═══╤═══╤═══╤═══╤═══╤═══╤═══╤═══╗");
             sb.AppendLine("8║ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 ║");
