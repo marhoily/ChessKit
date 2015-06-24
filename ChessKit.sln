@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessKit.ChessLogic", "Ches
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessKit.ChessLogic.UnitTests", "ChessKit.ChessLogic.UnitTests\ChessKit.ChessLogic.UnitTests.csproj", "{50D0F271-0B9C-437B-90E4-6AF363748A2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessKit.ChessLogic.Usability", "ChessKit.ChessLogic.Usability\ChessKit.ChessLogic.Usability.csproj", "{E918CEBD-E8D8-4052-A55D-107B896D4019}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{50D0F271-0B9C-437B-90E4-6AF363748A2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50D0F271-0B9C-437B-90E4-6AF363748A2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50D0F271-0B9C-437B-90E4-6AF363748A2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E918CEBD-E8D8-4052-A55D-107B896D4019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E918CEBD-E8D8-4052-A55D-107B896D4019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E918CEBD-E8D8-4052-A55D-107B896D4019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E918CEBD-E8D8-4052-A55D-107B896D4019}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

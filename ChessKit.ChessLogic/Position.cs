@@ -1,3 +1,4 @@
+using ChessKit.ChessLogic.Algorithms;
 using ChessKit.ChessLogic.Primitives;
 
 namespace ChessKit.ChessLogic
@@ -29,6 +30,12 @@ namespace ChessKit.ChessLogic
             MoveNumber = moveNumber;
             Properties = properties;
             Move = move;
+        }
+
+        public Position MakeMove(string algebraicMove)
+        {
+            return this.ParseMoveFromSan(algebraicMove)
+                .ToPosition();
         }
     }
 }
