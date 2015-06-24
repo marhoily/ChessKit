@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace ChessKit.ChessLogic.Algorithms
 {
-    public static class BoardDump
+    public static class Diagnostics
     {
         public static string Dump([NotNull] this Position board)
         {

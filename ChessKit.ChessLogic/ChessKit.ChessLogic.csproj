@@ -85,7 +85,7 @@
       <DependentUpon>MoveGeneration.tt</DependentUpon>
     </Compile>
     <Compile Include="Algorithms\EndGame.cs" />
-    <Compile Include="Algorithms\BoardDump.cs" />
+    <Compile Include="Algorithms\Diagnostics.cs" />
     <Compile Include="Algorithms\MoveLegality.cs" />
     <Compile Include="Algorithms\MoveLegality.generated.cs">
       <AutoGen>True</AutoGen>
