@@ -150,9 +150,9 @@ namespace ChessKit.ChessLogic.Algorithms
             return legalMove;
         }
 
-        private static Castlings KilledAvailability(int pos)
+        private static Castlings KilledAvailability(int touchedSquare)
         {
-            switch (pos)
+            switch (touchedSquare)
             {
                 case S.A1: return Castlings.WQ;
                 case S.E1: return Castlings.White;
