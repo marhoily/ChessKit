@@ -64,7 +64,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CanBeValid.tt</DependentUpon>
     </Compile>
-    <Compile Include="Algorithms\Attacks.cs" />
+    <Compile Include="Algorithms\Attacks.cs">
+      <DependentUpon>Attacks.tt</DependentUpon>
+    </Compile>
     <Compile Include="AnalyzedMove.cs" />
     <Compile Include="IllegalMove.cs" />
     <Compile Include="LegalMove.cs" />
@@ -77,7 +79,9 @@
     </Compile>
     <Compile Include="Board.cs" />
     <Compile Include="Algorithms\Fen.cs" />
-    <Compile Include="Algorithms\MoveGeneration.cs" />
+    <Compile Include="Algorithms\MoveGeneration.cs">
+      <DependentUpon>MoveGeneration.tt</DependentUpon>
+    </Compile>
     <Compile Include="Algorithms\MoveGeneration.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,7 +89,9 @@
     </Compile>
     <Compile Include="Algorithms\EndGame.cs" />
     <Compile Include="Algorithms\Diagnostics.cs" />
-    <Compile Include="Algorithms\MoveLegality.cs" />
+    <Compile Include="Algorithms\MoveLegality.cs">
+      <DependentUpon>MoveLegality.tt</DependentUpon>
+    </Compile>
     <Compile Include="Algorithms\MoveLegality.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
