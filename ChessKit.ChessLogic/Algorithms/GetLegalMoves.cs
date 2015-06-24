@@ -8,7 +8,6 @@ namespace ChessKit.ChessLogic.Algorithms
     {
         static List<GeneratedMove> InternalGetLegalMoves(this Position position)
         {
-            // BUG: Actually creates boards, but only returns moves!
             var res = new List<GeneratedMove>(50);
             var sideOnMove = position.Core.ActiveColor;
             for (var moveFrom = 0; moveFrom < 64; moveFrom++)
