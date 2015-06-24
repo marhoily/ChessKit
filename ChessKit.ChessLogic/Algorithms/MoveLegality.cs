@@ -32,15 +32,15 @@ namespace ChessKit.ChessLogic.Algorithms
                     if (_cells[S.D1] != 0 || _cells[S.B1] != 0) return MoveAnnotations.King | MoveAnnotations.DoesNotJump | MoveAnnotations.WQ;
                     if (_cells[S.C1] != 0) return MoveAnnotations.King | MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.WQ;
                     if ((castlings & Castlings.WQ) == 0) return MoveAnnotations.King | MoveAnnotations.WQ | MoveAnnotations.HasNoCastling;
-                    if (Scanning.IsAttackedByBlack(_cells, S.E1)) return MoveAnnotations.King | MoveAnnotations.CastleFromCheck | MoveAnnotations.WQ;
-                    if (Scanning.IsAttackedByBlack(_cells, S.D1)) return MoveAnnotations.King | MoveAnnotations.CastleThroughCheck | MoveAnnotations.WQ;
+                    if (Attacks.IsAttackedByBlack(_cells, S.E1)) return MoveAnnotations.King | MoveAnnotations.CastleFromCheck | MoveAnnotations.WQ;
+                    if (Attacks.IsAttackedByBlack(_cells, S.D1)) return MoveAnnotations.King | MoveAnnotations.CastleThroughCheck | MoveAnnotations.WQ;
                     return MoveAnnotations.King | MoveAnnotations.WQ;
                 case S.G1: // Kingside
                     if (_cells[S.F1] != 0) return MoveAnnotations.King | MoveAnnotations.DoesNotJump | MoveAnnotations.WK;
                     if (_cells[S.G1] != 0) return MoveAnnotations.King | MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.WK;
                     if ((castlings & Castlings.WK) == 0) return MoveAnnotations.King | MoveAnnotations.WK | MoveAnnotations.HasNoCastling;
-                    if (Scanning.IsAttackedByBlack(_cells, S.E1)) return MoveAnnotations.King | MoveAnnotations.CastleFromCheck | MoveAnnotations.WK;
-                    if (Scanning.IsAttackedByBlack(_cells, S.F1)) return MoveAnnotations.King | MoveAnnotations.CastleThroughCheck | MoveAnnotations.WK;
+                    if (Attacks.IsAttackedByBlack(_cells, S.E1)) return MoveAnnotations.King | MoveAnnotations.CastleFromCheck | MoveAnnotations.WK;
+                    if (Attacks.IsAttackedByBlack(_cells, S.F1)) return MoveAnnotations.King | MoveAnnotations.CastleThroughCheck | MoveAnnotations.WK;
                     return MoveAnnotations.King | MoveAnnotations.WK;
             }
             return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;
@@ -54,15 +54,15 @@ namespace ChessKit.ChessLogic.Algorithms
                     if (_cells[S.D8] != 0 || _cells[S.B8] != 0) return MoveAnnotations.King | MoveAnnotations.DoesNotJump | MoveAnnotations.BQ;
                     if (_cells[S.C8] != 0) return MoveAnnotations.King | MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.BQ;
                     if ((castlings & Castlings.BQ) == 0) return MoveAnnotations.King | MoveAnnotations.BQ | MoveAnnotations.HasNoCastling;
-                    if (Scanning.IsAttackedByWhite(_cells, S.E8)) return MoveAnnotations.King | MoveAnnotations.CastleFromCheck | MoveAnnotations.BQ;
-                    if (Scanning.IsAttackedByWhite(_cells, S.D8)) return MoveAnnotations.King | MoveAnnotations.CastleThroughCheck | MoveAnnotations.BQ;
+                    if (Attacks.IsAttackedByWhite(_cells, S.E8)) return MoveAnnotations.King | MoveAnnotations.CastleFromCheck | MoveAnnotations.BQ;
+                    if (Attacks.IsAttackedByWhite(_cells, S.D8)) return MoveAnnotations.King | MoveAnnotations.CastleThroughCheck | MoveAnnotations.BQ;
                     return MoveAnnotations.King | MoveAnnotations.BQ;
                 case S.G8: // Kingside
                     if (_cells[S.F8] != 0) return MoveAnnotations.King | MoveAnnotations.DoesNotJump | MoveAnnotations.BK;
                     if (_cells[S.G8] != 0) return MoveAnnotations.King | MoveAnnotations.Capture | MoveAnnotations.DoesNotCaptureThisWay | MoveAnnotations.BK;
                     if ((castlings & Castlings.BK) == 0) return MoveAnnotations.King | MoveAnnotations.BK | MoveAnnotations.HasNoCastling;
-                    if (Scanning.IsAttackedByWhite(_cells, S.E8)) return MoveAnnotations.King | MoveAnnotations.CastleFromCheck | MoveAnnotations.BK;
-                    if (Scanning.IsAttackedByWhite(_cells, S.F8)) return MoveAnnotations.King | MoveAnnotations.CastleThroughCheck | MoveAnnotations.BK;
+                    if (Attacks.IsAttackedByWhite(_cells, S.E8)) return MoveAnnotations.King | MoveAnnotations.CastleFromCheck | MoveAnnotations.BK;
+                    if (Attacks.IsAttackedByWhite(_cells, S.F8)) return MoveAnnotations.King | MoveAnnotations.CastleThroughCheck | MoveAnnotations.BK;
                     return MoveAnnotations.King | MoveAnnotations.BK;
             }
             return MoveAnnotations.King | MoveAnnotations.DoesNotMoveThisWay;

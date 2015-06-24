@@ -2,7 +2,7 @@
 
 namespace ChessKit.ChessLogic.Algorithms
 {
-    public static partial class Scanning
+    public static partial class Attacks
     {
         public static bool IsAttackedBy(this PositionCore core, Color side, int square)
         {

@@ -5,7 +5,7 @@ using Xunit;
 
 namespace ChessKit.ChessLogic.UnitTests
 {
-    public sealed class ScanningTests
+    public sealed class AttacksTests
     {
         private static void IsAttackedBy(string fen, string square, Color color, bool expected)
             => fen.ParseFen().Core

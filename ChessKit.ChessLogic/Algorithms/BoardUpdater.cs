@@ -117,8 +117,8 @@ namespace ChessKit.ChessLogic.Algorithms
                 }
             }
             var isUnderCheck = src.Core.ActiveColor == Color.White
-                ? Scanning.IsAttackedByBlack(cells, whiteKingPosition)
-                : Scanning.IsAttackedByWhite(cells, blackKingPosition);
+                ? Attacks.IsAttackedByBlack(cells, whiteKingPosition)
+                : Attacks.IsAttackedByWhite(cells, blackKingPosition);
 
             if (isUnderCheck)
             {

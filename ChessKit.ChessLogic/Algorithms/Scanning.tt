@@ -10,7 +10,7 @@ using static ChessKit.ChessLogic.Primitives.Piece;
 
 namespace ChessKit.ChessLogic.Algorithms
 {
-    static partial class Scanning
+    static partial class Attacks
     {
 <#
 foreach (var color in new []{Color.White, Color.Black})

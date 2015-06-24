@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using ChessKit.ChessLogic.Primitives;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
-using static ChessKit.ChessLogic.Algorithms.Scanning;
+using static ChessKit.ChessLogic.Algorithms.Attacks;
 
 namespace ChessKit.ChessLogic.Algorithms
 {

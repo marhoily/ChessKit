@@ -4,7 +4,7 @@ using static ChessKit.ChessLogic.Primitives.Piece;
 
 namespace ChessKit.ChessLogic.Algorithms
 {
-    static partial class Scanning
+    static partial class Attacks
     {
         public static bool IsAttackedByWhite(byte[] cells, int cell)
         {
