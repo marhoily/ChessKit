@@ -7,15 +7,15 @@ namespace ChessKit.ChessLogic.Algorithms
         public static bool IsSquareAttackedBySide(this PositionCore core, Color side, int square)
         {
             return side == Color.White
-                ? IsSquareAttackedByWhite(core.Squares, square)
-                : IsSquareAttackedByBlack(core.Squares, square);
+                ? IsSquareAttackedByWhite(core.Cells, square)
+                : IsSquareAttackedByBlack(core.Cells, square);
         }
 
         public static bool IsInCheck(this PositionCore core, Color side)
         {
             return side == Color.White
-                ? IsSquareAttackedByBlack(core.Squares, core.WhiteKing)
-                : IsSquareAttackedByWhite(core.Squares, core.BlackKing);
+                ? IsSquareAttackedByBlack(core.Cells, core.WhiteKing)
+                : IsSquareAttackedByWhite(core.Cells, core.BlackKing);
         }
     }
 }

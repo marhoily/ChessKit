@@ -11,7 +11,7 @@ namespace ChessKit.ChessLogic
         /// <summary>An array of the 64 squares the chess board consists of
         /// Note that index 0 corresponds to a8, and NOT a1!
         /// Indexes read left to right, top to bottom!</summary>
-        public byte[] Squares { get; }
+        public byte[] Cells { get; }
 
         /// <summary>The color of the side that makes the next move</summary>
         public Color ActiveColor { get; }
@@ -27,9 +27,9 @@ namespace ChessKit.ChessLogic
         public int WhiteKing { get; }
         public int BlackKing { get; }
 
-        public PositionCore(byte[] squares, Color activeColor, Castlings castlingAvailability, int? enPassant, int whiteKing, int blackKing)
+        public PositionCore(byte[] cells, Color activeColor, Castlings castlingAvailability, int? enPassant, int whiteKing, int blackKing)
         {
-            Squares = squares;
+            Cells = cells;
             ActiveColor = activeColor;
             CastlingAvailability = castlingAvailability;
             EnPassant = enPassant;
@@ -46,7 +46,7 @@ namespace ChessKit.ChessLogic
             for (var i = 0; i < 64; i++)
             {
                 var sq = i + (i & ~7);
-                if (Squares[sq] != other.Squares[sq])
+                if (Cells[sq] != other.Cells[sq])
                     return false;
             }
             return ActiveColor == other.ActiveColor &&

@@ -24,7 +24,7 @@ namespace ChessKit.ChessLogic.Algorithms
             var keys = ZobristKeys;
             var result = 0UL;
 
-            var squares = position.Squares;
+            var squares = position.Cells;
             for (var i = 0; i < 64; i++)
             {
                 var piece = squares[i + (i & ~7)];

@@ -23,7 +23,7 @@ namespace ChessKit.ChessLogic.Algorithms
 
             const int bytesCount = 128;
             var cells = new byte[bytesCount];
-            var sourceCells = source.Core.Squares;
+            var sourceCells = source.Core.Cells;
             Buffer.BlockCopy(sourceCells, 0, cells, 0, bytesCount);
 
             MoveAnnotations notes;

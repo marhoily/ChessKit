@@ -87,14 +87,14 @@ namespace ChessKit.ChessLogic.Algorithms
                 }
                 else
                 {
-                    sb.Append(((Piece) board.Core.Squares[move.Move.FromCell]).GetSymbol());
+                    sb.Append(((Piece) board.Core.Cells[move.Move.FromCell]).GetSymbol());
 
                     // TODO: move should have Piece prop?
                     var disambiguationList = new List<int>(
                         from m in board.GetAllLegalMoves()
                         where m.Move.FromCell != move.Move.FromCell
                               && m.Move.ToCell == move.Move.ToCell
-                              && board.Core.Squares[move.Move.FromCell] == board.Core.Squares[m.Move.FromCell]
+                              && board.Core.Cells[move.Move.FromCell] == board.Core.Cells[m.Move.FromCell]
                         select m.Move.FromCell);
 
                     if (disambiguationList.Count > 0)
@@ -232,7 +232,7 @@ namespace ChessKit.ChessLogic.Algorithms
                 if (m.Move.ToCell == to)
                     if (file == null || file == m.Move.FromCell.GetX())
                         if (rank == null || rank == m.Move.FromCell.GetY())
-                            if (((Piece) board.Core.Squares[m.Move.FromCell]).PieceType() == pieceChar)
+                            if (((Piece) board.Core.Cells[m.Move.FromCell]).PieceType() == pieceChar)
                             {
                                 if (move != null) throw new FormatException("Ambiguity");
                                 move = m;

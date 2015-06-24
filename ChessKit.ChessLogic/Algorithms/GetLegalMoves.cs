@@ -14,10 +14,10 @@ namespace ChessKit.ChessLogic.Algorithms
             for (var moveFrom = 0; moveFrom < 64; moveFrom++)
             {
                 var moveFromSq = moveFrom + (moveFrom & ~7);
-                var piece =(Piece) position.Core.Squares[moveFromSq];
+                var piece =(Piece) position.Core.Cells[moveFromSq];
                 if (piece == 0) continue;
                 if (piece.Color() != sideOnMove) continue;
-                MoveGeneration.GenerateMoves(position.Core.Squares, 
+                MoveGeneration.GenerateMoves(position.Core.Cells, 
                     position.Core.WhiteKing, position.Core.BlackKing, 
                     piece, moveFromSq, position.Core.EnPassant, 
                     position.Core.CastlingAvailability, res);
@@ -27,11 +27,11 @@ namespace ChessKit.ChessLogic.Algorithms
         static List<GeneratedMove> InnternalGetLegalMoves(this Position position, int moveFrom)
         {
             var sideOnMove = position.Core.ActiveColor;
-            var piece = (Piece)position.Core.Squares[moveFrom];
+            var piece = (Piece)position.Core.Cells[moveFrom];
             if (piece == Piece.EmptyCell) return new List<GeneratedMove>();
             if (piece.Color() != sideOnMove) return new List<GeneratedMove>();
             var res = new List<GeneratedMove>(28);
-            MoveGeneration.GenerateMoves(position.Core.Squares,
+            MoveGeneration.GenerateMoves(position.Core.Cells,
                 position.Core.WhiteKing, position.Core.BlackKing,
                 piece, moveFrom, position.Core.EnPassant,
                 position.Core.CastlingAvailability, res);

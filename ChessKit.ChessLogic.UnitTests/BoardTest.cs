@@ -98,8 +98,8 @@ namespace ChessKit.ChessLogic.UnitTests
 			var expected = Move.Parse(d.Move);
 			if (!d.ExpectedToBeValid) return;
             CanBeValid.CanBeValidMove(
-                board.Core.Squares,
-                (Piece)board.Core.Squares[expected.FromCell],
+                board.Core.Cells,
+                (Piece)board.Core.Cells[expected.FromCell],
 				expected.FromCell,
 				expected.ToCell).Should().BeTrue();
 		}

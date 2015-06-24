@@ -175,7 +175,7 @@ namespace ChessKit.ChessLogic.Algorithms
             {
                 var idx = (sq / 8) * 8 + 7 - sq % 8;
                 idx = idx + (idx & ~7);
-                if (board.Core.Squares[idx] == 0)
+                if (board.Core.Cells[idx] == 0)
                 {
                     empty++;
                     if (0 == sq % 8)
@@ -188,7 +188,7 @@ namespace ChessKit.ChessLogic.Algorithms
                 }
 
                 if (empty != 0) fen.Append((char)('0' + empty));
-                fen.Append(((Piece)board.Core.Squares[idx]).GetSymbol());
+                fen.Append(((Piece)board.Core.Cells[idx]).GetSymbol());
                 empty = 0;
                 if (sq != 0 && sq % 8 == 0) fen.Append('/');
             }

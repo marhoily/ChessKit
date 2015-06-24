@@ -8,25 +8,25 @@ namespace ChessKit.ChessLogic.Primitives
     /// <remarks>http://en.wikipedia.org/wiki/Chess</remarks>
     public static class Coordinates
     {
-        /// <param name="position">"a1" or "A1"</param>
-        public static int ParseCoordinate(this string position)
+        /// <param name="value">"a1" or "A1"</param>
+        public static int ParseCoordinate(this string value)
         {
-            if (position == null) throw new ArgumentNullException(nameof(position));
-            if (position.Length != 2) throw new ArgumentOutOfRangeException(nameof(position));
-            var x = char.ToLower(position[0]) - 'a';
-            var y = int.Parse(position[1].ToString(), CultureInfo.InvariantCulture) - 1;
-            if (x < 0 || x > 7) throw new ArgumentOutOfRangeException(nameof(position));
-            if (y < 0 || y > 7) throw new ArgumentOutOfRangeException(nameof(position));
+            if (value == null) throw new ArgumentNullException(nameof(value));
+            if (value.Length != 2) throw new ArgumentOutOfRangeException(nameof(value));
+            var x = char.ToLower(value[0]) - 'a';
+            var y = int.Parse(value[1].ToString(), CultureInfo.InvariantCulture) - 1;
+            if (x < 0 || x > 7) throw new ArgumentOutOfRangeException(nameof(value));
+            if (y < 0 || y > 7) throw new ArgumentOutOfRangeException(nameof(value));
             return x + y * 16;
         }
 
-        public static bool TryParseCoordinate(this string position, out int result)
+        public static bool TryParseCoordinate(this string value, out int result)
         {
-            if (position == null) throw new ArgumentNullException(nameof(position));
+            if (value == null) throw new ArgumentNullException(nameof(value));
             result = -1;
-            if (position.Length != 2) return false;
-            var x = char.ToLower(position[0]) - 'a';
-            var y = int.Parse(position[1].ToString(), CultureInfo.InvariantCulture) - 1;
+            if (value.Length != 2) return false;
+            var x = char.ToLower(value[0]) - 'a';
+            var y = int.Parse(value[1].ToString(), CultureInfo.InvariantCulture) - 1;
             if (x < 0 || x > 7) return false;
             if (y < 0 || y > 7) return false;
             result = x + y * 16;
