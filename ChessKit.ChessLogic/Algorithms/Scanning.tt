@@ -16,7 +16,7 @@ namespace ChessKit.ChessLogic.Algorithms
 foreach (var color in new []{Color.White, Color.Black})
 {
 #>
-        public static bool IsAttackedBy<#=color#>(byte[] _cells, int cell)
+        public static bool IsAttackedBy<#=color#>(byte[] cells, int cell)
         {
 <#
     foreach (var p in MetaPiece.All) 
@@ -30,7 +30,7 @@ foreach (var color in new []{Color.White, Color.Black})
 #>
             for (var i = cell + <#=delta#>; (i & 0x88) == 0; i += <#=delta#>)
             {
-                var piece = _cells[i];
+                var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) <#=p.Color#><#=p.PieceType#>) return true;
                 break;
@@ -43,7 +43,7 @@ foreach (var color in new []{Color.White, Color.Black})
             {
                 var square = cell - <#=delta#>;
                 if ((square & 0x88) == 0)
-                    if (_cells[square] == (byte) <#=p.Color#><#=p.PieceType#>)
+                    if (cells[square] == (byte) <#=p.Color#><#=p.PieceType#>)
                         return true;
             }
 <#
