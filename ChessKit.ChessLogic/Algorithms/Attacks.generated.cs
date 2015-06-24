@@ -6,42 +6,42 @@ namespace ChessKit.ChessLogic.Algorithms
 {
     static partial class Attacks
     {
-        public static bool IsSquareAttackedByWhite(this byte[] cells, int cell)
+        public static bool IsSquareAttackedByWhite(this byte[] cells, int square)
         {
             {
-                var square = cell - 17;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhitePawn)
+                var sq = square - 17;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhitePawn)
                         return true;
             }
             {
-                var square = cell - 15;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhitePawn)
+                var sq = square - 15;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhitePawn)
                         return true;
             }
-            for (var i = cell + 17; (i & 0x88) == 0; i += 17)
+            for (var i = square + 17; (i & 0x88) == 0; i += 17)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteBishop) return true;
                 break;
             }
-            for (var i = cell + -15; (i & 0x88) == 0; i += -15)
+            for (var i = square + -15; (i & 0x88) == 0; i += -15)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteBishop) return true;
                 break;
             }
-            for (var i = cell + -17; (i & 0x88) == 0; i += -17)
+            for (var i = square + -17; (i & 0x88) == 0; i += -17)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteBishop) return true;
                 break;
             }
-            for (var i = cell + 15; (i & 0x88) == 0; i += 15)
+            for (var i = square + 15; (i & 0x88) == 0; i += 15)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
@@ -49,131 +49,131 @@ namespace ChessKit.ChessLogic.Algorithms
                 break;
             }
             {
-                var square = cell - 33;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKnight)
+                var sq = square - 33;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKnight)
                         return true;
             }
             {
-                var square = cell - 31;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKnight)
+                var sq = square - 31;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKnight)
                         return true;
             }
             {
-                var square = cell - -31;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKnight)
+                var sq = square - -31;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKnight)
                         return true;
             }
             {
-                var square = cell - -33;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKnight)
+                var sq = square - -33;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKnight)
                         return true;
             }
             {
-                var square = cell - 18;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKnight)
+                var sq = square - 18;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKnight)
                         return true;
             }
             {
-                var square = cell - 14;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKnight)
+                var sq = square - 14;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKnight)
                         return true;
             }
             {
-                var square = cell - -14;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKnight)
+                var sq = square - -14;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKnight)
                         return true;
             }
             {
-                var square = cell - -18;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKnight)
+                var sq = square - -18;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKnight)
                         return true;
             }
-            for (var i = cell + 16; (i & 0x88) == 0; i += 16)
+            for (var i = square + 16; (i & 0x88) == 0; i += 16)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteRook) return true;
                 break;
             }
-            for (var i = cell + 1; (i & 0x88) == 0; i += 1)
+            for (var i = square + 1; (i & 0x88) == 0; i += 1)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteRook) return true;
                 break;
             }
-            for (var i = cell + -16; (i & 0x88) == 0; i += -16)
+            for (var i = square + -16; (i & 0x88) == 0; i += -16)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteRook) return true;
                 break;
             }
-            for (var i = cell + -1; (i & 0x88) == 0; i += -1)
+            for (var i = square + -1; (i & 0x88) == 0; i += -1)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteRook) return true;
                 break;
             }
-            for (var i = cell + 16; (i & 0x88) == 0; i += 16)
+            for (var i = square + 16; (i & 0x88) == 0; i += 16)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteQueen) return true;
                 break;
             }
-            for (var i = cell + 1; (i & 0x88) == 0; i += 1)
+            for (var i = square + 1; (i & 0x88) == 0; i += 1)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteQueen) return true;
                 break;
             }
-            for (var i = cell + -16; (i & 0x88) == 0; i += -16)
+            for (var i = square + -16; (i & 0x88) == 0; i += -16)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteQueen) return true;
                 break;
             }
-            for (var i = cell + -1; (i & 0x88) == 0; i += -1)
+            for (var i = square + -1; (i & 0x88) == 0; i += -1)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteQueen) return true;
                 break;
             }
-            for (var i = cell + 17; (i & 0x88) == 0; i += 17)
+            for (var i = square + 17; (i & 0x88) == 0; i += 17)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteQueen) return true;
                 break;
             }
-            for (var i = cell + -15; (i & 0x88) == 0; i += -15)
+            for (var i = square + -15; (i & 0x88) == 0; i += -15)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteQueen) return true;
                 break;
             }
-            for (var i = cell + -17; (i & 0x88) == 0; i += -17)
+            for (var i = square + -17; (i & 0x88) == 0; i += -17)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) WhiteQueen) return true;
                 break;
             }
-            for (var i = cell + 15; (i & 0x88) == 0; i += 15)
+            for (var i = square + 15; (i & 0x88) == 0; i += 15)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
@@ -181,91 +181,91 @@ namespace ChessKit.ChessLogic.Algorithms
                 break;
             }
             {
-                var square = cell - 16;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKing)
+                var sq = square - 16;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKing)
                         return true;
             }
             {
-                var square = cell - 17;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKing)
+                var sq = square - 17;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKing)
                         return true;
             }
             {
-                var square = cell - 1;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKing)
+                var sq = square - 1;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKing)
                         return true;
             }
             {
-                var square = cell - -15;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKing)
+                var sq = square - -15;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKing)
                         return true;
             }
             {
-                var square = cell - -16;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKing)
+                var sq = square - -16;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKing)
                         return true;
             }
             {
-                var square = cell - -17;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKing)
+                var sq = square - -17;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKing)
                         return true;
             }
             {
-                var square = cell - -1;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKing)
+                var sq = square - -1;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKing)
                         return true;
             }
             {
-                var square = cell - 15;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) WhiteKing)
+                var sq = square - 15;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) WhiteKing)
                         return true;
             }
             return false;
         }
-        public static bool IsSquareAttackedByBlack(this byte[] cells, int cell)
+        public static bool IsSquareAttackedByBlack(this byte[] cells, int square)
         {
             {
-                var square = cell - -15;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackPawn)
+                var sq = square - -15;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackPawn)
                         return true;
             }
             {
-                var square = cell - -17;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackPawn)
+                var sq = square - -17;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackPawn)
                         return true;
             }
-            for (var i = cell + 17; (i & 0x88) == 0; i += 17)
+            for (var i = square + 17; (i & 0x88) == 0; i += 17)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackBishop) return true;
                 break;
             }
-            for (var i = cell + -15; (i & 0x88) == 0; i += -15)
+            for (var i = square + -15; (i & 0x88) == 0; i += -15)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackBishop) return true;
                 break;
             }
-            for (var i = cell + -17; (i & 0x88) == 0; i += -17)
+            for (var i = square + -17; (i & 0x88) == 0; i += -17)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackBishop) return true;
                 break;
             }
-            for (var i = cell + 15; (i & 0x88) == 0; i += 15)
+            for (var i = square + 15; (i & 0x88) == 0; i += 15)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
@@ -273,131 +273,131 @@ namespace ChessKit.ChessLogic.Algorithms
                 break;
             }
             {
-                var square = cell - 33;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKnight)
+                var sq = square - 33;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKnight)
                         return true;
             }
             {
-                var square = cell - 31;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKnight)
+                var sq = square - 31;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKnight)
                         return true;
             }
             {
-                var square = cell - -31;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKnight)
+                var sq = square - -31;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKnight)
                         return true;
             }
             {
-                var square = cell - -33;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKnight)
+                var sq = square - -33;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKnight)
                         return true;
             }
             {
-                var square = cell - 18;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKnight)
+                var sq = square - 18;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKnight)
                         return true;
             }
             {
-                var square = cell - 14;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKnight)
+                var sq = square - 14;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKnight)
                         return true;
             }
             {
-                var square = cell - -14;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKnight)
+                var sq = square - -14;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKnight)
                         return true;
             }
             {
-                var square = cell - -18;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKnight)
+                var sq = square - -18;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKnight)
                         return true;
             }
-            for (var i = cell + 16; (i & 0x88) == 0; i += 16)
+            for (var i = square + 16; (i & 0x88) == 0; i += 16)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackRook) return true;
                 break;
             }
-            for (var i = cell + 1; (i & 0x88) == 0; i += 1)
+            for (var i = square + 1; (i & 0x88) == 0; i += 1)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackRook) return true;
                 break;
             }
-            for (var i = cell + -16; (i & 0x88) == 0; i += -16)
+            for (var i = square + -16; (i & 0x88) == 0; i += -16)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackRook) return true;
                 break;
             }
-            for (var i = cell + -1; (i & 0x88) == 0; i += -1)
+            for (var i = square + -1; (i & 0x88) == 0; i += -1)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackRook) return true;
                 break;
             }
-            for (var i = cell + 16; (i & 0x88) == 0; i += 16)
+            for (var i = square + 16; (i & 0x88) == 0; i += 16)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackQueen) return true;
                 break;
             }
-            for (var i = cell + 1; (i & 0x88) == 0; i += 1)
+            for (var i = square + 1; (i & 0x88) == 0; i += 1)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackQueen) return true;
                 break;
             }
-            for (var i = cell + -16; (i & 0x88) == 0; i += -16)
+            for (var i = square + -16; (i & 0x88) == 0; i += -16)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackQueen) return true;
                 break;
             }
-            for (var i = cell + -1; (i & 0x88) == 0; i += -1)
+            for (var i = square + -1; (i & 0x88) == 0; i += -1)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackQueen) return true;
                 break;
             }
-            for (var i = cell + 17; (i & 0x88) == 0; i += 17)
+            for (var i = square + 17; (i & 0x88) == 0; i += 17)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackQueen) return true;
                 break;
             }
-            for (var i = cell + -15; (i & 0x88) == 0; i += -15)
+            for (var i = square + -15; (i & 0x88) == 0; i += -15)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackQueen) return true;
                 break;
             }
-            for (var i = cell + -17; (i & 0x88) == 0; i += -17)
+            for (var i = square + -17; (i & 0x88) == 0; i += -17)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
                 if (piece == (byte) BlackQueen) return true;
                 break;
             }
-            for (var i = cell + 15; (i & 0x88) == 0; i += 15)
+            for (var i = square + 15; (i & 0x88) == 0; i += 15)
             {
                 var piece = cells[i];
                 if (piece == 0) continue;
@@ -405,51 +405,51 @@ namespace ChessKit.ChessLogic.Algorithms
                 break;
             }
             {
-                var square = cell - 16;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKing)
+                var sq = square - 16;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKing)
                         return true;
             }
             {
-                var square = cell - 17;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKing)
+                var sq = square - 17;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKing)
                         return true;
             }
             {
-                var square = cell - 1;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKing)
+                var sq = square - 1;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKing)
                         return true;
             }
             {
-                var square = cell - -15;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKing)
+                var sq = square - -15;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKing)
                         return true;
             }
             {
-                var square = cell - -16;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKing)
+                var sq = square - -16;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKing)
                         return true;
             }
             {
-                var square = cell - -17;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKing)
+                var sq = square - -17;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKing)
                         return true;
             }
             {
-                var square = cell - -1;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKing)
+                var sq = square - -1;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKing)
                         return true;
             }
             {
-                var square = cell - 15;
-                if ((square & 0x88) == 0)
-                    if (cells[square] == (byte) BlackKing)
+                var sq = square - 15;
+                if ((sq & 0x88) == 0)
+                    if (cells[sq] == (byte) BlackKing)
                         return true;
             }
             return false;
