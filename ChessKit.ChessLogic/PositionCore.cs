@@ -27,11 +27,11 @@ namespace ChessKit.ChessLogic
         public int WhiteKing { get; }
         public int BlackKing { get; }
 
-        public PositionCore(byte[] cells, Color turn, Castlings castlingAvailability, int? enPassant, int whiteKing, int blackKing)
+        public PositionCore(byte[] cells, Color turn, Castlings availableCastlings, int? enPassant, int whiteKing, int blackKing)
         {
             Cells = cells;
             Turn = turn;
-            CastlingAvailability = castlingAvailability;
+            CastlingAvailability = availableCastlings;
             EnPassant = enPassant;
             WhiteKing = whiteKing;
             BlackKing = blackKing;

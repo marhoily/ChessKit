@@ -390,12 +390,12 @@ namespace ChessKit.ChessLogic.Algorithms
             return King | DoesNotMoveThisWay;
         }
 
-        public static MoveAnnotations ValidateMove(byte[] cells, Piece piece, int fromSquare, int toSquare, Piece toPiece, Castlings castlingAvailability)
+        public static MoveAnnotations ValidateMove(byte[] cells, Piece piece, int fromSquare, int toSquare, Piece capture, Castlings availableCastlings)
         {
             switch (piece)
             {
                 case Piece.WhitePawn:
-                    return ValidateWhitePawnMove(cells, fromSquare, toSquare, toPiece);
+                    return ValidateWhitePawnMove(cells, fromSquare, toSquare, capture);
 
                 case Piece.WhiteBishop:
                     return ValidateWhiteBishopMove(cells, fromSquare, toSquare);
@@ -412,10 +412,10 @@ namespace ChessKit.ChessLogic.Algorithms
                 case Piece.WhiteKing:
                     if (ValidateWhiteKingMove(fromSquare, toSquare) == King)
                         return King;
-                    return ValidateWhiteCastlingMove(cells, fromSquare, toSquare, castlingAvailability);
+                    return ValidateWhiteCastlingMove(cells, fromSquare, toSquare, availableCastlings);
 
                 case Piece.BlackPawn:
-                    return ValidateBlackPawnMove(cells, fromSquare, toSquare, toPiece);
+                    return ValidateBlackPawnMove(cells, fromSquare, toSquare, capture);
 
                 case Piece.BlackBishop:
                     return ValidateBlackBishopMove(cells, fromSquare, toSquare);
@@ -432,7 +432,7 @@ namespace ChessKit.ChessLogic.Algorithms
                 case Piece.BlackKing:
                     if (ValidateBlackKingMove(fromSquare, toSquare) == King)
                         return King;
-                    return ValidateBlackCastlingMove(cells, fromSquare, toSquare, castlingAvailability);
+                    return ValidateBlackCastlingMove(cells, fromSquare, toSquare, availableCastlings);
 
                 default: throw new System.InvalidOperationException("Unknown piece: " + piece);
             }

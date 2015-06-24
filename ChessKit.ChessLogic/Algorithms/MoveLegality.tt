@@ -65,7 +65,7 @@ namespace ChessKit.ChessLogic.Algorithms
     } // --------------------------------------------------
 #>
 
-        public static MoveAnnotations ValidateMove(byte[] cells, Piece piece, int fromSquare, int toSquare, Piece toPiece, Castlings castlingAvailability)
+        public static MoveAnnotations ValidateMove(byte[] cells, Piece piece, int fromSquare, int toSquare, Piece capture, Castlings availableCastlings)
         {
             switch (piece)
             {
@@ -78,7 +78,7 @@ namespace ChessKit.ChessLogic.Algorithms
     if (p.PieceType == PieceType.Pawn)
     {
 #>
-                    return Validate<#=p.Color#>PawnMove(cells, fromSquare, toSquare, toPiece);
+                    return Validate<#=p.Color#>PawnMove(cells, fromSquare, toSquare, capture);
 
 <#
     }
@@ -87,7 +87,7 @@ namespace ChessKit.ChessLogic.Algorithms
 #>
                     if (Validate<#=p.Color#><#=p.PieceType#>Move(fromSquare, toSquare) == King)
                         return King;
-                    return Validate<#=p.Color#>CastlingMove(cells, fromSquare, toSquare, castlingAvailability);
+                    return Validate<#=p.Color#>CastlingMove(cells, fromSquare, toSquare, availableCastlings);
 
 <#
     }
