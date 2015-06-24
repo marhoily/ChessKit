@@ -16,7 +16,7 @@ namespace ChessKit.ChessLogic.Algorithms
 foreach (var color in new []{Color.White, Color.Black})
 {
 #>
-        public static bool IsSquareAttackedBy<#=color#>(byte[] cells, int cell)
+        public static bool IsSquareAttackedBy<#=color#>(this byte[] cells, int cell)
         {
 <#
     foreach (var p in MetaPiece.All) 

@@ -10,7 +10,7 @@
 using System.Collections.Generic;
 using ChessKit.ChessLogic.Primitives;
 using static ChessKit.ChessLogic.Primitives.MoveAnnotations;
-using static ChessKit.ChessLogic.Algorithms.Attacks;
+//using static ChessKit.ChessLogic.Algorithms.Attacks;
 
 namespace ChessKit.ChessLogic.Algorithms
 {
@@ -43,7 +43,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                            if (!IsAttackedBy<#=p.Color.Invert()#>(cells, <#=lowerColor#>King))
+                            if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>King))
                                 collector.Add(new GeneratedMove(fromSquare, to, <#=p.PieceType#>));
                             cells[fromSquare] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             cells[to] = toPiece;
@@ -52,7 +52,7 @@ namespace ChessKit.ChessLogic.Algorithms
                         {
                             cells[fromSquare] = (byte)Piece.EmptyCell;
                             cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                            if (!IsAttackedBy<#=p.Color.Invert()#>(cells, <#=lowerColor#>King))
+                            if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>King))
                                 collector.Add(new GeneratedMove(fromSquare, to, <#=p.PieceType#> | Capture));
                             cells[fromSquare] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
                             cells[to] = toPiece;
@@ -88,13 +88,13 @@ namespace ChessKit.ChessLogic.Algorithms
                                 {
 #>
                                 cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                                if (!IsAttackedBy<#=p.Color.Invert()#>(cells, <#=lowerColor#>King))
+                                if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>King))
 <#
                                 }
                                 else
                                 {
 #>
-                                if (!IsAttackedBy<#=p.Color.Invert()#>(cells, to))
+                                if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(to))
 <#
                                 }
 #>
@@ -117,13 +117,13 @@ namespace ChessKit.ChessLogic.Algorithms
                                 {
 #>
                                 cells[to] = (byte)Piece.<#=p.Color#><#=p.PieceType#>;
-                                if (!IsAttackedBy<#=p.Color.Invert()#>(cells, <#=lowerColor#>King))
+                                if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(<#=lowerColor#>King))
 <#
                                 }
                                 else
                                 {
 #>
-                                if (!IsAttackedBy<#=p.Color.Invert()#>(cells, to))
+                                if (!cells.IsSquareAttackedBy<#=p.Color.Invert()#>(to))
 <#
                                 }
 #>

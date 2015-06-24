@@ -10,8 +10,8 @@ namespace ChessKit.ChessLogic.Algorithms
 
         public static AnalyzedMove MakeMove(Position src, Move move)
         {
-            var whiteKing = src.Core.WhiteKing;
-            var blackKing = src.Core.BlackKing;
+            var whiteKingSquare = src.Core.WhiteKing;
+            var blackKingSquare = src.Core.BlackKing;
 
             var cells = new byte[BytesCount];
             var sourceCells = src.Core.Squares;
@@ -77,10 +77,10 @@ namespace ChessKit.ChessLogic.Algorithms
             switch (piece)
             {
                 case Piece.WhiteKing:
-                    whiteKing = moveTo;
+                    whiteKingSquare = moveTo;
                     break;
                 case Piece.BlackKing:
-                    blackKing = moveTo;
+                    blackKingSquare = moveTo;
                     break;
             }
 
@@ -117,8 +117,8 @@ namespace ChessKit.ChessLogic.Algorithms
                 }
             }
             var isUnderCheck = src.Core.ActiveColor == Color.White
-                ? Attacks.IsSquareAttackedByBlack(cells, whiteKing)
-                : Attacks.IsSquareAttackedByWhite(cells, blackKing);
+                ? cells.IsSquareAttackedByBlack(whiteKingSquare)
+                : cells.IsSquareAttackedByWhite(blackKingSquare);
 
             if (isUnderCheck)
             {
@@ -136,7 +136,7 @@ namespace ChessKit.ChessLogic.Algorithms
 
             var positionCore = new PositionCore(
                 cells, sideOnMove, castlings, enPassantFile, 
-                whiteKing, blackKing);
+                whiteKingSquare, blackKingSquare);
             var legalMove = new LegalMove(
                 move, src, positionCore, notes);
             return legalMove;

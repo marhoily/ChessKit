@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ChessKit.ChessLogic.Algorithms.Attacks">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAIAAAAAAAAAAAAAAAACAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\Attacks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChessKit.ChessLogic.Algorithms.BoardUpdater" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAACAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\BoardUpdater.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChessKit.ChessLogic.Algorithms.CanBeValid" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Algorithms\CanBeValid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChessKit.ChessLogic.Algorithms.Diagnostics" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\Diagnostics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChessKit.ChessLogic.Algorithms.EndGame" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAoAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\EndGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChessKit.ChessLogic.Algorithms.Fen" Collapsed="true">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAQCAAAAAAIAAAAIAAgAAgAAAAAAAAAIA=</HashCode>
+      <FileName>Algorithms\Fen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChessKit.ChessLogic.Algorithms.GetLegalMoves" Collapsed="true">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAACAAA=</HashCode>
+      <FileName>Algorithms\GetLegalMoves.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChessKit.ChessLogic.Algorithms.MoveGeneration" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAACAAEAAAAAgAAAgAAAAAAAA=</HashCode>
+      <FileName>Algorithms\MoveGeneration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChessKit.ChessLogic.Algorithms.MoveLegality" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BkAAAAIAAACAgAAEAQAJAAAAAAAACAAQBAAIAAEAAwA=</HashCode>
+      <FileName>Algorithms\MoveLegality.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChessKit.ChessLogic.Algorithms.San" Collapsed="true">
+    <Position X="4.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAIAAAAAAAAAAAAAAQAAAAAAAAQAABgAAAAAA=</HashCode>
+      <FileName>Algorithms\San.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChessKit.ChessLogic.Algorithms.Zobrist" Collapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAAAAA=</HashCode>
+      <FileName>Algorithms\Zobrist.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -39,6 +39,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CanBeValid.cs</LastGenOutput>
     </None>
+    <None Include="Algorithms\Algorithms.cd" />
     <None Include="Primitives\Cells.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Cells.cs</LastGenOutput>
