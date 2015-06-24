@@ -7,9 +7,9 @@ namespace ChessKit.ChessLogic.Algorithms
 {
     public static class Diagnostics
     {
-        public static string Dump([NotNull] this Position board)
+        public static string Dump([NotNull] this Position position)
         {
-            if (board == null) throw new ArgumentNullException(nameof(board));
+            if (position == null) throw new ArgumentNullException(nameof(position));
             var sb = new StringBuilder(17 * 36);
             sb.AppendLine(" ╔═══╤═══╤═══╤═══╤═══╤═══╤═══╤═══╗");
             sb.AppendLine("8║ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 ║");
@@ -30,7 +30,7 @@ namespace ChessKit.ChessLogic.Algorithms
             sb.AppendLine(" ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝");
             foreach (var square in Coordinates.All)
             {
-                var piece = (Piece)board.Core.Cells[square];
+                var piece = (Piece)position.Core.Cells[square];
                 sb[((7 - square.GetY()) * 2 + 1) * 36 + square.GetX() * 4 + 3]
                     = piece.GetSymbol();
             }
