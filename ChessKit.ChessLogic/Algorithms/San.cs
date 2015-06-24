@@ -224,15 +224,15 @@ namespace ChessKit.ChessLogic.Algorithms
             return GetMove(board, to, file, rank, pieceChar, prom);
         }
 
-        private static LegalMove GetMove(Position board, int to, int? file, int? rank, PieceType pieceChar,
+        private static LegalMove GetMove(Position position, int to, int? file, int? rank, PieceType pieceChar,
             PieceType prom)
         {
             var move = default(LegalMove);
-            foreach (var m in board.GetAllLegalMoves())
+            foreach (var m in position.GetAllLegalMoves())
                 if (m.Move.ToCell == to)
                     if (file == null || file == m.Move.FromCell.GetX())
                         if (rank == null || rank == m.Move.FromCell.GetY())
-                            if (((Piece) board.Core.Cells[m.Move.FromCell]).PieceType() == pieceChar)
+                            if (((Piece) position.Core.Cells[m.Move.FromCell]).PieceType() == pieceChar)
                             {
                                 if (move != null) throw new FormatException("Ambiguity");
                                 move = m;
@@ -240,7 +240,7 @@ namespace ChessKit.ChessLogic.Algorithms
             if (move == null) return null;
             if ((move.Annotations & Promotion) != 0)
             {
-                return board.ValidateLegal(
+                return position.ValidateLegal(
                     new Move(move.Move.FromCell, move.Move.ToCell, prom));
             }
             return move;

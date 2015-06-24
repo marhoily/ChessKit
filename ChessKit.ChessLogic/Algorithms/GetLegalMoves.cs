@@ -6,7 +6,7 @@ namespace ChessKit.ChessLogic.Algorithms
 {
     public static class GetLegalMoves
     {
-        static List<GeneratedMove> InnternalGetLegalMoves(this Position position)
+        static List<GeneratedMove> InternalGetLegalMoves(this Position position)
         {
             // BUG: Actually creates boards, but only returns moves!
             var res = new List<GeneratedMove>(50);
@@ -24,12 +24,12 @@ namespace ChessKit.ChessLogic.Algorithms
             }
             return res;
         }
-        static List<GeneratedMove> InnternalGetLegalMoves(this Position position, int moveFrom)
+        static List<GeneratedMove> InternalGetLegalMoves(this Position position, int moveFrom)
         {
-            var sideOnMove = position.Core.ActiveColor;
+            var sideToMove = position.Core.ActiveColor;
             var piece = (Piece)position.Core.Cells[moveFrom];
             if (piece == Piece.EmptyCell) return new List<GeneratedMove>();
-            if (piece.Color() != sideOnMove) return new List<GeneratedMove>();
+            if (piece.Color() != sideToMove) return new List<GeneratedMove>();
             var res = new List<GeneratedMove>(28);
             MoveGeneration.GenerateMoves(position.Core.Cells,
                 position.Core.WhiteKing, position.Core.BlackKing,
@@ -38,16 +38,16 @@ namespace ChessKit.ChessLogic.Algorithms
             return res;
         }
         
-        public static List<LegalMove> GetLegalMovesFromSquare(this Position position, int coordinate)
+        public static List<LegalMove> GetLegalMovesFromSquare(this Position position, int fromSquare)
         {
-            var makeMove = position.InnternalGetLegalMoves(coordinate);
+            var makeMove = position.InternalGetLegalMoves(fromSquare);
             return makeMove.Select(
                 m => position.ValidateLegal(new Move(m.From, m.To)))
                 .ToList();
         }
         public static List<LegalMove> GetAllLegalMoves(this Position position)
         {
-            var makeMove = position.InnternalGetLegalMoves();
+            var makeMove = position.InternalGetLegalMoves();
             return makeMove.Select(
                 m => position.ValidateLegal(new Move(m.From, m.To)))
                 .ToList();

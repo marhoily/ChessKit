@@ -14,10 +14,10 @@ namespace ChessKit.ChessLogic.Algorithms
             var keys = ZobristKeys;
             var result = 0UL;
 
-            var squares = position.Cells;
+            var cells = position.Cells;
             for (var i = 0; i < 64; i++)
             {
-                var piece = squares[i + (i & ~7)];
+                var piece = cells[i + (i & ~7)];
                 if (piece != 0)
                     result ^= keys[64*IndexOf(piece) + i];
             }
@@ -38,7 +38,7 @@ namespace ChessKit.ChessLogic.Algorithms
                     case Color.Black: enpSquare = 3*16; break;
                 }
                 enpSquare += position.EnPassant.Value;
-                if (squares[enpSquare - 1] != 0 || squares[enpSquare + 1] != 0)
+                if (cells[enpSquare - 1] != 0 || cells[enpSquare + 1] != 0)
                     result ^= keys[772 + position.EnPassant.Value];
             }
 

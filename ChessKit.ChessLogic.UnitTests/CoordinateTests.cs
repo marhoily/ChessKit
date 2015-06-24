@@ -6,18 +6,18 @@ using Xunit;
 
 namespace ChessKit.ChessLogic.UnitTests
 {
-  public class PositionTest
+  public class CoordinateTests
   {
     [Fact]
     public void Ctor()
     {
-      var position = new int();
-      position.GetX().Should().Be(0);
-      position.GetY().Should().Be(0);
+      var coordinate = new int();
+      coordinate.GetX().Should().Be(0);
+      coordinate.GetY().Should().Be(0);
 
-      position = 3 + 16* 6;
-      position.GetX().Should().Be(3);
-      position.GetY().Should().Be(6);
+      coordinate = 3 + 16* 6;
+      coordinate.GetX().Should().Be(3);
+      coordinate.GetY().Should().Be(6);
 
       // BUG: Romoved assertions
 //      new Action(() => new int(-1, 0)).ShouldThrow<ArgumentOutOfRangeException>();
@@ -28,25 +28,25 @@ namespace ChessKit.ChessLogic.UnitTests
     [Fact]
     public void FileAndRank()
     {
-      const int position = 3 + 16 * 1;
-      position.GetFile().Should().Be('d');
-      position.GetRank().Should().Be(2);
-      position.ToCoordinateString().Should().Be("d2");
+      const int coordinate = 3 + 16 * 1;
+      coordinate.GetFile().Should().Be('d');
+      coordinate.GetRank().Should().Be(2);
+      coordinate.ToCoordinateString().Should().Be("d2");
     }
     [Fact]
     public void Parse()
     {
-      var position = "a1".ParseCoordinate();
-      position.GetX().Should().Be(0);
-      position.GetY().Should().Be(0);
+      var coordinate = "a1".ParseCoordinate();
+      coordinate.GetX().Should().Be(0);
+      coordinate.GetY().Should().Be(0);
 
-      position = "h4".ParseCoordinate();
-      position.GetX().Should().Be(7);
-      position.GetY().Should().Be(3);
+      coordinate = "h4".ParseCoordinate();
+      coordinate.GetX().Should().Be(7);
+      coordinate.GetY().Should().Be(3);
 
-      position = "B7".ParseCoordinate();
-      position.GetX().Should().Be(1);
-      position.GetY().Should().Be(6);
+      coordinate = "B7".ParseCoordinate();
+      coordinate.GetX().Should().Be(1);
+      coordinate.GetY().Should().Be(6);
 
       new Action(() => Coordinates.ParseCoordinate(null) ).ShouldThrow<ArgumentNullException      >();
       new Action(() => "".ParseCoordinate()   ).ShouldThrow<ArgumentOutOfRangeException>();

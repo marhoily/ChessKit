@@ -168,14 +168,14 @@ namespace ChessKit.ChessLogic.Algorithms
                 return res;
             }
         }
-        public static string ToFenString(this Position board)
+        public static string ToFenString(this Position position)
         {
             var fen = new StringBuilder(77);
             for (int empty = 0, sq = 63; sq >= 0; sq--)
             {
                 var idx = (sq / 8) * 8 + 7 - sq % 8;
                 idx = idx + (idx & ~7);
-                if (board.Core.Cells[idx] == 0)
+                if (position.Core.Cells[idx] == 0)
                 {
                     empty++;
                     if (0 == sq % 8)
@@ -188,16 +188,16 @@ namespace ChessKit.ChessLogic.Algorithms
                 }
 
                 if (empty != 0) fen.Append((char)('0' + empty));
-                fen.Append(((Piece)board.Core.Cells[idx]).GetSymbol());
+                fen.Append(((Piece)position.Core.Cells[idx]).GetSymbol());
                 empty = 0;
                 if (sq != 0 && sq % 8 == 0) fen.Append('/');
             }
 
             fen.Append(' ');
-            fen.Append(board.Core.ActiveColor == Color.White ? 'w' : 'b');
+            fen.Append(position.Core.ActiveColor == Color.White ? 'w' : 'b');
 
             fen.Append(' ');
-            var castling = board.Core.CastlingAvailability;
+            var castling = position.Core.CastlingAvailability;
             if (castling == Castlings.None)
             {
                 fen.Append('-');
@@ -211,21 +211,21 @@ namespace ChessKit.ChessLogic.Algorithms
             }
 
             fen.Append(' ');
-            if (!board.Core.EnPassant.HasValue)
+            if (!position.Core.EnPassant.HasValue)
             {
                 fen.Append('-');
             }
             else
             {
-                fen.Append("abcdefgh"[board.Core.EnPassant.GetValueOrDefault()]);
-                fen.Append(board.Core.ActiveColor == Color.White ? '6' : '3');
+                fen.Append("abcdefgh"[position.Core.EnPassant.GetValueOrDefault()]);
+                fen.Append(position.Core.ActiveColor == Color.White ? '6' : '3');
             }
 
             fen.Append(' ');
-            fen.Append(board.HalfMoveClock);
+            fen.Append(position.HalfMoveClock);
 
             fen.Append(' ');
-            fen.Append(board.FullMoveNumber);
+            fen.Append(position.FullMoveNumber);
 
             return fen.ToString();
         }

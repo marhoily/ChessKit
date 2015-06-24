@@ -83,7 +83,7 @@
     <Compile Include="SanTests.cs" />
     <Compile Include="AttacksTests.cs" />
     <Compile Include="UpdatePositionTests.cs" />
-    <Compile Include="PositionTest.cs" />
+    <Compile Include="CoordinateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestMoveData.cs" />
     <Compile Include="ZobristTests.cs" />
