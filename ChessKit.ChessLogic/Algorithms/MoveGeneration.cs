@@ -5,30 +5,30 @@ namespace ChessKit.ChessLogic.Algorithms
 {
     static partial class MoveGeneration
     {
-        static void GenerateWhiteCastlingMoves(byte[] cells, int fromSquare, Castlings castlings, List<GeneratedMove> collector)
+        static void GenerateWhiteCastlingMoves(byte[] cells, int fromSquare, Castlings availableCastlings, List<GeneratedMove> collector)
         {
             if (fromSquare != Cells.E1) return;
 
-            if ((castlings & Castlings.WQ) != 0)
+            if ((availableCastlings & Castlings.WQ) != 0)
                 if (cells[Cells.D1] == 0 && cells[Cells.C1] == 0 && cells[Cells.B1] == 0)
                     if (!cells.IsSquareAttackedByBlack(Cells.E1) && !cells.IsSquareAttackedByBlack(Cells.D1) && !cells.IsSquareAttackedByBlack(Cells.C1))
                         collector.Add(new GeneratedMove(Cells.E1, Cells.C1, MoveAnnotations.WQ));
 
-            if ((castlings & Castlings.WK) != 0)
+            if ((availableCastlings & Castlings.WK) != 0)
                 if (cells[Cells.F1] == 0 && cells[Cells.G1] == 0)
                     if (!cells.IsSquareAttackedByBlack(Cells.E1) && !cells.IsSquareAttackedByBlack(Cells.F1) && !cells.IsSquareAttackedByBlack(Cells.G1))
                         collector.Add(new GeneratedMove(Cells.E1, Cells.G1, MoveAnnotations.WK));
         }
-        static void GenerateBlackCastlingMoves(byte[] cells, int fromSquare, Castlings castlings, List<GeneratedMove> collector)
+        static void GenerateBlackCastlingMoves(byte[] cells, int fromSquare, Castlings availableCastlings, List<GeneratedMove> collector)
         {
             if (fromSquare != Cells.E8) return;
 
-            if ((castlings & Castlings.BQ) != 0)
+            if ((availableCastlings & Castlings.BQ) != 0)
                 if (cells[Cells.D8] == 0 && cells[Cells.C8] == 0 && cells[Cells.B8] == 0)
                     if (!cells.IsSquareAttackedByWhite(Cells.E8) && !cells.IsSquareAttackedByWhite(Cells.D8) && !cells.IsSquareAttackedByWhite(Cells.C8))
                         collector.Add(new GeneratedMove(Cells.E8, Cells.C8, MoveAnnotations.BQ));
 
-            if ((castlings & Castlings.BK) != 0)
+            if ((availableCastlings & Castlings.BK) != 0)
                 if (cells[Cells.F8] == 0 && cells[Cells.G8] == 0)
                     if (!cells.IsSquareAttackedByWhite(Cells.E8) && !cells.IsSquareAttackedByWhite(Cells.F8) && !cells.IsSquareAttackedByWhite(Cells.G8))
                         collector.Add(new GeneratedMove(Cells.E8, Cells.G8, MoveAnnotations.BK));

@@ -10,7 +10,7 @@ namespace ChessKit.ChessLogic.Algorithms
     {
         public static void GenerateMoves(byte[] cells, 
 			 int whiteKingSquare, int blackKingSquare, Piece piece, int fromSquare,
-             int? enPassantFile, Castlings castlingAvailability, List<GeneratedMove> collector)
+             int? enPassantFile, Castlings availableCastlings, List<GeneratedMove> collector)
         {
             switch (piece)
             {
@@ -794,7 +794,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             }
                         }
                     }
-                    GenerateWhiteCastlingMoves(cells, fromSquare, castlingAvailability, collector);
+                    GenerateWhiteCastlingMoves(cells, fromSquare, availableCastlings, collector);
                     break;
                 #endregion
 
@@ -1578,7 +1578,7 @@ namespace ChessKit.ChessLogic.Algorithms
                             }
                         }
                     }
-                    GenerateBlackCastlingMoves(cells, fromSquare, castlingAvailability, collector);
+                    GenerateBlackCastlingMoves(cells, fromSquare, availableCastlings, collector);
                     break;
                 #endregion
 
