@@ -6,19 +6,9 @@ namespace ChessKit.ChessLogic.Algorithms
     /// <summary> http://hardy.uhasselt.be/Toga/book_format.html </summary>
     public static class Zobrist
     {
-        /// <summary>
-        /// Returns a Zobrist hash of the current position.
+        /// <summary> Returns a polyglot compatible 
+        ///     Zobrist hash of the current position.
         /// </summary>
-        /// <remarks>
-        ///  A zobrist hash is an exclusive or of pseudo random values picked from
-        ///  an array.Which values are picked is decided by features of the
-        ///  position, such as piece positions, castling rights and en-passant
-        ///  squares.For this implementation an array of 781 values is required.
-        /// 
-        ///  The default behaviour is to use values from `POLYGLOT_RANDOM_ARRAY`,
-        ///  which makes for hashes compatible with polyglot opening books.
-        /// </remarks>
-        /// <returns></returns>
         public static ulong GetHash(this PositionCore position)
         {
             var keys = ZobristKeys;
@@ -80,10 +70,6 @@ namespace ChessKit.ChessLogic.Algorithms
 
         #region ' ZobristKeys '
 
-        /// <summary>
-        /// Array containing 789 random 64-bit integers.
-        /// Needed for computing Zobrist hash.
-        /// </summary>
         private static readonly ulong[] ZobristKeys = new ulong[]
             {
                 0x9D39247E33776D41, 0x2AF7398005AAA5C7, 0x44DB015024623547, 0x9C15F73E62A76AE2,
